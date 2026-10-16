@@ -135,11 +135,12 @@ svg.chart text{font-family:var(--body);font-size:9px;fill:var(--ink-2)}
 .sty{border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;background:var(--bg);padding:0;text-align:left}
 .sty.cur{border-color:var(--accent)}
 .sty .sw{height:54px}
+.sty img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .sty .nm{padding:6px 10px;font-size:.85rem}
 .chars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .ch{border:2px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;background:var(--bg);padding:0}
 .ch.cur{border-color:var(--accent)}
-.ch svg{width:100%;aspect-ratio:1;display:block}
+.ch svg,.ch img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
 .ch .nm{padding:6px 8px;font-size:.8rem;text-align:center}
 .plist{display:flex;flex-direction:column;gap:6px}
 .plist button{display:flex;gap:10px;align-items:center;text-align:left;padding:8px 10px}
@@ -453,10 +454,10 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--bg);border:1
       <div class="row"><button class="sm" id="B-charGen">시안 다시 만들기</button><span class="muted small">3개 중 하나를 고르면 모든 장면에 같은 얼굴로 나와요</span></div>
       <div class="chars" id="B-chars"></div>
       <div class="row" style="align-items:flex-start">
-        <div class="charref" id="B-charRef"><div class="empty">AI 기준 그림 없음<br>(아래 버튼으로 생성)</div></div>
+        <div class="charref" id="B-charRef"><div class="empty">기준 그림 없음<br>(시안을 고르거나 아래 버튼으로 생성)</div></div>
         <div class="stack" style="gap:6px;flex:1;min-width:160px">
-          <p class="small"><b>AI 주인공 기준 그림</b><br><span class="muted">한 장 만들어 두면 모든 장면을 이 그림을 참고해 그립니다. 얼굴·옷이 장면마다 달라지는 문제를 줄여요.</span></p>
-          <button class="ai sm" id="B-charAI">AI로 기준 그림 만들기</button>
+          <p class="small"><b>주인공 기준 그림</b><br><span class="muted">고른 시안이 기준 그림이 되어 모든 장면이 이 그림을 참고해 그려집니다. 설명을 바꿔 새로 만들 수도 있어요.</span></p>
+          <button class="ai sm" id="B-charAI">설명으로 새 기준 그림 만들기</button>
           <span class="small muted" id="B-charAIhint"></span>
         </div>
       </div>
@@ -555,7 +556,7 @@ async function genImage(prompt, refDataUrl){
   if(!apiOn()) throw new Error("API 키가 없어요");
   const gpt=cfg.model.startsWith("gpt-image"); let r;
   if(gpt && refDataUrl){
-    const fd=new FormData(); fd.append("model",cfg.model); fd.append("prompt",prompt); fd.append("size","1024x1024"); fd.append("quality",cfg.quality); fd.append("image[]",dataUrlToBlob(refDataUrl),"character.png");
+    const fd=new FormData(); fd.append("model",cfg.model); fd.append("prompt",prompt); fd.append("size","1024x1024"); fd.append("quality",cfg.quality); const rb=dataUrlToBlob(refDataUrl); fd.append("image[]",rb,rb.type.includes("jpeg")?"character.jpg":"character.png");
     r=await fetch("https://api.openai.com/v1/images/edits",{method:"POST",headers:{Authorization:"Bearer "+cfg.key},body:fd});
   } else {
     const body={model:cfg.model,prompt,size:"1024x1024",n:1}; if(gpt) body.quality=cfg.quality; else body.response_format="b64_json";
@@ -637,10 +638,10 @@ const PAGES=[
   {ko:"린이는 달님을 보며 방긋 웃었어요. 베트남에서도, 한국에서도, 달님은 하나예요.",vi:"Linh nhìn trăng và mỉm cười.",intent:"마무리",pal:["#0b1b3a","#2a4a7a"],motif:"moon2"},
 ];
 const STYLES=[
-  {n:"수채화",c:["#9fc5e8","#f9cb9c"],en:"soft watercolor children's picture book illustration, gentle washes, paper texture"},
-  {n:"색연필",c:["#f4cccc","#b6d7a8"],en:"colored pencil children's picture book illustration, warm hand-drawn texture"},
-  {n:"종이 오리기",c:["#ffd966","#e06666"],en:"paper cut-out collage children's picture book illustration, layered paper shapes, flat colors"},
-  {n:"민화풍",c:["#6fa8dc","#f1c232"],en:"Korean minhwa folk painting inspired children's picture book illustration, bold outlines, flat decorative colors"},
+  {n:"수채화",img:"img/style-watercolor.jpg",c:["#9fc5e8","#f9cb9c"],en:"soft watercolor children's picture book illustration, gentle washes, paper texture"},
+  {n:"색연필",img:"img/style-pencil.jpg",c:["#f4cccc","#b6d7a8"],en:"colored pencil children's picture book illustration, warm hand-drawn texture"},
+  {n:"종이 오리기",img:"img/style-papercut.jpg",c:["#ffd966","#e06666"],en:"paper cut-out collage children's picture book illustration, layered paper shapes, flat colors"},
+  {n:"민화풍",img:"img/style-minhwa.jpg",c:["#6fa8dc","#f1c232"],en:"Korean minhwa folk painting inspired children's picture book illustration, bold outlines, flat decorative colors"},
 ];
 let style=0, charPick=0, pageI=0, version=PAGES.map(()=>1), bApproved=PAGES.map(()=>false), fixes=PAGES.map(()=>[]);
 const gen=PAGES.map(()=>null); let charRef=null, busyAll=false;
@@ -673,8 +674,10 @@ $("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; splitPages(); };
 $("B-text").addEventListener("change",()=>{ if($("B-text").value.trim()) splitPages(); });
 function splitPages(){ $("B-pages").innerHTML=PAGES.map((p,i)=>`<div class="pg"><b class="num">${i*2+1}–${i*2+2}쪽 · ${p.intent}</b>${p.ko}<br><span class="vi">${p.vi}</span></div>`).join(""); $("B-split").hidden=false; toast("원고를 6개 펼침면으로 나눴어요 (예시)"); }
 $("B-go2").onclick=()=>{ setStep("B",2,4); renderStyles(); renderChars(); charHint(); };
-function renderStyles(){ $("B-styles").innerHTML=STYLES.map((s,i)=>`<button class="sty ${i===style?"cur":""}" data-i="${i}"><div class="sw" style="background:linear-gradient(135deg,${s.c[0]},${s.c[1]})"></div><div class="nm">${s.n}</div></button>`).join(""); $("B-styles").querySelectorAll(".sty").forEach(b=>b.onclick=()=>{ style=+b.dataset.i; renderStyles(); }); }
-function renderChars(){ const hairs=["#2b1b10","#4a2a10","#1a1a1a"], dress=["#e74c3c","#c0392b","#e67e22"]; $("B-chars").innerHTML=hairs.map((h,i)=>`<button class="ch ${i===charPick?"cur":""}" data-i="${i}"><svg viewBox="0 0 60 60"><rect width="60" height="60" fill="${STYLES[style].c[0]}" opacity=".35"/><circle cx="30" cy="24" r="10" fill="#f6d2b0"/><path d="M19 20 q11 -12 22 0 v-3 q-11 -8 -22 0z" fill="${h}"/><circle cx="26" cy="24" r="1.2"/><circle cx="34" cy="24" r="1.2"/><path d="M27 29 q3 2 6 0" stroke="#a55" fill="none"/><path d="M18 56 q12 -30 24 0z" fill="${dress[i]}"/><g transform="translate(46 40) scale(.8)"><polygon points="0,-10 3,-3 10,-3 4,1 6,9 0,4 -6,9 -4,1 -10,-3 -3,-3" fill="#ffb020"/></g></svg><div class="nm">시안 ${i+1}</div></button>`).join(""); $("B-chars").querySelectorAll(".ch").forEach(b=>b.onclick=()=>{ charPick=+b.dataset.i; renderChars(); }); }
+function renderStyles(){ $("B-styles").innerHTML=STYLES.map((s,i)=>`<button class="sty ${i===style?"cur":""}" data-i="${i}"><img src="${s.img}" alt="${s.n} 샘플" loading="lazy"><div class="nm">${s.n}</div></button>`).join(""); $("B-styles").querySelectorAll(".sty").forEach(b=>b.onclick=()=>{ style=+b.dataset.i; renderStyles(); }); }
+const CHAR_IMGS=["img/char-1.jpg","img/char-2.jpg","img/char-3.jpg"];
+function renderChars(){ $("B-chars").innerHTML=CHAR_IMGS.map((src,i)=>`<button class="ch ${i===charPick?"cur":""}" data-i="${i}"><img src="${src}" alt="주인공 시안 ${i+1}" loading="lazy"><div class="nm">시안 ${i+1}</div></button>`).join(""); $("B-chars").querySelectorAll(".ch").forEach(b=>b.onclick=()=>{ charPick=+b.dataset.i; renderChars(); useCharAsRef(); }); if(!charRef) useCharAsRef(true); }
+async function useCharAsRef(silent){ const src=CHAR_IMGS[charPick]; $("B-charRef").innerHTML=`<img src="${src}" alt="주인공 기준 그림 (시안 ${charPick+1})">`; try{ const r=await fetch(src); const bl=await r.blob(); charRef=await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.readAsDataURL(bl); }); if(!silent) toast(`시안 ${charPick+1}을 기준 그림으로 정했어요. 장면 그림이 이 얼굴을 따라갑니다`); }catch(e){ charRef=null; } }
 $("B-charGen").onclick=()=>{ toast("설명을 반영해 시안 3개를 다시 만들었어요 (예시)"); renderChars(); };
 $("B-back1").onclick=()=>setStep("B",1,4);
 $("B-go3").onclick=()=>{ setStep("B",3,4); renderPage(); };
