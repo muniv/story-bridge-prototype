@@ -117,7 +117,7 @@ footer{margin-top:28px;font-size:.8rem;color:var(--ink-2);display:flex;justify-c
 .legend i{display:inline-block;width:12px;height:8px;border-radius:2px;vertical-align:middle;margin-right:4px}
 .tl{position:relative;height:54px;margin-top:8px}
 .tl .base{position:absolute;left:0;right:0;top:24px;height:6px;background:var(--line);border-radius:3px}
-.tl .tick{position:absolute;top:36px;font-size:.7rem;color:var(--ink-2);transform:translateX(-50%)}
+.tl .tick{position:absolute;top:36px;font-size:.7rem;color:var(--ink-2);transform:translateX(-50%);white-space:nowrap}
 .tl .mk{position:absolute;top:14px;width:26px;height:26px;border-radius:50%;border:2px solid var(--paper);transform:translateX(-50%);cursor:pointer;display:grid;place-items:center;color:#fff;font-size:.7rem;font-weight:700;padding:0}
 .tl .mk.good{background:var(--ok)} .tl .mk.fix{background:var(--warn)}
 .tl .mk.cur{outline:3px solid var(--sea);outline-offset:1px}
@@ -135,6 +135,46 @@ footer{margin-top:28px;font-size:.8rem;color:var(--ink-2);display:flex;justify-c
 .selfv{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;font-size:.9rem}
 .selfv output{width:34px;text-align:right;font-weight:700}
 svg.chart text{font-family:var(--body);font-size:9px;fill:var(--ink-2)}
+
+/* lecture: player + transcript */
+.player{aspect-ratio:16/9;background:#0E1626;border-radius:var(--r4);overflow:hidden;position:relative;color:#fff;font-family:var(--display)}
+.player video{width:100%;height:100%;display:block;background:#000}
+.player audio{position:absolute;left:0;right:0;bottom:0;width:100%;height:54px}
+.player .slide{position:absolute;inset:0 0 44px 0;display:grid;place-items:center;text-align:center;padding:6% 8% 18%;background:linear-gradient(140deg,#1C2A4A,#0E1626)}
+.player .slide .t{font-size:clamp(1rem,2.4vw,1.5rem);font-weight:800;color:#FFE9A8;text-wrap:balance}
+.player .slide .s{font-size:.78rem;opacity:.75;margin-top:6px}
+.player .badge{position:absolute;top:10px;left:10px;z-index:1;font-size:.7rem;background:rgba(0,0,0,.55);padding:2px 8px;border-radius:999px}
+.player .cap{position:absolute;left:5%;right:5%;bottom:54px;background:rgba(0,0,0,.62);padding:6px 10px;border-radius:6px;font-size:.84rem;text-align:center;line-height:1.45}
+.player .ctl{position:absolute;left:0;right:0;bottom:0;height:44px;background:rgba(0,0,0,.78);display:flex;align-items:center;gap:10px;padding:0 12px 0 4px;font-size:.78rem}
+.player .ctl button{background:transparent;border:0;color:#fff;padding:4px 10px;font-size:.95rem;border-radius:6px}
+.player .ctl button:hover{background:rgba(255,255,255,.12)}
+.player .prog{flex:1;height:4px;background:rgba(255,255,255,.25);border-radius:2px;position:relative;cursor:pointer}
+.player .prog i{position:absolute;left:0;top:0;height:100%;background:var(--accent);border-radius:2px}
+.player .prog b{position:absolute;top:-3px;width:10px;height:10px;border-radius:50%;background:#fff;transform:translateX(-50%)}
+.player .prog .pm{position:absolute;top:-2px;width:2px;height:8px;transform:translateX(-50%)}
+.player .prog .pm.good{background:var(--ok)} .player .prog .pm.fix{background:var(--warn)}
+.tr{position:relative;max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:var(--r3);background:var(--bg);padding:4px}
+.tr .ln{display:grid;grid-template-columns:40px 1fr auto;gap:10px;width:100%;text-align:left;border:0;border-left:3px solid transparent;border-radius:6px;background:transparent;padding:7px 10px;font-size:.88rem;line-height:1.5;align-items:start}
+.tr .ln:hover{background:var(--paper)}
+.tr .ln.good{border-left-color:var(--ok)} .tr .ln.fix{border-left-color:var(--warn)}
+.tr .ln.cur{background:var(--accent-soft)}
+.tr .ln .t{color:var(--ink-2);font-size:.76rem;padding-top:3px}
+.tr .ln .pill{align-self:center}
+.sc{grid-template-columns:110px 1fr 56px}
+.scores.cmp{gap:12px}
+.sc .trk em{position:absolute;left:0;bottom:-6px;height:3px;background:var(--ink-2);opacity:.5;border-radius:2px}
+.sc .d{font-size:.72rem;font-weight:700;margin-left:3px} .sc .d.up{color:var(--ok)} .sc .d.dn{color:var(--warn)}
+.gap{background:var(--bg);border:1px solid var(--line);border-radius:var(--r3);padding:10px 12px;margin-top:10px}
+.live{margin-top:14px;border:1px solid var(--line);border-radius:var(--r3);background:var(--bg);padding:12px}
+.live .lines{max-height:150px;overflow:auto;font-size:.85rem;line-height:1.55;display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.live .lines div{display:grid;grid-template-columns:40px 1fr;gap:8px;animation:fadein .3s}
+.live .lines .t{color:var(--ink-2);font-size:.76rem;padding-top:2px}
+@keyframes fadein{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.words span small{opacity:.7;font-size:.72rem}
+.words span{cursor:pointer}
+li[data-m]{cursor:pointer} li[data-m]:hover{text-decoration:underline}
+.hist .it button.lk{padding:4px 10px;font-size:.8rem;border-radius:999px}
+@media (max-width:520px){.tl .mk{width:18px;height:18px;top:18px;font-size:.6rem}.player{aspect-ratio:4/3}.player .slide{padding:38px 8% 72px}.player .slide .t{font-size:1.05rem}.player .cap{font-size:.74rem;padding:4px 8px;bottom:50px}}
 
 /* book */
 .pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
@@ -199,7 +239,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
 
 <div class="wrap">
 <header>
-  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.3</span></div>
+  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.4</span></div>
   <div class="hdr-r">
     <div class="modes" id="modes">
       <button class="cur" data-mode="L"><span class="rank">1순위</span>강의 연습 도우미</button>
@@ -255,8 +295,8 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         </div>
       </div>
       <div class="hist">
-        <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 유치원용 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><span class="pill">보기</span></div>
-        <div class="it"><div class="score num">67</div><div><b>2회차</b> · 10/9 · 같은 주제 21분<br><span class="muted small">상호작용 좋아짐 · 꾸오이 전설 설명이 길어요</span></div><span class="pill">보기</span></div>
+        <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 유치원용 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><button class="lk" data-h="1">보기</button></div>
+        <div class="it"><div class="score num">67</div><div><b>2회차</b> · 10/9 · 같은 주제 21분<br><span class="muted small">상호작용 좋아짐 · 꾸오이 전설 설명이 길어요</span></div><button class="lk" data-h="2">보기</button></div>
         <div class="it now"><div class="score num">?</div><div><b>3회차</b> · 오늘<br><span class="muted small">지난번 목표: 말 빠르기 170 이하 · 질문 뒤 3초 기다리기 · 마무리 문장</span></div><button class="primary sm" id="L-new">새 연습 시작</button></div>
       </div>
       <div class="tbox">
@@ -330,7 +370,8 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
       <div class="job" data-d="5200"><div class="ico">3</div><div><strong>내용·상호작용 분석</strong> <span class="muted small">도입-전개-정리 구조, 질문과 기다림, 책 활용 여부</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="6400"><div class="ico">4</div><div><strong>피드백 작성</strong> <span class="muted small">잘한 순간과 고칠 순간을 골라 다음 연습 목표 제안</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
     </div>
-    <div class="row between" style="margin-top:18px"><button class="ghost" id="L-back2">← 이전</button><button class="primary" id="L-go4" disabled>리포트 보기 →</button></div>
+    <div class="live" id="L-live" hidden><p class="eyebrow">실시간 받아쓰기</p><div class="lines" id="L-liveL"></div><p class="small muted" id="L-liveS" style="margin-top:8px"></p></div>
+    <div class="row between" style="margin-top:18px"><button class="ghost" id="L-back2">← 이전</button><div class="row"><button class="ghost sm" id="L-skip">건너뛰기 (시연용)</button><button class="primary" id="L-go4" disabled>리포트 보기 →</button></div></div>
   </div>
 </section>
 
@@ -345,17 +386,25 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
           <div class="row" style="margin-top:6px"><button class="sm" id="L-share">대표님께 리포트 보내기</button><button class="sm ghost" id="L-cmp">2회차와 비교</button></div>
         </div>
         <div>
-          <div class="row between"><p class="eyebrow">항목별 점수</p><div class="legend"><span><i style="background:var(--sea)"></i>AI 평가</span><span><i style="background:var(--accent)"></i>내 자가평가</span></div></div>
-          <div class="scores" id="L-scores"></div>
+          <div class="row between"><p class="eyebrow">항목별 점수</p><div class="legend"><span><i style="background:var(--sea)"></i>AI 평가</span><span><i style="background:var(--accent)"></i>내 자가평가</span><span id="L-lgprev" hidden><i style="background:var(--ink-2);opacity:.5;height:3px"></i>2회차</span></div></div>
+          <div class="scores" id="L-scores"></div><p class="small gap" id="L-gap"></p>
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <p class="eyebrow">강의 타임라인 · 동그라미를 누르면 그 순간의 말과 피드백이 보여요</p>
+    <div class="card" id="L-review">
+      <p class="eyebrow">영상 리뷰 · 동그라미를 누르면 그 순간으로 이동해요</p>
       <div class="tl" id="L-tl"><div class="base"></div></div>
       <div class="legend" style="margin:4px 0 12px"><span><i style="background:var(--ok)"></i>잘한 순간</span><span><i style="background:var(--warn)"></i>고치면 좋은 순간</span></div>
-      <div class="moment" id="L-moment"></div>
+      <div class="grid2">
+        <div class="stack" style="gap:6px"><div class="player" id="L-player"></div><p class="muted small" id="L-pnote"></p></div>
+        <div class="moment" id="L-moment"></div>
+      </div>
+    </div>
+
+    <div class="card stack" style="gap:8px">
+      <div class="row between"><p class="eyebrow">받아쓰기 전문 · 줄을 누르면 그 장면으로 이동</p><span class="muted small" id="L-trn"></span></div>
+      <div class="tr" id="L-tr"></div>
     </div>
 
     <div class="grid2">
@@ -382,10 +431,10 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <p class="muted small">베트남어 화자가 자주 흐리는 받침(ㄹ, ㅇ)과 ㅎ 약화 위주로 찾았어요. 틀린 게 아니라 아이들이 알아듣기 쉽게 하는 연습입니다.</p>
         <p class="eyebrow" style="margin-top:6px">내용 체크</p>
         <ul class="small" style="margin:0;padding-left:18px">
-          <li><span class="pill ok">좋아요</span> 도입에서 아이들 경험 질문 → 책으로 연결</li>
+          <li data-m="0"><span class="pill ok">좋아요</span> 도입에서 아이들 경험 질문 → 책으로 연결</li>
           <li><span class="pill ok">좋아요</span> 책 삽화 4장면 실제로 보여 줌 (전통놀이로 흐르지 않음)</li>
-          <li><span class="pill warn">고쳐요</span> 꾸오이 전설 설명 2분 40초 → 1분 + 질문 2개로</li>
-          <li><span class="pill warn">고쳐요</span> 마무리 문장 없이 끝남 · 목표 시간 12초 초과</li>
+          <li data-m="4"><span class="pill warn">고쳐요</span> 꾸오이 전설 설명 2분 40초 → 1분 + 질문 2개로</li>
+          <li data-m="7"><span class="pill warn">고쳐요</span> 마무리 문장 없이 끝남 · 목표 시간 12초 초과</li>
         </ul>
       </div>
     </div>
@@ -395,10 +444,10 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <div>
           <p class="eyebrow">다음 연습 목표 · 4회차</p>
           <ol class="goals small" style="margin:6px 0 0;padding-left:20px">
-            <li><b>전설 부분 1분 안에.</b> “달에는 누가 살까요?”로 시작해서 아이 대답을 듣고 이어 가기.</li>
+            <li data-m="4"><b>전설 부분 1분 안에.</b> “달에는 누가 살까요?”로 시작해서 아이 대답을 듣고 이어 가기.</li>
             <li><b>질문 뒤 3초 세기.</b> 속으로 ‘하나, 둘, 셋’ 하고 다음 말로.</li>
-            <li><b>마무리 문장 정하기.</b> “베트남에서도 한국에서도 달님은 하나예요.” 를 마지막 말로 고정.</li>
-            <li><b>발음 3개 연습.</b> 친구들이랑 · 빙글빙글 · 환하게 를 매일 10번씩.</li>
+            <li data-m="7"><b>마무리 문장 정하기.</b> “베트남에서도 한국에서도 달님은 하나예요.” 를 마지막 말로 고정.</li>
+            <li data-m="2"><b>발음 3개 연습.</b> 친구들이랑 · 빙글빙글 · 환하게 를 매일 10번씩.</li>
           </ol>
         </div>
         <div class="stack" style="gap:8px">
@@ -541,14 +590,19 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
 const $ = id=>document.getElementById(id);
 const toastEl=$("toast"); let toastT;
 function toast(m){ toastEl.textContent=m; toastEl.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove("show"),2600); }
-function speak(t){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="ko-KR"; u.rate=0.8; const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith("ko")); if(v) u.voice=v; speechSynthesis.speak(u); return true; }catch(e){ return false; } }
+function speak(t,rate=0.8,onend){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="ko-KR"; u.rate=rate; const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith("ko")); if(v) u.voice=v; if(onend) u.onend=u.onerror=onend; speechSynthesis.speak(u); return true; }catch(e){ return false; } }
 function setStep(prefix,n,total){ [...$("steps"+prefix).children].forEach((li,k)=>{ li.classList.toggle("active",k===n-1); li.classList.toggle("done",k<n-1); }); for(let k=1;k<=total;k++) $(prefix+k).hidden = k!==n; window.scrollTo({top:0,behavior:"smooth"}); }
-function runJobs(container, onDone){
-  const jobs=[...container.querySelectorAll(".job")]; let done=0;
+function runJobs(container, onDone, onJob){
+  const jobs=[...container.querySelectorAll(".job")]; let done=0, stopped=false;
+  const finish=j=>{ j.classList.add("done"); j.querySelector(".bar i").style.width="100%"; j.querySelector(".st").textContent="완료"; };
   jobs.forEach((j,idx)=>{ j.classList.remove("done"); const bar=j.querySelector(".bar i"), st=j.querySelector(".st"); bar.style.width="0"; st.textContent="대기";
     const d=+j.dataset.d, t0=performance.now()+idx*400;
-    const tick=()=>{ const p=Math.max(0,Math.min(1,(performance.now()-t0)/d)); bar.style.width=(p*100).toFixed(0)+"%"; if(p>0) st.textContent=(p*100).toFixed(0)+"%"; if(p<1) requestAnimationFrame(tick); else { j.classList.add("done"); st.textContent="완료"; if(++done===jobs.length) onDone(); } };
+    const tick=()=>{ if(stopped) return; const p=Math.max(0,Math.min(1,(performance.now()-t0)/d)); bar.style.width=(p*100).toFixed(0)+"%"; if(p>0) st.textContent=(p*100).toFixed(0)+"%"; if(p<1) requestAnimationFrame(tick); else { finish(j); onJob&&onJob(idx); if(++done===jobs.length) onDone(); } };
     requestAnimationFrame(tick); });
+  return {
+    cancel(){ stopped=true; },
+    skip(){ if(stopped||done===jobs.length) return; stopped=true; jobs.forEach((j,idx)=>{ if(!j.classList.contains("done")){ finish(j); onJob&&onJob(idx); } }); onDone(); }
+  };
 }
 /* ══════════ OpenAI 이미지 API ══════════ */
 const cfg={key:"",model:"gpt-image-1-mini",quality:"low"};
@@ -578,54 +632,173 @@ async function genImage(prompt, refDataUrl){
 }
 
 // 모드 전환
-document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ document.querySelectorAll("#modes button").forEach(x=>x.classList.toggle("cur",x===b)); $("modeL").hidden=b.dataset.mode!=="L"; $("modeB").hidden=b.dataset.mode!=="B"; $("apiOpen").hidden=b.dataset.mode!=="B"; $("apiModal").hidden=true; speechSynthesis.cancel(); window.scrollTo({top:0}); });
+document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ document.querySelectorAll("#modes button").forEach(x=>x.classList.toggle("cur",x===b)); $("modeL").hidden=b.dataset.mode!=="L"; $("modeB").hidden=b.dataset.mode!=="B"; $("apiOpen").hidden=b.dataset.mode!=="B"; $("apiModal").hidden=true; stopPlay(); try{ speechSynthesis.cancel(); }catch(e){} window.scrollTo({top:0}); });
 
 /* ══════════ L: 강의 연습 ══════════ */
 const CATS=["전달력","한국어 발음","내용 구성","아이와 상호작용","시간 배분"];
-const AI=[72,68,81,85,60]; const SELF=[80,80,80,70,90];
+const AI=[72,68,81,85,60], PREV=[63,64,78,73,63]; const SELF=[80,80,80,70,90];
+const GAPS=[
+  "말이 빨라지는 구간(1:40, 8:10)은 말하는 사람이 스스로 느끼기 어려워요. 영상에서 그 구간을 한 번 들어 보세요.",
+  "받침이 흐려지는 건 본인 귀에는 잘 안 들려요. 아래 발음 주의 단어를 눌러 비교해 보세요.",
+  "구조 자체는 좋았어요. 전설 길이만 조정하면 됩니다.",
+  "본인 생각보다 아이들이 훨씬 많이 반응했어요(목소리 반응 11회). 자신감을 가져도 돼요.",
+  "전설 설명이 길어진 만큼 마무리가 밀렸어요. 영상 8:10과 19:58을 이어서 보세요."];
+const DUR=1212;
 const MOMENTS=[
   {t:12,type:"good",title:"아이들 경험으로 시작했어요",q:"“여러분, 추석에 뭐 했어요? 송편 먹었어요? 선생님 나라에도 추석이 있어요.”",fb:"아이들이 아는 것(한국 추석)에서 출발해 책으로 넘어가는 좋은 도입입니다. 질문 뒤 아이 셋이 대답했어요."},
-  {t:100,type:"fix",title:"말이 빨라졌어요 · 분당 212어절",q:"“그래서린이는등불을들고나갔는데친구들이많이있었고다같이…”",fb:"설명이 길어질 때 속도가 올라갑니다. 문장 하나 끝날 때마다 한 번 숨 쉬기.",say:"“린이는 등불을 들고 나갔어요. (쉬고) 밖에는 친구들이 많았어요. (쉬고) 다 같이 걸었어요.”"},
+  {t:100,type:"fix",title:"말이 빨라졌어요 · 분당 212어절",rate:1.45,q:"“그래서린이는등불을들고나갔는데친구들이많이있었고다같이…”",fb:"설명이 길어질 때 속도가 올라갑니다. 문장 하나 끝날 때마다 한 번 숨 쉬기.",say:"“린이는 등불을 들고 나갔어요. (쉬고) 밖에는 친구들이 많았어요. (쉬고) 다 같이 걸었어요.”"},
   {t:185,type:"fix",title:"발음 · ‘친구들이랑’ 받침이 흐려요",q:"“친구드이랑 등부를 들고…”",fb:"ㄹ 받침이 약해져서 ‘친구드이랑’, ‘등부를’로 들립니다. 아이들은 모르는 단어로 들을 수 있어요.",say:"“친·구·들·이·랑 등·불·을” 받침마다 혀끝을 윗니 뒤에 붙이기."},
   {t:330,type:"good",title:"별 등불 실물을 보여 줬어요",q:"“이게 바로 덴옹사오예요. 만져 볼 사람?”",fb:"책 속 그림과 실물을 연결한 순간. 아이들 집중도가 가장 높았던 구간입니다(목소리 반응 11회)."},
   {t:490,type:"fix",title:"전설 설명이 2분 40초예요",q:"“옛날 옛날에 꾸오이라는 사람이 살았는데 그 사람이 나무를 키웠는데 그 나무가 신비한 나무라서…”",fb:"유치원생이 집중하는 설명 길이는 1분 안팎입니다. 중간에 질문 2개로 쪼개면 훨씬 잘 따라와요.",say:"“달에 누가 살까요? (대답 듣기) 베트남 사람들은 꾸오이 아저씨가 산다고 믿어요. 왜 달에 갔을까요?”"},
   {t:720,type:"fix",title:"“어…” 가 많아요 · 이 구간 14회",q:"“어… 그래서 어… 월병은 어… 둥근 과자인데…”",fb:"다음 말을 고르는 동안 나오는 소리예요. 대신 조용히 1초 쉬면 오히려 또렷하게 들립니다."},
   {t:920,type:"good",title:"베트남어 인사를 따라 하게 했어요",q:"“선생님 따라 해 볼까요? 쭉 믕 쭝 투!”",fb:"아이들이 몸으로 참여한 순간. 강사님만 할 수 있는 수업입니다. 이 장면은 꼭 유지하세요."},
-  {t:1125,type:"fix",title:"마무리 문장 없이 끝났어요 · 12초 초과",q:"“…네, 그럼 오늘은 여기까지. 네.”",fb:"책의 마지막 문장으로 닫으면 아이들 기억에 남습니다. 시간은 전설 부분을 줄이면 자연히 맞아요.",say:"“베트남에서도, 한국에서도, 달님은 하나예요. 오늘 밤 달 보면 린이 생각하기!”"},
+  {t:1198,type:"fix",title:"마무리 문장 없이 끝났어요 · 12초 초과",q:"“…네, 그럼 오늘은 여기까지. 네.”",fb:"책의 마지막 문장으로 닫으면 아이들 기억에 남습니다. 시간은 전설 부분을 줄이면 자연히 맞아요.",say:"“베트남에서도, 한국에서도, 달님은 하나예요. 오늘 밤 달 보면 린이 생각하기!”"},
 ];
-const WORDS=[["친구들이랑","친구들이랑"],["빙글빙글","빙글빙글"],["환하게","환하게"],["할머니","할머니"],["등불을","등불을"]];
+const TR=[
+  {t:0,x:"안녕하세요, 여러분! 선생님 이름은 응우옌이에요. 베트남에서 왔어요."},
+  {t:12,x:"여러분, 추석에 뭐 했어요? 송편 먹었어요? 선생님 나라에도 추석이 있어요."},
+  {t:48,x:"베트남 추석은 ‘뗏쭝투’라고 해요. 오늘은 이 책, 『달님은 하나예요』를 같이 읽을 거예요."},
+  {t:100,x:"그래서 린이는 등불을 들고 나갔는데 친구들이 많이 있었고 다 같이…"},
+  {t:150,x:"달님이 동글동글, 환하게 떠 있어요. 린이는 별 모양 등불을 손에 꼭 쥐었어요."},
+  {t:185,x:"친구드이랑 등부를 들고 동네를 빙글빙글 돌아요."},
+  {t:260,x:"베트남 아이들은 추석에 등불을 들고 동네를 돌아요. 한국 친구들은 뭐 들고 다녀요?"},
+  {t:330,x:"이게 바로 덴옹사오예요. 만져 볼 사람?"},
+  {t:420,x:"할머니가 달나라 이야기를 들려주셨어요. 달에는 누가 살까요?"},
+  {t:490,x:"옛날 옛날에 꾸오이라는 사람이 살았는데 그 사람이 나무를 키웠는데 그 나무가 신비한 나무라서…"},
+  {t:650,x:"…그래서 꾸오이 아저씨는 지금도 달에서 나무 아래 앉아 있대요."},
+  {t:720,x:"어… 그래서 어… 월병은 어… 둥근 과자인데…"},
+  {t:800,x:"월병은 달님처럼 동그래요. 안에 달콤한 팥이 들어 있어요. 송편하고 비슷하죠?"},
+  {t:920,x:"선생님 따라 해 볼까요? 쭉 믕 쭝 투!"},
+  {t:1010,x:"‘쭉 믕 쭝 투’는 ‘즐거운 추석 보내세요’라는 뜻이에요. 한 번 더!"},
+  {t:1100,x:"베트남에서도 한국에서도 달님은… 네, 다 같이 봤죠?"},
+  {t:1198,x:"…네, 그럼 오늘은 여기까지. 네."},
+];
+const SLIDES=[[0,"여러분, 추석에 뭐 했어요?","도입 · 아이들 경험 묻기"],[48,"달님은 하나예요","책 소개"],[150,"린이와 별 등불","1~2장면 읽기"],[330,"덴옹사오 · 별 등불","실물 보여 주기"],[420,"달에는 누가 살까요?","꾸오이 전설"],[720,"월병 나눠 먹기","5장면 읽기"],[920,"쭉 믕 쭝 투!","베트남어 인사"],[1100,"달님은 하나예요","마무리"]];
+const WORDS=[["친구들이랑",3],["빙글빙글",2],["환하게",2],["할머니",2],["등불을",4]];
 function fmt(s){ return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
-let curM=0;
-function renderReport(){
-  $("L-scores").innerHTML = CATS.map((c,i)=>`<div class="sc"><span>${c}</span><div class="trk"><i style="width:${AI[i]}%"></i><b style="left:${SELF[i]}%" title="자가평가 ${SELF[i]}"></b></div><span class="v num">${AI[i]}</span></div>`).join("");
-  const tl=$("L-tl"); tl.innerHTML='<div class="base"></div>'+[0,5,10,15,20].map(m=>`<span class="tick" style="left:${m/20*100}%">${m}분</span>`).join("")+
-    MOMENTS.map((m,i)=>`<button class="mk ${m.type} ${i===curM?"cur":""}" style="left:${m.t/1212*100}%" data-i="${i}" aria-label="${fmt(m.t)} ${m.title}">${m.type==="good"?"✓":"!"}</button>`).join("");
-  tl.querySelectorAll(".mk").forEach(b=>b.onclick=()=>{ curM=+b.dataset.i; renderReport(); });
-  const m=MOMENTS[curM];
-  $("L-moment").className="moment "+m.type;
-  $("L-moment").innerHTML=`<div class="row between"><strong>${fmt(m.t)} · ${m.title}</strong><span class="pill ${m.type==="good"?"ok":"warn"}">${m.type==="good"?"잘한 순간":"고치면 좋아요"}</span></div><div class="q">${m.q}</div><p class="small">${m.fb}</p>${m.say?`<div class="say"><span class="eyebrow">이렇게 말해 보세요</span><br>${m.say} <button class="sm" style="margin-left:6px" data-say="${m.say.replace(/"/g,"&quot;")}">▶ 듣기</button></div>`:""}`;
-  const sb=$("L-moment").querySelector("[data-say]"); if(sb) sb.onclick=()=>{ if(!speak(sb.dataset.say.replace(/[“”()]/g,""))) toast("이 브라우저는 음성을 지원하지 않아요"); };
-  $("L-words").innerHTML=WORDS.map(w=>`<span role="button" tabindex="0" data-w="${w[1]}">${w[0]}</span>`).join("");
-  $("L-words").querySelectorAll("span").forEach(s=>{ s.onclick=()=>speak(s.dataset.w); s.onkeydown=e=>{ if(e.key==="Enter") speak(s.dataset.w); }; });
+let curM=0, curT=MOMENTS[0].t, cmpOn=false, lecMedia=null, playing=false, playTimer=null, playId=0;
+function slideAt(t){ let s=SLIDES[0]; for(const x of SLIDES) if(t>=x[0]) s=x; return s; }
+function lineAt(t){ let k=0; TR.forEach((l,i)=>{ if(t>=l.t) k=i; }); return k; }
+function mediaEl(){ return $("L-player").querySelector("video,audio"); }
+
+/* 플레이어: 실제 파일을 올렸으면 그 파일을, 아니면 슬라이드 모의 화면을 보여 준다 */
+function renderPlayer(){
+  const p=$("L-player");
+  if(lecMedia){
+    if(p.dataset.src!==lecMedia.url){ p.dataset.src=lecMedia.url; p.innerHTML= lecMedia.kind==="audio"
+      ? `<div class="slide"><div><div class="t">${lecMedia.name}</div><div class="s">음성 파일 · 아래에서 재생</div></div></div><audio controls src="${lecMedia.url}"></audio>`
+      : `<video controls playsinline src="${lecMedia.url}"></video>`; }
+    $("L-pnote").textContent="올린 녹화를 재생합니다. 타임라인·전사·평가는 예시 데이터라 실제 내용과 달라요.";
+    return;
+  }
+  delete p.dataset.src;
+  const s=slideAt(curT), li=lineAt(curT), pct=curT/DUR*100;
+  p.innerHTML=`<span class="badge">샘플 녹화 · 슬라이드 ${SLIDES.indexOf(s)+1}/${SLIDES.length}</span><div class="slide"><div><div class="t">${s[1]}</div><div class="s">${s[2]}</div></div></div><div class="cap">${TR[li].x}</div><div class="ctl"><button id="L-play" aria-label="${playing?"멈추기":"재생"}">${playing?"■":"▶"}</button><span class="num">${fmt(curT)} / ${fmt(DUR)}</span><div class="prog" id="L-prog">${MOMENTS.map(m=>`<span class="pm ${m.type}" style="left:${m.t/DUR*100}%"></span>`).join("")}<i style="width:${pct}%"></i><b style="left:${pct}%"></b></div></div>`;
+  $("L-play").onclick=()=>playing?stopPlay():playAt(curT);
+  $("L-prog").onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); seekTo(Math.round((e.clientX-r.left)/r.width*DUR)); };
+  $("L-pnote").textContent="샘플 녹화는 슬라이드 화면으로 대신 보여 드려요. ▶를 누르면 그 순간의 말을 들려줍니다.";
 }
+function stopPlay(){ playId++; clearInterval(playTimer); playTimer=null; if(lecMedia){ const v=mediaEl(); if(v&&v.pause) v.pause(); } if(playing){ playing=false; try{ speechSynthesis.cancel(); }catch(e){} renderPlayer(); } }
+function seekTo(t){ stopPlay(); curT=Math.max(0,Math.min(DUR,t)); const v=mediaEl(); if(lecMedia&&v){ try{ v.currentTime=Math.max(0,Math.min(t,(v.duration||t+1)-0.3)); }catch(e){} } renderPlayer(); renderTranscript(); }
+function playAt(t){
+  if(lecMedia){ seekTo(t); const v=mediaEl(); if(v&&v.play) v.play().catch(()=>{}); return; }
+  stopPlay(); curT=t; playing=true; const id=++playId;
+  const li=lineAt(t), m=MOMENTS.find(x=>x.t===TR[li].t);
+  const text=TR[li].x.replace(/[“”『』‘’…]/g," ").replace(/\s+/g," ").trim();
+  const end=()=>{ if(id!==playId) return; playing=false; clearInterval(playTimer); playTimer=null; renderPlayer(); };
+  const ok=speak(text,(m&&m.rate)||1,end);
+  const until=TR[li+1]?TR[li+1].t:DUR;
+  playTimer=setInterval(()=>{ if(id!==playId){ clearInterval(playTimer); return; } curT=Math.min(curT+1,until); renderPlayer(); if(curT>=until&&!ok) end(); },1000);
+  renderPlayer(); renderTranscript();
+  if(!ok) toast("이 브라우저는 음성을 지원하지 않아 화면만 넘어가요");
+}
+
+/* 타임라인 · 순간 카드 · 전사 */
+function selectMoment(i,scroll){ curM=(i+MOMENTS.length)%MOMENTS.length; seekTo(MOMENTS[curM].t); renderTimeline(); renderMoment(); if(scroll) $("L-review").scrollIntoView({behavior:"smooth",block:"start"}); }
+function renderTimeline(){
+  const tl=$("L-tl"); tl.innerHTML='<div class="base"></div>'+[0,5,10,15,20].map(m=>`<span class="tick" style="left:${m*60/DUR*100}%">${m}분</span>`).join("")+
+    MOMENTS.map((m,i)=>`<button class="mk ${m.type} ${i===curM?"cur":""}" style="left:${m.t/DUR*100}%" data-i="${i}" aria-label="${fmt(m.t)} ${m.title}" title="${fmt(m.t)} ${m.title}">${m.type==="good"?"✓":"!"}</button>`).join("");
+  tl.querySelectorAll(".mk").forEach(b=>b.onclick=()=>selectMoment(+b.dataset.i));
+}
+function renderMoment(){
+  const m=MOMENTS[curM], el=$("L-moment"); el.className="moment "+m.type;
+  el.innerHTML=`<div class="row between"><strong class="num">${fmt(m.t)} · ${m.title}</strong><div class="row" style="gap:4px"><span class="pill ${m.type==="good"?"ok":"warn"}">${m.type==="good"?"잘한 순간":"고치면 좋아요"}</span><button class="sm ghost" data-nav="-1" aria-label="이전 순간">‹</button><span class="small muted num">${curM+1}/${MOMENTS.length}</span><button class="sm ghost" data-nav="1" aria-label="다음 순간">›</button></div></div><div class="q">${m.q}</div><p class="small">${m.fb}</p><div class="row"><button class="sm" id="L-mplay">▶ 영상에서 이 순간 재생</button></div>${m.say?`<div class="say"><span class="eyebrow">이렇게 말해 보세요</span><br>${m.say} <button class="sm" style="margin-left:6px" data-say="${m.say.replace(/"/g,"&quot;")}">▶ 듣기</button></div>`:""}`;
+  el.querySelectorAll("[data-nav]").forEach(b=>b.onclick=()=>selectMoment(curM+ +b.dataset.nav));
+  $("L-mplay").onclick=()=>playAt(m.t);
+  const sb=el.querySelector("[data-say]"); if(sb) sb.onclick=()=>{ stopPlay(); if(!speak(sb.dataset.say.replace(/\([^)]*\)/g," . ").replace(/[“”]/g,""),0.9)) toast("이 브라우저는 음성을 지원하지 않아요"); };
+}
+function renderTranscript(){
+  const box=$("L-tr"), li=lineAt(curT);
+  box.innerHTML=TR.map((l,i)=>{ const mi=MOMENTS.findIndex(x=>x.t===l.t); const type=mi>=0?MOMENTS[mi].type:""; return `<button class="ln ${type} ${i===li?"cur":""}" data-i="${i}"><span class="t num">${fmt(l.t)}</span><span class="x">${l.x}</span>${mi>=0?`<span class="pill ${type==="good"?"ok":"warn"}">${type==="good"?"✓ 잘함":"! 고치기"}</span>`:""}</button>`; }).join("");
+  box.querySelectorAll(".ln").forEach(b=>b.onclick=()=>{ const l=TR[+b.dataset.i]; const mi=MOMENTS.findIndex(x=>x.t===l.t); if(mi>=0) selectMoment(mi); else seekTo(l.t); });
+  const cur=box.children[li];
+  if(cur && (cur.offsetTop<box.scrollTop || cur.offsetTop+cur.offsetHeight>box.scrollTop+box.clientHeight)) box.scrollTop=Math.max(0,cur.offsetTop-box.clientHeight/2+cur.offsetHeight/2);
+  $("L-trn").textContent=`총 ${TR.length}줄 · ${fmt(DUR)} · 예시`;
+}
+function renderScores(){
+  const el=$("L-scores"); el.className="scores"+(cmpOn?" cmp":"");
+  el.innerHTML=CATS.map((c,i)=>{ const d=AI[i]-PREV[i]; return `<div class="sc"><span>${c}</span><div class="trk"><i style="width:${AI[i]}%"></i>${cmpOn?`<em style="width:${PREV[i]}%" title="2회차 ${PREV[i]}"></em>`:""}<b style="left:${SELF[i]}%" title="자가평가 ${SELF[i]}"></b></div><span class="v num">${AI[i]}${cmpOn?`<small class="d ${d>=0?"up":"dn"}">${d>=0?"+":""}${d}</small>`:""}</span></div>`; }).join("");
+  $("L-lgprev").hidden=!cmpOn;
+  let gi=0; CATS.forEach((_,i)=>{ if(Math.abs(SELF[i]-AI[i])>Math.abs(SELF[gi]-AI[gi])) gi=i; });
+  const gap=SELF[gi]-AI[gi];
+  $("L-gap").innerHTML=Math.abs(gap)<8
+    ? `<b>내 느낌과 AI 평가가 대체로 비슷해요.</b> 자기 인식이 정확한 편입니다. 점수가 낮은 항목부터 영상을 확인해 보세요.`
+    : `<b>내 느낌과 가장 다른 항목: ${CATS[gi]}</b> · 나 ${SELF[gi]} vs AI ${AI[gi]} (${gap>0?"내가 더 높게":"내가 더 낮게"}봤어요). ${GAPS[gi]}`;
+}
+function renderWords(){
+  $("L-words").innerHTML=WORDS.map(w=>`<span role="button" tabindex="0" data-w="${w[0]}">${w[0]} <small>${w[1]}회</small></span>`).join("");
+  $("L-words").querySelectorAll("span[data-w]").forEach(s=>{ const go=()=>{ stopPlay(); if(!speak(s.dataset.w,0.75)) toast("이 브라우저는 음성을 지원하지 않아요"); }; s.onclick=go; s.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+}
+function renderReport(){ renderScores(); renderTimeline(); renderMoment(); renderPlayer(); renderTranscript(); renderWords(); }
+
+/* Step 1 */
 document.querySelectorAll("#L-self input").forEach(r=>r.oninput=()=>{ r.nextElementSibling.value=r.value; SELF[+r.dataset.k]=+r.value; });
 $("L-new").onclick=()=>setStep("L",2,4);
 $("L-back1").onclick=()=>setStep("L",1,4);
-function fileReady(name){ $("L-ready").hidden=false; $("L-fname").textContent=name||"샘플 녹화 · 20분 12초 · 1.2GB"; $("L-go3").disabled=false; toast("녹화를 올렸어요. 자가평가를 하고 분석을 시작하세요"); }
-$("L-sample").onclick=()=>fileReady();
+document.querySelectorAll("#L1 [data-h]").forEach(b=>b.onclick=()=>toast(`${b.dataset.h}회차 리포트는 예시에서 열리지 않아요. 3회차 흐름으로 체험해 주세요`));
+
+/* Step 2: 업로드 */
+function clearMedia(){ if(lecMedia){ try{ URL.revokeObjectURL(lecMedia.url); }catch(e){} lecMedia=null; } }
+function fileReady(label){ $("L-ready").hidden=false; $("L-fname").textContent=label||"샘플 녹화 · 20분 12초 · 1.2GB"; $("L-go3").disabled=false; toast("녹화를 올렸어요. 자가평가를 하고 분석을 시작하세요"); }
+function setMedia(f){
+  clearMedia(); if(!f){ fileReady(); return; }
+  const mb=f.size/1048576, size=mb>=1024?(mb/1024).toFixed(1)+"GB":mb<1?(f.size/1024).toFixed(0)+"KB":mb.toFixed(0)+"MB";
+  const kind=f.type.startsWith("audio/")?"audio":f.type.startsWith("video/")?"video":null;
+  if(!kind){ fileReady(`${f.name} · ${size} · 영상/음성 파일이 아니어서 샘플 화면으로 진행해요`); return; }
+  lecMedia={url:URL.createObjectURL(f),kind,name:f.name,dur:0};
+  fileReady(`${f.name} · ${size} · 길이 확인 중…`);
+  const el=document.createElement(kind); el.preload="metadata"; el.src=lecMedia.url;
+  el.onloadedmetadata=()=>{ if(!lecMedia||el.src!==lecMedia.url) return; lecMedia.dur=el.duration; $("L-fname").textContent=`${f.name} · ${fmt(Math.round(el.duration))} · ${size} · 리포트에서 재생돼요 (평가는 예시)`; };
+  el.onerror=()=>{ if(lecMedia&&el.src===lecMedia.url){ $("L-fname").textContent=`${f.name} · ${size} · 이 브라우저에서 재생할 수 없는 형식이라 샘플 화면으로 보여 드려요`; clearMedia(); } };
+}
+$("L-sample").onclick=()=>setMedia(null);
 const ld=$("L-drop"), lf=$("L-file"); ld.onclick=()=>lf.click(); ld.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); lf.click(); } };
-lf.onchange=()=>{ if(lf.files[0]) fileReady(lf.files[0].name+" (분석은 예시 데이터로 표시)"); };
+lf.onchange=()=>{ if(lf.files[0]) setMedia(lf.files[0]); };
 ["dragenter","dragover"].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.add("over");}));
 ["dragleave","drop"].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.remove("over");}));
-ld.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; fileReady(f?f.name+" (분석은 예시 데이터로 표시)":null); });
-$("L-go3").onclick=()=>{ setStep("L",3,4); $("L-go4").disabled=true; runJobs($("L-jobs"),()=>{ $("L-go4").disabled=false; toast("분석이 끝났어요"); }); };
-$("L-back2").onclick=()=>setStep("L",2,4);
-$("L-go4").onclick=()=>{ setStep("L",4,4); renderReport(); };
+ld.addEventListener("drop",e=>{ setMedia(e.dataTransfer.files[0]||null); });
+
+/* Step 3: 분석 */
+let jobCtl=null, liveTimer=null;
+function liveLine(i){ const L=$("L-liveL"); if(L.children.length>i) return; const l=TR[i]; const d=document.createElement("div"); d.innerHTML=`<span class="t num">${fmt(l.t)}</span><span>${l.x}</span>`; L.appendChild(d); L.scrollTop=L.scrollHeight; }
+$("L-go3").onclick=()=>{
+  if(jobCtl) jobCtl.cancel(); clearInterval(liveTimer);
+  setStep("L",3,4); $("L-go4").disabled=true; $("L-live").hidden=false; $("L-liveL").innerHTML=""; $("L-liveS").textContent="";
+  let k=0; liveTimer=setInterval(()=>{ if(k<TR.length) liveLine(k++); else clearInterval(liveTimer); },2600/TR.length);
+  const S=[`받아쓰기 완료 · ${TR.length}줄 · ${fmt(DUR)}`,"전달력 분석 완료 · 평균 168어절/분 · 군더더기 14회 · 질문 뒤 기다림 2.1초","내용 분석 완료 · 잘한 순간 3 · 고칠 순간 5 · 발음 주의 단어 5","리포트 준비 완료 · 다음 연습 목표 4개 제안"];
+  jobCtl=runJobs($("L-jobs"),()=>{ $("L-go4").disabled=false; toast("분석이 끝났어요"); },idx=>{ if(idx===0){ clearInterval(liveTimer); for(let i=0;i<TR.length;i++) liveLine(i); } $("L-liveS").textContent=S[idx]; });
+};
+$("L-skip").onclick=()=>{ if(jobCtl) jobCtl.skip(); };
+$("L-back2").onclick=()=>{ if(jobCtl) jobCtl.cancel(); clearInterval(liveTimer); setStep("L",2,4); };
+
+/* Step 4: 리포트 */
+$("L-go4").onclick=()=>{ setStep("L",4,4); cmpOn=false; $("L-cmp").textContent="2회차와 비교"; curM=0; curT=MOMENTS[0].t; renderReport(); };
 $("L-share").onclick=()=>toast("대표님(코치)에게 리포트 링크를 보냈어요 (예시)");
-$("L-cmp").onclick=()=>toast("2회차 대비: 전달력 +9 · 발음 +4 · 상호작용 +12 · 시간 배분 -3");
-$("L-again").onclick=()=>{ toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; $("L-go3").disabled=true; lf.value=""; };
+$("L-cmp").onclick=()=>{ cmpOn=!cmpOn; $("L-cmp").textContent=cmpOn?"비교 끄기":"2회차와 비교"; renderScores(); toast(cmpOn?"2회차 점수를 회색 선으로, 변화를 숫자로 표시했어요":"비교를 닫았어요"); };
+$("L-again").onclick=()=>{ stopPlay(); toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; $("L-go3").disabled=true; lf.value=""; clearMedia(); };
 $("L-pdf").onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정");
-$("L-home").onclick=()=>setStep("L",1,4);
+$("L-home").onclick=()=>{ stopPlay(); setStep("L",1,4); };
+document.querySelectorAll("#L4 li[data-m]").forEach(li=>{ li.tabIndex=0; li.setAttribute("role","button"); li.title="영상에서 이 순간 보기"; const go=()=>selectMoment(+li.dataset.m,true); li.onclick=go; li.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); go(); } }; });
 
 /* ══════════ B: 그림책 제작 ══════════ */
 const SAMPLE=`오늘은 베트남의 추석, 뗏쭝투예요. 달님이 동글동글, 환하게 떠 있어요.
