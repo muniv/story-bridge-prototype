@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>스토리브릿지 프로토타입</title>
+<title>스토리브릿지 프로토타입 v0.4</title>
+<meta name="description" content="작가의 이야기를 책으로, 책을 교실로. 이주여성 작가·강사를 위한 AI 그림책 제작·강의 연습 서비스 프로토타입 (GIST 서울의밤 × 아시안허브).">
+<meta name="theme-color" content="#FF6000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF6000'/%3E%3Ctext x='16' y='22' font-size='17' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 /* Layout: 두 도구(강의 연습 / 그림책 제작)를 상단 모드 탭으로 나누고, 각 모드 안에서 단계별 화면 전환.
@@ -15,17 +18,10 @@
   --ok:#1F9D5B; --ok-soft:#E3F5EB; --warn:#B9740F; --warn-soft:#FBF1DC;
   --r2:8px; --r3:12px; --r4:16px; --r5:20px;
   --display:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif; --body:var(--display);
+  --info:#2E5BDB; --info-soft:#E8EEFC;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#191C1F; --paper:#262F3C; --ink:#F3F4F6; --ink-2:#B1B8C0; --line:#333D4B; --line-2:#4E5967;
-  --accent:#FF8033; --accent-ink:#191C1F; --accent-soft:#4D1D00; --accent-deep:#FFA066;
-  --sea:#FF8033; --sea-soft:#4D1D00; --dark:#F3F4F6; --dark-ink:#191C1F;
-  --ok:#5FCF8F; --ok-soft:#1F3A2C; --warn:#E6B84A; --warn-soft:#3A2F14; color-scheme:dark } }
-:root[data-theme="dark"]{
-  --bg:#191C1F; --paper:#262F3C; --ink:#F3F4F6; --ink-2:#B1B8C0; --line:#333D4B; --line-2:#4E5967;
-  --accent:#FF8033; --accent-ink:#191C1F; --accent-soft:#4D1D00; --accent-deep:#FFA066;
-  --sea:#FF8033; --sea-soft:#4D1D00; --dark:#F3F4F6; --dark-ink:#191C1F;
-  --ok:#5FCF8F; --ok-soft:#1F3A2C; --warn:#E6B84A; --warn-soft:#3A2F14; color-scheme:dark }
+/* v0.4: 라이트 모드 고정 (다크 모드 대응 제거) */
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -193,22 +189,144 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
 .ai{background:var(--dark);color:var(--dark-ink);border-color:var(--dark);font-weight:700}
 .ai:hover{background:var(--dark);opacity:.9}
 .ai:disabled{opacity:.45;cursor:not-allowed}
+
+/* ══ v0.4 ══ */
+body{word-break:keep-all;overflow-wrap:break-word}
+header>*{min-width:0}
+.hdr-r{min-width:0;max-width:100%}
+.modes{min-width:0;max-width:100%;flex-wrap:wrap}
+.modes button{white-space:nowrap}
+@media (max-width:640px){.modes button{padding:7px 12px;font-size:.88rem}.hdr-r{width:100%}}
+.modes .rank.soft{background:var(--bg);color:var(--ink-2)}
+.modes button.cur .rank.soft{background:rgba(255,255,255,.18);color:#fff}
+.sc{grid-template-columns:128px 1fr 40px}
+.selfv{grid-template-columns:128px 1fr auto}
+/* home */
+.hero{padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.hero h2.hero-t{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.6px}
+.hero .lead{font-size:1.02rem;color:var(--ink-2);max-width:640px}
+.flow{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.flow li{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r4);padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;min-height:96px}
+.flow li b{font-size:.95rem;line-height:1.35}
+.flow li .small{line-height:1.45}
+.flow li:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:800}
+.flow li.tool{background:var(--paper);border:1.5px solid var(--accent);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.flow li.tool:hover{transform:translateY(-2px);box-shadow:0 8px 18px -12px rgba(255,96,0,.6)}
+.flow li.kid{background:var(--accent-soft);border-color:transparent}
+.flow .rank{align-self:flex-start;font-size:.68rem;border-radius:999px;padding:1px 8px;background:var(--accent);color:#fff;font-weight:700}
+@media (max-width:860px){.flow{grid-template-columns:1fr 1fr;gap:12px}.flow li::after{display:none}}
+.basis{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:var(--dark);color:var(--dark-ink);border-radius:var(--r4);padding:14px 18px}
+.basis .bt{font-weight:700}
+.basis .bs{font-size:.85rem;opacity:.8}
+.basis button{background:#fff;color:var(--ink);border-color:#fff;font-weight:700}
+.toolcard{display:flex;flex-direction:column;gap:10px}
+.toolcard .row .pill{font-size:.72rem}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.who .w{background:var(--bg);border:1px solid var(--line);border-radius:var(--r3);padding:12px}
+.who .w b{display:block;margin-bottom:4px}
+@media (max-width:860px){.who{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.who,.flow{grid-template-columns:1fr}}
+/* curriculum */
+.bands{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.band{border:1px solid var(--line);border-radius:var(--r3);padding:12px;background:var(--bg)}
+.band .gl{font-size:.72rem;font-weight:700;color:var(--accent-deep);letter-spacing:.02em}
+@media (max-width:720px){.bands{grid-template-columns:1fr}}
+.twrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r3)}
+table.ct{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem}
+table.ct th,table.ct td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.ct thead th{background:var(--bg);font-size:.8rem;color:var(--ink-2);font-weight:700}
+table.ct tbody tr:last-child td{border-bottom:0}
+table.ct td.mo{white-space:nowrap;font-weight:800;color:var(--accent-deep)}
+table.ct tr.hl td{background:var(--accent-soft)}
+.std{display:flex;flex-direction:column;gap:8px}
+.std .s{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:.88rem}
+.std code{font-family:var(--body);font-size:.75rem;font-weight:700;background:var(--info-soft);color:var(--info);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.steps5{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.steps5 li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:.9rem}
+.steps5 li::before{counter-increment:s;content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.mchips{display:flex;flex-wrap:wrap;gap:6px}
+.mchip{font-size:.82rem;border-radius:999px;padding:4px 10px;border:1px solid var(--line-2);background:var(--paper)}
+.mchip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.mchip.sub{background:var(--accent-soft);border-color:transparent;color:var(--accent-deep);font-weight:600}
+.match{border:1px solid var(--line);border-radius:var(--r3);padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.match.first{border-color:var(--accent);background:var(--accent-soft)}
+.match .ev{font-size:.85rem;color:var(--ink-2)}
+.match .ev q{color:var(--ink)}
+.cul{display:flex;flex-wrap:wrap;gap:6px}
+.cul span{font-size:.82rem;border-radius:8px;padding:4px 9px;background:var(--bg);border:1px solid var(--line)}
+.cul span small{color:var(--ink-2);margin-left:4px}
+.cc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:.88rem}
+.cc li{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+.curbox{border:1px solid var(--line);border-radius:var(--r4);padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.consent{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:var(--r3);padding:10px 12px;font-size:.85rem;line-height:1.5}
+.consent input{margin-top:3px;accent-color:var(--accent)}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent-deep);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.linkbtn:hover{background:none}
+footer a{color:inherit}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 <header>
-  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.3</span></div>
+  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.4</span></div>
   <div class="hdr-r">
-    <div class="modes" id="modes">
-      <button class="cur" data-mode="L"><span class="rank">1순위</span>강의 연습 도우미</button>
+    <div class="modes" id="modes" role="tablist" aria-label="화면 선택">
+      <button class="cur" data-mode="H">서비스 소개</button>
+      <button data-mode="L"><span class="rank">1순위</span>강의 연습 도우미</button>
       <button data-mode="B"><span class="rank">2순위</span>그림책 제작 도우미</button>
+      <button data-mode="C"><span class="rank soft">공통</span>교육과정 기준</button>
     </div>
     <button class="apibtn" id="apiOpen" hidden><span class="st"></span><span id="apiLabel">API 설정</span></button>
   </div>
 </header>
-<div class="note">클릭형 프로토타입입니다. 강의 평가·전사는 흐름 확인용 예시 데이터입니다. 그림책 제작 도우미 탭의 <b>그림 생성</b>은 ‘API 설정’에 OpenAI 키를 넣으면 실제로 동작합니다(키는 이 브라우저에만 저장). 대표님 피드백(10/16)에 따라 강의 녹화 평가를 1순위, 글 완성 후 그림·편집 지원을 2순위로 구성했습니다.</div>
+<div class="note">클릭형 프로토타입 v0.4입니다. 강의 평가·받아쓰기는 흐름 확인용 <b>예시 데이터</b>이고, 그림책 제작 도우미의 <b>그림 생성</b>은 ‘API 설정’에 OpenAI 키를 넣으면 실제로 동작합니다(키는 이 브라우저에만 저장). 대표님 피드백(10/16)에 따라 강의 연습을 1순위, 그림책 제작을 2순위로 두고, v0.4에서는 <b>초등 교육과정 연계 커리큘럼</b>(10/19)을 두 도구의 공통 기준으로 넣었습니다.</div>
+
+<!-- ═══════════ 모드 H: 서비스 소개 ═══════════ -->
+<div id="modeH" class="stack" style="gap:16px">
+  <section class="card hero">
+    <p class="eyebrow">스토리 브릿지 · Story Bridge</p>
+    <h2 class="hero-t">작가의 이야기를 책으로, 책을 교실로</h2>
+    <p class="lead">자기 문화를 그림책과 수업으로 전하는 이주여성 작가·강사를 위한 AI 그림책 제작·강의 연습 서비스입니다.</p>
+    <ol class="flow" aria-label="서비스 흐름">
+      <li><b>작가의 이야기</b><span class="small muted">모국의 문화와 경험</span></li>
+      <li class="tool" data-go="B" tabindex="0" role="button"><span class="rank">2순위</span><b>그림책 제작 도우미</b><span class="small muted">원고 → 그림·조판 → 교육과정 태그</span></li>
+      <li><b>이중언어 그림책</b><span class="small muted">한국어 + 모국어</span></li>
+      <li class="tool" data-go="L" tabindex="0" role="button"><span class="rank">1순위</span><b>강의 연습 도우미</b><span class="small muted">모의 강의 → 교육과정 기준 피드백</span></li>
+      <li><b>교실 수업</b><span class="small muted">학교 · 도서관 · 유치원</span></li>
+      <li class="kid"><b>아이들</b><span class="small">“베트남에는 이런 명절이 있대”</span></li>
+    </ol>
+    <div class="basis">
+      <div><div class="bt">공통 기준 · 초등 교육과정 연계 커리큘럼</div><div class="bs">월별 주제 9개 × 저·중·고 학년군 · 2022 개정 초등학교 교육과정, 범교과 학습 주제 ‘다문화 교육’</div></div>
+      <button class="sm" data-go="C">기준 보기 →</button>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <div class="card toolcard">
+      <div class="row between"><p class="eyebrow">1순위 · 강의 연습 도우미</p><span class="pill warn">분석은 예시 데이터</span></div>
+      <h3>모의 강의를 올리면 교육과정 기준으로 짚어 줍니다</h3>
+      <p class="small muted">녹화 올리기 → 자가평가 → AI 분석 → 피드백 리포트 → 다시 연습. 학년 눈높이·한국어 발음·책 활용과 수업 흐름·문화 요소 전달·질문과 기다림·시간 배분 6가지로 봅니다.</p>
+      <div class="row" style="margin-top:auto"><button class="primary" data-go="L">강의 연습 열기 →</button></div>
+    </div>
+    <div class="card toolcard">
+      <div class="row between"><p class="eyebrow">2순위 · 그림책 제작 도우미</p><span class="pill ok">그림 생성 실제 동작</span></div>
+      <h3>완성된 글에 그림과 조판을 붙이고, 맞는 수업 주제를 찾습니다</h3>
+      <p class="small muted">원고 넣기 → 그림 스타일·주인공 → 장면 그림 → 편집·조판 → 교육과정 태그. 작가가 장면마다 고치고 승인합니다.</p>
+      <div class="row" style="margin-top:auto"><button class="primary" data-go="B">그림책 제작 열기 →</button></div>
+    </div>
+  </div>
+
+  <div class="card stack">
+    <p class="eyebrow">누구에게 무엇이 달라지나</p>
+    <div class="who">
+      <div class="w"><b>이주여성 작가·강사</b><span class="small muted">책을 더 빨리 완성하고, 학년에 맞는 수업을 미리 연습해 ‘책으로 하는 수업’을 맡습니다.</span></div>
+      <div class="w"><b>아시안허브</b><span class="small muted">강의는 리포트만 확인하고, 편집은 교정과 최종 승인만 합니다.</span></div>
+      <div class="w"><b>학교 · 도서관 · 유치원</b><span class="small muted">교육과정 주제와 학년에 맞는 다문화 수업을 받습니다.</span></div>
+      <div class="w"><b>아이들</b><span class="small muted">엄마 나라의 이야기를 수업으로 만나고, 집에 가서 그 문화를 이야기합니다.</span></div>
+    </div>
+  </div>
+</div>
 
 <div class="modal" id="apiModal" hidden>
   <div class="card stack">
@@ -236,7 +354,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
 </div>
 
 <!-- ═══════════ 모드 L: 강의 연습 도우미 ═══════════ -->
-<div id="modeL">
+<div id="modeL" hidden>
 <ol class="steps" id="stepsL">
   <li class="active"><span class="n">1</span>내 연습실</li>
   <li><span class="n">2</span>녹화 올리기</li>
@@ -251,11 +369,11 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <div>
           <p class="eyebrow">강사 연습실</p>
           <h2>응우옌 강사님, 이번 주 연습 기록이에요</h2>
-          <p class="muted small">(예시 강사 · 베트남 출신 · 저서 『달님은 하나예요』) 모의 강의를 녹화해 올리면 AI가 전달력·발음·내용을 항목별로 평가합니다.</p>
+          <p class="muted small">(예시 강사 · 베트남 출신 · 저서 『달님은 하나예요』) 모의 강의를 녹화해 올리면 AI가 교육과정 기준 6가지 항목으로 짚어 줍니다.</p>
         </div>
       </div>
       <div class="hist">
-        <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 유치원용 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><span class="pill">보기</span></div>
+        <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 초등 저학년 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><span class="pill">보기</span></div>
         <div class="it"><div class="score num">67</div><div><b>2회차</b> · 10/9 · 같은 주제 21분<br><span class="muted small">상호작용 좋아짐 · 꾸오이 전설 설명이 길어요</span></div><span class="pill">보기</span></div>
         <div class="it now"><div class="score num">?</div><div><b>3회차</b> · 오늘<br><span class="muted small">지난번 목표: 말 빠르기 170 이하 · 질문 뒤 3초 기다리기 · 마무리 문장</span></div><button class="primary sm" id="L-new">새 연습 시작</button></div>
       </div>
@@ -292,23 +410,21 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <strong>녹화 파일을 여기에 끌어다 놓기</strong><span class="muted small">또는 클릭해서 선택 · 최대 60분</span>
         <input type="file" id="L-file" accept="video/*,audio/*" hidden>
       </div>
-      <div class="row"><button id="L-sample">샘플 녹화로 체험</button><span class="muted small">『달님은 하나예요』 유치원 모의 강의 20분 12초 (예시)</span></div>
+      <div class="row"><button id="L-sample">샘플 녹화로 체험</button><span class="muted small">『달님은 하나예요』 초등 저학년 모의 강의 20분 12초 (예시)</span></div>
       <div class="grid2">
         <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
-        <label class="field">수업 대상<select id="L-age"><option>유치원 (5~7세)</option><option>초등 저학년</option><option>초등 고학년</option><option>성인 (도서관 강연)</option></select></label>
+        <label class="field">수업 대상 (학년군)<select id="L-age"><option value="유">유치원 (5~7세 · 누리과정 참고)</option><option value="저" selected>초등 저학년 (1~2학년)</option><option value="중">초등 중학년 (3~4학년)</option><option value="고">초등 고학년 (5~6학년)</option><option value="성">성인 (도서관 강연)</option></select></label>
+        <label class="field">월 주제 (교육과정 커리큘럼)<select id="L-month"></select></label>
         <label class="field">목표 시간<select id="L-len"><option>20분</option><option>30분</option><option>40분</option></select></label>
         <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
       </div>
+      <div class="curbox" id="L-cur"></div>
+      <label class="consent"><input type="checkbox" id="L-consent"><span><b>녹화 이용 동의 (정책 초안)</b><br>녹화 영상은 강의 분석에만 쓰고, 대표님(코치) 외에는 공유하지 않습니다. 분석이 끝나면 영상 원본은 지우고 리포트만 남깁니다.</span></label>
     </div>
     <div class="card stack">
       <div><p class="eyebrow">먼저 스스로 점수 매기기 (선택)</p><h3>내가 느끼기엔 어땠나요?</h3><p class="muted small">AI 결과와 나란히 보여 드려요. 내 느낌과 객관적 평가의 차이를 아는 것이 연습의 시작입니다.</p></div>
-      <div class="stack" id="L-self" style="gap:8px">
-        <label class="selfv">전달력<input type="range" min="0" max="100" value="80" data-k="0"><output>80</output></label>
-        <label class="selfv">한국어 발음<input type="range" min="0" max="100" value="80" data-k="1"><output>80</output></label>
-        <label class="selfv">내용 구성<input type="range" min="0" max="100" value="80" data-k="2"><output>80</output></label>
-        <label class="selfv">아이와 상호작용<input type="range" min="0" max="100" value="70" data-k="3"><output>70</output></label>
-        <label class="selfv">시간 배분<input type="range" min="0" max="100" value="90" data-k="4"><output>90</output></label>
-      </div>
+      <div class="stack" id="L-self" style="gap:8px"></div>
+      <p class="small muted">평가 항목은 초등 교육과정 연계 커리큘럼과 방문교사 수업 지침(독서 확인 → 질문 → 표현 활동 → 정리)을 바탕으로 정했어요. 억양을 고치는 게 아니라 아이들에게 잘 전해졌는지를 봅니다.</p>
       <div id="L-ready" hidden>
         <div class="tbox"><p class="eyebrow">올린 파일</p><p id="L-fname">샘플 녹화 · 20분 12초 · 1.2GB</p></div>
       </div>
@@ -327,7 +443,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
     <div id="L-jobs">
       <div class="job" data-d="2600"><div class="ico">1</div><div><strong>받아쓰기</strong> <span class="muted small">음성을 글로 옮기고 시간을 표시</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="4200"><div class="ico">2</div><div><strong>전달력·발음 분석</strong> <span class="muted small">말 빠르기, 목소리 크기, 군더더기 말, 발음 명료도</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
-      <div class="job" data-d="5200"><div class="ico">3</div><div><strong>내용·상호작용 분석</strong> <span class="muted small">도입-전개-정리 구조, 질문과 기다림, 책 활용 여부</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
+      <div class="job" data-d="5200"><div class="ico">3</div><div><strong>수업 흐름·문화 요소 분석</strong> <span class="muted small">교육과정 기준: 도입-전개-정리, 책 활용, 책 속 문화 요소 전달, 질문과 기다림</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="6400"><div class="ico">4</div><div><strong>피드백 작성</strong> <span class="muted small">잘한 순간과 고칠 순간을 골라 다음 연습 목표 제안</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
     </div>
     <div class="row between" style="margin-top:18px"><button class="ghost" id="L-back2">← 이전</button><button class="primary" id="L-go4" disabled>리포트 보기 →</button></div>
@@ -339,7 +455,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
     <div class="card">
       <div class="g12">
         <div class="stack" style="gap:6px">
-          <p class="eyebrow">3회차 · 오늘 · 『달님은 하나예요』 유치원용 20분 12초</p>
+          <p class="eyebrow">3회차 · 오늘 · 『달님은 하나예요』 초등 저학년 20분 12초</p>
           <div class="row" style="align-items:baseline;gap:14px"><span class="big num">73</span><span class="muted">/ 100 <span class="pill ok">지난번보다 +6</span></span></div>
           <p class="small">말 빠르기가 많이 좋아졌어요. 이번엔 <b>전설 설명 길이</b>와 <b>마무리</b>만 잡으면 80점대입니다.</p>
           <div class="row" style="margin-top:6px"><button class="sm" id="L-share">대표님께 리포트 보내기</button><button class="sm ghost" id="L-cmp">2회차와 비교</button></div>
@@ -348,6 +464,23 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
           <div class="row between"><p class="eyebrow">항목별 점수</p><div class="legend"><span><i style="background:var(--sea)"></i>AI 평가</span><span><i style="background:var(--accent)"></i>내 자가평가</span></div></div>
           <div class="scores" id="L-scores"></div>
         </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card stack">
+        <div class="row between"><p class="eyebrow">이번 수업의 교육과정 기준</p><button class="linkbtn small" data-go="C">기준 전체 보기</button></div>
+        <div id="L-curR"></div>
+      </div>
+      <div class="card stack">
+        <p class="eyebrow">책 속 문화 요소 · 아이들에게 전해졌나요</p>
+        <ul class="cc">
+          <li><span class="pill ok">전함</span><span><b>뗏쭝투 (베트남 추석)</b> · 도입에서 한국 추석과 이어서 소개</span></li>
+          <li><span class="pill ok">전함</span><span><b>별 등불 (덴옹사오)</b> · 실물을 보여 주고 만져 보게 함</span></li>
+          <li><span class="pill warn">길어요</span><span><b>꾸오이 전설</b> · 2분 40초 → 1분 + 질문 2개로</span></li>
+          <li><span class="pill warn">빠짐</span><span><b>월병</b> · 책 9–10쪽에 있지만 수업에서 다루지 않음 → 마무리에 한 문장</span></li>
+        </ul>
+        <div class="tbox"><p class="eyebrow">아이들이 가져갈 한 문장</p><p class="small">“베트남에도 추석이 있고, 아이들이 별 등불을 들고 동네를 돌아요.”</p></div>
       </div>
     </div>
 
@@ -380,12 +513,12 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <p class="eyebrow">발음 주의 단어 · 누르면 또박또박 발음을 들려줘요</p>
         <div class="words" id="L-words"></div>
         <p class="muted small">베트남어 화자가 자주 흐리는 받침(ㄹ, ㅇ)과 ㅎ 약화 위주로 찾았어요. 틀린 게 아니라 아이들이 알아듣기 쉽게 하는 연습입니다.</p>
-        <p class="eyebrow" style="margin-top:6px">내용 체크</p>
+        <p class="eyebrow" style="margin-top:6px">수업 흐름 체크 (도입 → 전개 → 정리)</p>
         <ul class="small" style="margin:0;padding-left:18px">
           <li><span class="pill ok">좋아요</span> 도입에서 아이들 경험 질문 → 책으로 연결</li>
           <li><span class="pill ok">좋아요</span> 책 삽화 4장면 실제로 보여 줌 (전통놀이로 흐르지 않음)</li>
-          <li><span class="pill warn">고쳐요</span> 꾸오이 전설 설명 2분 40초 → 1분 + 질문 2개로</li>
-          <li><span class="pill warn">고쳐요</span> 마무리 문장 없이 끝남 · 목표 시간 12초 초과</li>
+          <li><span class="pill warn">고쳐요</span> 전개: 꾸오이 전설 설명이 길어 질문이 끊김</li>
+          <li><span class="pill warn">고쳐요</span> 정리: 마무리 문장 없이 끝남 · 목표 시간 12초 초과</li>
         </ul>
       </div>
     </div>
@@ -419,6 +552,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
   <li><span class="n">2</span>그림 스타일·주인공</li>
   <li><span class="n">3</span>장면 그림 만들기</li>
   <li><span class="n">4</span>편집·조판</li>
+  <li><span class="n">5</span>교육과정 태그</li>
 </ol>
 
 <section id="B1">
@@ -451,11 +585,12 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
 <section id="B2" hidden>
   <div class="grid2">
     <div class="card stack">
-      <div><p class="eyebrow">Step 2</p><h2>그림 스타일을 고릅니다</h2><p class="muted small">책 전체가 한 사람이 그린 것처럼 보이도록, 처음에 한 번만 정합니다.</p></div>
-      <div class="styles" id="B-styles"></div>
-      <label class="field">작가님이 직접 그린 그림이 있다면 (선택)
-        <div class="drop" style="padding:18px"><span class="small">스케치나 기존 그림을 올리면 그 느낌을 따라 그립니다</span></div>
+      <div><p class="eyebrow">Step 2</p><h2>그림 스타일을 정합니다</h2><p class="muted small">책 전체가 한 사람이 그린 것처럼 보이도록, 처음에 한 번만 정합니다. 작가님 그림체가 먼저입니다.</p></div>
+      <label class="field"><span><b style="color:var(--ink)">① 작가님 그림으로 시작하기</b> <span class="pill">권장</span></span>
+        <div class="drop" style="padding:18px"><span class="small">스케치나 기존 그림을 올리면 그 그림체를 따라 그립니다 (작가님 스타일 유지)</span></div>
       </label>
+      <p class="small" style="margin-top:2px"><b>② 그림이 없으면 스타일 고르기</b></p>
+      <div class="styles" id="B-styles"></div>
     </div>
     <div class="card stack">
       <div><p class="eyebrow">주인공 정하기</p><h3>린 (Linh) · 7살 여자아이</h3></div>
@@ -523,17 +658,86 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
       </ul>
       <div class="tbox"><p class="eyebrow">담당자 작업 시간 (예상)</p><p class="small">한 권 편집 <b>3주 → 2일</b>. 담당자는 교정과 최종 확인만 합니다.</p></div>
       <div class="stack" style="gap:8px;margin-top:auto">
-        <button class="primary" id="B-send">편집 담당자에게 검토 요청</button>
-        <button id="B-pdf">인쇄용 PDF 내보내기</button>
-        <button id="B-epub">전자책(EPUB) 내보내기</button>
+        <button class="primary" id="B-go5">교육과정 태그 붙이기 →</button>
+        <button id="B-send">편집 담당자에게 검토 요청</button>
+        <div class="row"><button id="B-pdf" style="flex:1">인쇄용 PDF</button><button id="B-epub" style="flex:1">전자책 EPUB</button></div>
         <button class="ghost" id="B-home">← 장면 그림으로</button>
       </div>
     </div>
   </div>
 </section>
+
+<section id="B5" hidden>
+  <div class="g21">
+    <div class="card stack">
+      <div><p class="eyebrow">Step 5</p><h2>이 책이 맞는 교육과정 주제를 찾습니다</h2><p class="muted small">제목이 아니라 책의 실제 장면과 문화 요소로 매칭합니다. 책에 없는 내용은 만들지 않고, 근거 장면을 함께 보여 드려요. 작가님이 확인하면 태그가 확정됩니다. (예시)</p></div>
+      <div><p class="eyebrow" style="margin-bottom:6px">책에서 찾은 문화 요소</p>
+        <div class="cul"><span>뗏쭝투 (베트남 추석)<small>1–2쪽</small></span><span>별 등불 덴옹사오<small>3–4쪽</small></span><span>등불 행진<small>5–6쪽</small></span><span>꾸오이 전설<small>7–8쪽</small></span><span>월병<small>9–10쪽</small></span></div>
+      </div>
+      <div class="stack" style="gap:8px">
+        <div class="match first"><div class="row between"><b>9월 · 전통과 문화유산</b><span class="pill">1차 추천</span></div><p class="ev">근거: <q>오늘은 베트남의 추석, 뗏쭝투예요.</q> (1–2쪽) · <q>친구들이랑 등불을 들고 동네를 빙글빙글 돌아요.</q> (5–6쪽)</p></div>
+        <div class="match"><div class="row between"><b>10월 · 세계의 이야기와 예술</b><span class="pill warn">함께 쓸 수 있어요</span></div><p class="ev">근거: <q>달에는 커다란 나무 아래 앉은 꾸오이 아저씨가 산대요.</q> (7–8쪽)</p></div>
+        <div class="match"><div class="row between"><b>7월 · 세계의 음식문화</b><span class="pill warn">함께 쓸 수 있어요</span></div><p class="ev">근거: <q>다 같이 월병을 나눠 먹어요.</q> (9–10쪽)</p></div>
+      </div>
+      <div class="twrap"><table class="ct" style="min-width:520px">
+        <thead><tr><th>학년군</th><th>이 책으로 하는 수업 (9월 주제 기준)</th><th>활동 예</th></tr></thead>
+        <tbody>
+          <tr><td class="mo">저학년</td><td>명절의 모습과 놀이 경험하기</td><td>그림 카드, 등불 행진 따라 하기</td></tr>
+          <tr><td class="mo">중학년</td><td>한국 추석과 베트남 뗏쭝투 비교하기</td><td>공통점·차이점 비교표</td></tr>
+          <tr><td class="mo">고학년</td><td>명절의 의미와 변화 탐구하기</td><td>토의 질문, 조사 활동지</td></tr>
+        </tbody>
+      </table></div>
+      <label class="chk"><input type="checkbox" id="B-tagok"> 작가 확인: 책 내용과 맞아요</label>
+    </div>
+    <div class="card stack">
+      <p class="eyebrow">이 책의 교육과정 태그</p>
+      <div class="mchips"><span class="mchip on">9월 전통과 문화유산</span><span class="mchip sub">10월 세계의 이야기와 예술</span><span class="mchip sub">7월 세계의 음식문화</span></div>
+      <div class="mchips"><span class="mchip">초등 저학년</span><span class="mchip">초등 중학년</span><span class="mchip">초등 고학년</span><span class="mchip">유치원 (누리과정 참고)</span></div>
+      <p class="small muted">태그는 강의 연습 도우미의 평가 기준(학년 눈높이·문화 요소 전달)으로 이어집니다. 학교·도서관에 책을 소개할 때도 씁니다.</p>
+      <div class="stack" style="gap:8px;margin-top:auto">
+        <button class="primary" id="B-toL">이 책으로 강의 연습하기 →</button>
+        <button id="B-toC">교육과정 기준 보기</button>
+        <button class="ghost" id="B-back4">← 편집·조판으로</button>
+      </div>
+      <p class="small muted">수업안·교안 자동 생성은 이번 범위에 넣지 않았어요 (대표님 우선순위, 10/16).</p>
+    </div>
+  </div>
+</section>
 </div>
 
-<footer><span>GIST 서울의밤 × 아시안허브 · 2025 PBL</span><span>대표님 피드백 10/16 반영 · 2순위 > 3순위 > 1순위(경운대와 겹침)</span></footer>
+<!-- ═══════════ 모드 C: 교육과정 기준 ═══════════ -->
+<div id="modeC" hidden class="stack" style="gap:16px">
+  <div class="card stack">
+    <div><p class="eyebrow">공통 기준 · 10/19 정리</p><h2>초등 교육과정 연계 커리큘럼</h2>
+    <p class="muted small" style="margin-top:6px">근거: 교육부 고시 제2022-33호 [별책 2] 초등학교 교육과정. 다문화 교육은 범교과 학습 주제 10개 중 하나입니다. 월별 공통 주제 9개를 두고 같은 주제를 학년군 수준에 맞게 다룹니다. 방학(1·2·8월)은 빼고, 실제 일정은 학교마다 조정합니다.</p></div>
+    <div class="bands">
+      <div class="band"><div class="gl">저학년 1~2학년</div><b>통합교과</b><p class="small muted">바른·슬기로운·즐거운 생활 · 경험·탐색·놀이·표현 중심</p></div>
+      <div class="band"><div class="gl">중학년 3~4학년</div><b>사회 중심</b><p class="small muted">지역의 삶의 모습, 문화 다양성 · 관찰·비교·조사 중심</p></div>
+      <div class="band"><div class="gl">고학년 5~6학년</div><b>사회 중심</b><p class="small muted">세계 여러 나라, 지구촌 문제 · 자료 분석·토의·문제 해결 중심</p></div>
+    </div>
+    <div class="twrap"><table class="ct" id="C-table"></table></div>
+    <p class="small muted">연계 교과는 중·고학년 기준입니다. 저학년은 통합교과(바른·슬기로운·즐거운 생활)와 국어로 연계합니다. 보조 연계: 국어(이야기 이해·표현) · 도덕(존중·배려) · 예술(전통문화 체험) · 과학(자연환경과 생활).</p>
+  </div>
+  <div class="grid2">
+    <div class="card stack">
+      <p class="eyebrow">연계 성취기준 (교육과정 원문)</p>
+      <div class="std" id="C-std"></div>
+    </div>
+    <div class="card stack">
+      <p class="eyebrow">책을 커리큘럼에 맞추는 방법</p>
+      <ol class="steps5">
+        <li><span><b>도서 정보</b> · 제목, 줄거리·본문, 등장인물, 나라·지역, 문화 요소</span></li>
+        <li><span><b>핵심 내용 분석</b> · 주제·상황·문화 요소·쓸 수 있는 장면을 뽑기. <b>책에 없는 사실은 만들지 않음</b></span></li>
+        <li><span><b>월별 주제 매칭</b> · 9개 주제 중 관련 높은 것을 여러 개, 매칭 이유와 함께</span></li>
+        <li><span><b>학년군 판단</b> · 어휘 난도, 이야기 복잡성, 활동 확장 가능성</span></li>
+        <li><span><b>두 도구에서 쓰기</b> · 그림책에는 태그로, 강의 연습에는 평가 기준(학년 눈높이·문화 요소 전달)으로</span></li>
+      </ol>
+      <div class="row" style="margin-top:auto"><button class="primary" id="C-toL">이 기준으로 강의 연습하기 →</button></div>
+    </div>
+  </div>
+</div>
+
+<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.4 (10/25) 교육과정 기준 추가 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -577,18 +781,64 @@ async function genImage(prompt, refDataUrl){
   return "data:image/png;base64,"+j.data[0].b64_json;
 }
 
-// 모드 전환
-document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ document.querySelectorAll("#modes button").forEach(x=>x.classList.toggle("cur",x===b)); $("modeL").hidden=b.dataset.mode!=="L"; $("modeB").hidden=b.dataset.mode!=="B"; $("apiOpen").hidden=b.dataset.mode!=="B"; $("apiModal").hidden=true; speechSynthesis.cancel(); window.scrollTo({top:0}); });
+// 모드 전환 (v0.4: 서비스 소개 H · 강의 연습 L · 그림책 제작 B · 교육과정 기준 C)
+const MODES=["H","L","B","C"];
+function goMode(m){
+  document.querySelectorAll("#modes button").forEach(x=>{ const on=x.dataset.mode===m; x.classList.toggle("cur",on); x.setAttribute("aria-selected",on); });
+  MODES.forEach(k=>{ $("mode"+k).hidden=k!==m; });
+  $("apiOpen").hidden=m!=="B"; $("apiModal").hidden=true;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  window.scrollTo({top:0});
+}
+document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>goMode(b.dataset.mode));
+document.addEventListener("click",e=>{ const g=e.target.closest("[data-go]"); if(g) goMode(g.dataset.go); });
+document.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const g=e.target.closest&&e.target.closest("li[data-go]"); if(g) goMode(g.dataset.go); } });
+
+/* ══════════ 공통 기준: 초등 교육과정 연계 커리큘럼 (10/19 이슬기 운영안) ══════════ */
+const MONTHS=[
+  {m:"3월",t:"나와 우리",lo:"친구·인사·관계 체험",mid:"소통 방식 비교",hi:"문화적 차이와 존중의 소통 탐구",subj:"통합교과·국어"},
+  {m:"4월",t:"가족과 생활문화",lo:"가족과 일상 알아보기",mid:"가족생활·풍습 비교",hi:"생활문화의 사회·문화적 배경 탐구",subj:"통합교과·국어"},
+  {m:"5월",t:"우리 동네와 세계의 마을",lo:"집·마을 모습 살펴보기",mid:"주거·마을 환경 비교",hi:"지역의 생활환경·특성 분석",subj:"사회·도덕·국어"},
+  {m:"6월",t:"자연환경과 생활",lo:"계절·날씨에 따른 생활",mid:"기후와 의식주 관계 조사",hi:"환경과 생활문화 형성의 관계 탐구",subj:"사회·과학"},
+  {m:"7월",t:"세계의 음식문화",lo:"음식과 식사 예절 경험",mid:"음식 재료·식문화 비교",hi:"음식문화 형성과 교류 탐구",subj:"사회·과학"},
+  {m:"9월",t:"전통과 문화유산",lo:"명절·전통놀이 경험",mid:"전통문화 공통점·차이점 비교",hi:"전통문화의 보존과 변화 탐구",subj:"사회·도덕"},
+  {m:"10월",t:"세계의 이야기와 예술",lo:"옛이야기·예술 즐기기",mid:"이야기 속 생활문화 비교",hi:"문학·예술의 문화적 가치 해석",subj:"사회·국어·예술"},
+  {m:"11월",t:"문화 다양성과 존중",lo:"다른 문화 존중하기",mid:"문화적 차이·편견 사례 조사",hi:"다양성·인권 관련 대안 토의",subj:"사회·도덕·국어"},
+  {m:"12월",t:"세계시민과 지속가능한 미래",lo:"함께 사는 지구촌 이해",mid:"환경문제·협력 사례 조사",hi:"지구촌 문제 해결 방안 제안",subj:"사회·도덕·과학"},
+];
+const BOOK_TAGS={"달님은 하나예요 (베트남 추석)":[5,6,4]}; // 9월(1차) · 10월 · 7월
+// 성취기준 원문: 교육부 고시 제2022-33호 [별책 2] 초등학교 교육과정
+const STD={
+  "저":{band:"초등 저학년 (1~2학년) · 통합교과",list:[["2슬02-03","알고 싶은 나라를 탐구하며 다른 나라에 관심을 갖는다."],["2즐02-03","다른 나라의 문화 예술을 체험한다."],["2바02-03","차이나 다양성을 서로 존중하면서 생활한다."]]},
+  "중":{band:"초등 중학년 (3~4학년) · 사회",list:[["4사03-02","우리 사회에 다양한 문화가 확산되면서 나타나는 긍정적 효과와 문제를 분석하고, 나와 다른 사람이나 집단의 문화를 존중하는 태도를 기른다."]]},
+  "고":{band:"초등 고학년 (5~6학년) · 사회·도덕·국어",list:[["6도02-02","편견이 발생하는 이유를 탐색하여 해결 방안을 살펴보고, 다양성 존중을 바탕으로 다른 사람과 올바른 관계를 맺기 위한 실천 방안을 탐구한다."],["6국05-01","작가의 의도를 생각하며 작품을 읽는다."]]},
+  "유":{band:"유치원 (5~7세)",list:[],note:"초등 성취기준 대신 누리과정(5세)을 참고합니다. 동화 들려주기·이야기 나누기 중심."},
+  "성":{band:"성인 (도서관 강연)",list:[],note:"교육과정 기준 대신 책 소개·문화 해설 중심으로 봅니다."},
+};
+const stdHtml=k=>{ const s=STD[k]; return s.list.length?`<div class="std">${s.list.map(([c,t])=>`<div class="s"><code>${c}</code><span>${t}</span></div>`).join("")}</div>`:`<p class="small muted">${s.note}</p>`; };
+function curSummary(){ const a=$("L-age").value, mi=+$("L-month").value, M=MONTHS[mi]; const act={유:M.lo,저:M.lo,중:M.mid,고:M.hi,성:M.hi}[a];
+  return `<div class="row" style="gap:6px"><span class="mchip on">${M.m} ${M.t}</span><span class="mchip">${STD[a].band}</span></div><p class="small"><b>이 학년군의 활동 방향</b> · ${act}</p>${stdHtml(a)}`; }
+function renderCur(){ const h=curSummary(); $("L-cur").innerHTML=`<p class="eyebrow">이 수업의 교육과정 기준</p>`+h; $("L-curR").innerHTML=h+`<p class="small muted">평가의 ‘학년 눈높이’와 ‘문화 요소 전달’은 이 기준으로 봅니다.</p>`; }
+function renderMonthSelect(keep){ const tags=BOOK_TAGS[$("L-book").value]||[]; const prev=$("L-month").value;
+  $("L-month").innerHTML=MONTHS.map((M,i)=>`<option value="${i}">${M.m} · ${M.t}${i===tags[0]?" (책 태그 1차 추천)":tags.includes(i)?" (책 태그)":""}</option>`).join("");
+  $("L-month").value=(keep&&prev!=="")?prev:String(tags.length?tags[0]:5); }
+function renderC(){
+  $("C-table").innerHTML=`<thead><tr><th>월</th><th>공통 주제</th><th>저학년 (1~2)</th><th>중학년 (3~4)</th><th>고학년 (5~6)</th><th>연계 교과</th></tr></thead><tbody>`+
+    MONTHS.map((M,i)=>`<tr class="${i===5?"hl":""}"><td class="mo">${M.m}</td><td><b>${M.t}</b></td><td>${M.lo}</td><td>${M.mid}</td><td>${M.hi}</td><td class="small">${M.subj}</td></tr>`).join("")+`</tbody>`;
+  $("C-std").innerHTML=["저","중","고"].map(k=>`<div class="stack" style="gap:6px"><b class="small">${STD[k].band}</b>${stdHtml(k)}</div>`).join("")+`<p class="small muted">유치원은 누리과정(5세)을 참고합니다. 표시는 『달님은 하나예요』의 1차 추천 주제(9월)입니다.</p>`;
+}
+function presetLecture(book){ goMode("L"); if(book) $("L-book").value=book; $("L-age").value="저"; renderMonthSelect(); renderCur(); setStep("L",2,4); }
 
 /* ══════════ L: 강의 연습 ══════════ */
-const CATS=["전달력","한국어 발음","내용 구성","아이와 상호작용","시간 배분"];
-const AI=[72,68,81,85,60]; const SELF=[80,80,80,70,90];
+const CATS=["학년 눈높이","한국어 발음","책 활용·수업 흐름","문화 요소 전달","질문과 기다림","시간 배분"];
+const AI=[72,68,84,79,76,60]; const SELF=[80,80,80,80,70,90];
+$("L-self").innerHTML=CATS.map((c,i)=>`<label class="selfv">${c}<input type="range" min="0" max="100" value="${SELF[i]}" data-k="${i}"><output>${SELF[i]}</output></label>`).join("");
 const MOMENTS=[
   {t:12,type:"good",title:"아이들 경험으로 시작했어요",q:"“여러분, 추석에 뭐 했어요? 송편 먹었어요? 선생님 나라에도 추석이 있어요.”",fb:"아이들이 아는 것(한국 추석)에서 출발해 책으로 넘어가는 좋은 도입입니다. 질문 뒤 아이 셋이 대답했어요."},
   {t:100,type:"fix",title:"말이 빨라졌어요 · 분당 212어절",q:"“그래서린이는등불을들고나갔는데친구들이많이있었고다같이…”",fb:"설명이 길어질 때 속도가 올라갑니다. 문장 하나 끝날 때마다 한 번 숨 쉬기.",say:"“린이는 등불을 들고 나갔어요. (쉬고) 밖에는 친구들이 많았어요. (쉬고) 다 같이 걸었어요.”"},
   {t:185,type:"fix",title:"발음 · ‘친구들이랑’ 받침이 흐려요",q:"“친구드이랑 등부를 들고…”",fb:"ㄹ 받침이 약해져서 ‘친구드이랑’, ‘등부를’로 들립니다. 아이들은 모르는 단어로 들을 수 있어요.",say:"“친·구·들·이·랑 등·불·을” 받침마다 혀끝을 윗니 뒤에 붙이기."},
   {t:330,type:"good",title:"별 등불 실물을 보여 줬어요",q:"“이게 바로 덴옹사오예요. 만져 볼 사람?”",fb:"책 속 그림과 실물을 연결한 순간. 아이들 집중도가 가장 높았던 구간입니다(목소리 반응 11회)."},
-  {t:490,type:"fix",title:"전설 설명이 2분 40초예요",q:"“옛날 옛날에 꾸오이라는 사람이 살았는데 그 사람이 나무를 키웠는데 그 나무가 신비한 나무라서…”",fb:"유치원생이 집중하는 설명 길이는 1분 안팎입니다. 중간에 질문 2개로 쪼개면 훨씬 잘 따라와요.",say:"“달에 누가 살까요? (대답 듣기) 베트남 사람들은 꾸오이 아저씨가 산다고 믿어요. 왜 달에 갔을까요?”"},
+  {t:490,type:"fix",title:"전설 설명이 2분 40초예요",q:"“옛날 옛날에 꾸오이라는 사람이 살았는데 그 사람이 나무를 키웠는데 그 나무가 신비한 나무라서…”",fb:"저학년 아이들이 집중하는 설명 길이는 1분 안팎입니다. 중간에 질문 2개로 쪼개면 훨씬 잘 따라와요.",say:"“달에 누가 살까요? (대답 듣기) 베트남 사람들은 꾸오이 아저씨가 산다고 믿어요. 왜 달에 갔을까요?”"},
   {t:720,type:"fix",title:"“어…” 가 많아요 · 이 구간 14회",q:"“어… 그래서 어… 월병은 어… 둥근 과자인데…”",fb:"다음 말을 고르는 동안 나오는 소리예요. 대신 조용히 1초 쉬면 오히려 또렷하게 들립니다."},
   {t:920,type:"good",title:"베트남어 인사를 따라 하게 했어요",q:"“선생님 따라 해 볼까요? 쭉 믕 쭝 투!”",fb:"아이들이 몸으로 참여한 순간. 강사님만 할 수 있는 수업입니다. 이 장면은 꼭 유지하세요."},
   {t:1125,type:"fix",title:"마무리 문장 없이 끝났어요 · 12초 초과",q:"“…네, 그럼 오늘은 여기까지. 네.”",fb:"책의 마지막 문장으로 닫으면 아이들 기억에 남습니다. 시간은 전설 부분을 줄이면 자연히 맞아요.",say:"“베트남에서도, 한국에서도, 달님은 하나예요. 오늘 밤 달 보면 린이 생각하기!”"},
@@ -611,7 +861,12 @@ function renderReport(){
 document.querySelectorAll("#L-self input").forEach(r=>r.oninput=()=>{ r.nextElementSibling.value=r.value; SELF[+r.dataset.k]=+r.value; });
 $("L-new").onclick=()=>setStep("L",2,4);
 $("L-back1").onclick=()=>setStep("L",1,4);
-function fileReady(name){ $("L-ready").hidden=false; $("L-fname").textContent=name||"샘플 녹화 · 20분 12초 · 1.2GB"; $("L-go3").disabled=false; toast("녹화를 올렸어요. 자가평가를 하고 분석을 시작하세요"); }
+let lFile=false;
+function goGate(){ $("L-go3").disabled=!(lFile&&$("L-consent").checked); }
+function fileReady(name){ lFile=true; $("L-ready").hidden=false; $("L-fname").textContent=name||"샘플 녹화 · 20분 12초 · 1.2GB"; goGate(); toast($("L-consent").checked?"녹화를 올렸어요. 자가평가를 하고 분석을 시작하세요":"녹화를 올렸어요. 이용 동의에 체크하면 분석을 시작할 수 있어요"); }
+$("L-consent").onchange=goGate;
+$("L-book").onchange=()=>{ renderMonthSelect(false); renderCur(); };
+$("L-age").onchange=renderCur; $("L-month").onchange=renderCur;
 $("L-sample").onclick=()=>fileReady();
 const ld=$("L-drop"), lf=$("L-file"); ld.onclick=()=>lf.click(); ld.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); lf.click(); } };
 lf.onchange=()=>{ if(lf.files[0]) fileReady(lf.files[0].name+" (분석은 예시 데이터로 표시)"); };
@@ -622,8 +877,8 @@ $("L-go3").onclick=()=>{ setStep("L",3,4); $("L-go4").disabled=true; runJobs($("
 $("L-back2").onclick=()=>setStep("L",2,4);
 $("L-go4").onclick=()=>{ setStep("L",4,4); renderReport(); };
 $("L-share").onclick=()=>toast("대표님(코치)에게 리포트 링크를 보냈어요 (예시)");
-$("L-cmp").onclick=()=>toast("2회차 대비: 전달력 +9 · 발음 +4 · 상호작용 +12 · 시간 배분 -3");
-$("L-again").onclick=()=>{ toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; $("L-go3").disabled=true; lf.value=""; };
+$("L-cmp").onclick=()=>toast("2회차 대비: 학년 눈높이 +9 · 발음 +4 · 질문과 기다림 +12 · 시간 배분 -3");
+$("L-again").onclick=()=>{ toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; lFile=false; goGate(); lf.value=""; };
 $("L-pdf").onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정");
 $("L-home").onclick=()=>setStep("L",1,4);
 
@@ -684,14 +939,14 @@ function art(s,i,sq){
 $("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; splitPages(); };
 $("B-text").addEventListener("change",()=>{ if($("B-text").value.trim()) splitPages(); });
 function splitPages(){ $("B-pages").innerHTML=PAGES.map((p,i)=>`<div class="pg"><b class="num">${i*2+1}–${i*2+2}쪽 · ${p.intent}</b>${p.ko}<br><span class="vi">${p.vi}</span></div>`).join(""); $("B-split").hidden=false; toast("원고를 6개 펼침면으로 나눴어요 (예시)"); }
-$("B-go2").onclick=()=>{ setStep("B",2,4); renderStyles(); renderChars(); charHint(); };
+$("B-go2").onclick=()=>{ setStep("B",2,5); renderStyles(); renderChars(); charHint(); };
 function renderStyles(){ $("B-styles").innerHTML=STYLES.map((s,i)=>`<button class="sty ${i===style?"cur":""}" data-i="${i}"><img src="${s.img}" alt="${s.n} 샘플" loading="lazy"><div class="nm">${s.n}</div></button>`).join(""); $("B-styles").querySelectorAll(".sty").forEach(b=>b.onclick=()=>{ style=+b.dataset.i; renderStyles(); }); }
 const CHAR_IMGS=["img/char-1.jpg","img/char-2.jpg","img/char-3.jpg"];
 function renderChars(){ $("B-chars").innerHTML=CHAR_IMGS.map((src,i)=>`<button class="ch ${i===charPick?"cur":""}" data-i="${i}"><img src="${src}" alt="주인공 시안 ${i+1}" loading="lazy"><div class="nm">시안 ${i+1}</div></button>`).join(""); $("B-chars").querySelectorAll(".ch").forEach(b=>b.onclick=()=>{ charPick=+b.dataset.i; renderChars(); useCharAsRef(); }); if(!charRef) useCharAsRef(true); }
 async function useCharAsRef(silent){ const src=CHAR_IMGS[charPick]; $("B-charRef").innerHTML=`<img src="${src}" alt="주인공 기준 그림 (시안 ${charPick+1})">`; try{ const r=await fetch(src); const bl=await r.blob(); charRef=await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.readAsDataURL(bl); }); if(!silent) toast(`시안 ${charPick+1}을 기준 그림으로 정했어요. 장면 그림이 이 얼굴을 따라갑니다`); }catch(e){ charRef=null; } }
 $("B-charGen").onclick=()=>{ toast("설명을 반영해 시안 3개를 다시 만들었어요 (예시)"); renderChars(); };
-$("B-back1").onclick=()=>setStep("B",1,4);
-$("B-go3").onclick=()=>{ setStep("B",3,4); renderPage(); };
+$("B-back1").onclick=()=>setStep("B",1,5);
+$("B-go3").onclick=()=>{ setStep("B",3,5); renderPage(); };
 function renderPlist(){ $("B-plist").innerHTML=PAGES.map((p,i)=>`<button class="${i===pageI?"cur":""} ${bApproved[i]?"ok":""}" data-i="${i}"><span class="dot"></span><span><b class="num">${i*2+1}–${i*2+2}쪽</b><br><span class="muted small">${p.intent}</span></span></button>`).join(""); $("B-plist").querySelectorAll("button").forEach(b=>b.onclick=()=>{ pageI=+b.dataset.i; renderPage(); }); const n=bApproved.filter(Boolean).length; $("B-okN").textContent=n; $("B-go4").disabled=n<6; }
 function renderPage(){ const p=PAGES[pageI]; $("B-illu").className="illu"; const pic=gen[pageI]?`<img src="${gen[pageI]}" alt="장면 ${pageI+1} AI 그림">`:art(p,pageI,false); $("B-illu").innerHTML=pic+`<span class="v num">v${version[pageI]} · ${gen[pageI]?cfg.model:STYLES[style].n+" (예시)"}</span>`; $("B-ptext").textContent=p.ko; $("B-fix").value=""; $("B-hist").innerHTML=fixes[pageI].length?"수정 이력: "+fixes[pageI].map(f=>`“${f}”`).join(" → "):"<span>아직 수정 요청이 없어요</span>"; $("B-approve").textContent=bApproved[pageI]?"승인 취소":"이 그림 승인"; $("B-gen").disabled=!apiOn()||busyAll; $("B-genAll").disabled=!apiOn()||busyAll; $("B-genHint").textContent=apiOn()?`${cfg.model} · ${cfg.quality}${charRef?" · 기준 그림 참고":""}`:"API 키가 없으면 예시 그림으로 동작"; renderPlist(); }
 async function drawPage(i){ $("B-illu").classList.add("busy"); try{ gen[i]=await genImage(scenePrompt(i),charRef); version[i]++; bApproved[i]=false; return true; }catch(e){ toast("생성 실패: "+e.message); return false; } finally{ $("B-illu").classList.remove("busy"); } }
@@ -704,7 +959,7 @@ $("B-fix").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("B-redraw")
 $("B-prev").onclick=()=>{ pageI=(pageI+5)%6; renderPage(); };
 $("B-next").onclick=()=>{ pageI=(pageI+1)%6; renderPage(); };
 $("B-approve").onclick=()=>{ bApproved[pageI]=!bApproved[pageI]; if(bApproved[pageI]&&pageI<5){ pageI++; } renderPage(); if(bApproved.every(Boolean)) toast("6장면 모두 승인했어요. 조판으로 넘어갈 수 있어요"); };
-$("B-go4").onclick=()=>{ setStep("B",4,4); spreadI=0; renderSpread(); };
+$("B-go4").onclick=()=>{ setStep("B",4,5); spreadI=0; renderSpread(); };
 let spreadI=0;
 function renderSpread(){
   const big=$("B-big").checked, vi=$("B-vi").checked;
@@ -718,7 +973,15 @@ $("B-snext").onclick=()=>{ spreadI=(spreadI+1)%7; renderSpread(); };
 $("B-vi").onchange=renderSpread; $("B-big").onchange=renderSpread;
 $("B-send").onclick=()=>toast("편집 담당자에게 검토 요청을 보냈어요 (예시)");
 ["B-pdf","B-epub"].forEach(id=>$(id).onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정"));
-$("B-home").onclick=()=>{ setStep("B",3,4); renderPage(); };
+$("B-home").onclick=()=>{ setStep("B",3,5); renderPage(); };
+/* v0.4: Step 5 교육과정 태그 · 두 도구 잇기 */
+$("B-go5").onclick=()=>{ setStep("B",5,5); };
+$("B-back4").onclick=()=>{ setStep("B",4,5); renderSpread(); };
+$("B-tagok").onchange=()=>{ if($("B-tagok").checked) toast("태그를 확정했어요: 9월 전통과 문화유산 외 2개 (예시)"); };
+$("B-toL").onclick=()=>{ presetLecture("달님은 하나예요 (베트남 추석)"); toast("『달님은 하나예요』 · 9월 전통과 문화유산 기준으로 연습을 준비했어요"); };
+$("B-toC").onclick=()=>goMode("C");
+$("C-toL").onclick=()=>{ presetLecture(); toast("교육과정 기준을 골라 연습을 시작하세요"); };
+renderMonthSelect(false); renderCur(); renderC();
 if(typeof speechSynthesis!=="undefined") speechSynthesis.onvoiceschanged=()=>{};
 apiUI();
 </script>
