@@ -1821,7 +1821,7 @@ function applyRealReport(ev,met,segs){
 const PALS=[["#0b1b3a","#1d3a6e"],["#14213d","#3b2f6b"],["#1a1f4b","#5a3a7a"],["#2b1d12","#5c3a1e"],["#3a1a1a","#7a3a2a"],["#0b1b3a","#2a4a7a"]], MOTIFS=["moon","lantern","parade","tree","cake","moon2"];
 const SPLIT_SCHEMA={type:"object",additionalProperties:false,required:["title","titleNative","setting","character","pages"],properties:{title:{type:"string"},titleNative:{type:"string"},setting:{type:"string"},character:{type:"string"},
   pages:{type:"array",items:{type:"object",additionalProperties:false,required:["ko","native","intent","layout"],properties:{ko:{type:"string"},native:{type:"string"},intent:{type:"string"},layout:{type:"string",enum:["side","swap","top","bottom"]}}}}}};
-const norm=s=>String(s||"").replace(/\s+/g,"").replace(/[“”"'‘’]/g,"");
+const norm=s=>String(s||"").replace(/\s+/g,"").replace(/[“”"'‘’.,!?…·~。、:;()\-]/g,"");
 $("B-splitAI").onclick=async()=>{
   if(!apiOn()){ toast("API 키를 넣으면 내 원고를 AI가 나눠요"); return; }
   const text=$("B-text").value.trim(); if(text.length<20){ toast("원고를 먼저 붙여 넣어 주세요"); return; }
