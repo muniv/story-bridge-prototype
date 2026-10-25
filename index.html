@@ -654,6 +654,50 @@ body.ep-open #modeL{padding-bottom:200px}
 .soonl li{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;font-size:.88rem}
 .soonl .ph{width:32px;height:32px;border-radius:10px;background:var(--bg);display:grid;place-items:center;font-size:17px;color:var(--ink-2)}
 
+
+/* v0.8 나머지 화면: 코치 확인 · 교육과정 기준 · 기획 · 설정 */
+.toolbar .tdesc{flex:1;min-width:0;font-size:.88rem;color:var(--ink-2);line-height:1.5}
+.toolbar .tdesc b{color:var(--ink)}
+.toolbar .tmeta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none}
+.tname .ti.dark{background:var(--dark)}
+@media (max-width:860px){.toolbar .tmeta{flex-direction:row;align-items:center;justify-content:flex-start}}
+.ring.sm{width:44px;height:44px} .ring.sm::before{inset:4px} .ring.sm b{font-size:.95rem}
+.krow{display:flex;gap:12px;align-items:center;min-width:0}
+.klist button{padding:10px 12px;border-radius:14px;min-height:64px}
+.khead{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.kitem{grid-template-columns:170px 1fr;gap:14px;padding:14px 0;align-items:start}
+.kitem .kl{display:flex;gap:10px;align-items:center}
+.kctl{background:var(--bg);border-radius:12px;padding:6px;width:fit-content;max-width:100%}
+.kctl button{border-color:transparent;background:transparent;border-radius:9px}
+.kctl button.on{background:var(--paper);color:var(--ink);border-color:var(--line);box-shadow:var(--shadow-1);font-weight:700}
+@media (max-width:640px){.kitem{grid-template-columns:1fr}.kctl{width:100%}}
+.gaprow{border-bottom:1px solid var(--line);padding:8px 0}
+.gaprow:last-child{border-bottom:0}
+.band{background:var(--paper);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:2px}
+.band .bi{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center;font-size:18px;margin-bottom:6px}
+table.ct thead th{position:sticky;top:0}
+.ptitle{font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.03em;line-height:1.3}
+.princ div{background:var(--paper);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:2px}
+.princ .pi{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center;font-size:18px;margin-bottom:6px}
+.tline{list-style:none;margin:0;padding:0 0 0 6px;display:flex;flex-direction:column;gap:14px;position:relative}
+.tline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tline li{position:relative;padding-left:28px;display:flex;flex-direction:column;gap:2px;font-size:.9rem}
+.tline li::before{content:"";position:absolute;left:0;top:4px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--line-2)}
+.tline li b{font-size:.86rem;color:var(--ink)}
+.tline li span{color:var(--ink-2);line-height:1.55}
+.tline li.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.tline li.now b{color:var(--accent-deep)}
+.tline li.done::before{background:var(--ok);border-color:var(--ok)}
+.road.tline li{display:flex;grid-template-columns:none}
+.mets .k{background:var(--paper);border-radius:14px;padding:12px 14px;position:relative}
+.mets .k .mi{width:30px;height:30px;border-radius:9px;background:var(--bg);display:grid;place-items:center;font-size:16px;margin-bottom:8px;color:var(--ink-2)}
+.qlist{margin:0;padding:0;list-style:none;counter-reset:q;display:flex;flex-direction:column;gap:8px}
+.qlist li{counter-increment:q;display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:.9rem}
+.qlist li::before{content:counter(q);width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.apigrp{display:flex;flex-direction:column;gap:6px;background:var(--bg);border-radius:12px;padding:12px}
+.apinote{display:flex;gap:8px;align-items:flex-start}
+.apinote .ph{font-size:1rem;margin-top:2px;flex:none}
+.modal{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 </style>
 </head>
 <body>
@@ -743,10 +787,12 @@ body.ep-open #modeL{padding-bottom:200px}
 
 <div class="modal" id="apiModal" hidden>
   <div class="card stack">
-    <div class="row between"><h3>실제 분석 설정</h3><button class="sm ghost" id="apiClose">닫기</button></div>
+    <div class="row between"><div class="sh"><span class="sn"><i class="ph ph-key" aria-hidden="true"></i></span><div><h3>실제 분석 설정</h3><p class="muted small">입장 코드나 내 키를 넣으면 받아쓰기·평가·그림이 실제로 돌아가요</p></div></div><button class="sm ghost" id="apiClose" aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
     <p class="small" id="apiServer"></p>
-    <label class="field">입장 코드 (팀 서버 사용 시)<input type="text" id="apiCode" placeholder="팀에서 안내한 코드" autocomplete="off"></label>
-    <label class="field">내 OpenAI API 키 (선택 · 넣으면 팀 서버 대신 내 키로)<input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label>
+    <div class="apigrp"><p class="eyebrow ic"><i class="ph ph-cloud" aria-hidden="true"></i>팀 서버</p>
+    <label class="field">입장 코드<input type="text" id="apiCode" placeholder="팀에서 안내한 코드" autocomplete="off"></label></div>
+    <div class="apigrp"><p class="eyebrow ic"><i class="ph ph-user" aria-hidden="true"></i>내 OpenAI 키 <span class="muted" style="font-weight:500">· 선택, 넣으면 팀 서버 대신</span></p>
+    <label class="field">API 키<input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label></div>
     <div class="grid2">
       <label class="field">글 모델 (평가·페이지 나누기·태그)
         <input type="text" id="apiLlm" list="llmList" placeholder="gpt-4.1-mini">
@@ -768,7 +814,7 @@ body.ep-open #modeL{padding-bottom:200px}
         <select id="apiQuality"><option value="low">low (빠름·저렴)</option><option value="medium">medium</option><option value="high">high</option></select>
       </label>
     </div>
-    <p class="small muted">키는 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 요청은 브라우저에서 api.openai.com으로 직접 갑니다. 공용 컴퓨터에서는 쓰고 나서 ‘키 지우기’를 눌러 주세요. 대략적인 비용: 장면 그림 한 장 수 원~수십 원(gpt-image-1-mini low), 강의 받아쓰기 1분에 약 8원(whisper-1), 평가 한 번 수십 원 이하.</p>
+    <p class="small muted apinote"><i class="ph ph-lock-simple" aria-hidden="true"></i><span>키는 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 요청은 브라우저에서 api.openai.com으로 직접 갑니다. 공용 컴퓨터에서는 쓰고 나서 ‘키 지우기’를 눌러 주세요. 대략적인 비용: 장면 그림 한 장 수 원~수십 원(gpt-image-1-mini low), 강의 받아쓰기 1분에 약 8원(whisper-1), 평가 한 번 수십 원 이하.</span></p>
     <p class="small" id="apiStatus"></p>
     <div class="row between">
       <button class="ghost sm" id="apiClear">키 지우기</button>
@@ -1214,31 +1260,35 @@ body.ep-open #modeL{padding-bottom:200px}
 
 <!-- ═══════════ 모드 C: 교육과정 기준 ═══════════ -->
 <div id="modeC" hidden class="stack" style="gap:16px">
+  <div class="toolbar">
+    <div class="tname"><span class="ti dark"><i class="ph ph-graduation-cap" aria-hidden="true"></i></span><div><b>교육과정 기준</b><span>두 도구의 공통 기준</span></div></div>
+    <p class="tdesc">그림책에는 <b>교육과정 태그</b>로, 강의 연습에는 <b>평가 기준</b>으로 같은 기준을 써요. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</p>
+    <div class="tmeta"><span class="pill">10/19 정리</span><span class="draft">기준표 초안</span></div>
+  </div>
   <div class="card stack">
-    <div><p class="eyebrow">공통 기준 · 10/19 정리</p><h2>초등 교육과정 연계 커리큘럼</h2>
-    <p class="muted small" style="margin-top:6px">근거: 교육부 고시 제2022-33호 [별책 2] 초등학교 교육과정. 다문화 교육은 범교과 학습 주제 10개 중 하나입니다. 월별 공통 주제 9개를 두고 같은 주제를 학년군 수준에 맞게 다룹니다. 방학(1·2·8월)은 빼고, 실제 일정은 학교마다 조정합니다.</p></div>
+    <div class="sh"><span class="sn"><i class="ph ph-calendar-dots" aria-hidden="true"></i></span><div><h2>초등 교육과정 연계 커리큘럼</h2><p class="muted small">근거: 교육부 고시 제2022-33호 [별책 2] 초등학교 교육과정. 월별 공통 주제 9개를 두고 같은 주제를 학년군 수준에 맞게 다룹니다. 방학(1·2·8월)은 빼고, 실제 일정은 학교마다 조정합니다.</p></div></div>
     <div class="bands">
-      <div class="band"><div class="gl">저학년 1~2학년</div><b>통합교과</b><p class="small muted">바른·슬기로운·즐거운 생활 · 경험·탐색·놀이·표현 중심</p></div>
-      <div class="band"><div class="gl">중학년 3~4학년</div><b>사회 중심</b><p class="small muted">지역의 삶의 모습, 문화 다양성 · 관찰·비교·조사 중심</p></div>
-      <div class="band"><div class="gl">고학년 5~6학년</div><b>사회 중심</b><p class="small muted">세계 여러 나라, 지구촌 문제 · 자료 분석·토의·문제 해결 중심</p></div>
+      <div class="band"><span class="bi"><i class="ph ph-shapes" aria-hidden="true"></i></span><div class="gl">저학년 1~2학년</div><b>통합교과</b><p class="small muted">바른·슬기로운·즐거운 생활 · 경험·탐색·놀이·표현 중심</p></div>
+      <div class="band"><span class="bi"><i class="ph ph-map-trifold" aria-hidden="true"></i></span><div class="gl">중학년 3~4학년</div><b>사회 중심</b><p class="small muted">지역의 삶의 모습, 문화 다양성 · 관찰·비교·조사 중심</p></div>
+      <div class="band"><span class="bi"><i class="ph ph-globe-hemisphere-east" aria-hidden="true"></i></span><div class="gl">고학년 5~6학년</div><b>사회 중심</b><p class="small muted">세계 여러 나라, 지구촌 문제 · 자료 분석·토의·문제 해결 중심</p></div>
     </div>
     <div class="twrap"><table class="ct" id="C-table"></table></div>
     <p class="small muted">연계 교과는 중·고학년 기준입니다. 저학년은 통합교과(바른·슬기로운·즐거운 생활)와 국어로 연계합니다. 보조 연계: 국어(이야기 이해·표현) · 도덕(존중·배려) · 예술(전통문화 체험) · 과학(자연환경과 생활).</p>
   </div>
   <div class="card stack">
-    <div class="row between"><div><p class="eyebrow">강의 평가 기준표</p><h2>6항목 × 학년군에서 보는 것</h2></div><span class="draft">초안 · 10/29 대표님 확인</span></div>
-    <p class="muted small">근거: 커리큘럼 운영안의 학년군 구분, 방문교사 수업 흐름(독서 확인 → 질문 → 표현 활동 → 정리), 누리과정 교사용 지침서. 리포트의 기준 문장과 AI 평가 지시문이 이 표 하나에서 나와요.</p>
+    <div class="row between" style="align-items:flex-start"><div class="sh"><span class="sn"><i class="ph ph-list-checks" aria-hidden="true"></i></span><div><h2>강의 평가 기준표 · 6항목 × 학년군</h2><p class="muted small">리포트의 기준 문장과 AI 평가 지시문이 이 표 하나에서 나와요.</p></div></div><span class="draft">초안 · 10/29 대표님 확인</span></div>
+    <p class="muted small">근거: 커리큘럼 운영안의 학년군 구분, 방문교사 수업 흐름(독서 확인 → 질문 → 표현 활동 → 정리), 누리과정 교사용 지침서.</p>
     <div class="twrap"><table class="ct rub" id="C-rub"></table></div>
     <div class="twrap"><table class="ct" style="min-width:520px" id="C-band"></table></div>
     <p class="small muted">유치원(5~7세)은 저학년 기준을 더 쉽게 봅니다(짧은 문장, 노래·손유희로 주의 모으기, 충분히 기다리기). 성인(도서관 강연)은 공통 기준만 봅니다.</p>
   </div>
   <div class="grid2">
     <div class="card stack">
-      <p class="eyebrow">연계 성취기준 (교육과정 원문)</p>
+      <p class="eyebrow ic"><i class="ph ph-book-bookmark" aria-hidden="true"></i>연계 성취기준 (교육과정 원문)</p>
       <div class="std" id="C-std"></div>
     </div>
     <div class="card stack">
-      <p class="eyebrow">책을 커리큘럼에 맞추는 방법</p>
+      <p class="eyebrow ic"><i class="ph ph-path" aria-hidden="true"></i>책을 커리큘럼에 맞추는 방법</p>
       <ol class="steps5">
         <li><span><b>도서 정보</b> · 제목, 줄거리·본문, 등장인물, 나라·지역, 문화 요소</span></li>
         <li><span><b>핵심 내용 분석</b> · 주제·상황·문화 요소·쓸 수 있는 장면을 뽑기. <b>책에 없는 사실은 만들지 않음</b></span></li>
@@ -1253,19 +1303,20 @@ body.ep-open #modeL{padding-bottom:200px}
 
 <!-- ═══════════ 모드 K: 코치 확인 ═══════════ -->
 <div id="modeK" hidden class="stack" style="gap:16px">
-  <div class="card stack">
-    <div class="row between"><div><p class="eyebrow">아시안허브 코치 (대표님 또는 교육 담당)</p><h2>리포트 확인</h2></div><span class="small muted">프로토타입은 같은 브라우저 안에서 시연해요</span></div>
-    <p class="muted small">강사가 보낸 리포트를 보고 항목마다 동의하거나 점수를 조정해요. 확인한 점수가 강사의 성장 기록에 쓰이고, AI와 코치의 차이가 평가 기준을 고치는 자료가 됩니다.</p>
+  <div class="toolbar">
+    <div class="tname"><span class="ti dark"><i class="ph ph-user-check" aria-hidden="true"></i></span><div><b>코치 확인</b><span>대표님 · 교육 담당</span></div></div>
+    <p class="tdesc">강사가 보낸 리포트를 항목마다 <b>동의</b>하거나 <b>조정</b>해요. 확인한 점수는 강사의 성장 기록으로, AI와 다른 점수는 평가 기준을 고치는 자료로 쓰여요.</p>
+    <div class="tmeta"><span class="pill warn" id="K-cnt">확인 전 0</span><span class="small muted">같은 브라우저 안에서 시연</span></div>
   </div>
   <div class="g12">
     <div class="card stack">
-      <p class="eyebrow">확인할 리포트</p>
+      <p class="eyebrow ic"><i class="ph ph-tray" aria-hidden="true"></i>확인할 리포트</p>
       <div class="klist" id="K-list"></div>
     </div>
     <div class="stack" style="gap:16px">
       <div class="card stack" id="K-detail"></div>
       <div class="card stack">
-        <div class="row between"><p class="eyebrow">AI–코치 점수 차이 · 기준 보정 자료</p><span class="soon">검토 시간 측정 · 11월 예정</span></div>
+        <div class="row between"><p class="eyebrow ic"><i class="ph ph-scales" aria-hidden="true"></i>AI–코치 점수 차이 · 기준 보정 자료</p><span class="soon">검토 시간 측정 · 11월 예정</span></div>
         <div id="K-gap"></div>
       </div>
     </div>
@@ -1275,35 +1326,36 @@ body.ep-open #modeL{padding-bottom:200px}
 <!-- ═══════════ 모드 P: 기획 ═══════════ -->
 <div id="modeP" hidden class="stack plan" style="gap:16px">
   <div class="card stack">
-    <p class="eyebrow">기획 · v3.1 (10/25)</p>
-    <h2>자기 문화를 그림책과 수업으로 전하는 작가·강사를 돕습니다</h2>
+    <div class="row between"><p class="eyebrow ic"><i class="ph ph-compass" aria-hidden="true"></i>기획서 v3.2 · 10/26</p><span class="pill">프로토타입 v0.8</span></div>
+    <h2 class="ptitle">자기 문화를 그림책과 수업으로 전하는 작가·강사를 돕습니다</h2>
     <p class="muted">영상이나 콘텐츠를 대신 만들어 주는 서비스가 아니라, 작가가 자기 책으로 직접 하는 수업을 키우는 서비스예요. 대표님이 정한 순서대로 1순위 강의 연습, 2순위 그림책 제작입니다.</p>
     <div class="basis" style="margin-top:4px"><div class="bl"><i class="ph ph-link" aria-hidden="true"></i></div><div class="bm"><div class="bt">두 도구를 잇는 것</div><div class="bs">교육과정 커리큘럼은 ‘언제·누구에게’, 문화 요소는 ‘무엇을’. 원고에서 뽑은 문화 요소가 그림에 정확히 그려지고, 강의에서 전해졌는지 확인되고, 아이들이 한 문장으로 가져가요.</div></div><button class="sm" data-go="B">문화 요소 보기</button></div>
   </div>
   <div class="card stack">
-    <h3>원칙</h3>
+    <div class="sh"><span class="sn"><i class="ph ph-seal-check" aria-hidden="true"></i></span><div><h3>원칙</h3><p class="muted small">기능을 더할 때마다 이 네 가지에 비춰 봐요.</p></div></div>
     <div class="princ">
-      <div><b>억양이 아니라 전달</b>아이들이 알아듣고 기억하는지를 봐요.</div>
-      <div><b>책에 없는 사실은 만들지 않음</b>태그·문화 요소·인용은 원고와 받아쓰기에 있는 문장만.</div>
-      <div><b>작가 그림체가 먼저</b>작가 스케치를 기준으로, AI 스타일은 대안.</div>
-      <div><b>마지막 판단은 사람</b>점수는 코치, 그림은 작가, 책은 편집 담당자.</div>
+      <div><span class="pi"><i class="ph ph-ear" aria-hidden="true"></i></span><b>억양이 아니라 전달</b>아이들이 알아듣고 기억하는지를 봐요.</div>
+      <div><span class="pi"><i class="ph ph-quotes" aria-hidden="true"></i></span><b>책에 없는 사실은 만들지 않음</b>태그·문화 요소·인용은 원고와 받아쓰기에 있는 문장만.</div>
+      <div><span class="pi"><i class="ph ph-paint-brush" aria-hidden="true"></i></span><b>작가 그림체가 먼저</b>작가 스케치를 기준으로, AI 스타일은 대안.</div>
+      <div><span class="pi"><i class="ph ph-hand-heart" aria-hidden="true"></i></span><b>마지막 판단은 사람</b>점수는 코치, 그림은 작가, 책은 편집 담당자.</div>
     </div>
   </div>
   <div class="grid2">
     <div class="card stack">
-      <h3>업데이트 노트</h3>
-      <div class="notes">
-        <div class="n"><b>v0.3 · 10/16</b><span>강의 연습·그림책 제작 화면. 대표님 우선순위(10/16)를 반영해 강의 연습을 1순위로.</span></div>
-        <div class="n"><b>v0.4~0.6 · 10/25</b><span>10/19 교육과정 커리큘럼을 두 도구의 공통 기준으로. 평가 6항목, 실제 받아쓰기·평가·그림 생성, 팀 서버.</span></div>
-        <div class="n"><b>v0.8 · 10/26</b><span>리포트에서 점수마다 근거 장면을 그 자리에서 바로 들어요(그 구간만 재생하고 멈춤). 그림책 조판에서 글 위치와 크기를 고치고 모든 쪽에 적용하거나 AI 배치로 되돌릴 수 있어요. 두 도구 화면을 첫 화면과 같은 디자인으로 바꾸고, 시연용 모의 강의 영상을 새로 만들었어요.</span></div>
-        <div class="n"><b>v0.7 · 10/26</b><span>평가 지표는 팀이 정의하기로 한 10/16 숙제에 답해 학년군 기준표를 평가에 넣고, 점수마다 근거 장면을 붙였어요. 코치 확인과 회차 기록이 실제로 쌓이고, 원고에서 뽑은 문화 요소가 강의 연습으로 이어집니다.</span></div>
-      </div>
+      <div class="sh"><span class="sn"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i></span><div><h3>업데이트 노트</h3><p class="muted small">무엇을 왜 바꿨는지, 최근 것부터</p></div></div>
+      <ol class="tline">
+        <li class="now"><b>v0.8 · 10/26</b><span>리포트에서 점수마다 근거 장면을 그 자리에서 바로 들어요(그 구간만 재생하고 멈춤). 그림책 조판에서 글 위치와 크기를 고치고 모든 쪽에 적용하거나 AI 배치로 되돌릴 수 있어요. 모든 화면을 같은 디자인으로 바꾸고, 시연용 모의 강의 영상을 새로 만들었어요.</span></li>
+        <li><b>v0.7 · 10/26</b><span>평가 지표는 팀이 정의하기로 한 10/16 숙제에 답해 학년군 기준표를 평가에 넣고, 점수마다 근거 장면을 붙였어요. 코치 확인과 회차 기록이 실제로 쌓이고, 원고에서 뽑은 문화 요소가 강의 연습으로 이어집니다.</span></li>
+        <li><b>v0.4~0.6 · 10/25</b><span>10/19 교육과정 커리큘럼을 두 도구의 공통 기준으로. 평가 6항목, 실제 받아쓰기·평가·그림 생성, 팀 서버.</span></li>
+        <li><b>v0.3 · 10/16</b><span>강의 연습·그림책 제작 화면. 대표님 우선순위(10/16)를 반영해 강의 연습을 1순위로.</span></li>
+      </ol>
     </div>
     <div class="card stack">
-      <h3>로드맵</h3>
-      <ul class="road">
-        <li><b>10/27 (화)</b><span>학교 중간발표 · 실제 호출 시연</span></li>
-        <li class="now"><b>10/29 (목)</b><span>대표님 체크인 · 평가 기준표, 지표 목표치, 시범 참여자, 기존 그림책 PDF</span></li>
+      <div class="sh"><span class="sn"><i class="ph ph-flag-banner" aria-hidden="true"></i></span><div><h3>로드맵</h3><p class="muted small">10/29 대표님 확인 뒤 기준표를 고쳐요</p></div></div>
+      <ul class="road tline">
+        <li class="done"><b>10/26 (월)</b><span>프로토타입 v0.8 배포 · 실제 호출 녹화</span></li>
+        <li class="now"><b>10/27 (화)</b><span>학교 중간발표 · 실제 호출 시연</span></li>
+        <li><b>10/29 (목)</b><span>대표님 체크인 · 평가 기준표, 지표 목표치, 시범 참여자, 기존 그림책 PDF</span></li>
         <li><b>11월</b><span>시범 운영: 강사 3~5명 녹화로 AI–코치 점수 비교·기준 보정, 그림책 1권 원고부터 인쇄 파일까지</span></li>
         <li><b>12/10 (목)</b><span>최종 발표 · 시범 결과와 보정된 기준</span></li>
         <li><b>학기 뒤</b><span>아시안허브 운영 · 저비용 구조</span></li>
@@ -1311,12 +1363,12 @@ body.ep-open #modeL{padding-bottom:200px}
     </div>
   </div>
   <div class="card stack">
-    <div class="row between"><h3>측정할 지표</h3><span class="small muted">목표치는 10/29 대표님과 정해요 · 예시 회차는 빼고 셉니다</span></div>
+    <div class="row between"><div class="sh"><span class="sn"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span><div><h3>측정할 지표</h3><p class="muted small">목표치는 10/29 대표님과 정해요 · 예시 회차는 빼고 셉니다</p></div></div></div>
     <div class="mets" id="P-mets"></div>
   </div>
   <div class="grid2">
     <div class="card stack">
-      <h3>비용 (추정)</h3>
+      <div class="sh"><span class="sn"><i class="ph ph-coins" aria-hidden="true"></i></span><div><h3>비용 (추정)</h3><p class="muted small">학기 뒤에도 기관이 감당할 수 있게</p></div></div>
       <div class="twrap"><table class="ct" style="min-width:0">
         <tbody>
           <tr><td>강의 연습 1회 분석 (20분)</td><td><b>약 200원</b> · 받아쓰기 1분 약 8원 + 평가 수십 원</td></tr>
@@ -1326,8 +1378,8 @@ body.ep-open #modeL{padding-bottom:200px}
       <p class="small muted">학기 지원 30만 원(서버 포함) 안에서 충분해요. 학기 뒤에도 기관이 감당할 수 있는 구조를 목표로 합니다.</p>
     </div>
     <div class="card stack">
-      <h3>10/29 대표님께 여쭐 것</h3>
-      <ol class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+      <div class="sh"><span class="sn"><i class="ph ph-chats-circle" aria-hidden="true"></i></span><div><h3>10/29 대표님께 여쭐 것</h3><p class="muted small">체크인에서 정할 여섯 가지</p></div></div>
+      <ol class="qlist">
         <li>평가 기준표(6항목 × 학년군)가 현장 기준과 맞는지</li>
         <li>지표 목표치</li>
         <li>11월 시범에 함께할 강사·작가님, 기존 그림책 PDF</li>
@@ -2044,7 +2096,8 @@ function kBadge(){ const n=ST.sessions.filter(s=>s.status==="sent").length; $("K
 function renderCoach(){
   const L=ST.sessions.filter(s=>s.status==="sent"||s.status==="done").sort((a,b)=>(a.status===b.status?b.n-a.n:a.status==="sent"?-1:1));
   if(!KSEL||!L.some(s=>s.id===KSEL)) { KSEL=L[0]?.id||null; KDRAFT=null; }
-  $("K-list").innerHTML=L.map(s=>`<button class="${s.id===KSEL?"cur":""}" data-id="${s.id}"><span><b>${s.n}회차</b> · ${s.date} · ${esc(bandLabel(s.band))}<br><span class="small muted">『${esc(s.book.replace(/ \(.+\)$/,""))}』 · AI ${overall(Object.assign({},s,{coach:null}))??"—"}점</span></span><span class="stack" style="gap:4px;align-items:flex-end">${s.status==="done"?'<span class="pill ok">확인함</span>':'<span class="pill warn">확인 전</span>'}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':""}</span></button>`).join("")||'<p class="small muted">강사가 보낸 리포트가 없어요. 강의 연습 리포트에서 ‘코치에게 보내기’를 누르면 여기에 쌓여요.</p>';
+  $("K-cnt").textContent=`확인 전 ${L.filter(x=>x.status==="sent").length}`; $("K-cnt").className="pill "+(L.some(x=>x.status==="sent")?"warn":"ok");
+  $("K-list").innerHTML=L.map(s=>{ const ao=overall(Object.assign({},s,{coach:null})); return `<button class="${s.id===KSEL?"cur":""}" data-id="${s.id}"><span class="krow"><span class="ring sm ${scoreCls(ao)}" style="--p:${ao||0}"><b class="num">${ao??"—"}</b></span><span><b>${s.n}회차</b> · ${s.date} · ${esc(bandLabel(s.band))}<br><span class="small muted">『${esc(s.book.replace(/ \(.+\)$/,""))}』 · AI 종합</span></span></span><span class="stack" style="gap:4px;align-items:flex-end">${s.status==="done"?'<span class="pill ok">확인함</span>':'<span class="pill warn">확인 전</span>'}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':""}</span></button>`; }).join("")||'<p class="small muted">강사가 보낸 리포트가 없어요. 강의 연습 리포트에서 ‘코치에게 보내기’를 누르면 여기에 쌓여요.</p>';
   $("K-list").querySelectorAll("button").forEach(b=>b.onclick=()=>{ KSEL=b.dataset.id; KDRAFT=null; renderCoach(); });
   renderCoachDetail(); renderGap(); kBadge();
 }
@@ -2053,8 +2106,9 @@ function renderCoachDetail(){
   const done=s.status==="done";
   if(!KDRAFT||KDRAFT.id!==s.id) KDRAFT={id:s.id,mode:CATS.map((c,i)=>done?(s.coach.agree[i]?"agree":"adj"):(s.ai[i]!=null&&s.ev[i]&&s.ev[i].quote?"agree":"adj")),score:CATS.map((c,i)=>done?s.coach.scores[i]:s.ai[i]),reason:CATS.map((c,i)=>done?(s.coach.reasons[i]||""):"")};
   const ok=i=>s.ai[i]!=null&&s.ev[i]&&s.ev[i].quote;
-  D.innerHTML=`<div class="row between"><div><p class="eyebrow">${s.n}회차 리포트 ${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':'<span class="real">실제 분석</span>'}</p><h3>『${esc(s.book.replace(/ \(.+\)$/,""))}』 · ${esc(bandLabel(s.band))} · ${s.date}</h3></div><span class="draft">기준표 초안</span></div>
-  ${CATS.map((c,i)=>{ const m=KDRAFT.mode[i]; return `<div class="kitem"><div><b>${c}</b><div class="small muted">AI</div><div style="font-weight:800;font-size:1.3rem">${ok(i)?s.ai[i]:'<span class="na" style="font-size:.8rem">확인 못 함</span>'}</div></div><div class="stack" style="gap:6px"><div class="small">${rubricHtml(i,s.band)}</div>${ok(i)?`<div class="small"><span class="ts num">${fmt(Math.round(s.ev[i].t||0))}</span> <q>${esc(clip(s.ev[i].quote,90))}</q>${s.reason&&s.reason[i]?` · <span class="muted">${esc(s.reason[i])}</span>`:""}</div>`:'<div class="small muted">근거 장면이 없어 AI가 점수를 내지 않았어요. 코치가 직접 매길 수 있어요.</div>'}
+  const ao=overall(Object.assign({},s,{coach:null})), co=done?overall(s):null;
+  D.innerHTML=`<div class="khead"><div class="ring lg ${scoreCls(ao)}" style="--p:${ao||0}"><b class="num">${ao??"—"}</b><small>AI</small></div>${done?`<div class="ring lg ${scoreCls(co)}" style="--p:${co||0}"><b class="num">${co??"—"}</b><small>코치</small></div>`:""}<div style="flex:1;min-width:0"><p class="eyebrow">${s.n}회차 리포트 ${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':'<span class="real">실제 분석</span>'}</p><h3>『${esc(s.book.replace(/ \(.+\)$/,""))}』 · ${esc(bandLabel(s.band))} · ${s.date}</h3><p class="small muted" style="margin-top:2px">${done?`${s.coach.at} 확정 · 조정 ${s.coach.agree.filter(a=>!a).length}항목`:"항목마다 동의하거나 조정한 뒤 확정해요"}</p></div><span class="draft">기준표 초안</span></div>
+  ${CATS.map((c,i)=>{ const m=KDRAFT.mode[i]; return `<div class="kitem"><div class="kl"><span class="ring sm ${ok(i)?scoreCls(s.ai[i]):""}" style="--p:${ok(i)?s.ai[i]:0}"><b class="num">${ok(i)?s.ai[i]:"—"}</b></span><div><b>${c}</b><div class="small muted">${ok(i)?"AI 점수":'<span class="na">확인 못 함</span>'}</div></div></div><div class="stack" style="gap:6px"><div class="small">${rubricHtml(i,s.band)}</div>${ok(i)?`<div class="small"><span class="ts num">${fmt(Math.round(s.ev[i].t||0))}</span> <q>${esc(clip(s.ev[i].quote,90))}</q>${s.reason&&s.reason[i]?` · <span class="muted">${esc(s.reason[i])}</span>`:""}</div>`:'<div class="small muted">근거 장면이 없어 AI가 점수를 내지 않았어요. 코치가 직접 매길 수 있어요.</div>'}
     ${done?`<div class="small"><b>코치 ${s.coach.scores[i]??"—"}</b> · ${s.coach.agree[i]?"AI에 동의":s.coach.scores[i]==null?"매기지 않음":"조정"}${s.coach.reasons[i]?` · ${esc(s.coach.reasons[i])}`:""}</div>`:`<div class="kctl" data-i="${i}">${ok(i)?`<button class="${m==="agree"?"on":""}" data-a="agree">동의</button>`:""}<button class="${m==="adj"?"on":""}" data-a="adj">${ok(i)?"조정":"직접 매기기"}</button>${m==="adj"?`<input type="number" min="0" max="100" value="${KDRAFT.score[i]??""}" data-n placeholder="점수"><input type="text" value="${esc(KDRAFT.reason[i])}" data-r placeholder="이유 (짧게)">`:""}</div>`}</div></div>`; }).join("")}
   ${done?`<div class="tbox"><p class="eyebrow">코치 메모 · ${s.coach.at}</p><p class="small">${esc(s.coach.memo||"")}</p></div>`:`<label class="field">강사에게 남길 메모<textarea id="K-memo" placeholder="예: 등불 실물 보여 주는 부분 좋았어요. 전설은 질문으로 쪼개 보세요."></textarea></label><div class="row" style="justify-content:flex-end"><button class="primary" id="K-ok">확정하기</button></div>`}`;
   D.querySelectorAll(".kctl").forEach(box=>{ const i=+box.dataset.i;
@@ -2137,7 +2191,8 @@ $("BX-ok").onclick=()=>{
 function renderPlan(){
   const R=ST.sessions.filter(isReal), D=R.filter(s=>s.status==="done");
   const gaps=[]; D.forEach(s=>s.coach.scores.forEach((v,i)=>{ if(v!=null&&s.ai[i]!=null) gaps.push(Math.abs(v-s.ai[i])); }));
-  const k=(v,l)=>`<div class="k"><div class="v num">${v}</div><div class="l">${l}</div></div>`;
+  const IC=["ph-microphone-stage","ph-user-check","ph-scales","ph-timer","ph-book-open-text","ph-chalkboard-teacher"]; let ki=0;
+  const k=(v,l)=>`<div class="k"><span class="mi"><i class="ph ${IC[ki++]}" aria-hidden="true"></i></span><div class="v num">${v}</div><div class="l">${l}</div></div>`;
   $("P-mets").innerHTML=k(R.length+"회","연습 횟수 (실제 분석)")+k(D.length+"건","코치가 확인한 회차")+k(gaps.length?(gaps.reduce((a,b)=>a+b,0)/gaps.length).toFixed(1)+"점":"-","AI–코치 점수 차이 (평균)")+k("11월부터","코치 검토 시간 · 시범 운영에서 측정")+k("1년+ → ?","그림책 1권 제작 기간 · 11월 1권 시험")+k("-","그 책으로 한 수업 수 · 시범 운영에서 기록");
 }
 
