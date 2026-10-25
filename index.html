@@ -365,6 +365,77 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
 @media (max-width:960px){.rail{grid-template-columns:repeat(3,1fr)}.rail li::after{display:none}}
 @media (max-width:860px){.hero2,.frow,.who2{grid-template-columns:1fr;gap:24px}.frow.rev .ft{order:0}.home{gap:40px}}
 @media (max-width:560px){.rail{grid-template-columns:1fr 1fr}.who2 ul{grid-template-columns:1fr}.basis{grid-template-columns:1fr;text-align:left}.hero2 .shots{aspect-ratio:16/13}}
+/* ══ v0.7 ══ */
+.soon{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;border-radius:999px;padding:1px 7px;background:var(--bg);color:var(--ink-2);border:1px solid var(--line-2);font-weight:700;white-space:nowrap}
+button.soonbtn{color:var(--ink-2)}
+.exm{display:inline-flex;font-size:.66rem;border-radius:999px;padding:1px 7px;background:var(--warn-soft);color:var(--warn);font-weight:700;white-space:nowrap}
+.draft{display:inline-flex;font-size:.7rem;border-radius:999px;padding:2px 8px;background:var(--info-soft);color:var(--info);font-weight:700;white-space:nowrap}
+.hist .it .score small{display:block;font-size:.62rem;color:var(--ink-2);font-weight:600}
+.hist .it.ex{opacity:.78}
+.scw{border-bottom:1px solid var(--line);padding:6px 0}
+.scw:last-child{border-bottom:0}
+.sc{cursor:pointer;border-radius:8px;padding:2px 0}
+.sc:hover{background:var(--bg)}
+.sc .na{font-size:.78rem;color:var(--warn);font-weight:700}
+.scd{margin:6px 0 4px;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-size:.86rem;display:flex;flex-direction:column;gap:6px}
+.scd .crit{color:var(--ink)}
+.scd .crit b{color:var(--accent-deep)}
+.scd .evq{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.scd .evq q{font-weight:600}
+.evbtn{min-height:30px!important;padding:2px 10px;font-size:.78rem}
+.kidbox{display:flex;flex-direction:column;gap:6px}
+.cmpbox table{width:100%;border-collapse:collapse;font-size:.88rem}
+.cmpbox th,.cmpbox td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+.cmpbox td.n{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--ok);font-weight:700}.down{color:#C2410C;font-weight:700}
+.chkl{display:flex;flex-wrap:wrap;gap:6px}
+.chkl label{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;border:1px solid var(--line-2);border-radius:999px;padding:4px 10px;background:var(--paper);cursor:pointer}
+.chkl input{accent-color:var(--accent)}
+.prevg{border:1px dashed var(--line-2);border-radius:12px;padding:10px 12px;font-size:.86rem;background:var(--paper)}
+.prevg ol{margin:4px 0 0;padding-left:18px}
+.inl-confirm{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#FFF6F0;border:1px solid #FFE2CF;border-radius:12px;padding:10px 12px;font-size:.86rem}
+.culcard{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--paper);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.culcard.off{opacity:.5}
+.culcard .f{display:grid;grid-template-columns:1.2fr 1fr .8fr;gap:8px}
+.culcard input[type=text],.culcard select{padding:7px 10px;font-size:.88rem;min-width:0;width:100%}
+.culcard .q{font-size:.84rem;color:var(--ink-2)}
+.culcard .q q{color:var(--ink)}
+@media (max-width:640px){.culcard .f{grid-template-columns:1fr}}
+.kidsug{display:flex;flex-wrap:wrap;gap:6px}
+.kidsug button{min-height:32px;font-size:.8rem;padding:3px 10px;text-align:left}
+.klist{display:flex;flex-direction:column;gap:8px}
+.klist button{display:grid;grid-template-columns:1fr auto;gap:6px;text-align:left;justify-content:stretch;padding:10px 12px;min-height:56px}
+.klist button.cur{border-color:var(--accent);background:var(--accent-soft)}
+.kitem{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.kitem:last-of-type{border-bottom:0}
+.kitem .ai{background:none;color:var(--ink);border:0;font-weight:800;font-size:1.2rem;padding:0;min-height:0}
+.kctl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.kctl button{min-height:34px;padding:3px 12px;font-size:.84rem}
+.kctl button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.kctl input[type=number]{width:72px;font:inherit;padding:6px 8px;border:1px solid var(--line-2);border-radius:10px}
+.kctl input[type=text]{flex:1;min-width:140px;padding:6px 10px;font-size:.85rem}
+@media (max-width:640px){.kitem{grid-template-columns:1fr}}
+.gaprow{display:grid;grid-template-columns:120px 1fr auto;gap:8px;align-items:center;font-size:.86rem;padding:4px 0}
+.plan h3{margin-bottom:8px}
+.plan .notes{display:flex;flex-direction:column;gap:10px}
+.plan .notes .n{display:grid;grid-template-columns:92px 1fr;gap:12px;font-size:.9rem}
+.plan .notes .n b{color:var(--accent-deep)}
+.princ{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.princ div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.88rem}
+.princ b{display:block;margin-bottom:4px}
+@media (max-width:860px){.princ{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.princ{grid-template-columns:1fr}}
+.road{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.road li{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:.9rem}
+.road li b{color:var(--ink)}
+.road li.now b{color:var(--accent-deep)}
+.mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.mets .k{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.mets .k .v{font-size:1.3rem;font-weight:800}
+.mets .k .l{font-size:.78rem;color:var(--ink-2)}
+table.rub{min-width:880px}
+table.rub td:first-child{white-space:nowrap;font-weight:800}
+@media (max-width:640px){.modes{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -4px;padding:0 4px 2px}.modes::-webkit-scrollbar{display:none}.modes button{flex:none}}
 </style>
 </head>
 <body>
@@ -372,14 +443,16 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
 <div class="wrap">
 <header>
   <div class="hrow">
-    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.6</span></div>
+    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.7</span></div>
     <button class="apibtn" id="apiOpen"><i class="ph ph-key" aria-hidden="true"></i><span class="st"></span><span id="apiLabel">API 설정</span></button>
   </div>
   <div class="modes" id="modes" role="tablist" aria-label="화면 선택">
     <button class="cur" data-mode="H"><i class="ph ph-house-line" aria-hidden="true"></i>서비스 소개</button>
     <button data-mode="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>강의 연습<span class="rank">1순위</span></button>
     <button data-mode="B"><i class="ph ph-book-open-text" aria-hidden="true"></i>그림책 제작<span class="rank">2순위</span></button>
+    <button data-mode="K"><i class="ph ph-user-check" aria-hidden="true"></i>코치 확인<span class="rank soft" id="K-badge" hidden>0</span></button>
     <button data-mode="C"><i class="ph ph-graduation-cap" aria-hidden="true"></i>교육과정 기준</button>
+    <button data-mode="P"><i class="ph ph-compass" aria-hidden="true"></i>기획</button>
   </div>
 </header>
 <div class="note" id="topNote"><i class="ph ph-info" aria-hidden="true"></i><span id="topNoteText">프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요.</span></div>
@@ -501,31 +574,22 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       <div class="row between">
         <div>
           <p class="eyebrow">강사 연습실</p>
-          <h2>응우옌 강사님, 이번 주 연습 기록이에요</h2>
-          <p class="muted small">예시 강사 · 베트남 출신 · 『달님은 하나예요』 작가</p>
+          <h2>응우옌 강사님, 연습 기록이에요</h2>
+          <p class="muted small">예시 강사 · 베트남 출신 · 『달님은 하나예요』 작가 · 기록은 이 브라우저에만 저장돼요</p>
         </div>
       </div>
-      <div class="hist">
-        <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 초등 저학년 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><span class="pill">보기</span></div>
-        <div class="it"><div class="score num">67</div><div><b>2회차</b> · 10/9 · 같은 주제 21분<br><span class="muted small">상호작용 좋아짐 · 꾸오이 전설 설명이 길어요</span></div><span class="pill">보기</span></div>
-        <div class="it now"><div class="score num">?</div><div><b>3회차</b> · 오늘<br><span class="muted small">지난번 목표: 말 빠르기 170 이하 · 질문 뒤 3초 기다리기 · 마무리 문장</span></div><button class="primary sm" id="L-new">새 연습 시작</button></div>
+      <div class="hist" id="L-hist"></div>
+      <div class="row between" style="margin-top:4px">
+        <span class="small muted" id="L-histNote"></span>
+        <button class="sm ghost" id="L-reset"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i> 처음 상태로</button>
       </div>
+      <div class="inl-confirm" id="L-resetBox" hidden><span id="L-resetMsg">실제 기록을 지우고 예시만 남길까요?</span><button class="sm primary" id="L-resetYes">지우기</button><button class="sm ghost" id="L-resetNo">취소</button></div>
     </div>
     <div class="card stack">
-      <p class="eyebrow">점수 추이</p>
-      <svg class="chart spark" viewBox="0 0 220 70" preserveAspectRatio="none" aria-label="회차별 종합 점수: 61, 67, 73(예상)">
-        <line x1="20" y1="60" x2="210" y2="60" stroke="var(--line)"/>
-        <line x1="20" y1="10" x2="210" y2="10" stroke="var(--line)" stroke-dasharray="3 3"/>
-        <text x="2" y="13">90</text><text x="2" y="63">50</text>
-        <polyline points="40,46 115,38 190,31" fill="none" stroke="var(--sea)" stroke-width="2"/>
-        <circle cx="40" cy="46" r="3" fill="var(--sea)"/><circle cx="115" cy="38" r="3" fill="var(--sea)"/><circle cx="190" cy="31" r="3" fill="var(--accent)"/>
-        <text x="33" y="58">1회</text><text x="108" y="58">2회</text><text x="183" y="58">3회</text>
-      </svg>
-      <div class="kv">
-        <div class="k"><div class="v num">6→3</div><div class="l">발음 주의 단어 (1회→2회)</div></div>
-        <div class="k"><div class="v num">210→185</div><div class="l">분당 어절 (목표 170 이하)</div></div>
-      </div>
-      <div class="tbox"><p class="eyebrow">코치 메모 (대표님)</p><p class="small">2회차 리포트 확인했어요. 등불 실물 보여 주는 부분 아주 좋았습니다. 전설 부분은 질문으로 쪼개 보세요.</p></div>
+      <p class="eyebrow">점수 추이 <span class="muted" style="font-weight:500">· 코치가 확인한 회차는 코치 점수</span></p>
+      <div id="L-spark"></div>
+      <div class="kv" id="L-kv1"></div>
+      <div class="tbox" id="L-memo"></div>
     </div>
   </div>
 </section>
@@ -550,6 +614,16 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
         <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
       </div>
       <div class="curbox" id="L-cur"></div>
+      <div class="curbox">
+        <p class="eyebrow">이번 수업에서 전할 문화 요소</p>
+        <div class="chkl" id="L-culChk"></div>
+        <div class="row"><input type="text" id="L-culAdd" placeholder="문화 요소 더하기 (예: 반쯩)" style="flex:1;min-width:0"><button class="sm" id="L-culAddBtn">더하기</button></div>
+        <label class="field">아이들이 가져갈 한 문장 <span class="small muted" id="L-kidSrc"></span>
+          <input type="text" id="L-kidIn" placeholder="예: 베트남에도 추석이 있고, 별 등불을 들고 동네를 돌아요.">
+        </label>
+        <p class="small muted">비워 두면 리포트에서 AI가 한 문장을 제안해요. 정해 두면 수업에서 전해졌는지 확인해요.</p>
+      </div>
+      <div class="prevg" id="L-prevGoals" hidden></div>
       <label class="consent"><input type="checkbox" id="L-consent"><span><b>녹화 이용에 동의해요</b><br>분석에만 쓰고 코치 외에는 공유하지 않아요. 분석 뒤 원본은 지웁니다.</span></label>
     </div>
     <div class="card stack">
@@ -589,14 +663,16 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
           <p class="eyebrow" id="L-rTitle">3회차 · 오늘 · 『달님은 하나예요』 초등 저학년 20분 12초</p>
           <div class="row" style="align-items:baseline;gap:14px"><span class="big num" id="L-rBig">73</span><span class="muted">/ 100 <span class="pill ok" id="L-rDelta">지난번보다 +6</span></span><span id="L-rMode" class="demo">예시 데이터</span></div>
           <p class="small" id="L-rSum">말 빠르기가 많이 좋아졌어요. 이번엔 <b>전설 설명 길이</b>와 <b>마무리</b>만 잡으면 80점대입니다.</p>
-          <div class="row" style="margin-top:6px"><button class="sm" id="L-share">대표님께 리포트 보내기</button><button class="sm ghost" id="L-cmp">2회차와 비교</button></div>
+          <div class="row" style="margin-top:6px"><button class="sm" id="L-share"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> 코치에게 보내기</button><button class="sm ghost" id="L-cmp">지난 회차와 비교</button><span class="small muted" id="L-shareSt"></span></div>
         </div>
         <div>
-          <div class="row between"><p class="eyebrow">항목별 점수</p><div class="legend"><span><i style="background:var(--sea)"></i>AI 평가</span><span><i style="background:var(--accent)"></i>내 자가평가</span></div></div>
+          <div class="row between"><p class="eyebrow">항목별 점수 · 누르면 기준과 근거 장면 <span class="draft">기준표 초안 · 10/29 대표님 확인</span></p><div class="legend"><span><i style="background:var(--sea)"></i>AI 평가</span><span><i style="background:var(--accent)"></i>내 자가평가</span></div></div>
           <div class="scores" id="L-scores"></div>
         </div>
       </div>
     </div>
+
+    <div class="card cmpbox" id="L-cmpBox" hidden></div>
 
     <div class="grid2">
       <div class="card stack">
@@ -605,13 +681,8 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       </div>
       <div class="card stack">
         <p class="eyebrow">책 속 문화 요소 · 아이들에게 전해졌나요</p>
-        <ul class="cc" id="L-cul">
-          <li><span class="pill ok">전함</span><span><b>뗏쭝투 (베트남 추석)</b> · 도입에서 한국 추석과 이어서 소개</span></li>
-          <li><span class="pill ok">전함</span><span><b>별 등불 (덴옹사오)</b> · 실물을 보여 주고 만져 보게 함</span></li>
-          <li><span class="pill warn">길어요</span><span><b>꾸오이 전설</b> · 2분 40초 → 1분 + 질문 2개로</span></li>
-          <li><span class="pill warn">빠짐</span><span><b>월병</b> · 책 9–10쪽에 있지만 수업에서 다루지 않음 → 마무리에 한 문장</span></li>
-        </ul>
-        <div class="tbox"><p class="eyebrow">아이들이 가져갈 한 문장</p><p class="small" id="L-kid">“베트남에도 추석이 있고, 아이들이 별 등불을 들고 동네를 돌아요.”</p></div>
+        <ul class="cc" id="L-cul"></ul>
+        <div class="tbox kidbox" id="L-kidBox"></div>
       </div>
     </div>
 
@@ -657,7 +728,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
     <div class="card">
       <div class="g21">
         <div>
-          <p class="eyebrow">다음 연습 목표 · 4회차</p>
+          <p class="eyebrow" id="L-goalT">다음 연습 목표</p>
           <ol class="goals small" style="margin:6px 0 0;padding-left:20px" id="L-goals">
             <li><b>전설 부분 1분 안에.</b> “달에는 누가 살까요?”로 시작해서 아이 대답을 듣고 이어 가기.</li>
             <li><b>질문 뒤 3초 세기.</b> 속으로 ‘하나, 둘, 셋’ 하고 다음 말로.</li>
@@ -667,7 +738,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
         </div>
         <div class="stack" style="gap:8px">
           <button class="primary" id="L-again">목표 저장하고 다시 연습하기</button>
-          <button id="L-pdf">리포트 PDF 저장</button>
+          <button id="L-pdf" class="soonbtn">리포트 PDF 저장 <span class="soon">11월 예정</span></button>
           <button class="ghost" id="L-home">연습실로 돌아가기</button>
         </div>
       </div>
@@ -687,10 +758,11 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
 <div id="modeB" hidden>
 <ol class="steps" id="stepsB">
   <li class="active"><span class="n">1</span>완성된 글 넣기</li>
-  <li><span class="n">2</span>그림 스타일·주인공</li>
-  <li><span class="n">3</span>장면 그림 만들기</li>
-  <li><span class="n">4</span>편집·조판</li>
-  <li><span class="n">5</span>교육과정 태그</li>
+  <li><span class="n">2</span>문화 요소 확인</li>
+  <li><span class="n">3</span>그림 스타일·주인공</li>
+  <li><span class="n">4</span>장면 그림 만들기</li>
+  <li><span class="n">5</span>편집·조판</li>
+  <li><span class="n">6</span>교육과정 태그</li>
 </ol>
 
 <section id="B1">
@@ -721,7 +793,37 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       <div class="row between"><p class="eyebrow">AI가 나눈 페이지</p><span class="pill" id="B-splitPill">6 펼침면 (예시 축약)</span></div>
       
       <div class="pages" id="B-pages"></div>
-      <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="primary" id="B-go2">그림 스타일 정하기 →</button></div>
+      <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="primary" id="B-go2">문화 요소 확인하기 →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="BX" hidden>
+  <div class="g21">
+    <div class="card stack">
+      <div><div class="row" style="justify-content:flex-end;gap:6px"><span id="BX-src" class="exm" hidden>체험용 예시 원고</span><span id="BX-mode" class="demo">예시 데이터</span></div>
+        <h2>책 속 문화 요소 확인</h2><p class="muted small">원고에 실제로 있는 문장만 근거로 뽑아요. 작가님이 확인한 목록이 이 책의 문화 요소가 됩니다.</p></div>
+      <div class="row"><button class="ai sm" id="BX-ai">AI로 문화 요소 뽑기</button><span class="small muted" id="BX-hint"></span></div>
+      <div class="stack" style="gap:8px" id="BX-list"></div>
+      <div class="row"><input type="text" id="BX-add" placeholder="빠진 문화 요소 더하기 (예: 반쯩)" style="flex:1;min-width:0"><button class="sm" id="BX-addBtn">더하기</button></div>
+      <p class="small muted" id="BX-drop"></p>
+    </div>
+    <div class="card stack">
+      <p class="eyebrow">확정한 문화 요소는 여기에 쓰여요</p>
+      <ul class="cc small">
+        <li><i class="ph ph-paint-brush" aria-hidden="true"></i><span>장면 그림 지시문 · 옷과 소품을 정확히</span></li>
+        <li><i class="ph ph-tag" aria-hidden="true"></i><span>교육과정 태그의 근거</span></li>
+        <li><i class="ph ph-microphone-stage" aria-hidden="true"></i><span>강의 연습의 체크 목록과 AI 평가, 받아쓰기 힌트 단어</span></li>
+      </ul>
+      <label class="field">아이들이 가져갈 한 문장 (후보)
+        <input type="text" id="BX-kid" placeholder="책 전체를 한 문장으로">
+      </label>
+      <div class="kidsug" id="BX-kidSug"></div>
+      <div class="tbox small"><span class="soon">11월 예정</span> 장면마다 옷·음식·건물이 그 나라와 맞는지 작가가 확인하는 단계</div>
+      <div class="stack" style="gap:8px;margin-top:auto">
+        <button class="primary" id="BX-ok">확정하고 그림 스타일로 →</button>
+        <button class="ghost" id="BX-back">← 원고</button>
+      </div>
     </div>
   </div>
 </section>
@@ -751,7 +853,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
           <span class="small muted" id="B-charAIhint"></span>
         </div>
       </div>
-      <div class="row between" style="margin-top:auto"><button class="ghost" id="B-back1">← 원고</button><button class="primary" id="B-go3">장면 그림 만들기 →</button></div>
+      <div class="row between" style="margin-top:auto"><button class="ghost" id="B-back1">← 문화 요소</button><button class="primary" id="B-go3">장면 그림 만들기 →</button></div>
     </div>
   </div>
 </section>
@@ -774,6 +876,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
         <div class="row"><input type="text" id="B-fix" placeholder="예: 등불을 더 크게, 달을 왼쪽 위로, 할머니 머리를 하얗게" style="flex:1;min-width:0"><button id="B-redraw">다시 그리기</button></div>
       </label>
       <div class="row small muted" id="B-hist"></div>
+      <p class="small muted"><span class="soon">11월 예정</span> 장면별 문화 표현 확인 · 옷·음식·건물·소품이 그 나라와 맞는지 작가가 체크</p>
       <div class="row between">
         <div class="row"><button id="B-prev">← 이전</button><button id="B-next">다음 →</button></div>
         <div class="row"><button id="B-approve">이 그림 승인</button><button class="primary" id="B-go4" disabled>편집·조판 →</button></div>
@@ -793,18 +896,17 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       </div>
     </div>
     <div class="card stack">
-      <p class="eyebrow">편집 담당자 검토</p>
+      <div class="row between"><p class="eyebrow">편집 담당자 검토</p><span class="soon">11월 예정</span></div>
       <ul class="small" style="margin:0;padding-left:18px">
-        <li><span class="pill ok">자동</span> 표지 · 속표지 · 판권 페이지 생성</li>
-        <li><span class="pill ok">자동</span> 이중언어 글 배치 · 글자 크기 · 여백</li>
-        <li><span class="pill ok">자동</span> 인쇄용 재단선 · CMYK 변환</li>
-        <li><span class="pill warn">사람</span> 베트남어 교정 1회 · 최종 승인</li>
+        <li>작가가 모든 장면을 승인하면 편집 담당자가 두 언어 교정과 배치를 확인하고 최종 승인</li>
+        <li>판형·쪽수·글자 크기는 아시안허브 기존 그림책 PDF에 맞춤</li>
+        <li>권당 생성 횟수·비용·걸린 날짜를 기록 (제작 기록)</li>
       </ul>
-      <div class="tbox"><p class="eyebrow">담당자 작업 시간 (예상)</p><p class="small">한 권 편집 <b>3주 → 2일</b>. 담당자는 교정과 최종 확인만 합니다.</p></div>
+      <p class="small muted">v0.7에서는 조판 미리보기까지 동작해요. 검토와 인쇄 파일은 11월 시범 운영에서 엽니다.</p>
       <div class="stack" style="gap:8px;margin-top:auto">
         <button class="primary" id="B-go5">교육과정 태그 붙이기 →</button>
-        <button id="B-send">편집 담당자에게 검토 요청</button>
-        <div class="row"><button id="B-pdf" style="flex:1">인쇄용 PDF</button><button id="B-epub" style="flex:1">전자책 EPUB</button></div>
+        <button id="B-send" class="soonbtn">편집 담당자에게 검토 요청 <span class="soon">11월 예정</span></button>
+        <div class="row"><button id="B-pdf" class="soonbtn" style="flex:1">인쇄용 PDF <span class="soon">11월</span></button><button id="B-epub" class="soonbtn" style="flex:1">전자책 EPUB <span class="soon">다음 단계</span></button></div>
         <button class="ghost" id="B-home">← 장면 그림으로</button>
       </div>
     </div>
@@ -816,7 +918,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
     <div class="card stack">
       <div><div class="row" style="justify-content:flex-end"><span id="B-tagMode" class="demo">예시 데이터</span></div><h2>맞는 교육과정 주제 찾기</h2><p class="muted small">원고에 실제로 있는 문장만 근거로 써요. 작가님이 확인하면 확정됩니다.</p></div>
       <div class="row"><button class="ai sm" id="B-tagAI">AI로 다시 찾기</button><span class="small muted" id="B-tagHint"></span></div>
-      <div><p class="eyebrow" style="margin-bottom:6px">책에서 찾은 문화 요소</p>
+      <div><p class="eyebrow" style="margin-bottom:6px">작가가 확인한 문화 요소 <span class="muted" id="B-culSrc" style="font-weight:500"></span></p>
         <div class="cul" id="B-cul"></div>
       </div>
       <div class="stack" style="gap:8px" id="B-matches"></div>
@@ -855,6 +957,13 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
     <div class="twrap"><table class="ct" id="C-table"></table></div>
     <p class="small muted">연계 교과는 중·고학년 기준입니다. 저학년은 통합교과(바른·슬기로운·즐거운 생활)와 국어로 연계합니다. 보조 연계: 국어(이야기 이해·표현) · 도덕(존중·배려) · 예술(전통문화 체험) · 과학(자연환경과 생활).</p>
   </div>
+  <div class="card stack">
+    <div class="row between"><div><p class="eyebrow">강의 평가 기준표</p><h2>6항목 × 학년군에서 보는 것</h2></div><span class="draft">초안 · 10/29 대표님 확인</span></div>
+    <p class="muted small">근거: 커리큘럼 운영안의 학년군 구분, 방문교사 수업 흐름(독서 확인 → 질문 → 표현 활동 → 정리), 누리과정 교사용 지침서. 리포트의 기준 문장과 AI 평가 지시문이 이 표 하나에서 나와요.</p>
+    <div class="twrap"><table class="ct rub" id="C-rub"></table></div>
+    <div class="twrap"><table class="ct" style="min-width:520px" id="C-band"></table></div>
+    <p class="small muted">유치원(5~7세)은 저학년 기준을 더 쉽게 봅니다(짧은 문장, 노래·손유희로 주의 모으기, 충분히 기다리기). 성인(도서관 강연)은 공통 기준만 봅니다.</p>
+  </div>
   <div class="grid2">
     <div class="card stack">
       <p class="eyebrow">연계 성취기준 (교육과정 원문)</p>
@@ -874,17 +983,107 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
   </div>
 </div>
 
-<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.6 (10/25) 실제 실행·팀 서버·실제 그림책 그림 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
+<!-- ═══════════ 모드 K: 코치 확인 ═══════════ -->
+<div id="modeK" hidden class="stack" style="gap:16px">
+  <div class="card stack">
+    <div class="row between"><div><p class="eyebrow">아시안허브 코치 (대표님 또는 교육 담당)</p><h2>리포트 확인</h2></div><span class="small muted">프로토타입은 같은 브라우저 안에서 시연해요</span></div>
+    <p class="muted small">강사가 보낸 리포트를 보고 항목마다 동의하거나 점수를 조정해요. 확인한 점수가 강사의 성장 기록에 쓰이고, AI와 코치의 차이가 평가 기준을 고치는 자료가 됩니다.</p>
+  </div>
+  <div class="g12">
+    <div class="card stack">
+      <p class="eyebrow">확인할 리포트</p>
+      <div class="klist" id="K-list"></div>
+    </div>
+    <div class="stack" style="gap:16px">
+      <div class="card stack" id="K-detail"></div>
+      <div class="card stack">
+        <div class="row between"><p class="eyebrow">AI–코치 점수 차이 · 기준 보정 자료</p><span class="soon">검토 시간 측정 · 11월 예정</span></div>
+        <div id="K-gap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 모드 P: 기획 ═══════════ -->
+<div id="modeP" hidden class="stack plan" style="gap:16px">
+  <div class="card stack">
+    <p class="eyebrow">기획 · v3.1 (10/25)</p>
+    <h2>자기 문화를 그림책과 수업으로 전하는 작가·강사를 돕습니다</h2>
+    <p class="muted">영상이나 콘텐츠를 대신 만들어 주는 서비스가 아니라, 작가가 자기 책으로 직접 하는 수업을 키우는 서비스예요. 대표님이 정한 순서대로 1순위 강의 연습, 2순위 그림책 제작입니다.</p>
+    <div class="basis" style="margin-top:4px"><div class="bl"><i class="ph ph-link" aria-hidden="true"></i></div><div class="bm"><div class="bt">두 도구를 잇는 것</div><div class="bs">교육과정 커리큘럼은 ‘언제·누구에게’, 문화 요소는 ‘무엇을’. 원고에서 뽑은 문화 요소가 그림에 정확히 그려지고, 강의에서 전해졌는지 확인되고, 아이들이 한 문장으로 가져가요.</div></div><button class="sm" data-go="B">문화 요소 보기</button></div>
+  </div>
+  <div class="card stack">
+    <h3>원칙</h3>
+    <div class="princ">
+      <div><b>억양이 아니라 전달</b>아이들이 알아듣고 기억하는지를 봐요.</div>
+      <div><b>책에 없는 사실은 만들지 않음</b>태그·문화 요소·인용은 원고와 받아쓰기에 있는 문장만.</div>
+      <div><b>작가 그림체가 먼저</b>작가 스케치를 기준으로, AI 스타일은 대안.</div>
+      <div><b>마지막 판단은 사람</b>점수는 코치, 그림은 작가, 책은 편집 담당자.</div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card stack">
+      <h3>업데이트 노트</h3>
+      <div class="notes">
+        <div class="n"><b>v0.3 · 10/16</b><span>강의 연습·그림책 제작 화면. 대표님 우선순위(10/16)를 반영해 강의 연습을 1순위로.</span></div>
+        <div class="n"><b>v0.4~0.6 · 10/25</b><span>10/19 교육과정 커리큘럼을 두 도구의 공통 기준으로. 평가 6항목, 실제 받아쓰기·평가·그림 생성, 팀 서버.</span></div>
+        <div class="n"><b>v0.7 · 10/26</b><span>평가 지표는 팀이 정의하기로 한 10/16 숙제에 답해 학년군 기준표를 평가에 넣고, 점수마다 근거 장면을 붙였어요. 코치 확인과 회차 기록이 실제로 쌓이고, 원고에서 뽑은 문화 요소가 강의 연습으로 이어집니다.</span></div>
+      </div>
+    </div>
+    <div class="card stack">
+      <h3>로드맵</h3>
+      <ul class="road">
+        <li><b>10/27 (화)</b><span>학교 중간발표 · 실제 호출 시연</span></li>
+        <li class="now"><b>10/29 (목)</b><span>대표님 체크인 · 평가 기준표, 지표 목표치, 시범 참여자, 기존 그림책 PDF</span></li>
+        <li><b>11월</b><span>시범 운영: 강사 3~5명 녹화로 AI–코치 점수 비교·기준 보정, 그림책 1권 원고부터 인쇄 파일까지</span></li>
+        <li><b>12/10 (목)</b><span>최종 발표 · 시범 결과와 보정된 기준</span></li>
+        <li><b>학기 뒤</b><span>아시안허브 운영 · 저비용 구조</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card stack">
+    <div class="row between"><h3>측정할 지표</h3><span class="small muted">목표치는 10/29 대표님과 정해요 · 예시 회차는 빼고 셉니다</span></div>
+    <div class="mets" id="P-mets"></div>
+  </div>
+  <div class="grid2">
+    <div class="card stack">
+      <h3>비용 (추정)</h3>
+      <div class="twrap"><table class="ct" style="min-width:0">
+        <tbody>
+          <tr><td>강의 연습 1회 분석 (20분)</td><td><b>약 200원</b> · 받아쓰기 1분 약 8원 + 평가 수십 원</td></tr>
+          <tr><td>그림책 1권 그림</td><td><b>수백~수천 원</b> · 장면 한 장 수 원~수십 원</td></tr>
+          <tr><td>비교 · 9월 영상 실험</td><td>1분 영상 한 편 약 1만 원</td></tr>
+        </tbody></table></div>
+      <p class="small muted">학기 지원 30만 원(서버 포함) 안에서 충분해요. 학기 뒤에도 기관이 감당할 수 있는 구조를 목표로 합니다.</p>
+    </div>
+    <div class="card stack">
+      <h3>10/29 대표님께 여쭐 것</h3>
+      <ol class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+        <li>평가 기준표(6항목 × 학년군)가 현장 기준과 맞는지</li>
+        <li>지표 목표치</li>
+        <li>11월 시범에 함께할 강사·작가님, 기존 그림책 PDF</li>
+        <li>코치 확인을 대표님이 직접 하실지, 교육 담당 직원이 할지</li>
+        <li>작가 그림체를 어디까지 살릴지</li>
+        <li>‘교육과정 태그·수업안 점검’ 정도는 괜찮은지</li>
+      </ol>
+      <p class="small"><span class="soon">11월 예정</span> 장면별 문화 표현 확인 · 편집 담당자 검토 · 인쇄용/리포트 PDF · 제작 기록 · 코치 검토 시간 측정</p>
+    </div>
+  </div>
+</div>
+
+<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.7 (10/26) 평가 기준표·근거 장면·회차 기록·코치 확인·문화 요소 연결 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 const $ = id=>document.getElementById(id);
 const toastEl=$("toast"); let toastT;
+const clip=(s,n)=>{ s=String(s??""); return s.length>n?s.slice(0,n)+"…":s; };
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
 function toast(m){ toastEl.textContent=m; toastEl.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove("show"),2600); }
 function speak(t){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="ko-KR"; u.rate=0.8; const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.startsWith("ko")); if(v) u.voice=v; speechSynthesis.speak(u); return true; }catch(e){ return false; } }
-function setStep(prefix,n,total){ [...$("steps"+prefix).children].forEach((li,k)=>{ li.classList.toggle("active",k===n-1); li.classList.toggle("done",k<n-1); }); for(let k=1;k<=total;k++) $(prefix+k).hidden = k!==n; window.scrollTo({top:0,behavior:"smooth"}); }
+const STEP_IDS={L:["L1","L2","L3","L4"],B:["B1","BX","B2","B3","B4","B5"]};
+function setStep(prefix,n){ const ids=STEP_IDS[prefix]; [...$("steps"+prefix).children].forEach((li,k)=>{ li.classList.toggle("active",k===n-1); li.classList.toggle("done",k<n-1); }); ids.forEach((id,k)=>{ $(id).hidden = k!==n-1; }); window.scrollTo({top:0,behavior:"smooth"}); if(prefix==="L"&&n===1&&typeof renderL1==="function") renderL1(); }
 function runJobs(container, onDone){
   const jobs=[...container.querySelectorAll(".job")]; let done=0;
   jobs.forEach((j,idx)=>{ j.classList.remove("done"); const bar=j.querySelector(".bar i"), st=j.querySelector(".st"); bar.style.width="0"; st.textContent="대기";
@@ -927,13 +1126,16 @@ async function genImage(prompt, refDataUrl){
   return "data:image/png;base64,"+j.data[0].b64_json;
 }
 
-// 모드 전환 (v0.4: 서비스 소개 H · 강의 연습 L · 그림책 제작 B · 교육과정 기준 C)
-const MODES=["H","L","B","C"];
+// 모드 전환 (v0.7: 서비스 소개 H · 강의 연습 L · 그림책 제작 B · 코치 확인 K · 교육과정 기준 C · 기획 P)
+const MODES=["H","L","B","K","C","P"];
 function goMode(m){
   document.querySelectorAll("#modes button").forEach(x=>{ const on=x.dataset.mode===m; x.classList.toggle("cur",on); x.setAttribute("aria-selected",on); });
   MODES.forEach(k=>{ $("mode"+k).hidden=k!==m; });
   $("apiModal").hidden=true;
   try{ speechSynthesis.cancel(); }catch(e){}
+  if(m==="K"&&typeof renderCoach==="function") renderCoach();
+  if(m==="P"&&typeof renderPlan==="function") renderPlan();
+  if(m==="L"&&!$("L1").hidden&&typeof renderL1==="function") renderL1();
   window.scrollTo({top:0});
 }
 document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>goMode(b.dataset.mode));
@@ -973,7 +1175,7 @@ function renderC(){
     MONTHS.map((M,i)=>`<tr class="${i===5?"hl":""}"><td class="mo">${M.m}</td><td><b>${M.t}</b></td><td>${M.lo}</td><td>${M.mid}</td><td>${M.hi}</td><td class="small">${M.subj}</td></tr>`).join("")+`</tbody>`;
   $("C-std").innerHTML=["저","중","고"].map(k=>`<div class="stack" style="gap:6px"><b class="small">${STD[k].band}</b>${stdHtml(k)}</div>`).join("")+`<p class="small muted">유치원은 누리과정(5세)을 참고합니다. 표시는 『달님은 하나예요』의 1차 추천 주제(9월)입니다.</p>`;
 }
-function presetLecture(book){ goMode("L"); if(book) $("L-book").value=book; $("L-age").value="저"; renderMonthSelect(); renderCur(); setStep("L",2,4); }
+function presetLecture(book){ goMode("L"); if(book) $("L-book").value=book; $("L-age").value="저"; renderMonthSelect(); renderCur(); if(typeof renderLecturePrep==="function") renderLecturePrep(true); setStep("L",2); }
 
 /* ══════════ L: 강의 연습 ══════════ */
 const CATS=["학년 눈높이","한국어 발음","책 활용·수업 흐름","문화 요소 전달","질문과 기다림","시간 배분"];
@@ -992,12 +1194,29 @@ const MOMENTS=[
 const WORDS=[["친구들이랑","친구들이랑"],["빙글빙글","빙글빙글"],["환하게","환하게"],["할머니","할머니"],["등불을","등불을"]];
 function fmt(s){ return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
 let curM=0;
-const SAMPLE_REP={real:false,dur:1212,ai:AI.slice(),moments:MOMENTS,words:WORDS.map(w=>({label:w[0],say:w[1]}))};
+const SAMPLE_REP={real:false,dur:1212,ai:AI.slice(),moments:MOMENTS,words:WORDS.map(w=>({label:w[0],say:w[1]})),
+  ev:[{t:100,quote:"그래서 린이는 등불을 들고 나갔는데 친구들이 많이 있었고"},{t:185,quote:"친구드이랑 등부를 들고…"},{t:330,quote:"이게 바로 덴옹사오예요. 만져 볼 사람?"},{t:12,quote:"선생님 나라에도 추석이 있어요."},{t:12,quote:"여러분, 추석에 뭐 했어요? 송편 먹었어요?"},{t:1125,quote:"네, 그럼 오늘은 여기까지. 네."}],
+  reason:["설명이 길어질 때 말이 빨라져요 (분당 212어절)","받침(ㄹ)이 약해지는 곳이 있어요 · 인식 신뢰도 추정","책 장면과 실물을 이어서 보여 줬어요","뗏쭝투·별 등불은 잘 전했고 월병이 빠졌어요","경험 질문으로 시작했지만 전설 부분에서 질문이 끊겼어요","전설에 시간이 몰려 12초 넘었어요"],
+  culture:[{element:"뗏쭝투 (베트남 추석)",status:"전함",note:"도입에서 한국 추석과 이어서 소개"},{element:"별 등불 (덴옹사오)",status:"전함",note:"실물을 보여 주고 만져 보게 함"},{element:"꾸오이 전설",status:"부족",note:"2분 40초 → 1분 + 질문 2개로"},{element:"월병",status:"빠짐",note:"책 9–10쪽에 있지만 수업에서 다루지 않음 → 마무리에 한 문장"}],
+  kid:{target:"베트남에도 추석이 있고, 아이들이 별 등불을 들고 동네를 돌아요.",status:"부족",t:330,quote:"이게 바로 덴옹사오예요. 만져 볼 사람?",note:"등불은 보여 줬지만 마지막에 한 문장으로 정리하지 않았어요.",suggest:""},
+  goals:[{title:"전설 부분 1분 안에.",detail:"“달에는 누가 살까요?”로 시작해서 아이 대답을 듣고 이어 가기."},{title:"질문 뒤 3초 세기.",detail:"속으로 ‘하나, 둘, 셋’ 하고 다음 말로."},{title:"마무리 문장 정하기.",detail:"“베트남에서도 한국에서도 달님은 하나예요.”를 마지막 말로 고정."},{title:"발음 3개 연습.",detail:"친구들이랑 · 빙글빙글 · 환하게를 매일 10번씩."}],
+  wpm:168,wait:2.1,fillers:14};
 let REP=SAMPLE_REP;
 function renderReport(){
   const D=Math.max(30,REP.dur||1212), MM=REP.moments, AIv=REP.ai;
   if(curM>=MM.length) curM=0;
-  $("L-scores").innerHTML = CATS.map((c,i)=>`<div class="sc"><span>${c}</span><div class="trk"><i style="width:${AIv[i]}%"></i><b style="left:${SELF[i]}%" title="자가평가 ${SELF[i]}"></b></div><span class="v num">${AIv[i]}</span></div>`).join("");
+  const band=REP.band||$("L-age").value, EV=REP.ev||[], RS=REP.reason||[];
+  $("L-scores").innerHTML = CATS.map((c,i)=>{ const v=AIv[i], e=EV[i], ok=v!=null&&e&&e.quote;
+    const bar=ok?`<div class="trk"><i style="width:${v}%"></i><b style="left:${SELF[i]}%" title="자가평가 ${SELF[i]}"></b></div>`:`<span class="na">확인 못 함 · 받아쓰기로는 볼 수 없어 강사가 체크해요</span>`;
+    return `<div class="scw"><div class="sc" role="button" tabindex="0" data-i="${i}" aria-expanded="false"><span>${c}</span>${bar}<span class="v num">${ok?v:"—"}</span></div><div class="scd" hidden><div class="crit">${rubricHtml(i,band)}</div>${ok?`<div class="evq"><span class="ts num">${fmt(Math.round(e.t||0))}</span><q>${esc(clip(e.quote,90))}</q><button class="sm evbtn" data-t="${e.t||0}">그 장면 보기</button></div>`:`<div class="small muted">근거 장면을 찾지 못해 점수를 내지 않았어요. 수업 영상을 보고 강사가 직접 체크해 주세요.</div>`}${RS[i]?`<div class="small muted">${esc(RS[i])}</div>`:""}</div></div>`; }).join("");
+  $("L-scores").querySelectorAll(".sc").forEach(r=>{ const tog=()=>{ const d=r.nextElementSibling; d.hidden=!d.hidden; r.setAttribute("aria-expanded",!d.hidden); }; r.onclick=tog; r.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); tog(); } }; });
+  $("L-scores").querySelectorAll(".evbtn").forEach(b=>b.onclick=e=>{ e.stopPropagation(); jumpTo(+b.dataset.t); });
+  const scored=AIv.filter((v,i)=>v!=null&&EV[i]&&EV[i].quote); $("L-rBig").textContent=scored.length?Math.round(scored.reduce((a,b)=>a+b,0)/scored.length):"—";
+  $("L-cul").innerHTML=(REP.culture||[]).map(c=>`<li><span class="pill ${c.status==="전함"?"ok":"warn"}">${esc(c.status)}</span><span><b>${esc(c.element)}</b> · ${esc(c.note)}</span></li>`).join("")||'<li class="muted small">문화 요소를 찾지 못했어요</li>';
+  const K=REP.kid||{};
+  $("L-kidBox").innerHTML=K.target?`<p class="eyebrow">아이들이 가져갈 한 문장 · 강사가 정함</p><p class="small"><b>“${esc(K.target)}”</b></p><div class="row" style="gap:8px"><span class="pill ${K.status==="전함"?"ok":"warn"}">${esc(K.status||"확인 못 함")}</span><span class="small">${esc(K.note||"")}</span></div>${K.quote?`<div class="evq small"><span class="ts num">${fmt(Math.round(K.t||0))}</span><q>${esc(K.quote)}</q> <button class="sm evbtn" data-t="${K.t||0}">그 장면 보기</button></div>`:""}`
+    :`<p class="eyebrow">아이들이 가져갈 한 문장 · <span class="exm">AI 제안</span></p><p class="small">“${esc(K.suggest||"")}”</p><p class="small muted">수업 전에 한 문장을 정해 두면 전해졌는지 확인해 드려요.</p>`;
+  $("L-kidBox").querySelectorAll(".evbtn").forEach(b=>b.onclick=()=>jumpTo(+b.dataset.t));
   const tkl=f=>D<300?fmt(Math.round(D*f)):Math.round(D*f/60)+"분";
   const tl=$("L-tl"); tl.innerHTML='<div class="base"></div>'+[0,.25,.5,.75,1].map(f=>`<span class="tick" style="left:${f*100}%">${tkl(f)}</span>`).join("")+
     MM.map((m,i)=>`<button class="mk ${m.type} ${i===curM?"cur":""}" style="left:${Math.min(100,m.t/D*100)}%" data-i="${i}" aria-label="${fmt(Math.round(m.t))} ${esc(m.title)}"><i class="ph ${m.type==="good"?"ph-check":"ph-exclamation-mark"}" aria-hidden="true"></i></button>`).join("");
@@ -1010,8 +1229,7 @@ function renderReport(){
   $("L-words").querySelectorAll("span").forEach(s=>{ s.onclick=()=>speak(s.dataset.w); s.onkeydown=e=>{ if(e.key==="Enter") speak(s.dataset.w); }; });
 }
 document.querySelectorAll("#L-self input").forEach(r=>r.oninput=()=>{ r.nextElementSibling.value=r.value; SELF[+r.dataset.k]=+r.value; });
-$("L-new").onclick=()=>setStep("L",2,4);
-$("L-back1").onclick=()=>setStep("L",1,4);
+$("L-back1").onclick=()=>setStep("L",1);
 let lFile=false;
 function goGate(){ $("L-go3").disabled=!(lFile&&$("L-consent").checked); }
 function fileReady(name){ lFile=true; $("L-ready").hidden=false; $("L-fname").textContent=name||"샘플 녹화 · 20분 12초 · 1.2GB"; goGate(); toast($("L-consent").checked?"녹화를 올렸어요. 자가평가를 하고 분석을 시작하세요":"녹화를 올렸어요. 이용 동의에 체크하면 분석을 시작할 수 있어요"); }
@@ -1027,14 +1245,14 @@ lf.onchange=()=>{ if(lf.files[0]) setRealFile(lf.files[0]); };
 ["dragenter","dragover"].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.add("over");}));
 ["dragleave","drop"].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.remove("over");}));
 ld.addEventListener("drop",e=>{ const f=e.dataTransfer.files[0]; if(f) setRealFile(f); });
-$("L-go3").onclick=()=>{ setStep("L",3,4); $("L-go4").disabled=true; if(lRealFile&&apiOn()){ runReal(); return; } restoreJobs(); runJobs($("L-jobs"),()=>{ REP=SAMPLE_REP; restoreSample(); $("L-go4").disabled=false; toast(lRealFile?"API 키가 없어 예시 결과로 보여 드려요":"분석이 끝났어요 (예시)"); }); };
-$("L-back2").onclick=()=>setStep("L",2,4);
-$("L-go4").onclick=()=>{ setStep("L",4,4); renderReport(); };
+$("L-go3").onclick=()=>{ setStep("L",3); $("L-go4").disabled=true; if(lRealFile&&apiOn()){ runReal(); return; } restoreJobs(); runJobs($("L-jobs"),()=>{ REP=SAMPLE_REP; restoreSample(); $("L-go4").disabled=false; toast(lRealFile?"API 키가 없어 예시 결과로 보여 드려요":"분석이 끝났어요 (예시)"); }); };
+$("L-back2").onclick=()=>setStep("L",2);
+$("L-go4").onclick=()=>{ setStep("L",4); renderReport(); };
 $("L-share").onclick=()=>toast("대표님(코치)에게 리포트 링크를 보냈어요 (예시)");
 $("L-cmp").onclick=()=>toast("2회차 대비: 학년 눈높이 +9 · 발음 +4 · 질문과 기다림 +12 · 시간 배분 -3");
-$("L-again").onclick=()=>{ toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; lFile=false; goGate(); lf.value=""; };
-$("L-pdf").onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정");
-$("L-home").onclick=()=>setStep("L",1,4);
+$("L-again").onclick=()=>{ toast("4회차 목표 4개를 저장했어요"); setStep("L",2); $("L-ready").hidden=true; lFile=false; goGate(); lf.value=""; };
+$("L-pdf").onclick=()=>toast("11월 예정 · 리포트 PDF는 코치 확인까지 끝난 리포트를 한 장으로 저장해요");
+$("L-home").onclick=()=>setStep("L",1);
 
 /* ══════════ B: 그림책 제작 ══════════ */
 const SAMPLE=`오늘은 베트남의 추석, 뗏쭝투예요. 달님이 동글동글, 환하게 떠 있어요.
@@ -1072,7 +1290,7 @@ gen=SAMPLE_IMGS.slice();
 let BOOK={title:"달님은 하나예요",titleNative:"Trăng chỉ có một",lang:"베트남어",setting:"Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night",character:"Vietnamese girl named Linh",real:false};
 function resetBookArrays(){ version=PAGES.map(()=>1); bApproved=PAGES.map(()=>false); fixes=PAGES.map(()=>[]); gen=PAGES.map(()=>null); pageI=0; spreadI=0; TAG=null; }
 function charDesc(){ return $("B-char").value.trim()||"a 7-year-old Vietnamese girl"; }
-function basePrompt(){ return `${STYLES[style].en}. Main character: ${charDesc()} (${BOOK.character}, keep the same face, hairstyle and clothes in every scene). Setting: ${BOOK.setting}. No text, no letters, no watermark.`; }
+function basePrompt(){ const CC=typeof confirmedCul==="function"?confirmedCul():null; const cul=CC&&CC.elements.filter(e=>e.drawing).map(e=>e.drawing).join("; "); return `${STYLES[style].en}. Main character: ${charDesc()} (${BOOK.character}, keep the same face, hairstyle and clothes in every scene). Setting: ${BOOK.setting}.${cul?` Cultural details to depict accurately: ${cul}.`:""} No text, no letters, no watermark.`; }
 function scenePrompt(i){ const p=PAGES[i]; const fx=fixes[i].length?` Revision requests from the author (apply all): ${fixes[i].join("; ")}.`:""; const ref=charRef?" Use the attached image as the exact design reference for the main character.":""; return `${basePrompt()} Scene for pages ${i*2+1}-${i*2+2}: "${p.ko}" (${p.vi}). Composition: ${p.intent}, leave calm space on one side for text.${fx}${ref}`; }
 function charHint(){ $("B-charAIhint").textContent=apiOn()?`${cfg.model} · ${cfg.quality} · 1장 생성`:"API 설정에 키를 넣으면 쓸 수 있어요"; $("B-charAI").disabled=!apiOn(); }
 $("B-charAI").onclick=async()=>{ if(!apiOn()) return; const box=$("B-charRef"); box.classList.add("busy"); $("B-charAI").disabled=true; try{ charRef=await genImage(`${basePrompt()} Character reference sheet: full body front view of the main character standing, holding a star-shaped lantern (đèn ông sao), plain light background.`,null); box.innerHTML=`<img src="${charRef}" alt="AI 주인공 기준 그림">`; toast("주인공 기준 그림을 만들었어요. 장면 그림이 이 그림을 참고합니다"); }catch(e){ toast("생성 실패: "+e.message); } box.classList.remove("busy"); $("B-charAI").disabled=false; };
@@ -1099,14 +1317,14 @@ function art(s,i,sq){
 $("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; $("B-title").value="달님은 하나예요"; $("B-lang").value="베트남어"; PAGES=SAMPLE_PAGES.slice(); BOOK={title:"달님은 하나예요",titleNative:"Trăng chỉ có một",lang:"베트남어",setting:"Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night",character:"Vietnamese girl named Linh",real:false}; resetBookArrays(); gen=SAMPLE_IMGS.slice(); splitPages(); };
 $("B-text").addEventListener("change",()=>{ if($("B-text").value.trim()&&!apiOn()) splitPages(); });
 function splitPages(){ $("B-pages").innerHTML=PAGES.map((p,i)=>`<div class="pg"><b class="num">${i*2+1}–${i*2+2}쪽 · ${esc(p.intent)}</b>${esc(p.ko)}<br><span class="vi">${esc(p.vi||"")}</span></div>`).join(""); $("B-split").hidden=false; $("B-splitPill").textContent=BOOK.real?`${PAGES.length} 펼침면 (AI가 나눔)`:`${PAGES.length} 펼침면 (예시 축약)`; toast(BOOK.real?`원고를 ${PAGES.length}개 펼침면으로 나눴어요`:"원고를 6개 펼침면으로 나눴어요 (예시)"); }
-$("B-go2").onclick=()=>{ setStep("B",2,5); renderStyles(); renderChars(); charHint(); };
+$("B-go2").onclick=()=>{ setStep("B",2); renderCulStep(); };
 function renderStyles(){ $("B-styles").innerHTML=STYLES.map((s,i)=>`<button class="sty ${i===style?"cur":""}" data-i="${i}"><img src="${s.img}" alt="${s.n} 샘플" loading="lazy"><div class="nm">${s.n}</div></button>`).join(""); $("B-styles").querySelectorAll(".sty").forEach(b=>b.onclick=()=>{ style=+b.dataset.i; renderStyles(); }); }
 const CHAR_IMGS=["img/char-1.jpg","img/char-2.jpg","img/char-3.jpg"];
 function renderChars(){ $("B-chars").innerHTML=CHAR_IMGS.map((src,i)=>`<button class="ch ${i===charPick?"cur":""}" data-i="${i}"><img src="${src}" alt="주인공 시안 ${i+1}" loading="lazy"><div class="nm">시안 ${i+1}</div></button>`).join(""); $("B-chars").querySelectorAll(".ch").forEach(b=>b.onclick=()=>{ charPick=+b.dataset.i; renderChars(); useCharAsRef(); }); if(!charRef) useCharAsRef(true); }
 async function useCharAsRef(silent){ const src=CHAR_IMGS[charPick]; $("B-charRef").innerHTML=`<img src="${src}" alt="주인공 기준 그림 (시안 ${charPick+1})">`; try{ const r=await fetch(src); const bl=await r.blob(); charRef=await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.readAsDataURL(bl); }); if(!silent) toast(`시안 ${charPick+1}을 기준 그림으로 정했어요. 장면 그림이 이 얼굴을 따라갑니다`); }catch(e){ charRef=null; } }
 $("B-charGen").onclick=()=>{ toast("설명을 반영해 시안 3개를 다시 만들었어요 (예시)"); renderChars(); };
-$("B-back1").onclick=()=>setStep("B",1,5);
-$("B-go3").onclick=()=>{ setStep("B",3,5); renderPage(); };
+$("B-back1").onclick=()=>{ setStep("B",2); renderCulStep(); };
+$("B-go3").onclick=()=>{ setStep("B",4); renderPage(); };
 function renderPlist(){ $("B-plist").innerHTML=PAGES.map((p,i)=>`<button class="${i===pageI?"cur":""} ${bApproved[i]?"ok":""}" data-i="${i}"><span class="dot"></span><span><b class="num">${i*2+1}–${i*2+2}쪽</b><br><span class="muted small">${p.intent}</span></span></button>`).join(""); $("B-plist").querySelectorAll("button").forEach(b=>b.onclick=()=>{ pageI=+b.dataset.i; renderPage(); }); const n=bApproved.filter(Boolean).length; $("B-okN").textContent=n; $("B-totN").textContent=PAGES.length; $("B-go4").disabled=n<PAGES.length; }
 function renderPage(){ const p=PAGES[pageI]; $("B-illu").className="illu"; const pic=gen[pageI]?`<img src="${gen[pageI]}" alt="장면 ${pageI+1} AI 그림">`:art(p,pageI,false); $("B-illu").innerHTML=pic+`<span class="v num">v${version[pageI]} · ${gen[pageI]?(isSampleImg(gen[pageI])?"예시 그림":(serverMode()?"팀 서버":cfg.model)):STYLES[style].n+" (예시)"}</span>`; $("B-ptext").textContent=p.ko; $("B-fix").value=""; $("B-hist").innerHTML=fixes[pageI].length?"수정 이력: "+fixes[pageI].map(f=>`“${f}”`).join(" → "):"<span>아직 수정 요청이 없어요</span>"; $("B-approve").textContent=bApproved[pageI]?"승인 취소":"이 그림 승인"; $("B-gen").disabled=!apiOn()||busyAll; $("B-genAll").disabled=!apiOn()||busyAll; $("B-genHint").textContent=apiOn()?`${cfg.model} · ${cfg.quality}${charRef?" · 기준 그림 참고":""}`:"API 키가 없으면 예시 그림으로 동작"; renderPlist(); }
 async function drawPage(i){ $("B-illu").classList.add("busy"); try{ gen[i]=await genImage(scenePrompt(i),charRef); version[i]++; bApproved[i]=false; return true; }catch(e){ toast("생성 실패: "+e.message); return false; } finally{ $("B-illu").classList.remove("busy"); } }
@@ -1120,7 +1338,7 @@ $("B-fix").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("B-redraw")
 $("B-prev").onclick=()=>{ pageI=(pageI+PAGES.length-1)%PAGES.length; renderPage(); };
 $("B-next").onclick=()=>{ pageI=(pageI+1)%PAGES.length; renderPage(); };
 $("B-approve").onclick=()=>{ bApproved[pageI]=!bApproved[pageI]; if(bApproved[pageI]&&pageI<PAGES.length-1){ pageI++; } renderPage(); if(bApproved.every(Boolean)) toast(`${PAGES.length}장면 모두 승인했어요. 조판으로 넘어갈 수 있어요`); };
-$("B-go4").onclick=()=>{ setStep("B",4,5); spreadI=0; renderSpread(); };
+$("B-go4").onclick=()=>{ setStep("B",5); spreadI=0; renderSpread(); };
 let spreadI=0;
 function renderSpread(){
   const big=$("B-big").checked, vi=$("B-vi").checked;
@@ -1132,13 +1350,14 @@ function renderSpread(){
 $("B-sprev").onclick=()=>{ spreadI=(spreadI+PAGES.length)%(PAGES.length+1); renderSpread(); };
 $("B-snext").onclick=()=>{ spreadI=(spreadI+1)%(PAGES.length+1); renderSpread(); };
 $("B-vi").onchange=renderSpread; $("B-big").onchange=renderSpread;
-$("B-send").onclick=()=>toast("편집 담당자에게 검토 요청을 보냈어요 (예시)");
-["B-pdf","B-epub"].forEach(id=>$(id).onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정"));
-$("B-home").onclick=()=>{ setStep("B",3,5); renderPage(); };
+$("B-send").onclick=()=>toast("11월 예정 · 작가 승인 뒤 편집 담당자가 두 언어 교정과 최종 승인을 해요");
+$("B-pdf").onclick=()=>toast("11월 예정 · 아시안허브 기존 그림책 판형에 맞춘 인쇄용 PDF");
+$("B-epub").onclick=()=>toast("다음 단계 · 전자책 EPUB은 인쇄용 PDF 뒤에 엽니다");
+$("B-home").onclick=()=>{ setStep("B",4); renderPage(); };
 /* v0.4: Step 5 교육과정 태그 · 두 도구 잇기 */
-$("B-go5").onclick=()=>{ setStep("B",5,5); if(BOOK.real&&apiOn()&&!TAG) aiTags(); else renderTags(TAG||(BOOK.real?null:SAMPLE_TAG)); };
-$("B-back4").onclick=()=>{ setStep("B",4,5); renderSpread(); };
-$("B-tagok").onchange=()=>{ if($("B-tagok").checked) toast("태그를 확정했어요: 9월 전통과 문화유산 외 2개 (예시)"); };
+$("B-go5").onclick=()=>{ setStep("B",6); if(BOOK.real&&apiOn()&&!TAG) aiTags(); else renderTags(TAG||(BOOK.real?null:SAMPLE_TAG)); };
+$("B-back4").onclick=()=>{ setStep("B",5); renderSpread(); };
+$("B-tagok").onchange=()=>{ if($("B-tagok").checked){ const c=[...$("B-tagChips").querySelectorAll(".mchip")].map(x=>x.textContent); toast(`태그를 확정했어요: ${c[0]||""}${c.length>1?` 외 ${c.length-1}개`:""}`); } };
 $("B-toC").onclick=()=>goMode("C");
 $("C-toL").onclick=()=>{ presetLecture(); toast("교육과정 기준을 골라 연습을 시작하세요"); };
 /* ══════════ v0.5: 실제 실행 (OpenAI 받아쓰기 · 평가 · 페이지 나누기 · 교육과정 태그) ══════════ */
@@ -1226,31 +1445,30 @@ function computeMetrics(segs,targetMin){
 
 /* ── 교육과정 기준 평가 (GPT) ── */
 const BOOK_CUL={"달님은 하나예요 (베트남 추석)":["뗏쭝투 (베트남 추석)","별 등불 (덴옹사오)","등불 행진","꾸오이 전설","월병"]};
-const EVAL_SCHEMA={type:"object",additionalProperties:false,required:["scores","summary","moments","culture","flow","goals","kidSentence"],properties:{
-  scores:{type:"array",items:{type:"object",additionalProperties:false,required:["item","score","reason"],properties:{item:{type:"string",enum:CATS},score:{type:"integer"},reason:{type:"string"}}}},
+const EVAL_SCHEMA={type:"object",additionalProperties:false,required:["scores","summary","moments","culture","flow","goals","kid"],properties:{
+  scores:{type:"array",items:{type:"object",additionalProperties:false,required:["item","score","observable","reason","evidence_t","evidence_quote"],properties:{item:{type:"string",enum:CATS},score:{type:"integer"},observable:{type:"boolean"},reason:{type:"string"},evidence_t:{type:"number"},evidence_quote:{type:"string"}}}},
   summary:{type:"string"},
   moments:{type:"array",items:{type:"object",additionalProperties:false,required:["t","type","title","quote","feedback","say"],properties:{t:{type:"number"},type:{type:"string",enum:["good","fix"]},title:{type:"string"},quote:{type:"string"},feedback:{type:"string"},say:{type:"string"}}}},
   culture:{type:"array",items:{type:"object",additionalProperties:false,required:["element","status","note"],properties:{element:{type:"string"},status:{type:"string",enum:["전함","부족","빠짐"]},note:{type:"string"}}}},
   flow:{type:"array",items:{type:"object",additionalProperties:false,required:["ok","text"],properties:{ok:{type:"boolean"},text:{type:"string"}}}},
   goals:{type:"array",items:{type:"object",additionalProperties:false,required:["title","detail"],properties:{title:{type:"string"},detail:{type:"string"}}}},
-  kidSentence:{type:"string"}}};
+  kid:{type:"object",additionalProperties:false,required:["status","t","quote","note","suggest"],properties:{status:{type:"string",enum:["전함","부족","빠짐","없음"]},t:{type:"number"},quote:{type:"string"},note:{type:"string"},suggest:{type:"string"}}}}};
 async function evaluateLecture(segs,met){
   const a=$("L-age").value, M=MONTHS[+$("L-month").value], book=$("L-book").value;
   const std=STD[a].list.map(([c,x])=>`[${c}] ${x}`).join(" / ")||STD[a].note;
-  const cul=BOOK_CUL[book]||[];
+  const cul=lectureCul(), target=$("L-kidIn").value.trim();
   const sys=`너는 초등 방과후 다문화 수업을 하는 이주여성 강사의 모의 강의를 돕는 코치다.
-원칙: 억양을 고치는 평가가 아니라 아이들에게 잘 전해졌는지를 본다. 받아쓰기는 음성 인식 결과라 오류가 있을 수 있으니 인식 오류를 강사 잘못으로 단정하지 않는다. 인용(quote)은 받아쓰기에 실제로 있는 말만 쓴다. 따뜻하고 구체적인 한국어 존댓말로 쓴다.
+원칙: 억양을 고치는 평가가 아니라 아이들에게 잘 전해졌는지를 본다. 받아쓰기는 음성 인식 결과라 오류가 있을 수 있으니 인식 오류를 강사 잘못으로 단정하지 않는다. 인용(quote)은 받아쓰기에 실제로 있는 말만 글자 그대로 쓴다. 따뜻하고 구체적인 한국어 존댓말로 쓴다.
 평가 항목(0~100 정수, 이 순서): ${CATS.join(", ")}.
-- 학년 눈높이: 어휘·문장 길이·말 빠르기가 학년군에 맞는가 (적정 말 빠르기 130~170 어절/분)
-- 한국어 발음: 제공된 인식 신뢰도 추정치를 참고해 아이들이 알아듣기 쉬운가
-- 책 활용·수업 흐름: 도입-전개-정리, 책 장면을 실제로 보여 주고 이야기로 끌고 가는가 (전통놀이로만 흐르지 않음)
-- 문화 요소 전달: 책 속 핵심 문화 요소를 아이가 기억할 만큼 전했는가
-- 질문과 기다림: 질문 수, 질문 뒤 기다림(3초 목표), 아이 대답 이어 가기
-- 시간 배분: 목표 시간과 단계별 배분
-moments는 4~7개(잘한 순간과 고칠 순간을 섞어서), t는 초 단위(받아쓰기 시간 표시 기준). say는 고칠 순간이면 '이렇게 말해 보세요' 예시 문장, 잘한 순간이면 빈 문자열.
-culture는 주어진 문화 요소마다 하나씩(없으면 받아쓰기에서 찾은 문화 요소). flow는 도입·전개·정리를 중심으로 3~4개. goals는 다음 연습 목표 3~4개. kidSentence는 아이들이 수업 뒤 집에 가서 말할 만한 한 문장.`;
+평가 기준표 (초안, ${STD[a].band}):
+${rubricPrompt(a)}
+점수 단계: 잘함 80~100(학년군 기준을 대부분 지켰고 근거 장면이 둘 이상) · 보통 60~79(기준의 절반쯤, 고칠 장면이 있음) · 더 연습 60 미만(기준이 거의 보이지 않음).
+점수마다 근거 장면을 하나 붙인다: evidence_t는 받아쓰기 시간 표시 기준 초, evidence_quote는 그 시간의 받아쓰기 문장을 글자 그대로. 받아쓰기로 판단할 수 없는 항목(예: 책 장면을 실제로 보여 줬는지)은 observable=false, score=0, evidence_quote는 빈 문자열.
+moments는 4~7개(잘한 순간과 고칠 순간을 섞어서), t는 초 단위. say는 고칠 순간이면 '이렇게 말해 보세요' 예시 문장, 잘한 순간이면 빈 문자열.
+culture는 주어진 문화 요소마다 하나씩(전함·부족·빠짐). flow는 도입·전개·정리를 중심으로 3~4개. goals는 다음 연습 목표 3~4개.
+kid: 강사가 정한 '아이들이 가져갈 한 문장'이 수업에서 전해졌는지 status(전함·부족·빠짐)와 근거 장면(t, quote), note 한 문장. 강사가 정하지 않았으면 status는 '없음', suggest에 아이들이 수업 뒤 집에 가서 말할 만한 한 문장을 쓴다. 정했으면 suggest는 빈 문자열.`;
   const usr=JSON.stringify({책:book,학년군:STD[a].band,월주제:`${M.m} ${M.t}`,학년군활동방향:{저:M.lo,중:M.mid,고:M.hi}[a]||M.lo,연계성취기준:std,목표시간_분:met.targetMin,
-    책속문화요소:cul,지표:{전체길이_초:Math.round(met.dur),평균어절_분:met.wpm,군더더기말_회:met.fillers,질문수:met.questions,질문뒤평균기다림_초:met.wait==null?null:+met.wait.toFixed(1),인식신뢰도추정_0_100:met.clarity},
+    전할문화요소:cul,아이들이가져갈한문장:target||"(정하지 않음)",지표:{전체길이_초:Math.round(met.dur),평균어절_분:met.wpm,군더더기말_회:met.fillers,질문수:met.questions,질문뒤평균기다림_초:met.wait==null?null:+met.wait.toFixed(1),인식신뢰도추정_0_100:met.clarity},
     받아쓰기:segs.map(s=>`[${fmt(Math.round(s.start))}] ${s.text.trim()}`).join("\n")});
   return llmJSON(sys,usr,"lecture_eval",EVAL_SCHEMA);
 }
@@ -1268,7 +1486,7 @@ async function runReal(){
   const target=parseInt($("L-len").value)||20;
   try{
     let stop=creep(0,3,90,25000);
-    const parts=await prepareAudio(lRealFile); const prompt=["달님은 하나예요","뗏쭝투","덴옹사오","꾸오이","월병","추석",...(BOOK_CUL[$("L-book").value]||[])].join(", ");
+    const parts=await prepareAudio(lRealFile); const prompt=[$("L-book").value.replace(/ \(.+\)$/,""),...lectureCul()].join(", ");
     let segs=[];
     for(let k=0;k<parts.length;k++){ const r=await transcribe(parts[k].blob,parts[k].name,prompt);
       const ss=(r.segments&&r.segments.length)?r.segments:[{start:0,end:r.duration||0,text:r.text||""}];
@@ -1287,26 +1505,30 @@ async function runReal(){
 
 /* ── 리포트 채우기 (실제) / 되돌리기 (예시) ── */
 const SNAP={};
-["L-rTitle","L-rBig","L-rDelta","L-rSum","L-rMode","L-cul","L-kid","L-chart","L-kv","L-flow","L-goals","L-wTitle","L-wNote"].forEach(id=>{ SNAP[id]=$(id).innerHTML; });
+["L-rTitle","L-rBig","L-rDelta","L-rSum","L-rMode","L-chart","L-kv","L-flow","L-goals","L-wTitle","L-wNote"].forEach(id=>{ SNAP[id]=$(id).innerHTML; });
 function restoreSample(){ Object.keys(SNAP).forEach(id=>{ $(id).innerHTML=SNAP[id]; }); $("L-rMode").className="demo"; $("L-transCard").hidden=true; }
 function chartSVG(series,bw){ bw=bw||60; const n=series.length, X=k=>34+(n<=1?138:k*(276/(n-1))), Y=v=>Math.max(8,Math.min(100,100-(Math.min(240,Math.max(100,v))-100)*(92/140)));
   const pts=series.map((v,k)=>`${X(k).toFixed(1)},${Y(v).toFixed(1)}`).join(" "); const mx=series.indexOf(Math.max(...series));
   const lab=[0,Math.round((n-1)/2),n-1].filter((v,i,a)=>a.indexOf(v)===i);
   return `<svg class="chart" viewBox="0 0 320 120" style="width:100%;height:auto" aria-label="분 단위 말 빠르기"><rect x="34" y="${Y(170)}" width="276" height="${Y(130)-Y(170)}" fill="var(--ok-soft)"/><text x="38" y="${Y(170)-2}">적정 130~170</text><line x1="34" y1="100" x2="310" y2="100" stroke="var(--line)"/><text x="2" y="${Y(240)+4}">240</text><text x="2" y="${Y(170)+4}">170</text><text x="2" y="104">100</text><polyline fill="none" stroke="var(--sea)" stroke-width="2" points="${pts}"/>${series[mx]>170?`<circle cx="${X(mx)}" cy="${Y(series[mx])}" r="3.5" fill="var(--warn)"/>`:""}${lab.map(k=>`<text x="${Math.min(292,X(k)-4)}" y="114">${fmt(k*bw)}</text>`).join("")}</svg>`; }
 function applyRealReport(ev,met,segs){
-  const byItem=Object.fromEntries(ev.scores.map(s=>[s.item,s]));
-  const ai=CATS.map(c=>Math.max(0,Math.min(100,Math.round(byItem[c]?.score??60))));
-  if(met.clarity!=null) ai[1]=met.clarity; // 한국어 발음 = 인식 신뢰도 기반 추정
-  const big=Math.round(ai.reduce((a,b)=>a+b,0)/ai.length);
-  REP={real:true,dur:met.dur,ai,moments:(ev.moments||[]).map(m=>({t:Math.max(0,Math.min(met.dur,m.t)),type:m.type,title:m.title,q:m.quote,fb:m.feedback,say:m.say||""})).sort((a,b)=>a.t-b.t),
-    words:met.low.map(s=>({label:`${fmt(Math.round(s.start))} “${s.text.trim().slice(0,14)}${s.text.trim().length>14?"…":""}”`,say:s.text.trim()}))};
+  const byItem=Object.fromEntries((ev.scores||[]).map(s=>[s.item,s]));
+  const allText=norm(segs.map(s=>s.text).join(" "));
+  const found=q=>!!q&&q.trim().length>1&&allText.includes(norm(q));
+  const ai=[], evs=[], reasons=[];
+  CATS.forEach((c,i)=>{ const s=byItem[c]; const ok=s&&s.observable!==false&&found(s.evidence_quote);
+    ai.push(ok?Math.max(0,Math.min(100,Math.round(s.score))):null); evs.push(ok?{t:Math.max(0,Math.min(met.dur,+s.evidence_t||0)),quote:s.evidence_quote.trim()}:null); reasons.push(s?.reason||""); });
+  if(met.clarity!=null){ const low=met.low[0]||segs.find(s=>s.text.trim()); ai[1]=met.clarity; evs[1]=low?{t:low.start,quote:low.text.trim()}:null; reasons[1]=(reasons[1]?reasons[1]+" · ":"")+"음성 인식 신뢰도로 추정한 점수예요"; }
+  const k=ev.kid||{}, target=$("L-kidIn").value.trim();
+  REP={real:true,dur:met.dur,ai,ev:evs,reason:reasons,band:$("L-age").value,moments:(ev.moments||[]).map(m=>({t:Math.max(0,Math.min(met.dur,m.t)),type:m.type,title:m.title,q:m.quote,fb:m.feedback,say:m.say||""})).sort((a,b)=>a.t-b.t),
+    words:met.low.map(s=>({label:`${fmt(Math.round(s.start))} “${s.text.trim().slice(0,14)}${s.text.trim().length>14?"…":""}”`,say:s.text.trim()})),
+    culture:ev.culture||[],kid:{target,status:target?(k.status==="없음"?"빠짐":k.status):"",t:+k.t||0,quote:found(k.quote)?k.quote.trim():"",note:k.note||"",suggest:k.suggest||ev.kidSentence||""},
+    goals:ev.goals||[],wpm:met.wpm,wait:met.wait,fillers:met.fillers,summary:ev.summary};
   const a=$("L-age").value, M=MONTHS[+$("L-month").value];
   $("L-rTitle").textContent=`오늘 · 『${$("L-book").value.replace(/ \(.+\)$/,"")}』 ${STD[a].band.split(" · ")[0]} · ${fmt(Math.round(met.dur))} · ${M.m} ${M.t}`;
-  $("L-rBig").textContent=big; $("L-rDelta").textContent=met.over>0?`목표보다 ${fmt(met.over)} 길어요`:`목표 시간 안 (${fmt(Math.round(met.dur))})`;
+  $("L-rDelta").textContent=met.over>0?`목표보다 ${fmt(met.over)} 길어요`:`목표 시간 안 (${fmt(Math.round(met.dur))})`;
   $("L-rMode").className="real"; $("L-rMode").textContent="실제 분석";
   $("L-rSum").textContent=ev.summary;
-  $("L-cul").innerHTML=(ev.culture||[]).map(c=>`<li><span class="pill ${c.status==="전함"?"ok":"warn"}">${esc(c.status)}</span><span><b>${esc(c.element)}</b> · ${esc(c.note)}</span></li>`).join("")||'<li class="muted small">문화 요소를 찾지 못했어요</li>';
-  $("L-kid").textContent=`“${ev.kidSentence}”`;
   $("L-chart").innerHTML=chartSVG(met.series,met.bw);
   $("L-kv").innerHTML=`<div class="k"><div class="v num">${met.wpm}</div><div class="l">평균 어절/분 (적정 130~170)</div></div><div class="k"><div class="v num">${met.fillers}회</div><div class="l">군더더기 말 “어…”, “음…” (받아쓰기 기준)</div></div><div class="k"><div class="v num">${met.wait==null?"-":met.wait.toFixed(1)+"초"}</div><div class="l">질문 뒤 평균 기다림 (질문 ${met.questions}회 · 추정)</div></div>`;
   $("L-flow").innerHTML=(ev.flow||[]).map(f=>`<li><span class="pill ${f.ok?"ok":"warn"}">${f.ok?"좋아요":"고쳐요"}</span> ${esc(f.text)}</li>`).join("");
@@ -1362,7 +1584,7 @@ async function aiTags(){
     const r=await llmJSON(`너는 초등 교육과정 연계 다문화 수업 커리큘럼 담당자다. 아래 9개 월별 주제(학년군별 활동 방향 포함) 중 이 그림책과 관련 높은 주제를 1~3개 고르고 1차 추천(primary) 1개를 정한다.
 제목만 보지 말고 실제 장면·문화 요소로 판단한다. 근거 인용(quote)은 원고 문장을 글자 그대로만 쓰고, 바꾸거나 지어내지 않는다. 책에 없는 사실은 쓰지 않는다.
 elements는 책 속 문화 요소(명절·음식·놀이·옷·이야기 등)와 쪽 표시. grades는 1차 추천 주제 기준 저·중·고 학년군별 수업 방향(lesson)과 활동 예(activity).`,
-      JSON.stringify({제목:BOOK.title,모국어:BOOK.lang,원고:bookText(),월별주제:MONTHS.map(M=>({월:M.m,주제:M.t,저학년:M.lo,중학년:M.mid,고학년:M.hi,연계교과:M.subj}))}),"curriculum_tags",TAG_SCHEMA);
+      JSON.stringify({제목:BOOK.title,모국어:BOOK.lang,원고:bookText(),작가가확정한문화요소:(confirmedCul()||{}).elements?.map(e=>e.name)||[],월별주제:MONTHS.map(M=>({월:M.m,주제:M.t,저학년:M.lo,중학년:M.mid,고학년:M.hi,연계교과:M.subj}))}),"curriculum_tags",TAG_SCHEMA);
     const nt=norm(PAGES.map(p=>p.ko+" "+(p.vi||"")).join(" ")); let dropped=0;
     r.matches=(r.matches||[]).map(m=>{ const ev=(m.evidence||[]).filter(e=>{ const ok=nt.includes(norm(e.quote)); if(!ok) dropped++; return ok; }); return {...m,evidence:ev}; }).filter(m=>m.evidence.length);
     if(r.matches.length&&!r.matches.some(m=>m.primary)) r.matches[0].primary=true;
@@ -1375,7 +1597,8 @@ $("B-tagAI").onclick=()=>{ TAG=null; aiTags(); };
 function renderTags(T){
   if(!T) T=SAMPLE_TAG;
   $("B-tagMode").className=T.real?"real":"demo"; $("B-tagMode").textContent=T.real?"실제 분석":"예시 데이터";
-  $("B-cul").innerHTML=(T.elements||[]).map(e=>`<span>${esc(e.name)}<small>${esc(e.pages)}</small></span>`).join("");
+  const CC=confirmedCul(); const els=CC?CC.elements.map(e=>({name:e.name,pages:e.pages})):(T.elements||[]);
+  $("B-cul").innerHTML=els.map(e=>`<span>${esc(e.name)}<small>${esc(e.pages||"")}</small></span>`).join(""); $("B-culSrc").textContent=CC?"· 2단계에서 확정":"· 확정 전 (예시)";
   $("B-matches").innerHTML=(T.matches||[]).map(m=>{ const M=MONTHS.find(x=>x.m===m.month)||{t:""};
     return `<div class="match ${m.primary?"first":""}"><div class="row between"><b>${esc(m.month)} · ${esc(M.t)}</b><span class="pill ${m.primary?"":"warn"}">${m.primary?"1차 추천":"함께 쓸 수 있어요"}</span></div>${m.reason?`<p class="small">${esc(m.reason)}</p>`:""}<p class="ev">근거: ${m.evidence.map(e=>`<q>${esc(e.quote)}</q> (${esc(e.pages)})`).join(" · ")}</p></div>`; }).join("")
     +(T.dropped?`<p class="small muted">원고에서 찾을 수 없는 인용 ${T.dropped}개는 뺐어요.</p>`:"");
@@ -1384,7 +1607,7 @@ function renderTags(T){
   $("B-tagChips").innerHTML=(T.matches||[]).map(m=>{ const M=MONTHS.find(x=>x.m===m.month)||{t:""}; return `<span class="mchip ${m.primary?"on":"sub"}">${esc(m.month)} ${esc(M.t)}</span>`; }).join("");
   const key=BOOK.real?BOOK.title:"달님은 하나예요 (베트남 추석)";
   BOOK_TAGS[key]=(T.matches||[]).map(m=>MONTHS.findIndex(x=>x.m===m.month)).filter(i=>i>=0);
-  BOOK_CUL[key]=(T.elements||[]).map(e=>e.name);
+  BOOK_CUL[key]=els.map(e=>e.name);
   if(![...$("L-book").options].some(o=>o.value===key)){ const o=document.createElement("option"); o.value=o.textContent=key; $("L-book").insertBefore(o,$("L-book").firstChild); }
 }
 $("B-toL").onclick=()=>{ const key=BOOK.real?BOOK.title:"달님은 하나예요 (베트남 추석)"; renderTags(TAG||(BOOK.real?SAMPLE_TAG:SAMPLE_TAG)); presetLecture(key); const M=MONTHS[+$("L-month").value]; toast(`『${key.replace(/ \(.+\)$/,"")}』 · ${M.m} ${M.t} 기준으로 연습을 준비했어요`); };
@@ -1402,6 +1625,240 @@ async function loadDocx(file){ if(!window.mammoth){ await new Promise((res,rej)=
 $("B-file").onclick=()=>$("B-fileIn").click();
 $("B-fileIn").onchange=async()=>{ const f=$("B-fileIn").files[0]; if(!f) return; try{ const txt=/\.docx$/i.test(f.name)?await loadDocx(f):await f.text(); loadManuscript(txt,f.name.replace(/\.[^.]+$/,"")); }catch(e){ toast("원고를 읽지 못했어요: "+e.message); } $("B-fileIn").value=""; };
 $("B-sample2").onclick=async()=>{ try{ const r=await fetch("samples/manuscript-tet.txt"); if(!r.ok) throw new Error("HTTP "+r.status); loadManuscript(await r.text(),"엄마 나라의 설날"); $("B-lang").value="베트남어"; }catch(e){ toast("샘플 원고를 불러오지 못했어요: "+e.message); } };
+/* ══════════ v0.7: 평가 기준표 · 회차 기록 · 코치 확인 · 문화 요소 연결 · 기획 ══════════ */
+/* 평가 기준표 (기획서 v3.1 §6-3, 초안 · 10/29 대표님 확인). s=화면, p=평가 지시문(책 전용 예시를 뺀 일반형) */
+const RUBRIC=[
+  {common:"어휘·문장 길이·말 빠르기가 학년군에 맞는가 (말 빠르기 130~170 어절/분)",
+   저:{s:"한 문장에 한 가지 내용, 생활 낱말. 낯선 말(뗏쭝투)은 그림·실물과 함께",p:"한 문장에 한 가지 내용, 생활 낱말. 낯선 말은 그림·실물과 함께"},
+   중:{s:"비교하는 말(“우리는 ~, 베트남은 ~”). 낯선 말은 뜻을 풀어 준다",p:"우리 문화와 비교하는 말을 쓴다. 낯선 말은 뜻을 풀어 준다"},
+   고:{s:"이유·배경을 설명하는 말. 문화유산·다양성 같은 개념어를 쓰고 풀어 준다"}},
+  {common:"아이들이 알아듣기 쉬운가. 억양은 보지 않는다. 책 제목·문화 요소 이름 같은 핵심 낱말을 또박또박",
+   저:{s:"핵심 낱말을 천천히, 두세 번 반복"},중:null,고:null},
+  {common:"도입 → 전개(책 장면 → 질문 → 표현 활동) → 정리. 책 장면이 수업 중심인가 (전통놀이 체험만으로 흐르지 않음)",
+   저:{s:"그림을 보며 읽어 주고, 장면마다 짧은 질문. 놀이·표현 활동을 책 장면과 이어서"},중:{s:"장면을 근거로 한국과 공통점·차이점 비교"},고:{s:"장면에서 문화의 의미와 변화를 찾아 토의"}},
+  {common:"체크 목록의 문화 요소를 이름·뜻·장면과 함께 전했는가. 아이들이 가져갈 한 문장이 수업에 나왔는가. 편견·고정관념 표현이 없는가",
+   저:{s:"명절·놀이·음식을 경험으로 (실물·그림·따라 하기) [2즐02-03]"},중:{s:"우리 문화와 같은 점·다른 점 [4사03-02]"},고:{s:"의미·배경·변화, 존중하는 태도 [6도02-02]"}},
+  {common:"질문 수, 질문 뒤 기다림(3초 목표), 정답 하나인 질문만이 아니라 생각을 묻는 질문",
+   저:{s:"보이는 것과 경험을 묻기 (“무엇이 보여요?”, “너희 집은 추석에 뭐 해요?”)",p:"보이는 것과 아이의 경험을 묻는다"},
+   중:{s:"비교를 묻기 (“우리 추석과 무엇이 같아요?”)",p:"우리 문화와의 비교를 묻는다"},
+   고:{s:"이유·의견을 묻기 (“왜 등불을 들고 다닐까요?”)",p:"이유와 의견을 묻는다"}},
+  {common:"목표 시간 안에 도입·전개·정리를 마치는가 (제안: 도입 약 1/5 · 전개 약 3/5 · 정리 약 1/5)",
+   저:{s:"활동을 짧게 나눠 자주 바꾼다"},중:null,고:{s:"토의 시간을 남긴다"}},
+];
+const BAND_NAME={저:"저학년",중:"중학년",고:"고학년"};
+const bandKey=a=>a==="유"?"저":a==="성"?null:a;
+function rubricHtml(i,a){ const r=RUBRIC[i], k=bandKey(a), c=k&&r[k];
+  return `<b>공통</b> ${esc(r.common)}${c?`<br><b>${BAND_NAME[k]}${a==="유"?" (유치원은 더 쉽게)":""}</b> ${esc(c.s)}`:k?`<br><b>${BAND_NAME[k]}</b> 학년군 공통`:""}`; }
+function rubricPrompt(a){ const k=bandKey(a);
+  return CATS.map((c,i)=>{ const r=RUBRIC[i], b=k&&r[k]; return `- ${c}: ${r.common}${b?` / 이 학년군: ${b.p||b.s}`:""}`; }).join("\n")+(a==="유"?"\n- 유치원(5~7세): 저학년 기준을 더 쉽게 본다. 더 짧은 문장, 노래·손유희로 주의 모으기, 충분히 기다리기.":"")+(a==="성"?"\n- 성인 강연: 공통 기준만 본다.":""); }
+function renderRubric(){
+  $("C-rub").innerHTML=`<thead><tr><th>항목</th><th>공통으로 보는 것</th><th>저학년 (1~2)</th><th>중학년 (3~4)</th><th>고학년 (5~6)</th></tr></thead><tbody>`+
+    CATS.map((c,i)=>{ const r=RUBRIC[i], cell=k=>r[k]?esc(r[k].s):'<span class="muted">학년군 공통</span>'; return `<tr><td>${c}</td><td>${esc(r.common)}</td><td>${cell("저")}</td><td>${cell("중")}</td><td>${cell("고")}</td></tr>`; }).join("")+`</tbody>`;
+  $("C-band").innerHTML=`<thead><tr><th>단계</th><th>점수</th><th>뜻</th></tr></thead><tbody><tr><td class="mo">잘함</td><td>80~100</td><td>학년군 기준을 대부분 지켰고, 근거 장면이 둘 이상</td></tr><tr><td class="mo">보통</td><td>60~79</td><td>기준의 절반쯤, 고칠 장면이 있음</td></tr><tr><td class="mo">더 연습</td><td>60 미만</td><td>기준이 거의 보이지 않음</td></tr><tr><td class="mo">확인 못 함</td><td>—</td><td>받아쓰기로는 볼 수 없어 점수 대신 강사가 체크 · 점수마다 근거 장면(시간 + 받아쓰기 문장)이 없으면 점수를 내지 않아요</td></tr></tbody>`;
+}
+
+/* ── 저장: 이 브라우저에만 (회차 기록 · 코치 확인 · 확정 문화 요소) ── */
+const STORE_KEY="sb-v07";
+let ST={sessions:[],cul:{}};
+const today=()=>{ const d=new Date(); return `${d.getMonth()+1}/${d.getDate()}`; };
+const DALNIM="달님은 하나예요 (베트남 추석)";
+function seedSessions(){ return [
+  {id:"ex1",n:1,date:"10/2",example:true,book:DALNIM,band:"저",month:5,dur:1080,ai:[59,58,63,64,56,66],
+   ev:[{t:95,quote:"그래서린이는등불을들고나갔는데친구들이많이있었고"},{t:180,quote:"친구드이랑 등부를 들고…"},{t:320,quote:"이게 바로 덴옹사오예요."},{t:15,quote:"선생님 나라에도 추석이 있어요."},{t:15,quote:"여러분, 추석에 뭐 했어요?"},{t:1075,quote:"네, 그럼 오늘은 여기까지."}],
+   reason:["말이 빨라요 (분당 210어절)","받침이 흐린 낱말 6개","책 장면을 보여 줬어요","월병·전설이 빠졌어요","질문 뒤 바로 다음 말로","마무리 문장 없음"],
+   culture:[],kid:{target:"",suggest:"베트남에도 추석이 있어요."},goals:[{title:"말 빠르기 170 이하.",detail:"문장 하나 끝날 때마다 한 번 숨 쉬기."},{title:"질문 뒤 3초 기다리기.",detail:"속으로 ‘하나, 둘, 셋’."},{title:"마무리 문장.",detail:"책의 마지막 문장으로 닫기."}],
+   wpm:210,status:"done",coach:{scores:[59,58,63,64,56,66],agree:[true,true,true,true,true,true],reasons:["","","","","",""],memo:"1회차 확인했어요. 아이들 경험으로 시작한 도입이 좋았어요. 말이 빨라지는 곳만 잡고, 마무리 문장을 꼭 넣어 보세요.",at:"10/3"}},
+  {id:"ex2",n:2,date:"10/9",example:true,book:DALNIM,band:"저",month:5,dur:1260,ai:[66,62,72,70,64,68],
+   ev:[{t:100,quote:"린이는 등불을 들고 나갔어요."},{t:185,quote:"친구드이랑 등부를 들고…"},{t:330,quote:"이게 바로 덴옹사오예요. 만져 볼 사람?"},{t:12,quote:"선생님 나라에도 추석이 있어요."},{t:490,quote:"옛날 옛날에 꾸오이라는 사람이 살았는데"},{t:1250,quote:"네, 그럼 오늘은 여기까지. 네."}],
+   reason:["말 빠르기가 좋아졌어요 (185)","받침이 흐린 낱말 3개","실물 등불로 책과 이어 줬어요","꾸오이 전설 설명이 길어요","전설 부분에서 질문이 끊겨요","목표 시간을 넘겼어요"],
+   culture:[],kid:{target:"",suggest:"베트남 아이들은 추석에 별 등불을 들어요."},goals:[{title:"말 빠르기 170 이하.",detail:"설명이 길어질 때 한 번 숨 쉬기."},{title:"질문 뒤 3초 기다리기.",detail:"속으로 ‘하나, 둘, 셋’."},{title:"마무리 문장.",detail:"“달님은 하나예요”로 닫기."}],
+   wpm:185,status:"sent",coach:null},
+]; }
+function saveStore(){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(ST)); }catch(e){} }
+function loadStore(){ let s=null; try{ s=JSON.parse(localStorage.getItem(STORE_KEY)||"null"); }catch(e){ s=null; }
+  if(!s||!Array.isArray(s.sessions)){ s={v:1,sessions:seedSessions(),cul:{}}; } if(!s.cul) s.cul={}; ST=s;
+  Object.entries(ST.cul).forEach(([k,c])=>{ if(c&&c.elements) BOOK_CUL[k]=c.elements.map(e=>e.name); }); saveStore(); }
+const isReal=s=>!s.example&&!s.sample;
+const finalScores=s=>s.coach?s.coach.scores:s.ai.map((v,i)=>v!=null&&s.ev&&s.ev[i]&&s.ev[i].quote?v:null);
+function overall(s){ const v=finalScores(s).filter(x=>x!=null); return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null; }
+const bandLabel=a=>(STD[a]?.band||"").split(" · ")[0].replace(/ \(.+\)/,"");
+const sessById=id=>ST.sessions.find(s=>s.id===id);
+
+/* ── 강사 연습실 ── */
+function statusChip(s){ if(s.status==="done") return '<span class="pill ok">코치 확인</span>'; if(s.status==="sent") return '<span class="pill warn">코치 확인 전</span>'; return '<span class="pill">보내기 전</span>'; }
+function renderL1(){
+  const S=ST.sessions.slice().sort((a,b)=>a.n-b.n), last=S[S.length-1];
+  const lastGoals=last&&last.goals?last.goals.map(g=>g.title.replace(/\.$/,"")).join(" · "):"";
+  $("L-hist").innerHTML=S.map(s=>{ const o=overall(s); return `<div class="it ${s.example?"ex":""}"><div class="score num">${o??"—"}<small>${s.coach?"코치":"AI"}</small></div><div><b>${s.n}회차</b> · ${s.date} · 『${esc(s.book.replace(/ \(.+\)$/,""))}』 ${esc(bandLabel(s.band))} ${fmt(Math.round(s.dur||0))}<br><span class="row" style="gap:6px;margin-top:2px">${statusChip(s)}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':'<span class="real">실제 분석</span>'}</span></div><span></span></div>`; }).join("")+
+    `<div class="it now"><div class="score num">?</div><div><b>${(last?last.n:0)+1}회차</b> · 다음 연습<br><span class="muted small">${lastGoals?"지난 목표: "+esc(lastGoals):"첫 연습이에요"}</span></div><button class="primary sm" id="L-new">새 연습 시작</button></div>`;
+  $("L-new").onclick=()=>{ setStep("L",2); renderLecturePrep(false); };
+  const realN=S.filter(isReal).length; $("L-histNote").textContent=realN?`실제 기록 ${realN}회차 · 예시 ${S.filter(s=>s.example).length}회차`:"1·2회차는 예시 기록이에요. 실제 분석은 3회차부터 쌓여요";
+  // 점수 추이 (예시는 흐리게, 코치 확인 전은 속 빈 점)
+  const pts=S.map(s=>({s,o:overall(s)})).filter(p=>p.o!=null).slice(-8);
+  const W=220,H=80,X=k=>pts.length<2?110:26+k*(170/(pts.length-1)),Y=v=>70-(Math.max(40,Math.min(100,v))-40)*(60/60);
+  $("L-spark").innerHTML=pts.length?`<svg class="chart" viewBox="0 0 ${W} ${H+8}" style="width:100%;height:auto" aria-label="회차별 종합 점수"><line x1="12" y1="${Y(40)}" x2="212" y2="${Y(40)}" stroke="var(--line)"/><line x1="12" y1="${Y(80)}" x2="212" y2="${Y(80)}" stroke="var(--line)" stroke-dasharray="3 3"/><text x="0" y="${Y(80)+3}">80</text><text x="0" y="${Y(40)+3}">40</text><polyline points="${pts.map((p,k)=>`${X(k)},${Y(p.o)}`).join(" ")}" fill="none" stroke="var(--sea)" stroke-width="2"/>${pts.map((p,k)=>`<circle cx="${X(k)}" cy="${Y(p.o)}" r="4" fill="${p.s.coach?"var(--sea)":"#fff"}" stroke="var(--sea)" stroke-width="2" opacity="${p.s.example?.45:1}"/><text x="${X(k)-6}" y="${H+6}">${p.s.n}회${p.s.example?"·예":""}</text><text x="${X(k)-6}" y="${Y(p.o)-8}" style="font-weight:700;fill:var(--ink)">${p.o}</text>`).join("")}</svg>`:'<p class="small muted">아직 기록이 없어요</p>';
+  const w=S.filter(s=>s.wpm), done=S.filter(s=>s.status==="done").length, sent=S.filter(s=>s.status==="sent").length;
+  $("L-kv1").innerHTML=`<div class="k"><div class="v num">${w.length>1?`${w[w.length-2].wpm}→${w[w.length-1].wpm}`:(w[0]?.wpm??"-")}</div><div class="l">분당 어절 (목표 170 이하)</div></div><div class="k"><div class="v num">${done} / ${done+sent}</div><div class="l">코치 확인 · 대기 ${sent}건</div></div>`;
+  const m=S.filter(s=>s.coach&&s.coach.memo).pop();
+  $("L-memo").innerHTML=m?`<p class="eyebrow">코치 메모 · ${m.n}회차 ${m.example?'<span class="exm">예시</span>':""}</p><p class="small">${esc(m.coach.memo)}</p>`:'<p class="eyebrow">코치 메모</p><p class="small muted">코치가 확인하면 메모가 여기에 와요.</p>';
+}
+$("L-reset").onclick=()=>{ const n=ST.sessions.filter(s=>!s.example).length; $("L-resetMsg").textContent=n?`실제 기록 ${n}회차와 코치 확인·메모를 지우고 예시 1·2회차만 남길까요?`:"예시 1·2회차를 처음 상태로 되돌릴까요?"; $("L-resetBox").hidden=false; };
+$("L-resetNo").onclick=()=>{ $("L-resetBox").hidden=true; };
+$("L-resetYes").onclick=()=>{ ST.sessions=seedSessions(); saveStore(); $("L-resetBox").hidden=true; renderL1(); kBadge(); toast("처음 상태로 되돌렸어요. 예시 1·2회차만 남았어요"); };
+
+/* ── 수업 정보: 문화 요소 체크 목록 · 아이들이 가져갈 한 문장 · 지난 목표 ── */
+let LCUL={book:null,items:[]};
+function renderLecturePrep(force){
+  const book=$("L-book").value, cc=ST.cul[book];
+  if(force||LCUL.book!==book){ const names=cc?cc.elements.map(e=>e.name):(BOOK_CUL[book]||[]); LCUL={book,items:names.map(n=>({name:n,on:true}))};
+    if(cc&&cc.kid&&(force||!$("L-kidIn").value.trim())) $("L-kidIn").value=cc.kid; else if(force&&!cc) $("L-kidIn").value=""; }
+  $("L-kidSrc").textContent=cc&&cc.kid?"· 그림책에서 확정한 후보":"";
+  $("L-culChk").innerHTML=LCUL.items.map((it,k)=>`<label><input type="checkbox" data-k="${k}" ${it.on?"checked":""}>${esc(it.name)}</label>`).join("")||'<span class="small muted">문화 요소가 없어요. 아래에서 더하거나 그림책에서 확인해 주세요</span>';
+  $("L-culChk").querySelectorAll("input").forEach(c=>c.onchange=()=>{ LCUL.items[+c.dataset.k].on=c.checked; });
+  const last=ST.sessions.slice().sort((a,b)=>a.n-b.n).pop();
+  if(last&&last.goals&&last.goals.length){ $("L-prevGoals").hidden=false; $("L-prevGoals").innerHTML=`<p class="eyebrow">지난 회차(${last.n}회차) 목표 · 이번에 신경 쓸 것 ${last.example?'<span class="exm">예시</span>':""}</p><ol>${last.goals.map(g=>`<li><b>${esc(g.title)}</b> ${esc(g.detail||"")}</li>`).join("")}</ol>${last.coach&&last.coach.memo?`<p class="small" style="margin-top:6px"><b>코치 메모</b> ${esc(last.coach.memo)}</p>`:""}`; }
+  else $("L-prevGoals").hidden=true;
+}
+function lectureCul(){ const on=LCUL.items.filter(i=>i.on).map(i=>i.name); return on.length?on:(BOOK_CUL[$("L-book").value]||[]); }
+$("L-culAddBtn").onclick=()=>{ const v=$("L-culAdd").value.trim(); if(!v) return; LCUL.items.push({name:v,on:true}); $("L-culAdd").value=""; renderLecturePrep(false); };
+$("L-culAdd").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("L-culAddBtn").click(); } };
+$("L-book").onchange=()=>{ renderMonthSelect(false); renderCur(); renderLecturePrep(true); };
+
+/* ── 리포트: 회차 저장 · 코치에게 보내기 · 지난 회차와 비교 ── */
+let runSeq=0, savedRun=-1, curSessId=null;
+const _go3=$("L-go3").onclick; $("L-go3").onclick=()=>{ runSeq++; _go3(); };
+function saveSession(){
+  if(savedRun===runSeq&&curSessId) return sessById(curSessId);
+  const S=ST.sessions, n=(S.reduce((m,s)=>Math.max(m,s.n),0))+1;
+  const s={id:"s"+Date.now(),n,date:today(),example:false,sample:!REP.real,book:$("L-book").value,band:REP.band||$("L-age").value,month:+$("L-month").value,dur:Math.round(REP.dur||0),
+    ai:REP.ai.slice(),ev:(REP.ev||[]).map(e=>e?{t:e.t,quote:e.quote}:null),reason:(REP.reason||[]).slice(),self:SELF.slice(),culture:REP.culture||[],kid:REP.kid||{},goals:REP.goals||[],wpm:REP.wpm||null,wait:REP.wait??null,status:"new",coach:null};
+  S.push(s); saveStore(); savedRun=runSeq; curSessId=s.id; return s;
+}
+function prevOf(s){ return ST.sessions.filter(x=>x.n<s.n).sort((a,b)=>b.n-a.n)[0]; }
+function reportHeader(s){
+  const book=s.book.replace(/ \(.+\)$/,""), M=MONTHS[s.month]||MONTHS[5];
+  $("L-rTitle").textContent=`${s.n}회차 · 오늘 · 『${book}』 ${bandLabel(s.band)} · ${s.sample?"20분 12초 · 예시 결과":fmt(s.dur)} · ${M.m} ${M.t}`;
+  const p=prevOf(s), o=overall(s), po=p&&overall(p);
+  if(o!=null&&po!=null){ const d=o-po; $("L-rDelta").textContent=`지난번보다 ${d>=0?"+":""}${d}`; $("L-rDelta").className="pill "+(d>=0?"ok":"warn"); } else { $("L-rDelta").textContent="첫 기록"; $("L-rDelta").className="pill"; }
+  shareState(s); $("L-cmpBox").hidden=true; $("L-goalT").textContent=`다음 연습 목표 · ${s.n+1}회차`;
+}
+function shareState(s){ const sent=s.status!=="new"; $("L-share").innerHTML=sent?'<i class="ph ph-check" aria-hidden="true"></i> 코치에게 보냄':'<i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> 코치에게 보내기'; $("L-shareSt").textContent=s.status==="done"?"코치 확인 완료":sent?"코치 확인 대기 중":""; }
+$("L-go4").onclick=()=>{ if(!REP.real){ REP=Object.assign({},SAMPLE_REP,{band:$("L-age").value,kid:Object.assign({},SAMPLE_REP.kid,{target:$("L-kidIn").value.trim()||SAMPLE_REP.kid.target})}); } setStep("L",4); const s=saveSession(); renderReport(); reportHeader(s); };
+$("L-share").onclick=()=>{ const s=sessById(curSessId); if(!s) return; if(s.status==="new"){ s.status="sent"; KSEL=s.id; KDRAFT=null; saveStore(); kBadge(); shareState(s); toast("코치 확인 목록에 보냈어요. 상단 ‘코치 확인’ 탭에서 볼 수 있어요"); } else toast(s.status==="done"?"코치가 이미 확인했어요":"이미 보냈어요 · ‘코치 확인’ 탭에서 볼 수 있어요"); };
+$("L-cmp").onclick=()=>{ const box=$("L-cmpBox"); if(!box.hidden){ box.hidden=true; return; } const s=sessById(curSessId), p=s&&prevOf(s);
+  if(!p){ box.innerHTML='<p class="small muted">비교할 지난 회차가 없어요.</p>'; box.hidden=false; return; }
+  const a=finalScores(p), b=s.ai.map((v,i)=>v!=null&&s.ev[i]&&s.ev[i].quote?v:null);
+  box.innerHTML=`<div class="row between"><p class="eyebrow">지난 회차(${p.n}회차 · ${p.coach?"코치 확인 점수":"AI 점수"}${p.example?" · 예시":""})와 비교</p><button class="sm ghost" id="L-cmpX">닫기</button></div><table><thead><tr><th>항목</th><th class="n">${p.n}회차</th><th class="n">이번</th><th class="n">차이</th></tr></thead><tbody>${CATS.map((c,i)=>{ const d=a[i]!=null&&b[i]!=null?b[i]-a[i]:null; return `<tr><td>${c}</td><td class="n">${a[i]??"—"}</td><td class="n">${b[i]??"확인 못 함"}</td><td class="n ${d==null?"":d>=0?"up":"down"}">${d==null?"—":(d>=0?"+":"")+d}</td></tr>`; }).join("")}</tbody></table>`;
+  box.hidden=false; $("L-cmpX").onclick=()=>{ box.hidden=true; }; };
+$("L-again").onclick=()=>{ const s=sessById(curSessId); toast(s&&s.goals.length?`다음 회차 목표 ${s.goals.length}개를 이어 받았어요`:"다음 연습을 준비했어요"); setStep("L",2); $("L-ready").hidden=true; lFile=false; goGate(); lf.value=""; renderLecturePrep(false); };
+function jumpTo(t){ const MM=REP.moments||[]; if(MM.length){ let bi=0,bd=1e9; MM.forEach((m,i)=>{ const d=Math.abs(m.t-t); if(d<bd){ bd=d; bi=i; } }); curM=bi; }
+  renderReport(); const media=[$("L-video"),$("L-audio")].find(x=>!x.hidden&&x.src); if(media){ try{ media.currentTime=Math.max(0,t); }catch(e){} }
+  $("L-tl").scrollIntoView({behavior:"smooth",block:"center"}); }
+
+/* ── 코치 확인 (상단 탭) ── */
+let KSEL=null, KDRAFT=null;
+function kBadge(){ const n=ST.sessions.filter(s=>s.status==="sent").length; $("K-badge").hidden=!n; $("K-badge").textContent=n; }
+function renderCoach(){
+  const L=ST.sessions.filter(s=>s.status==="sent"||s.status==="done").sort((a,b)=>(a.status===b.status?b.n-a.n:a.status==="sent"?-1:1));
+  if(!KSEL||!L.some(s=>s.id===KSEL)) { KSEL=L[0]?.id||null; KDRAFT=null; }
+  $("K-list").innerHTML=L.map(s=>`<button class="${s.id===KSEL?"cur":""}" data-id="${s.id}"><span><b>${s.n}회차</b> · ${s.date} · ${esc(bandLabel(s.band))}<br><span class="small muted">『${esc(s.book.replace(/ \(.+\)$/,""))}』 · AI ${overall(Object.assign({},s,{coach:null}))??"—"}점</span></span><span class="stack" style="gap:4px;align-items:flex-end">${s.status==="done"?'<span class="pill ok">확인함</span>':'<span class="pill warn">확인 전</span>'}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':""}</span></button>`).join("")||'<p class="small muted">강사가 보낸 리포트가 없어요. 강의 연습 리포트에서 ‘코치에게 보내기’를 누르면 여기에 쌓여요.</p>';
+  $("K-list").querySelectorAll("button").forEach(b=>b.onclick=()=>{ KSEL=b.dataset.id; KDRAFT=null; renderCoach(); });
+  renderCoachDetail(); renderGap(); kBadge();
+}
+function renderCoachDetail(){
+  const s=sessById(KSEL), D=$("K-detail"); if(!s){ D.innerHTML='<p class="eyebrow">리포트</p><p class="small muted">왼쪽에서 리포트를 고르세요.</p>'; return; }
+  const done=s.status==="done";
+  if(!KDRAFT||KDRAFT.id!==s.id) KDRAFT={id:s.id,mode:CATS.map((c,i)=>done?(s.coach.agree[i]?"agree":"adj"):(s.ai[i]!=null&&s.ev[i]&&s.ev[i].quote?"agree":"adj")),score:CATS.map((c,i)=>done?s.coach.scores[i]:s.ai[i]),reason:CATS.map((c,i)=>done?(s.coach.reasons[i]||""):"")};
+  const ok=i=>s.ai[i]!=null&&s.ev[i]&&s.ev[i].quote;
+  D.innerHTML=`<div class="row between"><div><p class="eyebrow">${s.n}회차 리포트 ${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':'<span class="real">실제 분석</span>'}</p><h3>『${esc(s.book.replace(/ \(.+\)$/,""))}』 · ${esc(bandLabel(s.band))} · ${s.date}</h3></div><span class="draft">기준표 초안</span></div>
+  ${CATS.map((c,i)=>{ const m=KDRAFT.mode[i]; return `<div class="kitem"><div><b>${c}</b><div class="small muted">AI</div><div style="font-weight:800;font-size:1.3rem">${ok(i)?s.ai[i]:'<span class="na" style="font-size:.8rem">확인 못 함</span>'}</div></div><div class="stack" style="gap:6px"><div class="small">${rubricHtml(i,s.band)}</div>${ok(i)?`<div class="small"><span class="ts num">${fmt(Math.round(s.ev[i].t||0))}</span> <q>${esc(clip(s.ev[i].quote,90))}</q>${s.reason&&s.reason[i]?` · <span class="muted">${esc(s.reason[i])}</span>`:""}</div>`:'<div class="small muted">근거 장면이 없어 AI가 점수를 내지 않았어요. 코치가 직접 매길 수 있어요.</div>'}
+    ${done?`<div class="small"><b>코치 ${s.coach.scores[i]??"—"}</b> · ${s.coach.agree[i]?"AI에 동의":s.coach.scores[i]==null?"매기지 않음":"조정"}${s.coach.reasons[i]?` · ${esc(s.coach.reasons[i])}`:""}</div>`:`<div class="kctl" data-i="${i}">${ok(i)?`<button class="${m==="agree"?"on":""}" data-a="agree">동의</button>`:""}<button class="${m==="adj"?"on":""}" data-a="adj">${ok(i)?"조정":"직접 매기기"}</button>${m==="adj"?`<input type="number" min="0" max="100" value="${KDRAFT.score[i]??""}" data-n placeholder="점수"><input type="text" value="${esc(KDRAFT.reason[i])}" data-r placeholder="이유 (짧게)">`:""}</div>`}</div></div>`; }).join("")}
+  ${done?`<div class="tbox"><p class="eyebrow">코치 메모 · ${s.coach.at}</p><p class="small">${esc(s.coach.memo||"")}</p></div>`:`<label class="field">강사에게 남길 메모<textarea id="K-memo" placeholder="예: 등불 실물 보여 주는 부분 좋았어요. 전설은 질문으로 쪼개 보세요."></textarea></label><div class="row" style="justify-content:flex-end"><button class="primary" id="K-ok">확정하기</button></div>`}`;
+  D.querySelectorAll(".kctl").forEach(box=>{ const i=+box.dataset.i;
+    box.querySelectorAll("button").forEach(b=>b.onclick=()=>{ KDRAFT.mode[i]=b.dataset.a; if(b.dataset.a==="agree") KDRAFT.score[i]=s.ai[i]; renderCoachDetail(); });
+    const n=box.querySelector("[data-n]"), r=box.querySelector("[data-r]"); if(n) n.oninput=()=>{ KDRAFT.score[i]=n.value===""?null:Math.max(0,Math.min(100,Math.round(+n.value))); }; if(r) r.oninput=()=>{ KDRAFT.reason[i]=r.value; }; });
+  if($("K-ok")) $("K-ok").onclick=()=>{
+    const scores=CATS.map((c,i)=>KDRAFT.mode[i]==="agree"?s.ai[i]:KDRAFT.score[i]);
+    s.coach={scores,agree:KDRAFT.mode.map(m=>m==="agree"),reasons:KDRAFT.reason.slice(),memo:$("K-memo").value.trim(),at:today()}; s.status="done"; saveStore();
+    const adj=s.coach.agree.filter(a=>!a).length; toast(`${s.n}회차를 확정했어요${adj?` · 조정 ${adj}항목`:""}. 강사 연습실에 점수와 메모가 돌아갔어요`); KDRAFT=null; renderCoach(); };
+}
+function renderGap(){
+  const R=ST.sessions.filter(s=>isReal(s)&&s.status==="done");
+  if(!R.length){ $("K-gap").innerHTML='<p class="small muted">아직 실제 회차의 코치 확인이 없어요. 예시 회차와 예시 결과는 계산에서 빼요. 실제 분석 리포트를 보내고 확정하면 항목별 차이가 쌓입니다.</p>'; return; }
+  $("K-gap").innerHTML=`<p class="small muted">실제 회차 ${R.length}건 · 코치 점수 − AI 점수 · 같은 항목에서 10점 넘는 차이가 세 번 쌓이면 기준 문장을 고쳐요 (초안 규칙)</p>`+CATS.map((c,i)=>{ const d=R.map(s=>s.coach.scores[i]!=null&&s.ai[i]!=null?s.coach.scores[i]-s.ai[i]:null).filter(x=>x!=null);
+    const avg=d.length?d.reduce((a,b)=>a+b,0)/d.length:null, big=d.filter(x=>Math.abs(x)>10).length;
+    return `<div class="gaprow"><span>${c}</span><span class="small">${avg==null?'<span class="muted">비교할 점수 없음</span>':`평균 ${avg>=0?"+":""}${avg.toFixed(1)}점 · 10점 넘는 차이 ${big}회`}</span>${big>=3?'<span class="pill warn">기준 보정 후보</span>':'<span></span>'}</div>`; }).join("");
+}
+
+/* ── 그림책: 문화 요소 확인 (2단계) ── */
+const SAMPLE_CUL=[
+  {name:"뗏쭝투 (베트남 추석)",nameNative:"Tết Trung Thu",type:"명절",quote:"오늘은 베트남의 추석, 뗏쭝투예요.",pages:"1–2쪽",drawing:"Mid-Autumn night in a Vietnamese village under a full moon",kidLine:"베트남에도 추석이 있고, 뗏쭝투라고 불러요."},
+  {name:"별 등불 (덴옹사오)",nameNative:"đèn ông sao",type:"놀이",quote:"린이는 별 모양 등불을 손에 꼭 쥐었어요.",pages:"3–4쪽",drawing:"five-pointed star lantern (đèn ông sao) made of red paper",kidLine:"베트남 아이들은 추석에 별 모양 등불을 들어요."},
+  {name:"등불 행진",nameNative:"rước đèn",type:"놀이",quote:"친구들이랑 등불을 들고 동네를 빙글빙글 돌아요.",pages:"5–6쪽",drawing:"children parading with lanterns around the neighborhood",kidLine:"친구들과 등불을 들고 동네를 돌아요."},
+  {name:"꾸오이 전설",nameNative:"chú Cuội",type:"이야기",quote:"달에는 커다란 나무 아래 앉은 꾸오이 아저씨가 산대요.",pages:"7–8쪽",drawing:"Cuội sitting under a banyan tree on the moon",kidLine:"베트남 사람들은 달에 꾸오이 아저씨가 산다고 믿어요."},
+  {name:"월병",nameNative:"bánh trung thu",type:"음식",quote:"다 같이 월병을 나눠 먹어요.",pages:"9–10쪽",drawing:"round mooncakes with patterned tops shared by the family",kidLine:"추석에는 달처럼 동그란 월병을 나눠 먹어요."},
+];
+const SAMPLE_KID="베트남에도 추석이 있고, 아이들이 별 등불을 들고 동네를 돌아요.";
+const CUL_TYPES=["명절","음식","놀이","옷","이야기","말","기타"];
+const CUL_SCHEMA={type:"object",additionalProperties:false,required:["elements","kidSentence"],properties:{
+  elements:{type:"array",items:{type:"object",additionalProperties:false,required:["name","nameNative","type","quote","pages","drawing","kidLine"],properties:{name:{type:"string"},nameNative:{type:"string"},type:{type:"string",enum:CUL_TYPES},quote:{type:"string"},pages:{type:"string"},drawing:{type:"string"},kidLine:{type:"string"}}}},
+  kidSentence:{type:"string"}}};
+let CUL_DRAFT=null, CUL_SRC="demo", CUL_KID="";
+const bookKey=()=>BOOK.real?BOOK.title:DALNIM;
+function confirmedCul(){ return ST.cul[bookKey()]||null; }
+const _rba=resetBookArrays; resetBookArrays=function(){ _rba(); CUL_DRAFT=null; };
+function renderCulStep(){
+  if(!CUL_DRAFT){ const cc=confirmedCul();
+    if(cc){ CUL_DRAFT=cc.elements.map(e=>Object.assign({keep:true},e)); CUL_SRC=cc.real?"real":"demo"; CUL_KID=cc.kid||""; }
+    else if(!BOOK.real){ CUL_DRAFT=SAMPLE_CUL.map(e=>Object.assign({keep:true},e)); CUL_SRC="demo"; CUL_KID=SAMPLE_KID; }
+    else { CUL_DRAFT=[]; CUL_SRC="none"; CUL_KID=""; } $("BX-drop").textContent=""; }
+  $("BX-src").hidden=BOOK.real; $("BX-mode").className=CUL_SRC==="real"?"real":"demo"; $("BX-mode").textContent=CUL_SRC==="real"?"실제 분석":CUL_SRC==="none"?"아직 뽑기 전":"예시 데이터";
+  $("BX-hint").textContent=apiOn()?`${cfg.llm} · 원고에 없는 인용은 자동으로 빼요`:"API 설정(입장 코드)을 켜면 실제로 뽑아요";
+  $("BX-list").innerHTML=CUL_DRAFT.map((e,k)=>`<div class="culcard ${e.keep?"":"off"}" data-k="${k}"><input type="checkbox" data-f="keep" ${e.keep?"checked":""} aria-label="이 문화 요소 쓰기" style="margin-top:10px;accent-color:var(--accent)"><div class="stack" style="gap:6px"><div class="f"><input type="text" data-f="name" value="${esc(e.name)}" aria-label="이름"><input type="text" data-f="nameNative" value="${esc(e.nameNative||"")}" placeholder="모국어 이름" aria-label="모국어 이름"><select data-f="type" aria-label="종류">${CUL_TYPES.map(x=>`<option ${x===e.type?"selected":""}>${x}</option>`).join("")}</select></div>${e.quote?`<div class="q">근거 · <q>${esc(e.quote)}</q> ${esc(e.pages||"")}</div>`:'<div class="q">작가가 더한 요소 · 원고 근거 없음</div>'}<input type="text" data-f="drawing" value="${esc(e.drawing||"")}" placeholder="그림에 넣을 묘사 (영어로 쓰면 그림 지시문에 그대로)" aria-label="그림 묘사"></div></div>`).join("")||'<p class="small muted">아직 뽑은 문화 요소가 없어요. ‘AI로 문화 요소 뽑기’를 누르거나 직접 더해 주세요.</p>';
+  $("BX-list").querySelectorAll(".culcard").forEach(card=>{ const k=+card.dataset.k; card.querySelectorAll("[data-f]").forEach(inp=>{ const f=inp.dataset.f; const h=()=>{ CUL_DRAFT[k][f]=f==="keep"?inp.checked:inp.value; if(f==="keep") card.classList.toggle("off",!inp.checked); }; inp.onchange=h; if(inp.tagName==="INPUT"&&inp.type==="text") inp.oninput=h; }); });
+  $("BX-kid").value=CUL_KID;
+  $("BX-kidSug").innerHTML=CUL_DRAFT.filter(e=>e.kidLine).map(e=>`<button class="sm ghost" data-l="${esc(e.kidLine)}">${esc(e.kidLine)}</button>`).join("");
+  $("BX-kidSug").querySelectorAll("button").forEach(b=>b.onclick=()=>{ CUL_KID=b.dataset.l; $("BX-kid").value=CUL_KID; });
+  $("BX-ai").disabled=!apiOn();
+}
+$("BX-kid").oninput=()=>{ CUL_KID=$("BX-kid").value; };
+$("BX-ai").onclick=async()=>{
+  if(!apiOn()){ toast("API 설정(입장 코드)을 켜면 실제로 뽑아요. 지금은 예시 목록이에요"); return; }
+  const btn=$("BX-ai"); btn.disabled=true; btn.textContent="뽑는 중…";
+  try{
+    const r=await llmJSON(`너는 이중언어 그림책 편집자이자 다문화 교육 담당자다. 원고에서 책 속 문화 요소(명절·음식·놀이·옷·이야기·말)를 3~8개 뽑는다.
+quote는 원고의 한국어 문장을 글자 그대로 하나 쓰고, pages는 주어진 쪽 표시(예: 1–2쪽)를 쓴다. 원고에 없는 사실은 쓰지 않는다.
+name은 한국어 이름(필요하면 괄호에 풀이), nameNative는 모국어 이름(원고에 없으면 빈 문자열). drawing은 그림 생성용 영어 한 구절로 옷·소품·음식 모양을 정확히. kidLine은 저학년 아이가 집에 가서 말할 만한 한 문장. kidSentence는 책 전체를 대표하는 한 문장.`,
+      JSON.stringify({제목:BOOK.title,모국어:BOOK.lang,원고:bookText()}),"culture_elements",CUL_SCHEMA);
+    const nt=norm(PAGES.map(p=>p.ko+" "+(p.vi||"")).join(" ")); let dropped=0;
+    const els=(r.elements||[]).filter(e=>{ const ok=e.name&&e.quote&&nt.includes(norm(e.quote)); if(!ok) dropped++; return ok; });
+    CUL_DRAFT=els.map(e=>Object.assign({keep:true},e)); CUL_SRC="real"; CUL_KID=r.kidSentence||(els[0]&&els[0].kidLine)||"";
+    $("BX-drop").textContent=dropped?`원고에서 찾을 수 없는 인용 ${dropped}개는 뺐어요.`:"";
+    renderCulStep(); toast(`문화 요소 ${els.length}개를 뽑았어요. 확인하고 확정해 주세요`);
+  }catch(e){ toast("문화 요소 뽑기 실패: "+e.message); }
+  btn.textContent="AI로 문화 요소 뽑기"; btn.disabled=!apiOn();
+};
+$("BX-addBtn").onclick=()=>{ const v=$("BX-add").value.trim(); if(!v) return; (CUL_DRAFT=CUL_DRAFT||[]).push({keep:true,name:v,nameNative:"",type:"기타",quote:"",pages:"",drawing:"",kidLine:"",manual:true}); $("BX-add").value=""; renderCulStep(); };
+$("BX-add").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("BX-addBtn").click(); } };
+$("BX-back").onclick=()=>setStep("B",1);
+$("BX-ok").onclick=()=>{
+  const els=(CUL_DRAFT||[]).filter(e=>e.keep&&e.name.trim()).map(e=>({name:e.name.trim(),nameNative:e.nameNative||"",type:e.type||"기타",quote:e.quote||"",pages:e.pages||"",drawing:e.drawing||"",kidLine:e.kidLine||""}));
+  if(!els.length){ toast("문화 요소를 하나 이상 남겨 주세요"); return; }
+  const key=bookKey(); ST.cul[key]={elements:els,kid:(CUL_KID||"").trim(),real:CUL_SRC==="real",at:today()}; saveStore(); BOOK_CUL[key]=els.map(e=>e.name);
+  if(TAG) TAG=Object.assign({},TAG);
+  setStep("B",3); renderStyles(); renderChars(); charHint();
+  toast(`문화 요소 ${els.length}개를 확정했어요. 그림 지시문과 강의 연습에 쓰여요`);
+};
+
+/* ── 기획 탭: 지표 (예시 회차 제외) ── */
+function renderPlan(){
+  const R=ST.sessions.filter(isReal), D=R.filter(s=>s.status==="done");
+  const gaps=[]; D.forEach(s=>s.coach.scores.forEach((v,i)=>{ if(v!=null&&s.ai[i]!=null) gaps.push(Math.abs(v-s.ai[i])); }));
+  const k=(v,l)=>`<div class="k"><div class="v num">${v}</div><div class="l">${l}</div></div>`;
+  $("P-mets").innerHTML=k(R.length+"회","연습 횟수 (실제 분석)")+k(D.length+"건","코치가 확인한 회차")+k(gaps.length?(gaps.reduce((a,b)=>a+b,0)/gaps.length).toFixed(1)+"점":"-","AI–코치 점수 차이 (평균)")+k("11월부터","코치 검토 시간 · 시범 운영에서 측정")+k("1년+ → ?","그림책 1권 제작 기간 · 11월 1권 시험")+k("-","그 책으로 한 수업 수 · 시범 운영에서 기록");
+}
+
+loadStore(); renderRubric(); renderL1(); renderLecturePrep(true); kBadge();
 jobsHTML=$("L-jobs").innerHTML;
 renderTags(SAMPLE_TAG);
 
