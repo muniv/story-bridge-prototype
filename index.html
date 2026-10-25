@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>스토리브릿지 프로토타입 v0.5</title>
+<title>스토리브릿지 · 작가의 이야기를 책으로, 책을 교실로</title>
 <meta name="description" content="작가의 이야기를 책으로, 책을 교실로. 이주여성 작가·강사를 위한 AI 그림책 제작·강의 연습 서비스 프로토타입 (GIST 서울의밤 × 아시안허브).">
 <meta name="theme-color" content="#FF6000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF6000'/%3E%3Ctext x='16' y='22' font-size='17' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
 /* Layout: 두 도구(강의 연습 / 그림책 제작)를 상단 모드 탭으로 나누고, 각 모드 안에서 단계별 화면 전환.
    Design: 시그니처 오렌지(#FF6000) + 쿨톤 그레이 뉴트럴, Pretendard 단일 서체, 12~20px 절제된 라운드 코너. */
@@ -197,7 +198,7 @@ header>*{min-width:0}
 .hrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .modes{min-width:0;max-width:100%;flex-wrap:wrap}
 .modes button{white-space:nowrap}
-@media (max-width:640px){.modes button{padding:7px 12px;font-size:.88rem}}
+@media (max-width:640px){.modes button{padding:7px 12px;font-size:.88rem}.hrow{flex-wrap:nowrap}.apibtn #apiLabel{display:none}.apibtn{padding:8px 12px}.brand .tag{display:none}}
 .apibtn:not(.on){border-color:var(--accent);color:var(--accent-deep);font-weight:700}
 .rec{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .rec .dot{width:10px;height:10px;border-radius:50%;background:#E5484D;animation:blink 1s infinite}
@@ -274,6 +275,95 @@ table.ct tr.hl td{background:var(--accent-soft)}
 .linkbtn{background:none;border:0;padding:0;color:var(--accent-deep);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .linkbtn:hover{background:none}
 footer a{color:inherit}
+
+/* ══ v0.5.1 디자인 레이어 (ui-ux-pro-max: 대비·터치·상태 / taste: 첫 화면 구성) ══
+   모서리 규칙: 카드 16px · 버튼 12px · 칩 999px. 강조색은 오렌지 하나. 라이트 모드 고정. */
+html{scroll-padding-top:150px}
+:root{--ink-2:#5B6472;--shadow-1:0 1px 2px rgba(25,31,40,.05),0 12px 32px -22px rgba(25,31,40,.28);--ease:cubic-bezier(.16,1,.3,1)}
+body{font-size:16px;line-height:1.6}
+.wrap{max-width:1120px}
+.ph{line-height:1;vertical-align:-0.125em}
+header{position:sticky;top:0;z-index:15;background:rgba(243,244,246,.92);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);padding-top:12px}
+.brand h1{font-size:1.3rem;letter-spacing:-.4px}
+.modes{gap:6px}
+.modes button{min-height:42px;gap:8px;font-weight:600;border-color:transparent;background:transparent;color:var(--ink-2)}
+.modes button .ph{font-size:1.1rem}
+.modes button:hover{background:var(--paper);color:var(--ink)}
+.modes button.cur{background:var(--dark);color:#fff;border-color:var(--dark)}
+.modes .rank{font-size:.66rem;padding:1px 7px;background:var(--accent-soft);color:var(--accent-deep)}
+.modes button.cur .rank{background:var(--accent);color:#fff}
+.apibtn{min-height:40px;gap:8px;font-weight:600}
+.apibtn .ph{font-size:1rem}
+button{min-height:44px;transition:background .15s var(--ease),border-color .15s var(--ease),transform .12s var(--ease),box-shadow .15s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:6px}
+button.sm{min-height:36px}
+button:active:not(:disabled){transform:scale(.98)}
+button.primary{box-shadow:0 8px 18px -10px rgba(255,96,0,.7)}
+button.lg{min-height:52px;padding:12px 22px;font-size:1rem;font-weight:700;border-radius:14px}
+button.lg .ph{font-size:1.2rem}
+.linkbtn,.plist button,.sty,.ch,.tl .mk,.mchip{min-height:0}
+.sty,.ch{display:block}
+.say button,.row button{flex:none}
+.plist button{min-height:52px;justify-content:flex-start}
+.card{border-radius:16px;box-shadow:var(--shadow-1)}
+.eyebrow{color:var(--ink-2);text-transform:none;letter-spacing:0;font-size:.82rem;font-weight:700}
+.note{display:flex;gap:10px;align-items:flex-start;border-left:0;border-radius:14px;background:#FFF6F0;border:1px solid #FFE2CF;padding:12px 14px;font-size:.88rem}
+.note .ph{font-size:1.15rem;color:var(--accent-deep);margin-top:2px;flex:none}
+.steps li{font-weight:600}
+.drop{border-radius:16px;background:var(--paper)}
+.tl .mk{width:30px;height:30px}
+.tl .mk .ph{font-size:15px}
+.pill{font-weight:700}
+.real,.demo{display:inline-flex;align-items:center;gap:4px}
+section:not([hidden]),.home{animation:rise .32s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* 첫 화면 */
+.home{display:flex;flex-direction:column;gap:56px;padding:12px 0 8px}
+.hero2{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;padding-top:20px}
+.hero2 h2{font-size:clamp(2rem,4.4vw,3rem);line-height:1.16;letter-spacing:-.03em;font-weight:800}
+.hero2 .sub{font-size:1.08rem;color:var(--ink-2);margin-top:16px;max-width:30em;line-height:1.65}
+.hero2 .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.hero2 .shots{position:relative;aspect-ratio:16/12.5}
+.hero2 .shots img{position:absolute;height:auto;border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:0 28px 56px -30px rgba(25,31,40,.5)}
+.hero2 .shots .a{width:90%;right:0;top:0}
+.hero2 .shots .b{width:64%;left:0;bottom:0}
+.bh{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
+.rail{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.rail li{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px 14px;border-radius:16px;background:var(--paper);border:1px solid var(--line)}
+.rail li b{font-size:.98rem;line-height:1.35}
+.rail li span:not(.ic){font-size:.86rem;color:var(--ink-2);line-height:1.5}
+.rail .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--bg);font-size:20px;color:var(--ink);margin-bottom:4px}
+.rail li.tool{cursor:pointer;border-color:var(--accent);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.rail li.tool:hover{transform:translateY(-2px);box-shadow:0 14px 26px -18px rgba(255,96,0,.75)}
+.rail li.tool .ic{background:var(--accent);color:#fff}
+.rail li.kid{background:var(--accent-soft);border-color:transparent}
+.rail li:not(:last-child)::after{content:"";position:absolute;top:35px;right:-12px;width:12px;height:2px;background:var(--line-2)}
+.basis{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:var(--dark);color:#fff;border-radius:20px;padding:22px 24px}
+.basis .bl{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:24px}
+.basis .bt{font-weight:800;font-size:1.05rem}
+.basis .bs{font-size:.9rem;opacity:.78;margin-top:4px;max-width:58em}
+.basis button{background:#fff;color:var(--ink);border-color:#fff;font-weight:700}
+.feat{display:flex;flex-direction:column;gap:48px}
+.frow{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center}
+.frow.rev .ft{order:2}
+.ft{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.ft .rank{font-size:.72rem;border-radius:999px;padding:2px 10px;background:var(--accent);color:#fff;font-weight:700}
+.ft h3{font-size:1.4rem;line-height:1.35;letter-spacing:-.02em;font-weight:800}
+.ft p{color:var(--ink-2);max-width:34em}
+.ticks{list-style:none;margin:4px 0 6px;padding:0;display:flex;flex-direction:column;gap:8px}
+.ticks li{display:flex;gap:10px;align-items:center;font-size:.95rem}
+.ticks .ph{font-size:1.15rem;color:var(--accent-deep)}
+.ghost2{background:var(--paper);border:1px solid var(--line-2);font-weight:700}
+.fi{margin:0}
+.fi img{width:100%;height:auto;display:block;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow-1);background:#fff}
+.who2{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:start;padding-bottom:12px}
+.who2 ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+.who2 li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.who2 .ic{width:40px;height:40px;border-radius:12px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
+.who2 li p{font-size:.92rem;color:var(--ink-2);margin-top:2px}
+@media (max-width:960px){.rail{grid-template-columns:repeat(3,1fr)}.rail li::after{display:none}}
+@media (max-width:860px){.hero2,.frow,.who2{grid-template-columns:1fr;gap:24px}.frow.rev .ft{order:0}.home{gap:40px}}
+@media (max-width:560px){.rail{grid-template-columns:1fr 1fr}.who2 ul{grid-template-columns:1fr}.basis{grid-template-columns:1fr;text-align:left}.hero2 .shots{aspect-ratio:16/13}}
 </style>
 </head>
 <body>
@@ -281,68 +371,90 @@ footer a{color:inherit}
 <div class="wrap">
 <header>
   <div class="hrow">
-    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.5</span></div>
-    <button class="apibtn" id="apiOpen"><span class="st"></span><span id="apiLabel">API 설정</span></button>
+    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v1.0</span></div>
+    <button class="apibtn" id="apiOpen"><i class="ph ph-key" aria-hidden="true"></i><span class="st"></span><span id="apiLabel">API 설정</span></button>
   </div>
   <div class="modes" id="modes" role="tablist" aria-label="화면 선택">
-    <button class="cur" data-mode="H">서비스 소개</button>
-    <button data-mode="L"><span class="rank">1순위</span>강의 연습 도우미</button>
-    <button data-mode="B"><span class="rank">2순위</span>그림책 제작 도우미</button>
-    <button data-mode="C"><span class="rank soft">공통</span>교육과정 기준</button>
+    <button class="cur" data-mode="H"><i class="ph ph-house-line" aria-hidden="true"></i>서비스 소개</button>
+    <button data-mode="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>강의 연습<span class="rank">1순위</span></button>
+    <button data-mode="B"><i class="ph ph-book-open-text" aria-hidden="true"></i>그림책 제작<span class="rank">2순위</span></button>
+    <button data-mode="C"><i class="ph ph-graduation-cap" aria-hidden="true"></i>교육과정 기준</button>
   </div>
 </header>
-<div class="note" id="topNote">프로토타입 v0.5입니다. 오른쪽 위 <b>API 설정</b>에 OpenAI 키를 넣으면 <b>실제로 동작</b>합니다 — 강의 녹화 받아쓰기·교육과정 기준 평가, 원고 페이지 나누기·그림 생성·교육과정 태그. 키가 없으면 예시 데이터로 흐름만 보여 드려요(키는 이 브라우저에만 저장). 대표님 피드백(10/16)에 따라 강의 연습을 1순위, 그림책 제작을 2순위로 두고, <b>초등 교육과정 연계 커리큘럼</b>(10/19)을 두 도구의 공통 기준으로 씁니다.</div>
+<div class="note" id="topNote"><i class="ph ph-info" aria-hidden="true"></i><span id="topNoteText">프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요.</span></div>
 
 <!-- ═══════════ 모드 H: 서비스 소개 ═══════════ -->
-<div id="modeH" class="stack" style="gap:16px">
-  <section class="card hero">
-    <p class="eyebrow">스토리 브릿지 · Story Bridge</p>
-    <h2 class="hero-t">작가의 이야기를 책으로, 책을 교실로</h2>
-    <p class="lead">자기 문화를 그림책과 수업으로 전하는 이주여성 작가·강사를 위한 AI 그림책 제작·강의 연습 서비스입니다.</p>
-    <ol class="flow" aria-label="서비스 흐름">
-      <li><b>작가의 이야기</b><span class="small muted">모국의 문화와 경험</span></li>
-      <li class="tool" data-go="B" tabindex="0" role="button"><span class="rank">2순위</span><b>그림책 제작 도우미</b><span class="small muted">원고 → 그림·조판 → 교육과정 태그</span></li>
-      <li><b>이중언어 그림책</b><span class="small muted">한국어 + 모국어</span></li>
-      <li class="tool" data-go="L" tabindex="0" role="button"><span class="rank">1순위</span><b>강의 연습 도우미</b><span class="small muted">모의 강의 → 교육과정 기준 피드백</span></li>
-      <li><b>교실 수업</b><span class="small muted">학교 · 도서관 · 유치원</span></li>
-      <li class="kid"><b>아이들</b><span class="small">“베트남에는 이런 명절이 있대”</span></li>
-    </ol>
-    <div class="basis">
-      <div><div class="bt">공통 기준 · 초등 교육과정 연계 커리큘럼</div><div class="bs">월별 주제 9개 × 저·중·고 학년군 · 2022 개정 초등학교 교육과정, 범교과 학습 주제 ‘다문화 교육’</div></div>
-      <button class="sm" data-go="C">기준 보기 →</button>
+<div id="modeH" class="home">
+  <section class="hero2">
+    <div>
+      <h2>작가의 이야기를 책으로,<br>책을 교실로</h2>
+      <p class="sub">이주여성 작가·강사가 자기 그림책으로 학교 수업을 준비하도록 돕는 AI 그림책 제작·강의 연습 서비스입니다.</p>
+      <div class="ctas"><button class="primary lg" data-go="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>강의 연습 시작</button><button class="lg" data-go="B"><i class="ph ph-book-open-text" aria-hidden="true"></i>그림책 만들기</button></div>
+    </div>
+    <div class="shots" aria-hidden="true">
+      <img class="a" src="img/shot-lecture.webp" alt="" width="1200" height="720">
+      <img class="b" src="img/shot-book.webp" alt="" width="1200" height="765">
     </div>
   </section>
 
-  <div class="grid2">
-    <div class="card toolcard">
-      <div class="row between"><p class="eyebrow">1순위 · 강의 연습 도우미</p><span class="pill warn">분석은 예시 데이터</span></div>
-      <h3>모의 강의를 올리면 교육과정 기준으로 짚어 줍니다</h3>
-      <p class="small muted">녹화 올리기 → 자가평가 → AI 분석 → 피드백 리포트 → 다시 연습. 학년 눈높이·한국어 발음·책 활용과 수업 흐름·문화 요소 전달·질문과 기다림·시간 배분 6가지로 봅니다.</p>
-      <div class="row" style="margin-top:auto"><button class="primary" data-go="L">강의 연습 열기 →</button></div>
-    </div>
-    <div class="card toolcard">
-      <div class="row between"><p class="eyebrow">2순위 · 그림책 제작 도우미</p><span class="pill ok">그림 생성 실제 동작</span></div>
-      <h3>완성된 글에 그림과 조판을 붙이고, 맞는 수업 주제를 찾습니다</h3>
-      <p class="small muted">원고 넣기 → 그림 스타일·주인공 → 장면 그림 → 편집·조판 → 교육과정 태그. 작가가 장면마다 고치고 승인합니다.</p>
-      <div class="row" style="margin-top:auto"><button class="primary" data-go="B">그림책 제작 열기 →</button></div>
-    </div>
-  </div>
+  <section class="blk">
+    <h3 class="bh">한 권의 그림책이 교실에 닿기까지</h3>
+    <ol class="rail" aria-label="서비스 흐름">
+      <li><span class="ic"><i class="ph ph-chat-circle-text"></i></span><b>작가의 이야기</b><span>모국의 문화와 경험</span></li>
+      <li class="tool" data-go="B" tabindex="0" role="button"><span class="ic"><i class="ph ph-paint-brush"></i></span><b>그림책 제작 도우미</b><span>원고에 그림과 조판, 교육과정 태그</span></li>
+      <li><span class="ic"><i class="ph ph-books"></i></span><b>이중언어 그림책</b><span>한국어와 모국어</span></li>
+      <li class="tool" data-go="L" tabindex="0" role="button"><span class="ic"><i class="ph ph-microphone-stage"></i></span><b>강의 연습 도우미</b><span>모의 강의를 교육과정 기준으로 피드백</span></li>
+      <li><span class="ic"><i class="ph ph-chalkboard-teacher"></i></span><b>교실 수업</b><span>학교, 도서관, 유치원</span></li>
+      <li class="kid"><span class="ic"><i class="ph ph-smiley"></i></span><b>아이들</b><span>“베트남에는 이런 명절이 있대”</span></li>
+    </ol>
+  </section>
 
-  <div class="card stack">
-    <p class="eyebrow">누구에게 무엇이 달라지나</p>
-    <div class="who">
-      <div class="w"><b>이주여성 작가·강사</b><span class="small muted">책을 더 빨리 완성하고, 학년에 맞는 수업을 미리 연습해 ‘책으로 하는 수업’을 맡습니다.</span></div>
-      <div class="w"><b>아시안허브</b><span class="small muted">강의는 리포트만 확인하고, 편집은 교정과 최종 승인만 합니다.</span></div>
-      <div class="w"><b>학교 · 도서관 · 유치원</b><span class="small muted">교육과정 주제와 학년에 맞는 다문화 수업을 받습니다.</span></div>
-      <div class="w"><b>아이들</b><span class="small muted">엄마 나라의 이야기를 수업으로 만나고, 집에 가서 그 문화를 이야기합니다.</span></div>
+  <section class="basis">
+    <div class="bl"><i class="ph ph-graduation-cap" aria-hidden="true"></i></div>
+    <div class="bm"><div class="bt">두 도구가 함께 쓰는 기준, 초등 교육과정 연계 커리큘럼</div><div class="bs">월별 주제 9개를 저학년, 중학년, 고학년 수준에 맞춰 다룹니다. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</div></div>
+    <button class="sm" data-go="C">기준 보기</button>
+  </section>
+
+  <section class="feat">
+    <div class="frow">
+      <div class="ft">
+        <span class="rank">1순위</span>
+        <h3>모의 강의를 올리면 교육과정 기준으로 짚어 줍니다</h3>
+        <p>녹화를 받아 적고, 학년 눈높이부터 문화 요소 전달까지 여섯 가지로 봅니다. 잘한 순간과 고칠 순간, 다음 연습 목표를 함께 드려요.</p>
+        <ul class="ticks"><li><i class="ph ph-waveform"></i>받아쓰기와 말 빠르기, 질문 뒤 기다림</li><li><i class="ph ph-list-checks"></i>학년군과 월 주제에 맞춘 6가지 평가</li><li><i class="ph ph-microphone"></i>파일 올리기 또는 바로 녹음</li></ul>
+        <button class="ghost2" data-go="L">강의 연습 시작</button>
+      </div>
+      <figure class="fi"><img src="img/shot-lecture.webp" alt="강의 연습 도우미의 피드백 리포트 화면" width="1200" height="720" loading="lazy"></figure>
     </div>
-  </div>
+    <div class="frow rev">
+      <div class="ft">
+        <span class="rank">2순위</span>
+        <h3>완성된 글에 그림과 조판을 붙이고, 맞는 수업 주제를 찾습니다</h3>
+        <p>원고를 펼침면으로 나누고, 작가님 그림체와 주인공을 기준으로 장면을 그립니다. 원고에 실제로 있는 문장만 근거로 교육과정 태그를 붙여요.</p>
+        <ul class="ticks"><li><i class="ph ph-file-text"></i>원고 파일 올리기 (txt, md, docx)</li><li><i class="ph ph-image"></i>장면마다 그리고 작가가 고치고 승인</li><li><i class="ph ph-tag"></i>월 주제와 학년군 태그, 강의 연습으로 연결</li></ul>
+        <button class="ghost2" data-go="B">그림책 만들기</button>
+      </div>
+      <figure class="fi"><img src="img/shot-book.webp" alt="그림책 제작 도우미의 장면 그림 편집 화면" width="1200" height="765" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="who2">
+    <div><h3 class="bh">누구에게 무엇이 달라지나</h3><p class="muted">강의와 출판이 곧 일자리인 작가·강사에게서 시작해, 교실의 아이들까지 이어집니다.</p></div>
+    <ul>
+      <li><span class="ic"><i class="ph ph-user-circle"></i></span><div><b>이주여성 작가·강사</b><p>책을 더 빨리 완성하고, 학년에 맞는 수업을 미리 연습해 ‘책으로 하는 수업’을 맡습니다.</p></div></li>
+      <li><span class="ic"><i class="ph ph-buildings"></i></span><div><b>아시안허브</b><p>강의는 리포트만 확인하고, 편집은 교정과 최종 승인만 합니다.</p></div></li>
+      <li><span class="ic"><i class="ph ph-chalkboard"></i></span><div><b>학교와 도서관</b><p>교육과정 주제와 학년에 맞는 다문화 수업을 받습니다.</p></div></li>
+      <li><span class="ic"><i class="ph ph-smiley"></i></span><div><b>아이들</b><p>엄마 나라의 이야기를 수업으로 만나고, 집에 가서 그 문화를 이야기합니다.</p></div></li>
+    </ul>
+  </section>
 </div>
 
 <div class="modal" id="apiModal" hidden>
   <div class="card stack">
-    <div class="row between"><h3>OpenAI API 연결</h3><button class="sm ghost" id="apiClose">닫기</button></div>
-    <label class="field">API 키 <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label>
+    <div class="row between"><h3>실제 분석 설정</h3><button class="sm ghost" id="apiClose">닫기</button></div>
+    <p class="small" id="apiServer"></p>
+    <label class="field">입장 코드 (팀 서버 사용 시)<input type="text" id="apiCode" placeholder="팀에서 안내한 코드" autocomplete="off"></label>
+    <label class="field">내 OpenAI API 키 (선택 · 넣으면 팀 서버 대신 내 키로)<input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label>
     <div class="grid2">
       <label class="field">글 모델 (평가·페이지 나누기·태그)
         <input type="text" id="apiLlm" list="llmList" placeholder="gpt-4.1-mini">
@@ -389,17 +501,13 @@ footer a{color:inherit}
         <div>
           <p class="eyebrow">강사 연습실</p>
           <h2>응우옌 강사님, 이번 주 연습 기록이에요</h2>
-          <p class="muted small">(예시 강사 · 베트남 출신 · 저서 『달님은 하나예요』) 모의 강의를 녹화해 올리면 AI가 교육과정 기준 6가지 항목으로 짚어 줍니다.</p>
+          <p class="muted small">예시 강사 · 베트남 출신 · 『달님은 하나예요』 작가</p>
         </div>
       </div>
       <div class="hist">
         <div class="it"><div class="score num">61</div><div><b>1회차</b> · 10/2 · 『달님은 하나예요』 초등 저학년 18분<br><span class="muted small">말이 빨라요 · 마무리 문장 없음 · 발음 주의 6개</span></div><span class="pill">보기</span></div>
         <div class="it"><div class="score num">67</div><div><b>2회차</b> · 10/9 · 같은 주제 21분<br><span class="muted small">상호작용 좋아짐 · 꾸오이 전설 설명이 길어요</span></div><span class="pill">보기</span></div>
         <div class="it now"><div class="score num">?</div><div><b>3회차</b> · 오늘<br><span class="muted small">지난번 목표: 말 빠르기 170 이하 · 질문 뒤 3초 기다리기 · 마무리 문장</span></div><button class="primary sm" id="L-new">새 연습 시작</button></div>
-      </div>
-      <div class="tbox">
-        <p class="eyebrow">지금까지 어떻게 연습했나요</p>
-        <p class="small">파워포인트로 녹화해서 스스로 들어 보고 평가했어요. 잘한 건지 아닌지 알기 어렵고, 대표님이 한 분씩 봐주시기에는 시간이 부족했어요. → 이제 AI가 먼저 보고, 대표님은 리포트만 확인합니다.</p>
       </div>
     </div>
     <div class="card stack">
@@ -424,15 +532,15 @@ footer a{color:inherit}
 <section id="L2" hidden>
   <div class="grid2">
     <div class="card stack">
-      <div><p class="eyebrow">Step 2</p><h2>모의 강의 녹화를 올립니다</h2><p class="muted small">파워포인트 녹화(mp4), 휴대폰 영상, 음성만 있는 파일도 됩니다.</p></div>
+      <div><h2>모의 강의 녹화 올리기</h2><p class="muted small">영상이나 음성 파일, 휴대폰 녹화 모두 됩니다.</p></div>
       <div class="drop" id="L-drop" tabindex="0" role="button" aria-label="강의 녹화 업로드">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>
+        <i class="ph ph-upload-simple" style="font-size:34px;color:var(--accent)" aria-hidden="true"></i>
         <strong>녹화 파일을 여기에 끌어다 놓기</strong><span class="muted small">또는 클릭해서 선택 · 음성·영상 파일, 30분 이하 권장</span>
         <input type="file" id="L-file" accept="video/*,audio/*" hidden>
       </div>
-      <div class="rec" id="L-recRow"><button id="L-rec">● 브라우저로 바로 녹음하기</button><span class="muted small" id="L-recInfo">마이크로 짧게(1~5분) 연습해 보세요</span></div>
+      <div class="rec" id="L-recRow"><button id="L-rec"><i class="ph ph-microphone" aria-hidden="true"></i> 브라우저로 바로 녹음하기</button><span class="muted small" id="L-recInfo">마이크로 짧게(1~5분) 연습해 보세요</span></div>
       <div class="row"><button id="L-sample">모의 녹음으로 체험</button><span class="muted small" id="L-sampleHint">『달님은 하나예요』 초등 저학년 모의 강의 (예시 결과)</span></div>
-      <p class="small muted">체험용 파일: <a href="samples/mock-lecture-dalnim.m4a" download>모의 강의 녹음 받기 (1분 57초 · m4a)</a> — 합성 음성으로 만든 연습용 녹음이에요. 받아서 위에 올려도 됩니다.</p>
+      <p class="small muted"><a href="samples/mock-lecture-dalnim.m4a" download>모의 강의 녹음 받기</a> (합성 음성, 1분 57초)</p>
       <div class="grid2">
         <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
         <label class="field">수업 대상 (학년군)<select id="L-age"><option value="유">유치원 (5~7세 · 누리과정 참고)</option><option value="저" selected>초등 저학년 (1~2학년)</option><option value="중">초등 중학년 (3~4학년)</option><option value="고">초등 고학년 (5~6학년)</option><option value="성">성인 (도서관 강연)</option></select></label>
@@ -441,12 +549,12 @@ footer a{color:inherit}
         <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
       </div>
       <div class="curbox" id="L-cur"></div>
-      <label class="consent"><input type="checkbox" id="L-consent"><span><b>녹화 이용 동의 (정책 초안)</b><br>녹화 영상은 강의 분석에만 쓰고, 대표님(코치) 외에는 공유하지 않습니다. 분석이 끝나면 영상 원본은 지우고 리포트만 남깁니다.</span></label>
+      <label class="consent"><input type="checkbox" id="L-consent"><span><b>녹화 이용에 동의해요</b><br>분석에만 쓰고 코치 외에는 공유하지 않아요. 분석 뒤 원본은 지웁니다.</span></label>
     </div>
     <div class="card stack">
-      <div><p class="eyebrow">먼저 스스로 점수 매기기 (선택)</p><h3>내가 느끼기엔 어땠나요?</h3><p class="muted small">AI 결과와 나란히 보여 드려요. 내 느낌과 객관적 평가의 차이를 아는 것이 연습의 시작입니다.</p></div>
+      <div><h3>내가 느끼기엔 어땠나요?</h3><p class="muted small">선택 사항이에요. AI 결과와 나란히 보여 드려요.</p></div>
       <div class="stack" id="L-self" style="gap:8px"></div>
-      <p class="small muted">평가 항목은 초등 교육과정 연계 커리큘럼과 방문교사 수업 지침(독서 확인 → 질문 → 표현 활동 → 정리)을 바탕으로 정했어요. 억양을 고치는 게 아니라 아이들에게 잘 전해졌는지를 봅니다.</p>
+      <p class="small muted">억양이 아니라 아이들에게 잘 전해졌는지를 봅니다.</p>
       <div id="L-ready" hidden>
         <div class="tbox"><p class="eyebrow">올린 파일</p><p id="L-fname">샘플 녹화 · 20분 12초 · 1.2GB</p><audio id="L-audio" controls preload="metadata" style="width:100%;margin-top:8px" hidden></audio></div>
       </div>
@@ -460,8 +568,8 @@ footer a{color:inherit}
 
 <section id="L3" hidden>
   <div class="card">
-    <p class="eyebrow">Step 3</p><h2>AI가 강의를 듣고 있습니다</h2>
-    <p class="muted small" style="margin-bottom:8px">20분 녹화 기준 약 3~4분 걸립니다. 끝나면 알려 드려요.</p>
+    <h2>AI가 강의를 듣고 있어요</h2>
+    <p class="muted small" style="margin-bottom:8px">끝나면 알려 드려요.</p>
     <div id="L-jobs">
       <div class="job" data-d="2600"><div class="ico">1</div><div><strong>받아쓰기</strong> <span class="muted small">음성을 글로 옮기고 시간을 표시</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="4200"><div class="ico">2</div><div><strong>전달력·발음 분석</strong> <span class="muted small">말 빠르기, 목소리 크기, 군더더기 말, 발음 명료도</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
@@ -587,7 +695,7 @@ footer a{color:inherit}
 <section id="B1">
   <div class="grid2">
     <div class="card stack">
-      <div><p class="eyebrow">Step 1</p><h2>기획과 글이 끝난 원고를 넣습니다</h2><p class="muted small">기획·글쓰기는 아시안허브 교육과정에서 함께 완성합니다. 이 도구는 그 다음, 가장 오래 걸리는 그림과 편집을 맡습니다.</p></div>
+      <div><h2>완성된 원고 넣기</h2><p class="muted small">글은 아시안허브 과정에서, 그림과 편집은 이 도구가 맡아요.</p></div>
       <div class="cmp">
         <div class="c"><div class="v">6~12개월</div><div class="small muted">지금 · 작가가 직접 그림 → 담당자 편집</div></div>
         <div class="ar">→</div>
@@ -602,7 +710,7 @@ footer a{color:inherit}
       </label>
       <div class="row"><button id="B-file">원고 파일 올리기</button><input type="file" id="B-fileIn" accept=".txt,.md,.docx,text/plain" hidden><button id="B-sample">샘플: 달님은 하나예요</button><button id="B-sample2">샘플: 엄마 나라의 설날(가상)</button></div>
       <div class="row"><button class="ai" id="B-splitAI">AI로 페이지 나누기</button><span class="muted small" id="B-splitHint">『달님은 하나예요』 한국어·베트남어 (예시)</span></div>
-      <p class="small muted">체험용 파일: <a href="samples/manuscript-dalnim.txt" download>달님은 하나예요 원고</a> · <a href="samples/manuscript-tet.txt" download>엄마 나라의 설날 원고(가상)</a> — txt·md·docx를 올릴 수 있어요.</p>
+      <p class="small muted">txt, md, docx · 체험용 <a href="samples/manuscript-dalnim.txt" download>원고 1</a>, <a href="samples/manuscript-tet.txt" download>원고 2(가상)</a></p>
       <div class="grid2">
         <label class="field">판형<select><option>정사각 210×210 (유아)</option><option>A4 가로</option><option>B5 세로</option></select></label>
         <label class="field">페이지 수<select><option>24쪽 (12 펼침면)</option><option>32쪽 (16 펼침면)</option></select></label>
@@ -610,7 +718,7 @@ footer a{color:inherit}
     </div>
     <div class="card" id="B-split" hidden>
       <div class="row between"><p class="eyebrow">AI가 나눈 페이지</p><span class="pill" id="B-splitPill">6 펼침면 (예시 축약)</span></div>
-      <p class="small muted" style="margin:4px 0 10px">문장 길이와 장면 전환을 기준으로 나눴어요. 끌어서 옮기거나 합칠 수 있습니다.</p>
+      
       <div class="pages" id="B-pages"></div>
       <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="primary" id="B-go2">그림 스타일 정하기 →</button></div>
     </div>
@@ -620,7 +728,7 @@ footer a{color:inherit}
 <section id="B2" hidden>
   <div class="grid2">
     <div class="card stack">
-      <div><p class="eyebrow">Step 2</p><h2>그림 스타일을 정합니다</h2><p class="muted small">책 전체가 한 사람이 그린 것처럼 보이도록, 처음에 한 번만 정합니다. 작가님 그림체가 먼저입니다.</p></div>
+      <div><h2>그림 스타일 정하기</h2><p class="muted small">작가님 그림체가 먼저예요. 책 전체에 한 번만 정합니다.</p></div>
       <label class="field"><span><b style="color:var(--ink)">① 작가님 그림으로 시작하기</b> <span class="pill">권장</span></span>
         <div class="drop" style="padding:18px"><span class="small">스케치나 기존 그림을 올리면 그 그림체를 따라 그립니다 (작가님 스타일 유지)</span></div>
       </label>
@@ -649,7 +757,7 @@ footer a{color:inherit}
 
 <section id="B3" hidden>
   <div class="row between" style="margin-bottom:12px">
-    <div><p class="eyebrow">Step 3</p><h2>장면마다 그림을 만들고 작가가 고칩니다</h2></div>
+    <div><h2>장면마다 그리고 고치기</h2></div>
     <p class="num"><strong id="B-okN">0</strong> / <span id="B-totN">6</span> 장면 승인</p>
   </div>
   <div class="g12">
@@ -676,7 +784,7 @@ footer a{color:inherit}
 <section id="B4" hidden>
   <div class="g21">
     <div class="card stack">
-      <div class="row between"><div><p class="eyebrow">Step 4</p><h2>자동 조판 · 펼침면 미리보기</h2></div><span class="muted small num" id="B-pgno"></span></div>
+      <div class="row between"><div><h2>자동 조판 미리보기</h2></div><span class="muted small num" id="B-pgno"></span></div>
       <div id="B-spread"></div>
       <div class="row between">
         <div class="row"><button id="B-sprev">← 앞장</button><button id="B-snext">뒷장 →</button></div>
@@ -705,7 +813,7 @@ footer a{color:inherit}
 <section id="B5" hidden>
   <div class="g21">
     <div class="card stack">
-      <div><div class="row between"><p class="eyebrow">Step 5</p><span id="B-tagMode" class="demo">예시 데이터</span></div><h2>이 책이 맞는 교육과정 주제를 찾습니다</h2><p class="muted small">제목이 아니라 책의 실제 장면과 문화 요소로 매칭합니다. 책에 없는 내용은 만들지 않고, 근거 문장을 원고에서 그대로 보여 드려요(원고에 없는 인용은 자동으로 뺍니다). 작가님이 확인하면 태그가 확정됩니다.</p></div>
+      <div><div class="row" style="justify-content:flex-end"><span id="B-tagMode" class="demo">예시 데이터</span></div><h2>맞는 교육과정 주제 찾기</h2><p class="muted small">원고에 실제로 있는 문장만 근거로 써요. 작가님이 확인하면 확정됩니다.</p></div>
       <div class="row"><button class="ai sm" id="B-tagAI">AI로 다시 찾기</button><span class="small muted" id="B-tagHint"></span></div>
       <div><p class="eyebrow" style="margin-bottom:6px">책에서 찾은 문화 요소</p>
         <div class="cul" id="B-cul"></div>
@@ -721,13 +829,13 @@ footer a{color:inherit}
       <p class="eyebrow">이 책의 교육과정 태그</p>
       <div class="mchips" id="B-tagChips"></div>
       <div class="mchips"><span class="mchip">초등 저학년</span><span class="mchip">초등 중학년</span><span class="mchip">초등 고학년</span><span class="mchip">유치원 (누리과정 참고)</span></div>
-      <p class="small muted">태그는 강의 연습 도우미의 평가 기준(학년 눈높이·문화 요소 전달)으로 이어집니다. 학교·도서관에 책을 소개할 때도 씁니다.</p>
+      <p class="small muted">이 태그가 강의 연습의 평가 기준이 돼요.</p>
       <div class="stack" style="gap:8px;margin-top:auto">
         <button class="primary" id="B-toL">이 책으로 강의 연습하기 →</button>
         <button id="B-toC">교육과정 기준 보기</button>
         <button class="ghost" id="B-back4">← 편집·조판으로</button>
       </div>
-      <p class="small muted">수업안·교안 자동 생성은 이번 범위에 넣지 않았어요 (대표님 우선순위, 10/16).</p>
+      
     </div>
   </div>
 </section>
@@ -786,18 +894,26 @@ function runJobs(container, onDone){
 /* ══════════ OpenAI 이미지 API ══════════ */
 const cfg={key:"",model:"gpt-image-1-mini",quality:"low",llm:"gpt-4.1-mini",stt:"whisper-1"};
 try{ const s=JSON.parse(localStorage.getItem("sb-api")||"{}"); Object.assign(cfg,s); }catch(e){}
-function apiOn(){ return !!cfg.key; }
-function apiUI(){ $("apiOpen").classList.toggle("on",apiOn()); $("apiLabel").textContent=apiOn()?`API 연결됨 · ${cfg.model}`:"API 설정"; $("apiKey").value=cfg.key; $("apiModel").value=cfg.model; $("apiQuality").value=cfg.quality; $("apiLlm").value=cfg.llm||"gpt-4.1-mini"; $("apiStt").value=cfg.stt||"whisper-1"; if(typeof onApiChange==="function") onApiChange(); }
-$("apiOpen").onclick=()=>{ $("apiModal").hidden=false; $("apiStatus").textContent=""; apiUI(); $("apiKey").focus(); };
+const SERVER={base:(/\.vercel\.app$/.test(location.hostname)||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))&&location.port!=="8765"?"":"https://story-bridge-rust.vercel.app",ready:false,code:false,checked:false};
+try{ SERVER.codeVal=localStorage.getItem("sb-code")||""; }catch(e){ SERVER.codeVal=""; }
+function serverMode(){ return !cfg.key&&SERVER.ready; }
+function apiOn(){ return !!cfg.key||SERVER.ready; }
+async function checkServer(){ try{ const r=await fetch(SERVER.base+"/api/health",{cache:"no-store"}); const j=await r.json(); SERVER.code=!!j.code; SERVER.up=!!(j.ok&&j.key); SERVER.ready=SERVER.up&&(!SERVER.code||!!SERVER.codeVal); }catch(e){ SERVER.ready=false; SERVER.up=false; } SERVER.checked=true; apiUI(); }
+function sHeaders(extra){ return Object.assign({"X-Demo-Code":SERVER.codeVal||""},extra||{}); }
+async function sJSON(path,body){ const r=await fetch(SERVER.base+path,{method:"POST",headers:sHeaders({"Content-Type":"application/json"}),body:JSON.stringify(body)}); const j=await r.json().catch(()=>({})); if(r.status===401){ askCode(); } if(!r.ok) throw new Error(j.error?.message||("HTTP "+r.status)); return j; }
+function askCode(){ SERVER.codeVal=""; try{ localStorage.removeItem("sb-code"); }catch(e){} SERVER.ready=false; apiUI(); toast("입장 코드가 맞지 않아요. API 설정에서 다시 넣어 주세요"); }
+function apiUI(){ if($("topNoteText")) $("topNoteText").innerHTML=apiOn()?"프로토타입입니다. <b>실제 분석이 켜져 있어요.</b> 파일을 올리면 받아쓰기와 평가, 그림 생성이 실제로 돌아가요.":(SERVER.up&&SERVER.code)?"프로토타입입니다. <b>API 설정</b>에 입장 코드를 넣으면 실제 분석이 켜져요.":"프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요."; $("apiOpen").classList.toggle("on",apiOn()); $("apiLabel").textContent=cfg.key?`내 키 사용 · ${cfg.model}`:SERVER.ready?"실제 분석 켜짐":"API 설정"; if($("apiCode")) $("apiCode").value=SERVER.codeVal||""; $("apiKey").value=cfg.key; $("apiModel").value=cfg.model; $("apiQuality").value=cfg.quality; $("apiLlm").value=cfg.llm||"gpt-4.1-mini"; $("apiStt").value=cfg.stt||"whisper-1"; if(typeof onApiChange==="function") onApiChange(); }
+$("apiOpen").onclick=()=>{ $("apiModal").hidden=false; $("apiStatus").textContent=""; apiUI(); $("apiServer").innerHTML=SERVER.ready?'<span class="pill ok">팀 서버 연결됨</span> 키 없이 실제 분석이 돌아가요.':(SERVER.up&&SERVER.code)?'<span class="pill warn">입장 코드 필요</span> 팀에서 안내한 코드를 넣으면 실제 분석이 켜져요.':'<span class="pill warn">팀 서버 준비 중</span> 지금은 내 키를 넣거나 예시 데이터로 볼 수 있어요.'; };
 $("apiClose").onclick=()=>{ $("apiModal").hidden=true; };
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") $("apiModal").hidden=true; });
 $("apiModal").addEventListener("click",e=>{ if(e.target===$("apiModal")) $("apiModal").hidden=true; });
-$("apiSave").onclick=()=>{ cfg.key=$("apiKey").value.trim(); cfg.model=$("apiModel").value; cfg.quality=$("apiQuality").value; cfg.llm=$("apiLlm").value.trim()||"gpt-4.1-mini"; cfg.stt=$("apiStt").value; try{ localStorage.setItem("sb-api",JSON.stringify(cfg)); }catch(e){} apiUI(); $("apiModal").hidden=true; toast(apiOn()?"API 키를 저장했어요. 이제 받아쓰기·평가·그림을 실제로 만듭니다":"키가 비어 있어요. 예시 데이터로 동작합니다"); if(!$("B3").hidden) renderPage(); if(!$("B2").hidden) charHint(); };
+$("apiSave").onclick=()=>{ cfg.key=$("apiKey").value.trim(); cfg.model=$("apiModel").value; cfg.quality=$("apiQuality").value; cfg.llm=$("apiLlm").value.trim()||"gpt-4.1-mini"; cfg.stt=$("apiStt").value; SERVER.codeVal=$("apiCode").value.trim(); try{ localStorage.setItem("sb-code",SERVER.codeVal); }catch(e){} checkServer(); try{ localStorage.setItem("sb-api",JSON.stringify(cfg)); }catch(e){} apiUI(); $("apiModal").hidden=true; toast(apiOn()?"API 키를 저장했어요. 이제 받아쓰기·평가·그림을 실제로 만듭니다":"키가 비어 있어요. 예시 데이터로 동작합니다"); if(!$("B3").hidden) renderPage(); if(!$("B2").hidden) charHint(); };
 $("apiClear").onclick=()=>{ cfg.key=""; try{ localStorage.removeItem("sb-api"); }catch(e){} apiUI(); $("apiStatus").textContent="키를 지웠어요."; };
 $("apiTest").onclick=async()=>{ const k=$("apiKey").value.trim(); if(!k){ $("apiStatus").textContent="키를 먼저 넣어 주세요."; return; } $("apiStatus").textContent="확인 중…"; try{ const ms=[$("apiLlm").value.trim()||"gpt-4.1-mini",$("apiStt").value,$("apiModel").value]; const out=[]; for(const m of ms){ const r=await fetch("https://api.openai.com/v1/models/"+m,{headers:{Authorization:"Bearer "+k}}); const j=await r.json(); out.push(r.ok?`${m} ✓`:`${m} ✗ (${j.error?.message||r.status})`); } $("apiStatus").textContent="연결 확인: "+out.join(" · "); }catch(e){ $("apiStatus").textContent="요청 실패: "+e.message; } };
 function dataUrlToBlob(d){ const [h,b]=d.split(","); const mime=h.match(/data:(.*?);/)[1]; const bin=atob(b); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new Blob([u],{type:mime}); }
 async function genImage(prompt, refDataUrl){
   if(!apiOn()) throw new Error("API 키가 없어요");
+  if(serverMode()){ const j=await sJSON("/api/image",{prompt,ref:refDataUrl||null,quality:cfg.quality}); return "data:image/png;base64,"+j.b64; }
   const gpt=cfg.model.startsWith("gpt-image"); let r;
   if(gpt && refDataUrl){
     const fd=new FormData(); fd.append("model",cfg.model); fd.append("prompt",prompt); fd.append("size","1024x1024"); fd.append("quality",cfg.quality); const rb=dataUrlToBlob(refDataUrl); fd.append("image[]",rb,rb.type.includes("jpeg")?"character.jpg":"character.png");
@@ -883,11 +999,11 @@ function renderReport(){
   $("L-scores").innerHTML = CATS.map((c,i)=>`<div class="sc"><span>${c}</span><div class="trk"><i style="width:${AIv[i]}%"></i><b style="left:${SELF[i]}%" title="자가평가 ${SELF[i]}"></b></div><span class="v num">${AIv[i]}</span></div>`).join("");
   const tkl=f=>D<300?fmt(Math.round(D*f)):Math.round(D*f/60)+"분";
   const tl=$("L-tl"); tl.innerHTML='<div class="base"></div>'+[0,.25,.5,.75,1].map(f=>`<span class="tick" style="left:${f*100}%">${tkl(f)}</span>`).join("")+
-    MM.map((m,i)=>`<button class="mk ${m.type} ${i===curM?"cur":""}" style="left:${Math.min(100,m.t/D*100)}%" data-i="${i}" aria-label="${fmt(Math.round(m.t))} ${esc(m.title)}">${m.type==="good"?"✓":"!"}</button>`).join("");
+    MM.map((m,i)=>`<button class="mk ${m.type} ${i===curM?"cur":""}" style="left:${Math.min(100,m.t/D*100)}%" data-i="${i}" aria-label="${fmt(Math.round(m.t))} ${esc(m.title)}"><i class="ph ${m.type==="good"?"ph-check":"ph-exclamation-mark"}" aria-hidden="true"></i></button>`).join("");
   tl.querySelectorAll(".mk").forEach(b=>b.onclick=()=>{ curM=+b.dataset.i; renderReport(); });
   const m=MM[curM]; if(!m){ $("L-moment").innerHTML=""; return; }
   $("L-moment").className="moment "+m.type;
-  $("L-moment").innerHTML=`<div class="row between"><strong>${fmt(Math.round(m.t))} · ${esc(m.title)}</strong><span class="pill ${m.type==="good"?"ok":"warn"}">${m.type==="good"?"잘한 순간":"고치면 좋아요"}</span></div><div class="q">${esc(m.q)}</div><p class="small">${esc(m.fb)}</p>${m.say?`<div class="say"><span class="eyebrow">이렇게 말해 보세요</span><br>${esc(m.say)} <button class="sm" style="margin-left:6px" data-say="${esc(m.say)}">▶ 듣기</button></div>`:""}`;
+  $("L-moment").innerHTML=`<div class="row between"><strong>${fmt(Math.round(m.t))} · ${esc(m.title)}</strong><span class="pill ${m.type==="good"?"ok":"warn"}">${m.type==="good"?"잘한 순간":"고치면 좋아요"}</span></div><div class="q">${esc(m.q)}</div><p class="small">${esc(m.fb)}</p>${m.say?`<div class="say"><span class="eyebrow">이렇게 말해 보세요</span><br>${esc(m.say)} <button class="sm" style="margin-left:6px" data-say="${esc(m.say)}"><i class="ph ph-speaker-high" aria-hidden="true"></i> 듣기</button></div>`:""}`;
   const sb=$("L-moment").querySelector("[data-say]"); if(sb) sb.onclick=()=>{ if(!speak(sb.dataset.say.replace(/[“”()]/g,""))) toast("이 브라우저는 음성을 지원하지 않아요"); };
   $("L-words").innerHTML=REP.words.map(w=>`<span role="button" tabindex="0" data-w="${esc(w.say)}">${esc(w.label)}</span>`).join("")||'<span class="muted small" style="background:none">특별히 흐린 구간이 없었어요</span>';
   $("L-words").querySelectorAll("span").forEach(s=>{ s.onclick=()=>speak(s.dataset.w); s.onkeydown=e=>{ if(e.key==="Enter") speak(s.dataset.w); }; });
@@ -1027,11 +1143,14 @@ async function oaJSON(path, body){
   const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error?.message||("HTTP "+r.status)); return j;
 }
 async function llmJSON(system,user,name,schema){
+  if(serverMode()){ const s=await sJSON("/api/chat",{system,user,name,schema}); return s.content; }
   const j=await oaJSON("/chat/completions",{model:cfg.llm||"gpt-4.1-mini",messages:[{role:"system",content:system},{role:"user",content:user}],response_format:{type:"json_schema",json_schema:{name,strict:true,schema}}});
   const msg=j.choices?.[0]?.message; if(!msg) throw new Error("응답이 비어 있어요"); if(msg.refusal) throw new Error(msg.refusal);
   return JSON.parse(msg.content);
 }
 async function transcribe(blob,filename,prompt){
+  if(serverMode()){ const q=new URLSearchParams({name:filename,prompt:prompt||""}); const r=await fetch(SERVER.base+"/api/transcribe?"+q,{method:"POST",headers:sHeaders({"Content-Type":blob.type||"audio/wav"}),body:blob});
+    const j=await r.json().catch(()=>({})); if(r.status===401) askCode(); if(!r.ok) throw new Error(j.error?.message||("HTTP "+r.status)); return j; }
   const fd=new FormData(); fd.append("file",blob,filename); fd.append("model",cfg.stt||"whisper-1"); fd.append("language","ko");
   fd.append("response_format","verbose_json"); fd.append("timestamp_granularities[]","segment"); if(prompt) fd.append("prompt",prompt);
   const r=await fetch(OA+"/audio/transcriptions",{method:"POST",headers:{Authorization:"Bearer "+cfg.key},body:fd});
@@ -1061,7 +1180,7 @@ $("L-rec").onclick=async()=>{
     mediaRec.onstop=()=>{ stream.getTracks().forEach(tr=>tr.stop()); clearInterval(recTimer);
       const type=mediaRec.mimeType||"audio/webm", ext=type.includes("mp4")?"m4a":"webm", blob=new Blob(recChunks,{type});
       const secs=Math.round((Date.now()-recT0)/1000); setRealFile(new File([blob],`모의강의-녹음.${ext}`,{type}));
-      $("L-rec").textContent="● 다시 녹음하기"; $("L-recInfo").textContent=`녹음 ${fmt(secs)} · ${MB(blob.size)}`; };
+      $("L-rec").innerHTML='<i class="ph ph-microphone" aria-hidden="true"></i> 다시 녹음하기'; $("L-recInfo").textContent=`녹음 ${fmt(secs)} · ${MB(blob.size)}`; };
     mediaRec.start(1000); recT0=Date.now(); $("L-rec").innerHTML='<span class="dot"></span> 녹음 끝내기';
     recTimer=setInterval(()=>{ $("L-recInfo").textContent="녹음 중 "+fmt(Math.round((Date.now()-recT0)/1000))+" · 끝내기를 누르면 올라가요"; },500);
   }catch(e){ toast("마이크를 쓸 수 없어요: "+e.message); }
@@ -1073,13 +1192,14 @@ function wavBlob(f32,sr){ const n=f32.length, b=new ArrayBuffer(44+n*2), v=new D
   for(let i=0;i<n;i++){ const x=Math.max(-1,Math.min(1,f32[i])); v.setInt16(44+i*2,x<0?x*0x8000:x*0x7FFF,true); } return new Blob([b],{type:"audio/wav"}); }
 async function prepareAudio(file){
   const isAudio=/^audio\//.test(file.type)||/\.(mp3|m4a|wav|webm|ogg|oga|mpga|mpeg|flac)$/i.test(file.name);
-  if(file.size<=24*1048576&&(isAudio||/\.mp4$/i.test(file.name))) return [{blob:file,name:file.name,offset:0}];
+  const LIM=serverMode()?4.3*1048576:24*1048576, SEG=serverMode()?120:600;
+  if(file.size<=LIM&&(isAudio||/\.mp4$/i.test(file.name))) return [{blob:file,name:file.name,offset:0}];
   const AC=window.AudioContext||window.webkitAudioContext; const ctx=new AC({sampleRate:16000});
   let ab; try{ ab=await ctx.decodeAudioData(await file.arrayBuffer()); } finally{ try{ ctx.close(); }catch(e){} }
   if(ab.duration>30*60+5) throw new Error("30분 이하로 잘라서 올려 주세요");
   const sr=ab.sampleRate, len=ab.length, mono=new Float32Array(len);
   for(let c=0;c<ab.numberOfChannels;c++){ const d=ab.getChannelData(c); for(let i=0;i<len;i++) mono[i]+=d[i]/ab.numberOfChannels; }
-  const CH=sr*600, out=[]; for(let s=0,k=0;s<len;s+=CH,k++) out.push({blob:wavBlob(mono.subarray(s,Math.min(len,s+CH)),sr),name:`part${k+1}.wav`,offset:s/sr});
+  const CH=sr*SEG, out=[]; for(let s=0,k=0;s<len;s+=CH,k++) out.push({blob:wavBlob(mono.subarray(s,Math.min(len,s+CH)),sr),name:`part${k+1}.wav`,offset:s/sr});
   return out;
 }
 
@@ -1183,11 +1303,11 @@ function applyRealReport(ev,met,segs){
   $("L-cul").innerHTML=(ev.culture||[]).map(c=>`<li><span class="pill ${c.status==="전함"?"ok":"warn"}">${esc(c.status)}</span><span><b>${esc(c.element)}</b> · ${esc(c.note)}</span></li>`).join("")||'<li class="muted small">문화 요소를 찾지 못했어요</li>';
   $("L-kid").textContent=`“${ev.kidSentence}”`;
   $("L-chart").innerHTML=chartSVG(met.series,met.bw);
-  $("L-kv").innerHTML=`<div class="k"><div class="v num">${met.wpm}</div><div class="l">평균 어절/분 (적정 130~170)</div></div><div class="k"><div class="v num">${met.fillers}회</div><div class="l">군더더기 말 “어…”, “음…” (받아쓰기 기준)</div></div><div class="k"><div class="v num">${met.wait==null?"—":met.wait.toFixed(1)+"초"}</div><div class="l">질문 뒤 평균 기다림 (질문 ${met.questions}회 · 추정)</div></div>`;
+  $("L-kv").innerHTML=`<div class="k"><div class="v num">${met.wpm}</div><div class="l">평균 어절/분 (적정 130~170)</div></div><div class="k"><div class="v num">${met.fillers}회</div><div class="l">군더더기 말 “어…”, “음…” (받아쓰기 기준)</div></div><div class="k"><div class="v num">${met.wait==null?"-":met.wait.toFixed(1)+"초"}</div><div class="l">질문 뒤 평균 기다림 (질문 ${met.questions}회 · 추정)</div></div>`;
   $("L-flow").innerHTML=(ev.flow||[]).map(f=>`<li><span class="pill ${f.ok?"ok":"warn"}">${f.ok?"좋아요":"고쳐요"}</span> ${esc(f.text)}</li>`).join("");
   $("L-goals").innerHTML=(ev.goals||[]).map(g=>`<li><b>${esc(g.title)}</b> ${esc(g.detail)}</li>`).join("");
   $("L-wTitle").textContent="또렷하지 않게 들린 구간 · 누르면 또박또박 들려줘요";
-  $("L-wNote").textContent=`음성 인식 신뢰도가 낮았던 구간입니다(평균 ${met.meanLp==null?"—":met.meanLp.toFixed(2)}). 발음이 흐렸거나 잡음·겹친 말일 수 있어요. ‘한국어 발음’ 점수는 이 신뢰도로 추정했습니다.`;
+  $("L-wNote").textContent=`음성 인식 신뢰도가 낮았던 구간입니다(평균 ${met.meanLp==null?"-":met.meanLp.toFixed(2)}). 발음이 흐렸거나 잡음·겹친 말일 수 있어요. ‘한국어 발음’ 점수는 이 신뢰도로 추정했습니다.`;
   $("L-transMeta").textContent=`· ${cfg.stt} · ${segs.length}구간 · ${fmt(Math.round(met.dur))}`;
   $("L-trans").innerHTML=segs.map(s=>`<div class="${typeof s.avg_logprob==="number"&&s.avg_logprob<-0.6?"low":""}"><span class="ts">${fmt(Math.round(s.start))}</span>${esc(s.text.trim())}</div>`).join("");
   $("L-transCard").hidden=false; curM=0;
@@ -1281,6 +1401,7 @@ jobsHTML=$("L-jobs").innerHTML;
 renderTags(SAMPLE_TAG);
 
 renderMonthSelect(false); renderCur(); renderC();
+checkServer();
 if(typeof speechSynthesis!=="undefined") speechSynthesis.onvoiceschanged=()=>{};
 apiUI();
 </script>

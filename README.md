@@ -1,8 +1,15 @@
 # 스토리브릿지 프로토타입
 
-GIST 서울의밤 × 아시안허브 PBL (2026) 클릭형 프로토타입 — **작가의 이야기를 책으로, 책을 교실로**.
+GIST 서울의밤 × 아시안허브 PBL (2026) 작동하는 프로토타입 · **작가의 이야기를 책으로, 책을 교실로**.
 
-배포: https://muniv.github.io/story-bridge-prototype/ · 이전 버전: [v0.3](https://muniv.github.io/story-bridge-prototype/v0.3/)
+배포: https://muniv.github.io/story-bridge-prototype/ · https://story-bridge-rust.vercel.app (같은 화면) · 이전 버전: [v0.3](https://muniv.github.io/story-bridge-prototype/v0.3/)
+
+## v1.0 (2026-10-25): 팀 서버
+
+- `api/` Vercel 서버리스 함수가 OpenAI 키를 서버에만 두고 받아쓰기(`/api/transcribe`)·평가와 나누기·태그(`/api/chat`)·그림(`/api/image`)을 대신 호출한다. 키가 없는 사람도 입장 코드만 넣으면 실제 분석이 돌아간다.
+- 환경 변수: `OPENAI_API_KEY`(필수), `DEMO_CODE`(입장 코드), `RATE_LIMIT`(10분당 요청 수, 기본 120), `LLM_MODEL`·`STT_MODEL`·`IMAGE_MODEL`(선택)
+- 녹화는 브라우저에서 2분 단위 WAV로 나눠 4MB 아래로 보낸다(Vercel 본문 크기 제한). 개인 키를 넣으면 서버 대신 브라우저에서 OpenAI로 바로 보낸다.
+- 첫 화면 리디자인(분할 히어로·실제 제품 화면·흐름·기능 소개), Phosphor 아이콘, 글 줄이기, 라이트 모드 고정
 
 ## 구성 (v0.5, 2026-10-25)
 

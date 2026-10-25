@@ -1,2 +1,5 @@
-*.png
 !img/*.jpg
+.env*
+.vercel
+*.png
+node_modules
