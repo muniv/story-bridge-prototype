@@ -3,3 +3,6 @@
 .vercel
 *.png
 node_modules
+
+# Ouroboros PM 문서 (내부 기획, 공개 저장소에 올리지 않음)
+.ouroboros/
