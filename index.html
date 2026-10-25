@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>스토리브릿지 · 작가의 이야기를 책으로, 책을 교실로</title>
-<meta name="description" content="작가의 이야기를 책으로, 책을 교실로. 이주여성 작가·강사를 위한 AI 그림책 제작·강의 연습 서비스 프로토타입 (GIST 서울의밤 × 아시안허브).">
+<meta name="description" content="작가의 이야기를 책으로, 책을 교실로. 이주여성 작가·강사의 강의 준비(책 준비·수업 설계·모의 강의·코치 피드백)를 돕는 AI 서비스 프로토타입 (GIST 서울의밤 × 아시안허브).">
 <meta name="theme-color" content="#FF6000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF6000'/%3E%3Ctext x='16' y='22' font-size='17' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -698,6 +698,37 @@ table.ct thead th{position:sticky;top:0}
 .apinote{display:flex;gap:8px;align-items:flex-start}
 .apinote .ph{font-size:1rem;margin-top:2px;flex:none}
 .modal{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+
+/* 강의 준비 흐름: 메뉴 단계 번호 · 흐름 띠 · 수업 설계 요약 */
+.modes .sno{width:20px;height:20px;border-radius:50%;background:var(--bg);color:var(--ink-2);display:grid;place-items:center;font-size:.72rem;font-weight:800;flex:none}
+.modes button.cur .sno{background:var(--accent);color:#fff}
+.modes .msep{width:1px;align-self:stretch;margin:8px 4px;background:var(--line-2);flex:none}
+.journey{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:8px 12px;margin-bottom:12px;box-shadow:var(--shadow-1);overflow-x:auto;scrollbar-width:none}
+.journey::-webkit-scrollbar{display:none}
+.journey .jt{display:inline-flex;gap:6px;align-items:center;font-size:.78rem;font-weight:800;color:var(--ink-2);white-space:nowrap;flex:none}
+.journey ol{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:0;flex:1;min-width:0}
+.journey li{display:flex;align-items:center;flex:1;min-width:0}
+.journey li:not(:last-child)::after{content:"";flex:1;height:2px;min-width:12px;background:var(--line);margin:0 6px;border-radius:2px}
+.journey li.done::after{background:var(--ok)}
+.journey li>button,.journey li>span{display:flex;align-items:center;gap:8px;padding:4px 8px 4px 4px;border:0;background:transparent;border-radius:12px;min-height:44px;text-align:left;white-space:nowrap;flex:none}
+.journey li>button:hover{background:var(--bg)}
+.journey .jn{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.78rem;font-weight:800;background:var(--bg);color:var(--ink-2);border:1.5px solid var(--line-2);flex:none}
+.journey li.done .jn{background:var(--ok);border-color:var(--ok);color:#fff}
+.journey li.cur .jn{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}
+.journey li.end .jn{background:var(--accent-soft);border-color:transparent;color:var(--accent-deep)}
+.journey .jx{display:flex;flex-direction:column;line-height:1.2}
+.journey .jx b{font-size:.84rem}
+.journey .jx small{font-size:.72rem;color:var(--ink-2);max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.journey li.cur .jx b{color:var(--accent-deep)}
+@media (max-width:860px){.journey{flex-direction:column;align-items:stretch;gap:4px}.journey ol{overflow-x:auto;scrollbar-width:none}.journey li{flex:none}.journey li:not(:last-child)::after{width:16px;flex:none}}
+.dsum{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dsum li{display:grid;grid-template-columns:22px 92px 1fr;gap:8px;align-items:start;font-size:.88rem}
+.dsum li .ph{font-size:1.05rem;color:var(--accent-deep);margin-top:1px}
+.dsum .k{color:var(--ink-2)}
+.dsum .v{color:var(--ink);font-weight:600;min-width:0;overflow-wrap:anywhere}
+.dsumc{background:#FFF9F5;border-color:#FFE2CF}
+.rail .stepn{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;margin-right:6px;vertical-align:1px}
+@media (max-width:560px){.dsum li{grid-template-columns:22px 1fr}.dsum .k{display:none}}
 </style>
 </head>
 <body>
@@ -710,13 +741,16 @@ table.ct thead th{position:sticky;top:0}
   </div>
   <div class="modes" id="modes" role="tablist" aria-label="화면 선택">
     <button class="cur" data-mode="H"><i class="ph ph-house-line" aria-hidden="true"></i>서비스 소개</button>
-    <button data-mode="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>강의 연습<span class="rank">1순위</span></button>
-    <button data-mode="B"><i class="ph ph-book-open-text" aria-hidden="true"></i>그림책 제작<span class="rank">2순위</span></button>
-    <button data-mode="K"><i class="ph ph-user-check" aria-hidden="true"></i>코치 확인<span class="rank soft" id="K-badge" hidden>0</span></button>
+    <button data-mode="B"><span class="sno">1</span>책 준비</button>
+    <button data-mode="S"><span class="sno">2</span>수업 설계</button>
+    <button data-mode="L"><span class="sno">3</span>모의 강의</button>
+    <button data-mode="K"><span class="sno">4</span>코치 피드백<span class="rank soft" id="K-badge" hidden>0</span></button>
+    <span class="msep" aria-hidden="true"></span>
     <button data-mode="C"><i class="ph ph-graduation-cap" aria-hidden="true"></i>교육과정 기준</button>
     <button data-mode="P"><i class="ph ph-compass" aria-hidden="true"></i>기획</button>
   </div>
 </header>
+<nav class="journey" id="journey" hidden aria-label="강의 준비 흐름"></nav>
 <div class="note" id="topNote"><i class="ph ph-info" aria-hidden="true"></i><span id="topNoteText">프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요.</span></div>
 
 <!-- ═══════════ 모드 H: 서비스 소개 ═══════════ -->
@@ -724,8 +758,8 @@ table.ct thead th{position:sticky;top:0}
   <section class="hero2">
     <div>
       <h2>작가의 이야기를 책으로,<br>책을 교실로</h2>
-      <p class="sub">이주여성 작가·강사가 자기 그림책으로 학교 수업을 준비하도록 돕는 AI 그림책 제작·강의 연습 서비스입니다.</p>
-      <div class="ctas"><button class="primary lg" data-go="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>강의 연습 시작</button><button class="lg" data-go="B"><i class="ph ph-book-open-text" aria-hidden="true"></i>그림책 만들기</button></div>
+      <p class="sub">이주여성 작가·강사가 자기 그림책으로 학교 수업을 준비하는 흐름을 처음부터 끝까지 돕습니다. 책 준비, 수업 설계, 모의 강의, 코치 피드백까지.</p>
+      <div class="ctas"><button class="primary lg" data-go="B"><i class="ph ph-path" aria-hidden="true"></i>강의 준비 시작</button><button class="lg" data-go="L"><i class="ph ph-microphone-stage" aria-hidden="true"></i>모의 강의 바로 해 보기</button></div>
     </div>
     <div class="shots" aria-hidden="true">
       <img class="a" src="img/shot-lecture.webp" alt="" width="1200" height="495">
@@ -734,43 +768,43 @@ table.ct thead th{position:sticky;top:0}
   </section>
 
   <section class="blk">
-    <h3 class="bh">한 권의 그림책이 교실에 닿기까지</h3>
-    <ol class="rail" aria-label="서비스 흐름">
+    <h3 class="bh">강의 준비 흐름 · 한 권의 그림책이 교실에 닿기까지</h3>
+    <ol class="rail" aria-label="강의 준비 흐름">
       <li><span class="ic"><i class="ph ph-chat-circle-text"></i></span><b>작가의 이야기</b><span>모국의 문화와 경험</span></li>
-      <li class="tool" data-go="B" tabindex="0" role="button"><span class="ic"><i class="ph ph-paint-brush"></i></span><b>그림책 제작 도우미</b><span>원고에 그림과 조판, 교육과정 태그</span></li>
-      <li><span class="ic"><i class="ph ph-books"></i></span><b>이중언어 그림책</b><span>한국어와 모국어</span></li>
-      <li class="tool" data-go="L" tabindex="0" role="button"><span class="ic"><i class="ph ph-microphone-stage"></i></span><b>강의 연습 도우미</b><span>모의 강의를 교육과정 기준으로 피드백</span></li>
-      <li><span class="ic"><i class="ph ph-chalkboard-teacher"></i></span><b>교실 수업</b><span>학교, 도서관, 유치원</span></li>
-      <li class="kid"><span class="ic"><i class="ph ph-smiley"></i></span><b>아이들</b><span>“베트남에는 이런 명절이 있대”</span></li>
+      <li class="tool" data-go="B" tabindex="0" role="button"><span class="ic"><i class="ph ph-book-open-text"></i></span><b><span class="stepn">1</span>책 준비</b><span>원고에 그림·조판, 문화 요소와 교육과정 태그</span></li>
+      <li class="tool" data-go="S" tabindex="0" role="button"><span class="ic"><i class="ph ph-chalkboard-teacher"></i></span><b><span class="stepn">2</span>수업 설계</b><span>학년군·월 주제, 전할 문화 요소와 한 문장</span></li>
+      <li class="tool" data-go="L" tabindex="0" role="button"><span class="ic"><i class="ph ph-microphone-stage"></i></span><b><span class="stepn">3</span>모의 강의</b><span>녹화를 교육과정 기준으로 피드백, 근거 장면</span></li>
+      <li class="tool" data-go="K" tabindex="0" role="button"><span class="ic"><i class="ph ph-user-check"></i></span><b><span class="stepn">4</span>코치 피드백</b><span>코치가 점수를 확인하고 다음 연습 목표</span></li>
+      <li class="kid"><span class="ic"><i class="ph ph-smiley"></i></span><b>교실의 아이들</b><span>“베트남에는 이런 명절이 있대”</span></li>
     </ol>
   </section>
 
   <section class="basis">
     <div class="bl"><i class="ph ph-graduation-cap" aria-hidden="true"></i></div>
-    <div class="bm"><div class="bt">두 도구가 함께 쓰는 기준, 초등 교육과정 연계 커리큘럼</div><div class="bs">월별 주제 9개를 저학년, 중학년, 고학년 수준에 맞춰 다룹니다. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</div></div>
+    <div class="bm"><div class="bt">책 준비부터 코치 피드백까지 함께 쓰는 기준, 초등 교육과정 연계 커리큘럼</div><div class="bs">월별 주제 9개를 저학년, 중학년, 고학년 수준에 맞춰 다룹니다. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</div></div>
     <button class="sm" data-go="C">기준 보기</button>
   </section>
 
   <section class="feat">
     <div class="frow">
       <div class="ft">
-        <span class="rank">1순위</span>
-        <h3>모의 강의를 올리면 교육과정 기준으로 짚어 줍니다</h3>
-        <p>녹화를 받아 적고, 학년 눈높이부터 문화 요소 전달까지 여섯 가지로 봅니다. 점수마다 근거가 된 장면을 그 자리에서 바로 들어 볼 수 있어요.</p>
-        <ul class="ticks"><li><i class="ph ph-play-circle"></i>점수마다 근거 장면 바로 듣기</li><li><i class="ph ph-list-checks"></i>학년군과 월 주제에 맞춘 6가지 평가</li><li><i class="ph ph-user-check"></i>코치 확인과 회차별 성장 기록</li></ul>
-        <button class="ghost2" data-go="L">강의 연습 시작</button>
+        <span class="rank">1 책 준비 · 2 수업 설계</span>
+        <h3>완성된 글에 그림과 조판을 붙이고, 맞는 수업 주제를 찾습니다</h3>
+        <p>원고를 펼침면으로 나누고, 작가님 그림체와 주인공을 기준으로 장면을 그립니다. 조판에서는 글 위치와 크기를 버튼으로 고치고, 맞는 교육과정 주제까지 찾아 드려요.</p>
+        <ul class="ticks"><li><i class="ph ph-globe-hemisphere-east"></i>원고 속 문화 요소를 뽑아 작가가 확인</li><li><i class="ph ph-image"></i>장면마다 그리고 작가가 고치고 승인</li><li><i class="ph ph-text-aa"></i>조판 글 위치·크기 고치기, 수업 설계로 연결</li></ul>
+        <button class="ghost2" data-go="B">책 준비 시작</button>
       </div>
-      <figure class="fi"><img src="img/shot-lecture.webp" alt="강의 연습 도우미의 피드백 리포트 화면: 종합 점수 링과 항목별 점수, 근거 듣기 버튼" width="1200" height="495" loading="lazy"></figure>
+      <figure class="fi"><img src="img/shot-book.webp" alt="책 준비의 조판 화면: 펼침면 미리보기와 글 배치 고치기" width="1200" height="1050" loading="lazy"></figure>
     </div>
     <div class="frow rev">
       <div class="ft">
-        <span class="rank">2순위</span>
-        <h3>완성된 글에 그림과 조판을 붙이고, 맞는 수업 주제를 찾습니다</h3>
-        <p>원고를 펼침면으로 나누고, 작가님 그림체와 주인공을 기준으로 장면을 그립니다. 조판에서는 글 위치와 크기를 버튼으로 고치고, 맞는 교육과정 주제까지 찾아 드려요.</p>
-        <ul class="ticks"><li><i class="ph ph-globe-hemisphere-east"></i>원고 속 문화 요소를 뽑아 작가가 확인</li><li><i class="ph ph-image"></i>장면마다 그리고 작가가 고치고 승인</li><li><i class="ph ph-text-aa"></i>조판 글 위치·크기 고치기, 강의 연습으로 연결</li></ul>
-        <button class="ghost2" data-go="B">그림책 만들기</button>
+        <span class="rank">3 모의 강의 · 4 코치 피드백</span>
+        <h3>모의 강의를 올리면 교육과정 기준으로 짚어 줍니다</h3>
+        <p>녹화를 받아 적고, 학년 눈높이부터 문화 요소 전달까지 여섯 가지로 봅니다. 점수마다 근거가 된 장면을 그 자리에서 바로 들어 볼 수 있어요.</p>
+        <ul class="ticks"><li><i class="ph ph-play-circle"></i>점수마다 근거 장면 바로 듣기</li><li><i class="ph ph-list-checks"></i>학년군과 월 주제에 맞춘 6가지 평가</li><li><i class="ph ph-user-check"></i>코치 피드백과 회차별 성장 기록</li></ul>
+        <button class="ghost2" data-go="L">모의 강의 해 보기</button>
       </div>
-      <figure class="fi"><img src="img/shot-book.webp" alt="그림책 제작 도우미의 조판 화면: 펼침면 미리보기와 글 배치 고치기" width="1200" height="1050" loading="lazy"></figure>
+      <figure class="fi"><img src="img/shot-lecture.webp" alt="모의 강의 피드백 리포트 화면: 종합 점수 링과 항목별 점수, 근거 듣기 버튼" width="1200" height="495" loading="lazy"></figure>
     </div>
   </section>
 
@@ -823,10 +857,51 @@ table.ct thead th{position:sticky;top:0}
   </div>
 </div>
 
-<!-- ═══════════ 모드 L: 강의 연습 도우미 ═══════════ -->
+<!-- ═══════════ 모드 S: 수업 설계 ═══════════ -->
+<div id="modeS" hidden>
+<div class="toolbar">
+  <div class="tname"><span class="ti"><i class="ph ph-chalkboard-teacher" aria-hidden="true"></i></span><div><b>수업 설계</b><span>어떤 책으로 · 누구에게 · 무엇을</span></div></div>
+  <p class="tdesc">책과 학년군을 고르면 맞는 <b>교육과정 기준</b>이 붙어요. 전할 <b>문화 요소</b>와 <b>아이들이 가져갈 한 문장</b>을 정해 두면, 모의 강의 리포트에서 전해졌는지 확인해요.</p>
+</div>
+<div class="l2">
+  <div class="stack" style="gap:16px;min-width:0">
+      <div class="card stack">
+        <div class="sh"><span class="sn"><i class="ph ph-chalkboard-teacher" aria-hidden="true"></i></span><div><h3>책과 대상</h3><p class="muted small">책과 학년군을 고르면 맞는 교육과정 기준이 붙고, 리포트 평가 기준도 따라 바뀌어요.</p></div></div>
+        <div class="grid2">
+          <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
+          <label class="field">수업 대상 (학년군)<select id="L-age"><option value="유">유치원 (5~7세 · 누리과정 참고)</option><option value="저" selected>초등 저학년 (1~2학년)</option><option value="중">초등 중학년 (3~4학년)</option><option value="고">초등 고학년 (5~6학년)</option><option value="성">성인 (도서관 강연)</option></select></label>
+          <label class="field">월 주제 (교육과정 커리큘럼)<select id="L-month"></select></label>
+          <label class="field">목표 시간<select id="L-len"><option>20분</option><option>30분</option><option>40분</option></select></label>
+          <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
+        </div>
+        <div class="curbox" id="L-cur"></div>
+      </div>
+      <div class="card stack">
+        <div class="sh"><span class="sn"><i class="ph ph-globe-hemisphere-east" aria-hidden="true"></i></span><div><h3>이번 수업에서 전할 것</h3><p class="muted small">정해 두면 리포트에서 전해졌는지 확인해요.</p></div></div>
+        <div><p class="eyebrow" style="margin-bottom:6px">문화 요소</p><div class="chkl" id="L-culChk"></div></div>
+        <div class="row"><input type="text" id="L-culAdd" placeholder="문화 요소 더하기 (예: 반쯩)" style="flex:1;min-width:0"><button class="sm" id="L-culAddBtn">더하기</button></div>
+        <label class="field">아이들이 가져갈 한 문장 <span class="small muted" id="L-kidSrc"></span>
+          <input type="text" id="L-kidIn" placeholder="예: 베트남에도 추석이 있고, 별 등불을 들고 동네를 돌아요.">
+        </label>
+        <p class="small muted">비워 두면 리포트에서 AI가 한 문장을 제안해요.</p>
+      </div>
+  </div>
+  <aside class="l2side">
+    <div class="prevg" id="L-prevGoals" hidden></div>
+    <div class="card stack gocard">
+      <p class="eyebrow ic"><i class="ph ph-clipboard-text" aria-hidden="true"></i>수업 설계 요약</p>
+      <div id="S-sum"></div>
+      <button class="primary" id="S-go">모의 강의 녹화하러 가기 →</button>
+      <button class="ghost" id="S-book">← 책 준비</button>
+    </div>
+  </aside>
+</div>
+</div>
+
+<!-- ═══════════ 모드 L: 모의 강의 ═══════════ -->
 <div id="modeL" hidden>
 <div class="toolbar">
-  <div class="tname"><span class="ti"><i class="ph ph-microphone-stage" aria-hidden="true"></i></span><div><b>강의 연습</b><span>강사 · 모의 강의 피드백</span></div></div>
+  <div class="tname"><span class="ti"><i class="ph ph-microphone-stage" aria-hidden="true"></i></span><div><b>모의 강의</b><span>녹화 → AI 분석 → 리포트</span></div></div>
   <ol class="steps" id="stepsL">
     <li class="active"><span class="n">1</span>내 연습실</li>
     <li><span class="n">2</span>녹화 올리기</li>
@@ -865,7 +940,10 @@ table.ct thead th{position:sticky;top:0}
 <section id="L2" hidden>
   <div class="l2">
     <div class="stack" style="gap:16px;min-width:0">
-      <div class="prevg" id="L-prevGoals" hidden></div>
+      <div class="card stack dsumc">
+        <div class="row between"><p class="eyebrow ic"><i class="ph ph-clipboard-text" aria-hidden="true"></i>이번 수업 설계</p><button class="sm ghost" id="L-dsumEdit"><i class="ph ph-pencil-simple" aria-hidden="true"></i> 바꾸기</button></div>
+        <div id="L-dsum"></div>
+      </div>
       <div class="card stack">
         <div class="sh"><span class="sn"><i class="ph ph-video-camera" aria-hidden="true"></i></span><div><h3>모의 강의 녹화</h3><p class="muted small">영상·음성·휴대폰 녹화 모두 돼요. 30분 이하를 권해요.</p></div></div>
         <div class="drop" id="L-drop" tabindex="0" role="button" aria-label="강의 녹화 업로드">
@@ -878,26 +956,6 @@ table.ct thead th{position:sticky;top:0}
           <div class="row"><button id="L-sample">모의 녹음으로 체험</button><span class="muted small" id="L-sampleHint">『달님은 하나예요』 초등 저학년 모의 강의 (예시 결과)</span></div>
         </div>
         <p class="small muted">체험용 <a href="samples/mock-lecture-dalnim.mp4" download>모의 강의 영상</a> · <a href="samples/mock-lecture-dalnim.m4a" download>음성만</a> (AI 합성 음성)</p>
-      </div>
-      <div class="card stack">
-        <div class="sh"><span class="sn"><i class="ph ph-chalkboard-teacher" aria-hidden="true"></i></span><div><h3>수업 정보</h3><p class="muted small">학년군에 따라 평가 기준이 바뀌어요.</p></div></div>
-        <div class="grid2">
-          <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
-          <label class="field">수업 대상 (학년군)<select id="L-age"><option value="유">유치원 (5~7세 · 누리과정 참고)</option><option value="저" selected>초등 저학년 (1~2학년)</option><option value="중">초등 중학년 (3~4학년)</option><option value="고">초등 고학년 (5~6학년)</option><option value="성">성인 (도서관 강연)</option></select></label>
-          <label class="field">월 주제 (교육과정 커리큘럼)<select id="L-month"></select></label>
-          <label class="field">목표 시간<select id="L-len"><option>20분</option><option>30분</option><option>40분</option></select></label>
-          <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
-        </div>
-        <div class="curbox" id="L-cur"></div>
-      </div>
-      <div class="card stack">
-        <div class="sh"><span class="sn"><i class="ph ph-globe-hemisphere-east" aria-hidden="true"></i></span><div><h3>이번 수업에서 전할 것</h3><p class="muted small">정해 두면 리포트에서 전해졌는지 확인해요.</p></div></div>
-        <div><p class="eyebrow" style="margin-bottom:6px">문화 요소</p><div class="chkl" id="L-culChk"></div></div>
-        <div class="row"><input type="text" id="L-culAdd" placeholder="문화 요소 더하기 (예: 반쯩)" style="flex:1;min-width:0"><button class="sm" id="L-culAddBtn">더하기</button></div>
-        <label class="field">아이들이 가져갈 한 문장 <span class="small muted" id="L-kidSrc"></span>
-          <input type="text" id="L-kidIn" placeholder="예: 베트남에도 추석이 있고, 별 등불을 들고 동네를 돌아요.">
-        </label>
-        <p class="small muted">비워 두면 리포트에서 AI가 한 문장을 제안해요.</p>
       </div>
     </div>
     <aside class="l2side">
@@ -1050,7 +1108,7 @@ table.ct thead th{position:sticky;top:0}
 <!-- ═══════════ 모드 B: 그림책 제작 도우미 ═══════════ -->
 <div id="modeB" hidden>
 <div class="toolbar">
-  <div class="tname"><span class="ti"><i class="ph ph-book-open-text" aria-hidden="true"></i></span><div><b>그림책 제작</b><span>작가·편집 담당자</span></div></div>
+  <div class="tname"><span class="ti"><i class="ph ph-book-open-text" aria-hidden="true"></i></span><div><b>책 준비</b><span>원고 → 그림 → 조판 → 태그</span></div></div>
   <ol class="steps" id="stepsB">
     <li class="active"><span class="n">1</span>원고</li>
     <li><span class="n">2</span>문화 요소</li>
@@ -1106,7 +1164,7 @@ table.ct thead th{position:sticky;top:0}
       <ul class="cc small">
         <li><i class="ph ph-paint-brush" aria-hidden="true"></i><span>장면 그림 지시문 · 옷과 소품을 정확히</span></li>
         <li><i class="ph ph-tag" aria-hidden="true"></i><span>교육과정 태그의 근거</span></li>
-        <li><i class="ph ph-microphone-stage" aria-hidden="true"></i><span>강의 연습의 체크 목록과 AI 평가, 받아쓰기 힌트 단어</span></li>
+        <li><i class="ph ph-microphone-stage" aria-hidden="true"></i><span>수업 설계의 체크 목록, 모의 강의 AI 평가와 받아쓰기 힌트 단어</span></li>
       </ul>
       <label class="field">아이들이 가져갈 한 문장 (후보)
         <input type="text" id="BX-kid" placeholder="책 전체를 한 문장으로">
@@ -1248,7 +1306,7 @@ table.ct thead th{position:sticky;top:0}
       <div class="mchips"><span class="mchip">초등 저학년</span><span class="mchip">초등 중학년</span><span class="mchip">초등 고학년</span><span class="mchip">유치원 (누리과정 참고)</span></div>
       <p class="small muted">이 태그가 강의 연습의 평가 기준이 돼요.</p>
       <div class="stack" style="gap:8px;margin-top:auto">
-        <button class="primary" id="B-toL">이 책으로 강의 연습하기 →</button>
+        <button class="primary" id="B-toL">이 책으로 수업 설계하기 →</button>
         <button id="B-toC">교육과정 기준 보기</button>
         <button class="ghost" id="B-back4">← 편집·조판으로</button>
       </div>
@@ -1261,8 +1319,8 @@ table.ct thead th{position:sticky;top:0}
 <!-- ═══════════ 모드 C: 교육과정 기준 ═══════════ -->
 <div id="modeC" hidden class="stack" style="gap:16px">
   <div class="toolbar">
-    <div class="tname"><span class="ti dark"><i class="ph ph-graduation-cap" aria-hidden="true"></i></span><div><b>교육과정 기준</b><span>두 도구의 공통 기준</span></div></div>
-    <p class="tdesc">그림책에는 <b>교육과정 태그</b>로, 강의 연습에는 <b>평가 기준</b>으로 같은 기준을 써요. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</p>
+    <div class="tname"><span class="ti dark"><i class="ph ph-graduation-cap" aria-hidden="true"></i></span><div><b>교육과정 기준</b><span>흐름 전체의 공통 기준</span></div></div>
+    <p class="tdesc">책 준비에서는 <b>교육과정 태그</b>로, 수업 설계와 모의 강의에서는 <b>평가 기준</b>으로 같은 기준을 써요. 근거는 2022 개정 초등학교 교육과정의 범교과 학습 주제 ‘다문화 교육’입니다.</p>
     <div class="tmeta"><span class="pill">10/19 정리</span><span class="draft">기준표 초안</span></div>
   </div>
   <div class="card stack">
@@ -1294,9 +1352,9 @@ table.ct thead th{position:sticky;top:0}
         <li><span><b>핵심 내용 분석</b> · 주제·상황·문화 요소·쓸 수 있는 장면을 뽑기. <b>책에 없는 사실은 만들지 않음</b></span></li>
         <li><span><b>월별 주제 매칭</b> · 9개 주제 중 관련 높은 것을 여러 개, 매칭 이유와 함께</span></li>
         <li><span><b>학년군 판단</b> · 어휘 난도, 이야기 복잡성, 활동 확장 가능성</span></li>
-        <li><span><b>두 도구에서 쓰기</b> · 그림책에는 태그로, 강의 연습에는 평가 기준(학년 눈높이·문화 요소 전달)으로</span></li>
+        <li><span><b>흐름에서 쓰기</b> · 책 준비에서는 태그로, 수업 설계와 모의 강의에서는 평가 기준(학년 눈높이·문화 요소 전달)으로</span></li>
       </ol>
-      <div class="row" style="margin-top:auto"><button class="primary" id="C-toL">이 기준으로 강의 연습하기 →</button></div>
+      <div class="row" style="margin-top:auto"><button class="primary" id="C-toL">이 기준으로 수업 설계하기 →</button></div>
     </div>
   </div>
 </div>
@@ -1304,7 +1362,7 @@ table.ct thead th{position:sticky;top:0}
 <!-- ═══════════ 모드 K: 코치 확인 ═══════════ -->
 <div id="modeK" hidden class="stack" style="gap:16px">
   <div class="toolbar">
-    <div class="tname"><span class="ti dark"><i class="ph ph-user-check" aria-hidden="true"></i></span><div><b>코치 확인</b><span>대표님 · 교육 담당</span></div></div>
+    <div class="tname"><span class="ti dark"><i class="ph ph-user-check" aria-hidden="true"></i></span><div><b>코치 피드백</b><span>대표님 · 교육 담당</span></div></div>
     <p class="tdesc">강사가 보낸 리포트를 항목마다 <b>동의</b>하거나 <b>조정</b>해요. 확인한 점수는 강사의 성장 기록으로, AI와 다른 점수는 평가 기준을 고치는 자료로 쓰여요.</p>
     <div class="tmeta"><span class="pill warn" id="K-cnt">확인 전 0</span><span class="small muted">같은 브라우저 안에서 시연</span></div>
   </div>
@@ -1328,8 +1386,8 @@ table.ct thead th{position:sticky;top:0}
   <div class="card stack">
     <div class="row between"><p class="eyebrow ic"><i class="ph ph-compass" aria-hidden="true"></i>기획서 v3.2 · 10/26</p><span class="pill">프로토타입 v0.8</span></div>
     <h2 class="ptitle">자기 문화를 그림책과 수업으로 전하는 작가·강사를 돕습니다</h2>
-    <p class="muted">영상이나 콘텐츠를 대신 만들어 주는 서비스가 아니라, 작가가 자기 책으로 직접 하는 수업을 키우는 서비스예요. 대표님이 정한 순서대로 1순위 강의 연습, 2순위 그림책 제작입니다.</p>
-    <div class="basis" style="margin-top:4px"><div class="bl"><i class="ph ph-link" aria-hidden="true"></i></div><div class="bm"><div class="bt">두 도구를 잇는 것</div><div class="bs">교육과정 커리큘럼은 ‘언제·누구에게’, 문화 요소는 ‘무엇을’. 원고에서 뽑은 문화 요소가 그림에 정확히 그려지고, 강의에서 전해졌는지 확인되고, 아이들이 한 문장으로 가져가요.</div></div><button class="sm" data-go="B">문화 요소 보기</button></div>
+    <p class="muted">영상이나 콘텐츠를 대신 만들어 주는 서비스가 아니라, 작가가 자기 책으로 직접 하는 수업을 키우는 서비스예요. 강사가 수업을 준비하는 흐름 그대로 책 준비 → 수업 설계 → 모의 강의 → 코치 피드백으로 이어져요.</p>
+    <div class="basis" style="margin-top:4px"><div class="bl"><i class="ph ph-link" aria-hidden="true"></i></div><div class="bm"><div class="bt">흐름을 잇는 것</div><div class="bs">교육과정 커리큘럼은 ‘언제·누구에게’, 문화 요소는 ‘무엇을’. 원고에서 뽑은 문화 요소가 그림에 정확히 그려지고, 강의에서 전해졌는지 확인되고, 아이들이 한 문장으로 가져가요.</div></div><button class="sm" data-go="B">문화 요소 보기</button></div>
   </div>
   <div class="card stack">
     <div class="sh"><span class="sn"><i class="ph ph-seal-check" aria-hidden="true"></i></span><div><h3>원칙</h3><p class="muted small">기능을 더할 때마다 이 네 가지에 비춰 봐요.</p></div></div>
@@ -1344,10 +1402,10 @@ table.ct thead th{position:sticky;top:0}
     <div class="card stack">
       <div class="sh"><span class="sn"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i></span><div><h3>업데이트 노트</h3><p class="muted small">무엇을 왜 바꿨는지, 최근 것부터</p></div></div>
       <ol class="tline">
-        <li class="now"><b>v0.8 · 10/26</b><span>리포트에서 점수마다 근거 장면을 그 자리에서 바로 들어요(그 구간만 재생하고 멈춤). 그림책 조판에서 글 위치와 크기를 고치고 모든 쪽에 적용하거나 AI 배치로 되돌릴 수 있어요. 모든 화면을 같은 디자인으로 바꾸고, 시연용 모의 강의 영상을 새로 만들었어요.</span></li>
+        <li class="now"><b>v0.8 · 10/26</b><span>메뉴를 강의 준비 흐름(책 준비 → 수업 설계 → 모의 강의 → 코치 피드백)으로 다시 놓고, 수업 설계를 따로 떼었어요. 리포트에서 점수마다 근거 장면을 그 자리에서 바로 들어요(그 구간만 재생하고 멈춤). 그림책 조판에서 글 위치와 크기를 고치고 모든 쪽에 적용하거나 AI 배치로 되돌릴 수 있어요. 모든 화면을 같은 디자인으로 바꾸고, 시연용 모의 강의 영상을 새로 만들었어요.</span></li>
         <li><b>v0.7 · 10/26</b><span>평가 지표는 팀이 정의하기로 한 10/16 숙제에 답해 학년군 기준표를 평가에 넣고, 점수마다 근거 장면을 붙였어요. 코치 확인과 회차 기록이 실제로 쌓이고, 원고에서 뽑은 문화 요소가 강의 연습으로 이어집니다.</span></li>
-        <li><b>v0.4~0.6 · 10/25</b><span>10/19 교육과정 커리큘럼을 두 도구의 공통 기준으로. 평가 6항목, 실제 받아쓰기·평가·그림 생성, 팀 서버.</span></li>
-        <li><b>v0.3 · 10/16</b><span>강의 연습·그림책 제작 화면. 대표님 우선순위(10/16)를 반영해 강의 연습을 1순위로.</span></li>
+        <li><b>v0.4~0.6 · 10/25</b><span>10/19 교육과정 커리큘럼을 공통 기준으로. 평가 6항목, 실제 받아쓰기·평가·그림 생성, 팀 서버.</span></li>
+        <li><b>v0.3 · 10/16</b><span>강의 연습·그림책 제작 화면. 대표님 피드백(10/16)으로 강의 연습을 먼저 키우기로.</span></li>
       </ol>
     </div>
     <div class="card stack">
@@ -1392,7 +1450,7 @@ table.ct thead th{position:sticky;top:0}
   </div>
 </div>
 
-<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.8 (10/26) 근거 장면 바로 듣기·조판 글 배치·도구 화면 개편 · v0.7 평가 기준표·회차 기록·코치 확인·문화 요소 연결 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
+<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.8 (10/26) 근거 장면 바로 듣기·조판 글 배치·도구 화면 개편 · v0.7 평가 기준표·회차 기록·코치 확인·문화 요소 연결 · 강의 준비 흐름: 책 준비 → 수업 설계 → 모의 강의 → 코치 피드백</span></footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -1448,7 +1506,7 @@ async function genImage(prompt, refDataUrl){
 }
 
 // 모드 전환 (v0.7: 서비스 소개 H · 강의 연습 L · 그림책 제작 B · 코치 확인 K · 교육과정 기준 C · 기획 P)
-const MODES=["H","L","B","K","C","P"];
+const MODES=["H","B","S","L","K","C","P"];
 function goMode(m){
   document.querySelectorAll("#modes button").forEach(x=>{ const on=x.dataset.mode===m; x.classList.toggle("cur",on); x.setAttribute("aria-selected",on); });
   MODES.forEach(k=>{ $("mode"+k).hidden=k!==m; });
@@ -1457,6 +1515,7 @@ function goMode(m){
   if(m==="K"&&typeof renderCoach==="function") renderCoach();
   if(m==="P"&&typeof renderPlan==="function") renderPlan();
   if(m==="L"&&!$("L1").hidden&&typeof renderL1==="function") renderL1();
+  if(typeof renderDesign==="function") renderDesign(); if(typeof renderJourney==="function") renderJourney(m);
   window.scrollTo({top:0});
 }
 document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>goMode(b.dataset.mode));
@@ -1496,7 +1555,7 @@ function renderC(){
     MONTHS.map((M,i)=>`<tr class="${i===5?"hl":""}"><td class="mo">${M.m}</td><td><b>${M.t}</b></td><td>${M.lo}</td><td>${M.mid}</td><td>${M.hi}</td><td class="small">${M.subj}</td></tr>`).join("")+`</tbody>`;
   $("C-std").innerHTML=["저","중","고"].map(k=>`<div class="stack" style="gap:6px"><b class="small">${STD[k].band}</b>${stdHtml(k)}</div>`).join("")+`<p class="small muted">유치원은 누리과정(5세)을 참고합니다. 표시는 『달님은 하나예요』의 1차 추천 주제(9월)입니다.</p>`;
 }
-function presetLecture(book){ goMode("L"); if(book) $("L-book").value=book; $("L-age").value="저"; renderMonthSelect(); renderCur(); if(typeof renderLecturePrep==="function") renderLecturePrep(true); setStep("L",2); }
+function presetLecture(book){ if(book) $("L-book").value=book; $("L-age").value="저"; renderMonthSelect(); renderCur(); if(typeof renderLecturePrep==="function") renderLecturePrep(true); goMode("S"); }
 
 /* ══════════ L: 강의 연습 ══════════ */
 const CATS=["학년 눈높이","한국어 발음","책 활용·수업 흐름","문화 요소 전달","질문과 기다림","시간 배분"];
@@ -1688,7 +1747,7 @@ $("B-go5").onclick=()=>{ setStep("B",6); if(BOOK.real&&apiOn()&&!TAG) aiTags(); 
 $("B-back4").onclick=()=>{ setStep("B",5); renderSpread(); };
 $("B-tagok").onchange=()=>{ if($("B-tagok").checked){ const c=[...$("B-tagChips").querySelectorAll(".mchip")].map(x=>x.textContent); toast(`태그를 확정했어요: ${c[0]||""}${c.length>1?` 외 ${c.length-1}개`:""}`); } };
 $("B-toC").onclick=()=>goMode("C");
-$("C-toL").onclick=()=>{ presetLecture(); toast("교육과정 기준을 골라 연습을 시작하세요"); };
+$("C-toL").onclick=()=>{ presetLecture(); toast("수업 설계에서 책과 학년군, 월 주제를 골라 주세요"); };
 /* ══════════ v0.5: 실제 실행 (OpenAI 받아쓰기 · 평가 · 페이지 나누기 · 교육과정 태그) ══════════ */
 const OA="https://api.openai.com/v1";
 async function oaJSON(path, body){
@@ -1942,7 +2001,7 @@ function renderTags(T){
   BOOK_CUL[key]=els.map(e=>e.name);
   if(![...$("L-book").options].some(o=>o.value===key)){ const o=document.createElement("option"); o.value=o.textContent=key; $("L-book").insertBefore(o,$("L-book").firstChild); }
 }
-$("B-toL").onclick=()=>{ const key=BOOK.real?BOOK.title:"달님은 하나예요 (베트남 추석)"; renderTags(TAG||(BOOK.real?SAMPLE_TAG:SAMPLE_TAG)); presetLecture(key); const M=MONTHS[+$("L-month").value]; toast(`『${key.replace(/ \(.+\)$/,"")}』 · ${M.m} ${M.t} 기준으로 연습을 준비했어요`); };
+$("B-toL").onclick=()=>{ const key=BOOK.real?BOOK.title:"달님은 하나예요 (베트남 추석)"; renderTags(TAG||(BOOK.real?SAMPLE_TAG:SAMPLE_TAG)); presetLecture(key); const M=MONTHS[+$("L-month").value]; toast(`『${key.replace(/ \(.+\)$/,"")}』 · ${M.m} ${M.t} 기준으로 수업 설계를 채웠어요`); };
 
 /* ── 원고 파일 올리기 (txt·md·docx) / 체험용 원고 ── */
 function loadManuscript(text,fallbackTitle){
@@ -2079,7 +2138,7 @@ function reportHeader(s){
 }
 function shareState(s){ const sent=s.status!=="new"; $("L-share").innerHTML=sent?'<i class="ph ph-check" aria-hidden="true"></i> 코치에게 보냄':'<i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> 코치에게 보내기'; $("L-shareSt").textContent=s.status==="done"?"코치 확인 완료":sent?"코치 확인 대기 중":""; }
 $("L-go4").onclick=()=>{ if(!REP.real&&!REP.segs){ REP=Object.assign({},SAMPLE_REP,{band:$("L-age").value,kid:Object.assign({},SAMPLE_REP.kid,{target:$("L-kidIn").value.trim()||SAMPLE_REP.kid.target})}); } setStep("L",4); const s=saveSession(); renderReport(); reportHeader(s); };
-$("L-share").onclick=()=>{ const s=sessById(curSessId); if(!s) return; if(s.status==="new"){ s.status="sent"; KSEL=s.id; KDRAFT=null; saveStore(); kBadge(); shareState(s); toast("코치 확인 목록에 보냈어요. 상단 ‘코치 확인’ 탭에서 볼 수 있어요"); } else toast(s.status==="done"?"코치가 이미 확인했어요":"이미 보냈어요 · ‘코치 확인’ 탭에서 볼 수 있어요"); };
+$("L-share").onclick=()=>{ const s=sessById(curSessId); if(!s) return; if(s.status==="new"){ s.status="sent"; KSEL=s.id; KDRAFT=null; saveStore(); kBadge(); shareState(s); toast("코치 확인 목록에 보냈어요. 상단 ‘코치 피드백’ 탭에서 볼 수 있어요"); } else toast(s.status==="done"?"코치가 이미 확인했어요":"이미 보냈어요 · ‘코치 확인’ 탭에서 볼 수 있어요"); };
 $("L-cmp").onclick=()=>{ const box=$("L-cmpBox"); if(!box.hidden){ box.hidden=true; return; } const s=sessById(curSessId), p=s&&prevOf(s);
   if(!p){ box.innerHTML='<p class="small muted">비교할 지난 회차가 없어요.</p>'; box.hidden=false; return; }
   const a=finalScores(p), b=s.ai.map((v,i)=>v!=null&&s.ev[i]&&s.ev[i].quote?v:null);
@@ -2097,7 +2156,7 @@ function renderCoach(){
   const L=ST.sessions.filter(s=>s.status==="sent"||s.status==="done").sort((a,b)=>(a.status===b.status?b.n-a.n:a.status==="sent"?-1:1));
   if(!KSEL||!L.some(s=>s.id===KSEL)) { KSEL=L[0]?.id||null; KDRAFT=null; }
   $("K-cnt").textContent=`확인 전 ${L.filter(x=>x.status==="sent").length}`; $("K-cnt").className="pill "+(L.some(x=>x.status==="sent")?"warn":"ok");
-  $("K-list").innerHTML=L.map(s=>{ const ao=overall(Object.assign({},s,{coach:null})); return `<button class="${s.id===KSEL?"cur":""}" data-id="${s.id}"><span class="krow"><span class="ring sm ${scoreCls(ao)}" style="--p:${ao||0}"><b class="num">${ao??"—"}</b></span><span><b>${s.n}회차</b> · ${s.date} · ${esc(bandLabel(s.band))}<br><span class="small muted">『${esc(s.book.replace(/ \(.+\)$/,""))}』 · AI 종합</span></span></span><span class="stack" style="gap:4px;align-items:flex-end">${s.status==="done"?'<span class="pill ok">확인함</span>':'<span class="pill warn">확인 전</span>'}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':""}</span></button>`; }).join("")||'<p class="small muted">강사가 보낸 리포트가 없어요. 강의 연습 리포트에서 ‘코치에게 보내기’를 누르면 여기에 쌓여요.</p>';
+  $("K-list").innerHTML=L.map(s=>{ const ao=overall(Object.assign({},s,{coach:null})); return `<button class="${s.id===KSEL?"cur":""}" data-id="${s.id}"><span class="krow"><span class="ring sm ${scoreCls(ao)}" style="--p:${ao||0}"><b class="num">${ao??"—"}</b></span><span><b>${s.n}회차</b> · ${s.date} · ${esc(bandLabel(s.band))}<br><span class="small muted">『${esc(s.book.replace(/ \(.+\)$/,""))}』 · AI 종합</span></span></span><span class="stack" style="gap:4px;align-items:flex-end">${s.status==="done"?'<span class="pill ok">확인함</span>':'<span class="pill warn">확인 전</span>'}${s.example?'<span class="exm">예시</span>':s.sample?'<span class="exm">예시 결과</span>':""}</span></button>`; }).join("")||'<p class="small muted">강사가 보낸 리포트가 없어요. 모의 강의 리포트에서 ‘코치에게 보내기’를 누르면 여기에 쌓여요.</p>';
   $("K-list").querySelectorAll("button").forEach(b=>b.onclick=()=>{ KSEL=b.dataset.id; KDRAFT=null; renderCoach(); });
   renderCoachDetail(); renderGap(); kBadge();
 }
@@ -2304,6 +2363,30 @@ function fillCulture(list,want,allText){ const key=x=>norm(String(x||"").replace
 /* 예시 결과 = 새 모의 영상(ElevenLabs, 2:53)을 실제로 분석한 결과 (10/26, gpt-4.1-mini · whisper-1). 키 없이도 근거 장면이 영상과 맞게 재생됨 */
 const SAMPLE_RUN={"ev":{"scores":[{"item":"학년 눈높이","score":85,"observable":true,"reason":"낱말과 문장 길이가 1~2학년 수준으로 적절하며, 말 빠르기가 평균 78 어절/분으로 천천히 또박또박 전달되어 아이들이 이해하기에 좋았습니다. 특히 '베트남 말로 안녕하세요라는 뜻이에요' 등 친절한 설명이 좋았습니다.","evidence_t":0,"evidence_quote":"Xin chào는 베트남 말로 안녕하세요라는 뜻이에요."},{"item":"한국어 발음","score":90,"observable":true,"reason":"중요한 낱말인 '뗏쭝투', '대농사오', '등불 행진'을 또박또박 정확하게 발음했습니다. 아이들이 따라 하기 쉽도록 두세 번 반복하는 부분도 있어 발음 전달이 우수합니다.","evidence_t":1,"evidence_quote":"맞아요. 별 등불이에요. 베트남 말로는 대농사오라고 해요."},{"item":"책 활용·수업 흐름","score":83,"observable":true,"reason":"도입에서 간단한 인사와 주제 소개 후 책 제목과 장면을 보여주며 진행하였고, 장면마다 아이들에게 질문을 통해 참여를 유도하였습니다. 별 등불 체험활동도 책 내용과 잘 연결되어 수업 흐름이 좋았습니다.","evidence_t":0,"evidence_quote":"오늘은 이 그림책을 같이 읽어요."},{"item":"문화 요소 전달","score":80,"observable":true,"reason":"뗏쭝투, 별 등불, 등불 행진, 꾸오이 전설, 월병 중에서 월병에 대한 언급은 없었으나 나머지 문화 요소는 그림책과 이야기를 활용해 잘 소개되었습니다. 아이들이 이해할 수 있는 한 문장도 명확히 제시되었습니다.","evidence_t":2,"evidence_quote":"베트남에도 추석이 있고 아이들이 별 등불을 들고 동네를 돌아요."},{"item":"질문과 기다림","score":70,"observable":true,"reason":"전체 질문 수가 4회로 적당하며 생활과 그림 장면에 대한 질문이 포함되었습니다. 다만 질문 후 기다림이 평균 1.8초로 조금 짧아 아이들의 생각 시간을 더 줄이면 좋겠습니다.","evidence_t":84,"evidence_quote":"등불 행진은 왜 밤에 할까요?"},{"item":"시간 배분","score":75,"observable":true,"reason":"도입(약 0~40초), 전개(40~140초), 정리(140초 이후)로 시간 배분이 적절하나 도입 부분이 조금 길고 기다림 시간이 짧아 활발한 참여를 위한 시간 조절이 필요합니다.","evidence_t":40,"evidence_quote":"이 아이는 리니예요. 리니가 손에 무엇을 들고 있을까요?"}],"summary":"이번 수업은 어린이 학년에 적합한 어휘와 천천히 또박또박 발음이 잘 어우러져 아이들이 새로운 베트남 추석 문화를 쉽게 이해할 수 있도록 하였습니다. 책을 활용한 흐름도 안정적이며 문화 요소 전달도 대체로 충실했습니다. 다만 질문 뒤 아이들이 생각할 시간을 조금 더 확보하고 시간 배분에서 도입 부분을 조금 더 간결하게 하면 참여가 더욱 활발해질 것입니다.","moments":[{"t":14,"type":"fix","title":"질문 뒤 기다림이 조금 짧음","quote":"여러분, 지난달 추석에 무엇을 했어요?","feedback":"질문은 좋으나 질문 뒤 아이들이 생각할 시간(3초 이상)이 부족해 참여가 저조할 수 있습니다.","say":"지난달 추석에 무엇을 했는지 생각해 볼까요? 잠시 기다릴게요."},{"t":49,"type":"good","title":"중요 낱말 반복","quote":"이 아이는 리니예요. 리니가 손에 무엇을 들고 있을까요?","feedback":"아이들의 관심을 유도하고 발음도 명확하게 하여 학년 눈높이에 맞는 질문으로 좋았습니다.","say":""},{"t":67,"type":"good","title":"실물 활용으로 문화 체험 제공","quote":"선생님이 진짜 별 등불을 가져왔어요. 짜잔! 불을 켜면 하늘의 별처럼 반짝반짝 빛나요.","feedback":"별 등불을 직접 보여 주어 아이들이 문화 체험을 하며 수업에 흥미를 가질 수 있었습니다.","say":""},{"t":88,"type":"good","title":"문화 요소 정확한 설명","quote":"베트남 아이들은 추석 밤에 별 등불을 들고 친구들이랑 동네를 한 바퀴 돌아요.","feedback":"문화 요소(등불 행진)를 쉽게 이해할 수 있도록 명확히 설명하여 아이들에게 의미 전달이 잘 되었습니다.","say":""},{"t":127,"type":"fix","title":"생각을 묻는 질문 뒤 기다림 필요","quote":"등불 행진은 왜 밤에 할까요?","feedback":"좋은 질문이나 기다림 시간이 평균 1.8초로 짧아 아이들의 생각을 충분히 들을 기회가 적었습니다.","say":"왜 밤에 등불 행진을 할까요? 우리 생각을 나눠 볼까요. 3초만 생각해 봐요."}],"culture":[{"element":"뗏쭝투 (베트남 추석)","status":"전함","note":"뗏쭝투를 가을 한가운데 오는 명절로 설명하여 문화 배경이 잘 전해졌습니다.","t":29,"quote":"이름은 뗏쭝투예요. 가을 한가운데에 오는 명절이라는 뜻이에요."},{"element":"별 등불 (덴옹사오)","status":"전함","note":"별 등불의 이름과 빛나는 모습, 실물도 보여 주어 구체적인 이해를 도왔습니다.","t":60,"quote":"맞아요. 별 등불이에요. 베트남 말로는 대농사오라고 해요."},{"element":"등불 행진","status":"전함","note":"별 등불을 들고 동네를 도는 등불 행진의 의미와 시기를 쉽게 설명했습니다.","t":81,"quote":"베트남 아이들은 추석 밤에 별 등불을 들고 친구들이랑 동네를 한 바퀴 돌아요."},{"element":"꾸오이 전설","status":"전함","note":"달나라에 사는 꾸오이 아저씨 전설을 들려주어 문화적 상상력을 자극했습니다.","t":90,"quote":"근데 저기 어느날 그 나무가 하늘로 막 올라가서 음 그러니까 꼬이 아저씨가 나무뿌리를 꽉 잡았는데"},{"element":"월병","status":"부족","note":"월병에 관한 직접적인 언급이나 체험이 수업에 포함되지 않아 아쉬움이 있습니다.","t":0,"quote":""}],"flow":[{"ok":true,"text":"도입에서 베트남어 인사와 추석 경험 질문으로 주제에 흥미 유도"},{"ok":true,"text":"책 제목과 그림을 중심으로 장면별 질문을 통해 수업 전개"},{"ok":true,"text":"실물 별 등불 체험을 포함하여 문화 요소를 보다 생생하게 전달"},{"ok":true,"text":"마지막에 오늘의 정리 문장 반복으로 학습 내용 강화"},{"ok":false,"text":"질문 뒤 기다림 시간이 다소 짧아 아이들 참여 유도에 개선 여지 있음"}],"goals":[{"title":"질문 뒤 기다림 확대","detail":"질문 후 최소 3초 이상 기다려 아이들이 생각하고 대답할 시간을 충분히 주세요."},{"title":"월병 문화 요소 포함하기","detail":"수업에 월병에 대한 간단한 소개나 시식을 포함하여 문화 요소를 완전하게 전달하세요."},{"title":"도입 부분 간결화","detail":"도입 시간은 3~4분 이내로 줄이고, 주요 단어에 집중한 질문으로 빠르게 수업 흐름을 시작하세요."},{"title":"다양한 질문 시도","detail":"정답만 있는 질문이 아닌 아이들의 경험과 생각을 묻는 질문을 더 많이 활용해 참여도를 높이세요."}],"kid":{"status":"전함","t":150,"quote":"오늘 꼭 기억할 한 문장은요. 베트남에도 추석이 있고 아이들이 별 등불을 들고 동네를 돌아요.","note":"강사께서 의도하신 아이들이 가져갈 한 문장이 수업 말미에 명확히 전달되어 좋았습니다.","suggest":""}},"met":{"dur":174.52000427246094,"total":227,"wpm":78,"fillers":6,"questions":4,"wait":1.8399996757507324,"series":[64,62,70,106,98,66],"bw":30,"meanLp":-0.24203824996948242,"clarity":95,"low":[],"targetMin":20,"over":-1025},"segs":[{"start":0,"end":8.399999618530273,"text":" 안녕하세요, 여러분. Xin chào. Xin chào는 베트남 말로 안녕하세요라는 뜻이에요.","avg_logprob":-0.3190406858921051},{"start":8.399999618530273,"end":13.920000076293945,"text":" 선생님을 따라해 보세요. Xin chào.","avg_logprob":-0.3190406858921051},{"start":14.15999984741211,"end":18.639999389648438,"text":" 여러분, 지난달 추석에 무엇을 했어요?","avg_logprob":-0.3190406858921051},{"start":21.760000228881836,"end":29.079999923706055,"text":" 송편을 먹은 친구도 있고, 커다란 보름달을 본 친구도 있네요. 베트남에도 추석이 있어요.","avg_logprob":-0.3190406858921051},{"start":29.079999923706055,"end":35.2400016784668,"text":" 이름은 뗏쭝투예요. 가을 한가운데에 오는 명절이라는 뜻이에요.","avg_logprob":-0.2009231299161911},{"start":35.2400016784668,"end":41.79999923706055,"text":" 다 같이 뗏쭝투! 오늘은 이 그림책을 같이 읽어요.","avg_logprob":-0.2009231299161911},{"start":41.79999923706055,"end":49.31999969482422,"text":" 제목은 달님은 하나예요. 여기 보세요. 달님이 쟁반처럼 동그래요.","avg_logprob":-0.2009231299161911},{"start":49.31999969482422,"end":55.68000030517578,"text":" 이 아이는 리니예요. 리니가 손에 무엇을 들고 있을까요?","avg_logprob":-0.2009231299161911},{"start":59.91999816894531,"end":66.87999725341797,"text":" 맞아요. 별 등불이에요. 베트남 말로는 대농사오라고 해요.","avg_logprob":-0.1850961595773697},{"start":66.87999725341797,"end":76.63999938964844,"text":" 선생님이 진짜 별 등불을 가져왔어요. 짜잔! 불을 켜면 하늘의 별처럼 반짝반짝 빛나요.","avg_logprob":-0.1850961595773697},{"start":76.63999938964844,"end":80.19999694824219,"text":" 한 사람씩 살살 만져보세요.","avg_logprob":-0.1850961595773697},{"start":81,"end":88.08000183105469,"text":" 베트남 아이들은 추석 밤에 별 등불을 들고 친구들이랑 동네를 한 바퀴 돌아요.","avg_logprob":-0.1850961595773697},{"start":88.08000183105469,"end":93.68000030517578,"text":" 이것을 등불 행진이라고 해요. 등불 행진은 왜 밤에 할까요?","avg_logprob":-0.1976577341556549},{"start":93.68000030517578,"end":101.5199966430664,"text":" 달이 제일 밝은 밤이라서 그래요. 자 다음 장이요. 그리고요 할머니가 달나라 이야기를 해 주셨는데요.","avg_logprob":-0.1976577341556549},{"start":101.5199966430664,"end":110.63999938964844,"text":" 그러니까 옛날에 꼬이라는 아저씨가 있었는데 숲에서 신기한 나무를 찾았는데 그 잎을 먹으면 아픈 사람이 낳았대요.","avg_logprob":-0.1976577341556549},{"start":110.68000030517578,"end":117,"text":" 근데 저기 어느날 그 나무가 하늘로 막 올라가서 음 그러니까 꼬이 아저씨가 나무뿌리를 꽉 잡았는데","avg_logprob":-0.2523733079433441},{"start":117,"end":124.80000305175781,"text":" 그 그래서 나무랑 같이 다까지 올라가 버렸대요. 어 그래서 지금도 달에는 커다란 나무 아래에 꼬이 아저씨가 앉아 있대요.","avg_logprob":-0.2523733079433441},{"start":124.80000305175781,"end":129.55999755859375,"text":" 여러분 한국에서는 달에 누가 산다고 하지요?","avg_logprob":-0.2523733079433441},{"start":129.55999755859375,"end":140.39999389648438,"text":" 맞아요 토끼예요. 나라마다 달 이야기는 달라도 우리는 똑같은 달림을 봐요.","avg_logprob":-0.2620041072368622},{"start":140.39999389648438,"end":150.55999755859375,"text":" 자 이제 정리해 볼게요. 오늘은 때중투, 별 등불, 등불 행진, 그리고 꼬이 아저씨 이야기를 배웠어요.","avg_logprob":-0.2620041072368622},{"start":150.55999755859375,"end":159.74000549316406,"text":" 오늘 꼭 기억할 한 문장은요. 베트남에도 추석이 있고 아이들이 별 등불을 들고 동네를 돌아요.","avg_logprob":-0.29084616899490356},{"start":159.74000549316406,"end":163.1999969482422,"text":" 다 같이 천천히 말해봐요.","avg_logprob":-0.29084616899490356},{"start":166.52000427246094,"end":174.52000427246094,"text":" 참 잘했어요. 베트남 말로 고마워요 는 까먼이에요. 까먼 여러분","avg_logprob":-0.29084616899490356}]};
 (function(){ const _rs=restoreSample; restoreSample=function(){ _rs(); try{ applyRealReport(JSON.parse(JSON.stringify(SAMPLE_RUN.ev)),JSON.parse(JSON.stringify(SAMPLE_RUN.met)),SAMPLE_RUN.segs.map(x=>({...x}))); REP.real=false; $("L-rMode").className="demo"; $("L-rMode").textContent="예시 결과"; $("L-transMeta").textContent=`· 예시 결과 · ${SAMPLE_RUN.segs.length}구간 · ${fmt(Math.round(SAMPLE_RUN.met.dur))}`; }catch(e){ console.warn("예시 결과 표시 실패",e); } }; })();
+
+/* ══════════ 강의 준비 흐름: 수업 설계 요약 · 흐름 띠 ══════════ */
+function designRows(){ const book=$("L-book").value.replace(/ \(.+\)$/,""), a=$("L-age").value, M=MONTHS[+$("L-month").value]||MONTHS[5], cul=lectureCul(), kid=$("L-kidIn").value.trim();
+  return [["ph-book-open-text","책",book==="자유 주제"?"자유 주제 (책 없이)":`『${book}』`],["ph-users-three","대상",(STD[a]?.band||"").split(" · ")[0]],["ph-calendar-dots","월 주제",`${M.m} ${M.t}`],["ph-timer","목표 시간",$("L-len").value],["ph-globe-hemisphere-east","전할 문화 요소",cul.length?`${cul.length}개 · ${cul.join(", ")}`:"없음"],["ph-quotes","한 문장",kid?`“${kid}”`:"비워 둠 · 리포트에서 AI가 제안"]]; }
+function renderDesign(){ const html='<ul class="dsum">'+designRows().map(([ic,k,v])=>`<li><i class="ph ${ic}" aria-hidden="true"></i><span class="k">${k}</span><span class="v">${esc(v)}</span></li>`).join("")+'</ul>';
+  if($("S-sum")) $("S-sum").innerHTML=html; if($("L-dsum")) $("L-dsum").innerHTML=html; }
+function renderJourney(m){ const J=$("journey"); if(!J) return; const on=["B","S","L","K"].includes(m); J.hidden=!on; if(!on) return;
+  const book=$("L-book").value.replace(/ \(.+\)$/,""), a=$("L-age").value, M=MONTHS[+$("L-month").value]||MONTHS[5];
+  const mine=ST.sessions.filter(x=>!x.example), sent=ST.sessions.filter(x=>x.status==="sent").length, cdone=mine.filter(x=>x.status==="done").length;
+  const N=[{k:"B",n:1,t:"책 준비",s:book==="자유 주제"?"책 없이":`『${book}』`,d:book!=="자유 주제"},
+    {k:"S",n:2,t:"수업 설계",s:`${(STD[a]?.band||"").split(" · ")[0].replace(/ \(.+\)/,"")} · ${M.m}`,d:!!(ST.design&&ST.design.at)},
+    {k:"L",n:3,t:"모의 강의",s:mine.length?`연습 ${mine.length}회`:"예시 2회",d:mine.length>0},
+    {k:"K",n:4,t:"코치 피드백",s:sent?`확인 대기 ${sent}`:cdone?`확인 ${cdone}회`:"아직 없음",d:cdone>0},
+    {k:null,n:"",t:"교실 수업",s:"아이들에게",d:false}];
+  J.innerHTML='<span class="jt"><i class="ph ph-path" aria-hidden="true"></i>강의 준비 흐름</span><ol>'+N.map(x=>`<li class="${x.k===m?"cur":""} ${x.d?"done":""} ${x.k?"":"end"}">${x.k?`<button data-k="${x.k}">`:"<span>"}<span class="jn">${x.k?(x.d&&x.k!==m?'<i class="ph ph-check" aria-hidden="true"></i>':x.n):'<i class="ph ph-chalkboard" aria-hidden="true"></i>'}</span><span class="jx"><b>${x.t}</b><small>${esc(x.s)}</small></span>${x.k?"</button>":"</span>"}</li>`).join("")+'</ol>';
+  J.querySelectorAll("button[data-k]").forEach(b=>b.onclick=()=>goMode(b.dataset.k)); }
+["L-book","L-age","L-month","L-len"].forEach(id=>$(id).addEventListener("change",()=>{ renderDesign(); renderJourney(MODES.find(k=>!$("mode"+k).hidden)); }));
+$("L-kidIn").addEventListener("input",renderDesign);
+$("L-culChk").addEventListener("change",renderDesign);
+$("L-culAddBtn").addEventListener("click",()=>setTimeout(renderDesign,0));
+$("S-go").onclick=()=>{ ST.design={book:$("L-book").value,band:$("L-age").value,month:+$("L-month").value,at:today()}; saveStore(); goMode("L"); if(!$("L1").hidden){ setStep("L",2); renderLecturePrep(false); } renderDesign(); toast("수업 설계를 저장했어요. 모의 강의를 녹화해 보세요"); };
+$("S-book").onclick=()=>goMode("B");
+$("L-dsumEdit").onclick=()=>goMode("S");
+renderDesign();
 </script>
 </body>
 </html>
