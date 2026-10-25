@@ -170,6 +170,7 @@ svg.chart text{font-family:var(--body);font-size:9px;fill:var(--ink-2)}
 .sheet{aspect-ratio:1/1;max-width:100%;border-radius:6px;overflow:hidden;background:#1c2a4a;color:#ffe9a8;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;font-family:var(--display);text-align:center;padding:10%}
 .sheet .t{font-size:clamp(1.1rem,3vw,1.7rem);font-weight:700}
 .sheet .s{font-size:.8rem;opacity:.85}
+.cover{position:relative;aspect-ratio:1/1;overflow:hidden}.cover img{width:100%;height:100%;object-fit:cover;display:block}.cover .ct{position:absolute;left:0;right:0;top:7%;text-align:center;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:4px}.cover .ct b{font-size:clamp(1.1rem,3vw,1.8rem);font-weight:800}.cover .ct span{font-size:.85rem;opacity:.9}
 .cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center}
 .cmp .c{background:var(--bg);border:1px solid var(--line);border-radius:var(--r3);padding:12px}
 .cmp .c .v{font-family:var(--display);font-size:1.4rem;font-weight:800}
@@ -371,7 +372,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
 <div class="wrap">
 <header>
   <div class="hrow">
-    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v1.0</span></div>
+    <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.6</span></div>
     <button class="apibtn" id="apiOpen"><i class="ph ph-key" aria-hidden="true"></i><span class="st"></span><span id="apiLabel">API 설정</span></button>
   </div>
   <div class="modes" id="modes" role="tablist" aria-label="화면 선택">
@@ -393,7 +394,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
     </div>
     <div class="shots" aria-hidden="true">
       <img class="a" src="img/shot-lecture.webp" alt="" width="1200" height="720">
-      <img class="b" src="img/shot-book.webp" alt="" width="1200" height="765">
+      <img class="b" src="img/shot-spread.webp" alt="" width="1200" height="541">
     </div>
   </section>
 
@@ -434,7 +435,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
         <ul class="ticks"><li><i class="ph ph-file-text"></i>원고 파일 올리기 (txt, md, docx)</li><li><i class="ph ph-image"></i>장면마다 그리고 작가가 고치고 승인</li><li><i class="ph ph-tag"></i>월 주제와 학년군 태그, 강의 연습으로 연결</li></ul>
         <button class="ghost2" data-go="B">그림책 만들기</button>
       </div>
-      <figure class="fi"><img src="img/shot-book.webp" alt="그림책 제작 도우미의 장면 그림 편집 화면" width="1200" height="765" loading="lazy"></figure>
+      <figure class="fi"><img src="img/shot-book.webp" alt="그림책 제작 도우미의 장면 그림 편집 화면" width="1200" height="997" loading="lazy"></figure>
     </div>
   </section>
 
@@ -540,7 +541,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       </div>
       <div class="rec" id="L-recRow"><button id="L-rec"><i class="ph ph-microphone" aria-hidden="true"></i> 브라우저로 바로 녹음하기</button><span class="muted small" id="L-recInfo">마이크로 짧게(1~5분) 연습해 보세요</span></div>
       <div class="row"><button id="L-sample">모의 녹음으로 체험</button><span class="muted small" id="L-sampleHint">『달님은 하나예요』 초등 저학년 모의 강의 (예시 결과)</span></div>
-      <p class="small muted"><a href="samples/mock-lecture-dalnim.m4a" download>모의 강의 녹음 받기</a> (합성 음성, 1분 57초)</p>
+      <p class="small muted">체험용 <a href="samples/mock-lecture-dalnim.mp4" download>모의 강의 영상</a> · <a href="samples/mock-lecture-dalnim.m4a" download>음성만</a> (합성 음성, 약 2분)</p>
       <div class="grid2">
         <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
         <label class="field">수업 대상 (학년군)<select id="L-age"><option value="유">유치원 (5~7세 · 누리과정 참고)</option><option value="저" selected>초등 저학년 (1~2학년)</option><option value="중">초등 중학년 (3~4학년)</option><option value="고">초등 고학년 (5~6학년)</option><option value="성">성인 (도서관 강연)</option></select></label>
@@ -556,7 +557,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
       <div class="stack" id="L-self" style="gap:8px"></div>
       <p class="small muted">억양이 아니라 아이들에게 잘 전해졌는지를 봅니다.</p>
       <div id="L-ready" hidden>
-        <div class="tbox"><p class="eyebrow">올린 파일</p><p id="L-fname">샘플 녹화 · 20분 12초 · 1.2GB</p><audio id="L-audio" controls preload="metadata" style="width:100%;margin-top:8px" hidden></audio></div>
+        <div class="tbox"><p class="eyebrow">올린 파일</p><p id="L-fname">샘플 녹화 · 20분 12초 · 1.2GB</p><audio id="L-audio" controls preload="metadata" style="width:100%;margin-top:8px" hidden></audio><video id="L-video" controls playsinline preload="metadata" style="width:100%;margin-top:8px;border-radius:12px;background:#000" hidden></video></div>
       </div>
       <div class="row between" style="margin-top:auto">
         <button class="ghost" id="L-back1">← 연습실</button>
@@ -873,7 +874,7 @@ section:not([hidden]),.home{animation:rise .32s var(--ease) both}
   </div>
 </div>
 
-<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.5 (10/25) 실제 실행: 받아쓰기·교육과정 기준 평가·원고 나누기·태그 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
+<footer><span>GIST 서울의밤 × 아시안허브 · 2026 PBL · <a href="v0.3/">이전 버전 v0.3 보기</a></span><span>v0.6 (10/25) 실제 실행·팀 서버·실제 그림책 그림 · 대표님 피드백(10/16): 강의 연습 → 그림책 제작 → 수업 기획(다른 학교 팀과 겹쳐 후순위)</span></footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -1018,9 +1019,9 @@ $("L-consent").onchange=goGate;
 $("L-book").onchange=()=>{ renderMonthSelect(false); renderCur(); };
 $("L-age").onchange=renderCur; $("L-month").onchange=renderCur;
 $("L-sample").onclick=async()=>{
-  if(!apiOn()){ lRealFile=null; $("L-audio").hidden=true; fileReady(); return; }
-  try{ const r=await fetch("samples/mock-lecture-dalnim.m4a"); if(!r.ok) throw new Error("HTTP "+r.status); const b=await r.blob();
-    setRealFile(new File([b],"모의강의-달님은하나예요.m4a",{type:"audio/mp4"})); }catch(e){ toast("모의 녹음을 불러오지 못했어요: "+e.message); } };
+  if(!apiOn()){ lRealFile=null; $("L-audio").hidden=true; $("L-video").hidden=false; $("L-video").src="samples/mock-lecture-dalnim.mp4"; fileReady(); return; }
+  try{ const r=await fetch("samples/mock-lecture-dalnim.mp4"); if(!r.ok) throw new Error("HTTP "+r.status); const b=await r.blob();
+    setRealFile(new File([b],"모의강의-달님은하나예요.mp4",{type:"video/mp4"})); }catch(e){ toast("모의 녹음을 불러오지 못했어요: "+e.message); } };
 const ld=$("L-drop"), lf=$("L-file"); ld.onclick=()=>lf.click(); ld.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); lf.click(); } };
 lf.onchange=()=>{ if(lf.files[0]) setRealFile(lf.files[0]); };
 ["dragenter","dragover"].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.add("over");}));
@@ -1065,6 +1066,9 @@ const STYLES=[
 let style=0, charPick=0, pageI=0, version=PAGES.map(()=>1), bApproved=PAGES.map(()=>false), fixes=PAGES.map(()=>[]);
 let gen=PAGES.map(()=>null); let charRef=null, busyAll=false;
 const SAMPLE_PAGES=PAGES.slice();
+const SAMPLE_IMGS=[1,2,3,4,5,6].map(n=>`img/book/dalnim-${n}.jpg`), COVER_IMG="img/book/dalnim-cover.jpg";
+const isSampleImg=s=>typeof s==="string"&&s.startsWith("img/");
+gen=SAMPLE_IMGS.slice();
 let BOOK={title:"달님은 하나예요",titleNative:"Trăng chỉ có một",lang:"베트남어",setting:"Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night",character:"Vietnamese girl named Linh",real:false};
 function resetBookArrays(){ version=PAGES.map(()=>1); bApproved=PAGES.map(()=>false); fixes=PAGES.map(()=>[]); gen=PAGES.map(()=>null); pageI=0; spreadI=0; TAG=null; }
 function charDesc(){ return $("B-char").value.trim()||"a 7-year-old Vietnamese girl"; }
@@ -1092,7 +1096,7 @@ function art(s,i,sq){
   const tint=STYLES[style].c[0];
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g${i}${sq?1:0}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#g${i}${sq?1:0})"/><rect width="${W}" height="${H}" fill="${tint}" opacity=".12"/>${stars}${m}</svg>`;
 }
-$("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; $("B-title").value="달님은 하나예요"; $("B-lang").value="베트남어"; PAGES=SAMPLE_PAGES.slice(); BOOK={title:"달님은 하나예요",titleNative:"Trăng chỉ có một",lang:"베트남어",setting:"Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night",character:"Vietnamese girl named Linh",real:false}; resetBookArrays(); splitPages(); };
+$("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; $("B-title").value="달님은 하나예요"; $("B-lang").value="베트남어"; PAGES=SAMPLE_PAGES.slice(); BOOK={title:"달님은 하나예요",titleNative:"Trăng chỉ có một",lang:"베트남어",setting:"Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night",character:"Vietnamese girl named Linh",real:false}; resetBookArrays(); gen=SAMPLE_IMGS.slice(); splitPages(); };
 $("B-text").addEventListener("change",()=>{ if($("B-text").value.trim()&&!apiOn()) splitPages(); });
 function splitPages(){ $("B-pages").innerHTML=PAGES.map((p,i)=>`<div class="pg"><b class="num">${i*2+1}–${i*2+2}쪽 · ${esc(p.intent)}</b>${esc(p.ko)}<br><span class="vi">${esc(p.vi||"")}</span></div>`).join(""); $("B-split").hidden=false; $("B-splitPill").textContent=BOOK.real?`${PAGES.length} 펼침면 (AI가 나눔)`:`${PAGES.length} 펼침면 (예시 축약)`; toast(BOOK.real?`원고를 ${PAGES.length}개 펼침면으로 나눴어요`:"원고를 6개 펼침면으로 나눴어요 (예시)"); }
 $("B-go2").onclick=()=>{ setStep("B",2,5); renderStyles(); renderChars(); charHint(); };
@@ -1104,12 +1108,13 @@ $("B-charGen").onclick=()=>{ toast("설명을 반영해 시안 3개를 다시 �
 $("B-back1").onclick=()=>setStep("B",1,5);
 $("B-go3").onclick=()=>{ setStep("B",3,5); renderPage(); };
 function renderPlist(){ $("B-plist").innerHTML=PAGES.map((p,i)=>`<button class="${i===pageI?"cur":""} ${bApproved[i]?"ok":""}" data-i="${i}"><span class="dot"></span><span><b class="num">${i*2+1}–${i*2+2}쪽</b><br><span class="muted small">${p.intent}</span></span></button>`).join(""); $("B-plist").querySelectorAll("button").forEach(b=>b.onclick=()=>{ pageI=+b.dataset.i; renderPage(); }); const n=bApproved.filter(Boolean).length; $("B-okN").textContent=n; $("B-totN").textContent=PAGES.length; $("B-go4").disabled=n<PAGES.length; }
-function renderPage(){ const p=PAGES[pageI]; $("B-illu").className="illu"; const pic=gen[pageI]?`<img src="${gen[pageI]}" alt="장면 ${pageI+1} AI 그림">`:art(p,pageI,false); $("B-illu").innerHTML=pic+`<span class="v num">v${version[pageI]} · ${gen[pageI]?cfg.model:STYLES[style].n+" (예시)"}</span>`; $("B-ptext").textContent=p.ko; $("B-fix").value=""; $("B-hist").innerHTML=fixes[pageI].length?"수정 이력: "+fixes[pageI].map(f=>`“${f}”`).join(" → "):"<span>아직 수정 요청이 없어요</span>"; $("B-approve").textContent=bApproved[pageI]?"승인 취소":"이 그림 승인"; $("B-gen").disabled=!apiOn()||busyAll; $("B-genAll").disabled=!apiOn()||busyAll; $("B-genHint").textContent=apiOn()?`${cfg.model} · ${cfg.quality}${charRef?" · 기준 그림 참고":""}`:"API 키가 없으면 예시 그림으로 동작"; renderPlist(); }
+function renderPage(){ const p=PAGES[pageI]; $("B-illu").className="illu"; const pic=gen[pageI]?`<img src="${gen[pageI]}" alt="장면 ${pageI+1} AI 그림">`:art(p,pageI,false); $("B-illu").innerHTML=pic+`<span class="v num">v${version[pageI]} · ${gen[pageI]?(isSampleImg(gen[pageI])?"예시 그림":(serverMode()?"팀 서버":cfg.model)):STYLES[style].n+" (예시)"}</span>`; $("B-ptext").textContent=p.ko; $("B-fix").value=""; $("B-hist").innerHTML=fixes[pageI].length?"수정 이력: "+fixes[pageI].map(f=>`“${f}”`).join(" → "):"<span>아직 수정 요청이 없어요</span>"; $("B-approve").textContent=bApproved[pageI]?"승인 취소":"이 그림 승인"; $("B-gen").disabled=!apiOn()||busyAll; $("B-genAll").disabled=!apiOn()||busyAll; $("B-genHint").textContent=apiOn()?`${cfg.model} · ${cfg.quality}${charRef?" · 기준 그림 참고":""}`:"API 키가 없으면 예시 그림으로 동작"; renderPlist(); }
 async function drawPage(i){ $("B-illu").classList.add("busy"); try{ gen[i]=await genImage(scenePrompt(i),charRef); version[i]++; bApproved[i]=false; return true; }catch(e){ toast("생성 실패: "+e.message); return false; } finally{ $("B-illu").classList.remove("busy"); } }
 $("B-gen").onclick=async()=>{ if(!apiOn()) return; const i=pageI; $("B-gen").disabled=true; const ok=await drawPage(i); if(i===pageI) renderPage(); if(ok) toast(`장면 ${i+1} 그림을 만들었어요`); };
 $("B-genAll").onclick=async()=>{ if(!apiOn()||busyAll) return; const todo=PAGES.map((_,i)=>i).filter(i=>!gen[i]); if(!todo.length){ toast("모든 장면에 이미 그림이 있어요"); return; } busyAll=true; renderPage(); let n=0; for(const i of todo){ pageI=i; renderPage(); toast(`장면 ${i+1} 그리는 중… (${n+1}/${todo.length})`); if(await drawPage(i)) n++; } busyAll=false; renderPage(); toast(`${n}장 완성`); };
 $("B-redraw").onclick=async()=>{ const f=$("B-fix").value.trim(); if(!f){ toast("어떻게 바꿀지 한 줄 써 주세요"); return; } fixes[pageI].push(f); bApproved[pageI]=false;
   if(apiOn()){ const i=pageI; $("B-hist").textContent="수정 요청 반영해서 다시 그리는 중…"; const ok=await drawPage(i); if(i===pageI) renderPage(); if(ok) toast("요청을 반영해 다시 그렸어요"); return; }
+  if(isSampleImg(gen[pageI])){ renderPage(); toast("수정 요청을 남겼어요. 실제 분석을 켜면 이 요청대로 다시 그려요"); return; }
   version[pageI]++; $("B-illu").classList.add("busy"); setTimeout(()=>{ renderPage(); toast("예시 그림으로 반영했어요 (‘크게’, ‘왼쪽’, ‘하얗게’만 반응). 실제 생성은 API 설정 후"); },1400); };
 $("B-fix").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("B-redraw").click(); } };
 $("B-prev").onclick=()=>{ pageI=(pageI+PAGES.length-1)%PAGES.length; renderPage(); };
@@ -1119,7 +1124,7 @@ $("B-go4").onclick=()=>{ setStep("B",4,5); spreadI=0; renderSpread(); };
 let spreadI=0;
 function renderSpread(){
   const big=$("B-big").checked, vi=$("B-vi").checked;
-  if(spreadI===0){ $("B-spread").innerHTML=`<div class="spread"><div class="l"><div class="sheet"><div class="t">${esc(BOOK.title)}</div><div class="s">${esc(BOOK.titleNative||"")}</div><div class="s" style="margin-top:14px">글·그림 ${BOOK.real?"작가 이름":"응우옌 ○○ (예시)"}<br>아시안허브 엄마나라 동화</div></div></div><div class="r"><p class="ko" style="font-size:.95rem">${BOOK.real?esc(PAGES[0].ko):"이 책은 베트남에서 온 엄마가 한국의 아이들에게 들려주는 추석 이야기입니다."}</p><p class="vi">${BOOK.real?esc(PAGES[0].vi||""):"Cuốn sách này là câu chuyện Trung Thu mà một người mẹ Việt Nam kể cho các em nhỏ ở Hàn Quốc."}</p><span class="pn">1</span></div></div>`; $("B-pgno").textContent="표지 · 속표지"; return; }
+  if(spreadI===0){ $("B-spread").innerHTML=`<div class="spread"><div class="l">${!BOOK.real?`<div class="cover"><img src="${COVER_IMG}" alt="표지 그림"><div class="ct"><b>${esc(BOOK.title)}</b><span>${esc(BOOK.titleNative||"")}</span></div></div>`:`<div class="sheet"><div class="t">${esc(BOOK.title)}</div><div class="s">${esc(BOOK.titleNative||"")}</div><div class="s" style="margin-top:14px">글·그림 ${BOOK.real?"작가 이름":"응우옌 ○○ (예시)"}<br>아시안허브 엄마나라 동화</div></div>`}</div><div class="r"><p class="ko" style="font-size:.95rem">${BOOK.real?esc(PAGES[0].ko):"이 책은 베트남에서 온 엄마가 한국의 아이들에게 들려주는 추석 이야기입니다."}</p><p class="vi">${BOOK.real?esc(PAGES[0].vi||""):"Cuốn sách này là câu chuyện Trung Thu mà một người mẹ Việt Nam kể cho các em nhỏ ở Hàn Quốc."}</p><span class="pn">1</span></div></div>`; $("B-pgno").textContent="표지 · 속표지"; return; }
   const i=spreadI-1, p=PAGES[i];
   $("B-spread").innerHTML=`<div class="spread"><div class="l">${gen[i]?`<img src="${gen[i]}" alt="장면 ${i+1}">`:art(p,i,true)}</div><div class="r"><p class="ko" ${big?'style="font-size:1.35rem"':''}>${p.ko}</p>${vi?`<p class="vi">${p.vi}</p>`:""}<span class="pn num">${i*2+2}</span></div></div>`;
   $("B-pgno").textContent=`${i*2+1}–${i*2+2}쪽 / ${PAGES.length*2+2}쪽`;
@@ -1158,8 +1163,8 @@ async function transcribe(blob,filename,prompt){
 }
 function onApiChange(){
   const on=apiOn();
-  $("L-sample").textContent=on?"모의 녹음으로 실제 분석":"모의 녹음으로 체험 (예시 결과)";
-  $("L-sampleHint").textContent=on?`samples/mock-lecture-dalnim.m4a · ${cfg.stt} 받아쓰기 + ${cfg.llm} 평가`:"API 키를 넣으면 이 녹음으로 실제 분석을 해요";
+  $("L-sample").textContent=on?"모의 강의 영상으로 실제 분석":"모의 강의 영상으로 체험";
+  $("L-sampleHint").textContent=on?"2분 모의 강의 · 실제 받아쓰기와 평가":"2분 모의 강의 · 지금은 예시 결과";
   $("B-splitAI").disabled=!on; $("B-tagAI").disabled=!on;
   $("B-splitHint").textContent=on?`${cfg.llm} · 원고 문장은 바꾸지 않고 나눠요`:"『달님은 하나예요』 한국어·베트남어 (예시) · API 키를 넣으면 내 원고를 AI가 나눠요";
   $("B-tagHint").textContent=on?`${cfg.llm} · 근거 문장은 원고에서만 인용`:"API 키를 넣으면 내 원고로 태그를 찾아요";
@@ -1168,7 +1173,7 @@ function onApiChange(){
 /* ── 강의 연습: 파일·녹음 ── */
 let lRealFile=null, mediaRec=null, recChunks=[], recT0=0, recTimer=null;
 const MB=b=>(b/1048576).toFixed(1)+"MB";
-function setRealFile(f){ lRealFile=f; const au=$("L-audio"); try{ if(au.dataset.url) URL.revokeObjectURL(au.dataset.url); au.dataset.url=URL.createObjectURL(f); au.src=au.dataset.url; au.hidden=false; }catch(e){} fileReady(`${f.name} · ${MB(f.size)} · ${apiOn()?"실제 분석":"API 키가 없어 예시 결과로 표시"}`); }
+function setRealFile(f){ lRealFile=f; const isV=/^video\//.test(f.type)||/\.(mp4|mov|webm)$/i.test(f.name)&&!/^audio\//.test(f.type); const au=isV?$("L-video"):$("L-audio"); ($("L-video")).hidden=true; ($("L-audio")).hidden=true; try{ if(au.dataset.url) URL.revokeObjectURL(au.dataset.url); au.dataset.url=URL.createObjectURL(f); au.src=au.dataset.url; au.hidden=false; }catch(e){} fileReady(`${f.name} · ${MB(f.size)} · ${apiOn()?"실제 분석":"API 키가 없어 예시 결과로 표시"}`); }
 $("L-rec").onclick=async()=>{
   if(mediaRec&&mediaRec.state==="recording"){ mediaRec.stop(); return; }
   if(!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==="undefined"){ toast("이 브라우저는 녹음을 지원하지 않아요. 파일을 올려 주세요"); return; }
