@@ -10,9 +10,10 @@ module.exports = async (req, res) => {
     const { system, user, name, schema } = b;
     if (!NAMES.has(name)) return res.status(400).json({ error: { message: 'unknown task' } });
     if (JSON.stringify(b).length > 120000) return res.status(413).json({ error: { message: '입력이 너무 길어요' } });
+    const model = process.env.LLM_MODEL || 'gpt-6-luna';
     const r = await fetch(OA + '/chat/completions', { method: 'POST', headers: { ...auth(), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: process.env.LLM_MODEL || 'gpt-4.1-mini', messages: [{ role: 'system', content: String(system || '') }, { role: 'user', content: String(user || '') }],
-        response_format: { type: 'json_schema', json_schema: { name, strict: true, schema } } }) });
+      body: JSON.stringify({ model, messages: [{ role: 'system', content: String(system || '') }, { role: 'user', content: String(user || '') }],
+        response_format: { type: 'json_schema', json_schema: { name, strict: true, schema } }, ...(/^(gpt-[5-9]|o[1-9])/.test(model) ? { reasoning_effort: 'low' } : {}) }) });
     const j = await r.json();
     if (!r.ok) return res.status(r.status).json({ error: { message: j.error?.message || 'OpenAI 오류' } });
     const msg = j.choices?.[0]?.message;

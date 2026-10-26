@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (!guard(req, res, 3)) return;
   try {
     const b = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
-    const model = process.env.IMAGE_MODEL || 'gpt-image-1-mini', quality = ['low', 'medium', 'high'].includes(b.quality) ? b.quality : 'low';
+    const model = process.env.IMAGE_MODEL || 'gpt-image-2.5-flare', quality = ['low', 'medium', 'high'].includes(b.quality) ? b.quality : 'low';
     const prompt = String(b.prompt || '').slice(0, 3000); let r;
     if (b.ref && /^data:image\//.test(b.ref)) {
       const [h, d] = b.ref.split(','); const mime = h.match(/data:(.*?);/)[1];

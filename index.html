@@ -836,8 +836,8 @@ table.ct thead th{position:sticky;top:0}
     <label class="field">API 키<input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label></div>
     <div class="grid2">
       <label class="field">글 모델 (평가·페이지 나누기·태그)
-        <input type="text" id="apiLlm" list="llmList" placeholder="gpt-4.1-mini">
-        <datalist id="llmList"><option value="gpt-4.1-mini"></option><option value="gpt-4o-mini"></option><option value="gpt-4.1"></option><option value="gpt-5-mini"></option></datalist>
+        <input type="text" id="apiLlm" list="llmList" placeholder="gpt-6-luna">
+        <datalist id="llmList"><option value="gpt-6-luna"></option><option value="gpt-6-sol"></option><option value="gpt-4.1-mini"></option></datalist>
       </label>
       <label class="field">받아쓰기 모델
         <select id="apiStt"><option value="whisper-1">whisper-1 (시간 표시 포함, 기본)</option></select>
@@ -846,16 +846,16 @@ table.ct thead th{position:sticky;top:0}
     <div class="grid2">
       <label class="field">이미지 모델
         <select id="apiModel">
-          <option value="gpt-image-1-mini">gpt-image-1-mini (저렴, 기본)</option>
-          <option value="gpt-image-1">gpt-image-1 (품질 높음)</option>
-          <option value="dall-e-3">dall-e-3 (참고 그림 사용 불가)</option>
+          <option value="gpt-image-2.5-flare">gpt-image-2.5-flare (최신·빠름, 기본)</option>
+          <option value="gpt-image-2.5-sunburst">gpt-image-2.5-sunburst (최신·디테일 유지)</option>
+          <option value="gpt-image-1-mini">gpt-image-1-mini (가장 저렴)</option>
         </select>
       </label>
       <label class="field">품질 (gpt-image 계열)
         <select id="apiQuality"><option value="low">low (빠름·저렴)</option><option value="medium">medium</option><option value="high">high</option></select>
       </label>
     </div>
-    <p class="small muted apinote"><i class="ph ph-lock-simple" aria-hidden="true"></i><span>키는 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 요청은 브라우저에서 api.openai.com으로 직접 갑니다. 공용 컴퓨터에서는 쓰고 나서 ‘키 지우기’를 눌러 주세요. 대략적인 비용: 장면 그림 한 장 수 원~수십 원(gpt-image-1-mini low), 강의 받아쓰기 1분에 약 8원(whisper-1), 평가 한 번 수십 원 이하.</span></p>
+    <p class="small muted apinote"><i class="ph ph-lock-simple" aria-hidden="true"></i><span>키는 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 요청은 브라우저에서 api.openai.com으로 직접 갑니다. 공용 컴퓨터에서는 쓰고 나서 ‘키 지우기’를 눌러 주세요. 대략적인 비용: 장면 그림 한 장 약 10원(gpt-image-2.5 low), 강의 받아쓰기 1분에 약 8원(whisper-1), 평가 한 번 몇 원(gpt-6-luna).</span></p>
     <p class="small" id="apiStatus"></p>
     <div class="row between">
       <button class="ghost sm" id="apiClear">키 지우기</button>
@@ -1478,8 +1478,11 @@ function runJobs(container, onDone){
     requestAnimationFrame(tick); });
 }
 /* ══════════ OpenAI 이미지 API ══════════ */
-const cfg={key:"",model:"gpt-image-1-mini",quality:"low",llm:"gpt-4.1-mini",stt:"whisper-1"};
+const cfg={key:"",model:"gpt-image-2.5-flare",quality:"low",llm:"gpt-6-luna",stt:"whisper-1"};
 try{ const s=JSON.parse(localStorage.getItem("sb-api")||"{}"); Object.assign(cfg,s); }catch(e){}
+/* 10/26 모델 교체: 예전 기본값으로 저장된 설정은 새 기본값으로 올림 (직접 고른 값은 유지) */
+if(!cfg.llm||cfg.llm==="gpt-4.1-mini"&&!cfg.modelPicked) cfg.llm="gpt-6-luna";
+if(!["gpt-image-2.5-flare","gpt-image-2.5-sunburst","gpt-image-1-mini"].includes(cfg.model)||cfg.model==="gpt-image-1-mini"&&!cfg.modelPicked) cfg.model="gpt-image-2.5-flare";
 const SERVER={base:(/\.vercel\.app$/.test(location.hostname)||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))&&location.port!=="8765"?"":"https://story-bridge-rust.vercel.app",ready:false,code:false,checked:false};
 try{ SERVER.codeVal=localStorage.getItem("sb-code")||""; }catch(e){ SERVER.codeVal=""; }
 function serverMode(){ return !cfg.key&&SERVER.ready; }
@@ -1488,14 +1491,14 @@ async function checkServer(){ try{ const r=await fetch(SERVER.base+"/api/health"
 function sHeaders(extra){ return Object.assign({"X-Demo-Code":SERVER.codeVal||""},extra||{}); }
 async function sJSON(path,body){ const r=await fetch(SERVER.base+path,{method:"POST",headers:sHeaders({"Content-Type":"application/json"}),body:JSON.stringify(body)}); const j=await r.json().catch(()=>({})); if(r.status===401){ askCode(); } if(!r.ok) throw new Error(j.error?.message||("HTTP "+r.status)); return j; }
 function askCode(){ SERVER.codeVal=""; try{ localStorage.removeItem("sb-code"); }catch(e){} SERVER.ready=false; apiUI(); toast("입장 코드가 맞지 않아요. API 설정에서 다시 넣어 주세요"); }
-function apiUI(){ if($("topNoteText")) $("topNoteText").innerHTML=apiOn()?"프로토타입입니다. <b>실제 분석이 켜져 있어요.</b> 파일을 올리면 받아쓰기와 평가, 그림 생성이 실제로 돌아가요.":(SERVER.up&&SERVER.code)?"프로토타입입니다. <b>API 설정</b>에 입장 코드를 넣으면 실제 분석이 켜져요.":"프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요."; $("apiOpen").classList.toggle("on",apiOn()); $("apiLabel").textContent=cfg.key?`내 키 사용 · ${cfg.model}`:SERVER.ready?"실제 분석 켜짐":"API 설정"; if($("apiCode")) $("apiCode").value=SERVER.codeVal||""; $("apiKey").value=cfg.key; $("apiModel").value=cfg.model; $("apiQuality").value=cfg.quality; $("apiLlm").value=cfg.llm||"gpt-4.1-mini"; $("apiStt").value=cfg.stt||"whisper-1"; if(typeof onApiChange==="function") onApiChange(); }
+function apiUI(){ if($("topNoteText")) $("topNoteText").innerHTML=apiOn()?"프로토타입입니다. <b>실제 분석이 켜져 있어요.</b> 파일을 올리면 받아쓰기와 평가, 그림 생성이 실제로 돌아가요.":(SERVER.up&&SERVER.code)?"프로토타입입니다. <b>API 설정</b>에 입장 코드를 넣으면 실제 분석이 켜져요.":"프로토타입입니다. 지금은 예시 데이터로 보여 드려요. <b>API 설정</b>에서 실제 분석을 켤 수 있어요."; $("apiOpen").classList.toggle("on",apiOn()); $("apiLabel").textContent=cfg.key?`내 키 사용 · ${cfg.model}`:SERVER.ready?"실제 분석 켜짐":"API 설정"; if($("apiCode")) $("apiCode").value=SERVER.codeVal||""; $("apiKey").value=cfg.key; $("apiModel").value=cfg.model; $("apiQuality").value=cfg.quality; $("apiLlm").value=cfg.llm||"gpt-6-luna"; $("apiStt").value=cfg.stt||"whisper-1"; if(typeof onApiChange==="function") onApiChange(); }
 $("apiOpen").onclick=()=>{ $("apiModal").hidden=false; $("apiStatus").textContent=""; apiUI(); $("apiServer").innerHTML=SERVER.ready?'<span class="pill ok">팀 서버 연결됨</span> 키 없이 실제 분석이 돌아가요.':(SERVER.up&&SERVER.code)?'<span class="pill warn">입장 코드 필요</span> 팀에서 안내한 코드를 넣으면 실제 분석이 켜져요.':'<span class="pill warn">팀 서버 준비 중</span> 지금은 내 키를 넣거나 예시 데이터로 볼 수 있어요.'; };
 $("apiClose").onclick=()=>{ $("apiModal").hidden=true; };
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") $("apiModal").hidden=true; });
 $("apiModal").addEventListener("click",e=>{ if(e.target===$("apiModal")) $("apiModal").hidden=true; });
-$("apiSave").onclick=()=>{ cfg.key=$("apiKey").value.trim(); cfg.model=$("apiModel").value; cfg.quality=$("apiQuality").value; cfg.llm=$("apiLlm").value.trim()||"gpt-4.1-mini"; cfg.stt=$("apiStt").value; SERVER.codeVal=$("apiCode").value.trim(); try{ localStorage.setItem("sb-code",SERVER.codeVal); }catch(e){} checkServer(); try{ localStorage.setItem("sb-api",JSON.stringify(cfg)); }catch(e){} apiUI(); $("apiModal").hidden=true; toast(apiOn()?"API 키를 저장했어요. 이제 받아쓰기·평가·그림을 실제로 만듭니다":"키가 비어 있어요. 예시 데이터로 동작합니다"); if(!$("B3").hidden) renderPage(); if(!$("B2").hidden) charHint(); };
+$("apiSave").onclick=()=>{ cfg.key=$("apiKey").value.trim(); cfg.model=$("apiModel").value; cfg.quality=$("apiQuality").value; cfg.llm=$("apiLlm").value.trim()||"gpt-6-luna"; cfg.modelPicked=true; cfg.stt=$("apiStt").value; SERVER.codeVal=$("apiCode").value.trim(); try{ localStorage.setItem("sb-code",SERVER.codeVal); }catch(e){} checkServer(); try{ localStorage.setItem("sb-api",JSON.stringify(cfg)); }catch(e){} apiUI(); $("apiModal").hidden=true; toast(apiOn()?"API 키를 저장했어요. 이제 받아쓰기·평가·그림을 실제로 만듭니다":"키가 비어 있어요. 예시 데이터로 동작합니다"); if(!$("B3").hidden) renderPage(); if(!$("B2").hidden) charHint(); };
 $("apiClear").onclick=()=>{ cfg.key=""; try{ localStorage.removeItem("sb-api"); }catch(e){} apiUI(); $("apiStatus").textContent="키를 지웠어요."; };
-$("apiTest").onclick=async()=>{ const k=$("apiKey").value.trim(); if(!k){ $("apiStatus").textContent="키를 먼저 넣어 주세요."; return; } $("apiStatus").textContent="확인 중…"; try{ const ms=[$("apiLlm").value.trim()||"gpt-4.1-mini",$("apiStt").value,$("apiModel").value]; const out=[]; for(const m of ms){ const r=await fetch("https://api.openai.com/v1/models/"+m,{headers:{Authorization:"Bearer "+k}}); const j=await r.json(); out.push(r.ok?`${m} ✓`:`${m} ✗ (${j.error?.message||r.status})`); } $("apiStatus").textContent="연결 확인: "+out.join(" · "); }catch(e){ $("apiStatus").textContent="요청 실패: "+e.message; } };
+$("apiTest").onclick=async()=>{ const k=$("apiKey").value.trim(); if(!k){ $("apiStatus").textContent="키를 먼저 넣어 주세요."; return; } $("apiStatus").textContent="확인 중…"; try{ const ms=[$("apiLlm").value.trim()||"gpt-6-luna",$("apiStt").value,$("apiModel").value]; const out=[]; for(const m of ms){ const r=await fetch("https://api.openai.com/v1/models/"+m,{headers:{Authorization:"Bearer "+k}}); const j=await r.json(); out.push(r.ok?`${m} ✓`:`${m} ✗ (${j.error?.message||r.status})`); } $("apiStatus").textContent="연결 확인: "+out.join(" · "); }catch(e){ $("apiStatus").textContent="요청 실패: "+e.message; } };
 function dataUrlToBlob(d){ const [h,b]=d.split(","); const mime=h.match(/data:(.*?);/)[1]; const bin=atob(b); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new Blob([u],{type:mime}); }
 async function genImage(prompt, refDataUrl){
   if(!apiOn()) throw new Error("API 키가 없어요");
@@ -1763,7 +1766,9 @@ async function oaJSON(path, body){
 }
 async function llmJSON(system,user,name,schema){
   if(serverMode()){ const s=await sJSON("/api/chat",{system,user,name,schema}); return s.content; }
-  const j=await oaJSON("/chat/completions",{model:cfg.llm||"gpt-4.1-mini",messages:[{role:"system",content:system},{role:"user",content:user}],response_format:{type:"json_schema",json_schema:{name,strict:true,schema}}});
+  const model=cfg.llm||"gpt-6-luna", body={model,messages:[{role:"system",content:system},{role:"user",content:user}],response_format:{type:"json_schema",json_schema:{name,strict:true,schema}}};
+  if(/^(gpt-[5-9]|o[1-9])/.test(model)) body.reasoning_effort="low"; /* 추론 모델은 생각을 짧게: 강의 분석 대기 시간 줄이기 */
+  const j=await oaJSON("/chat/completions",body);
   const msg=j.choices?.[0]?.message; if(!msg) throw new Error("응답이 비어 있어요"); if(msg.refusal) throw new Error(msg.refusal);
   return JSON.parse(msg.content);
 }
