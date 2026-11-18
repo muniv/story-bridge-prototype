@@ -6,7 +6,7 @@
 <title>스토리브릿지 프로토타입</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-/* Layout: 두 도구(강의 연습 / 그림책 제작)를 상단 모드 탭으로 나누고, 각 모드 안에서 단계별 화면 전환.
+/* Layout: 강의 연습 도우미 하나에 집중. 연습실 → 녹화 올리기 → AI 분석 → 피드백 리포트의 단계별 화면 전환.
    Design: 시그니처 오렌지(#FF6000) + 쿨톤 그레이 뉴트럴, Pretendard 단일 서체, 12~20px 절제된 라운드 코너. */
 :root{
   --bg:#F3F4F6; --paper:#FFFFFF; --ink:#191F28; --ink-2:#6B7583; --line:#E5E7EA; --line-2:#D1D6DC;
@@ -50,12 +50,6 @@ header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-cont
 .brand{display:flex;align-items:center;gap:10px}
 .brand .mark{width:28px;height:28px;border-radius:var(--r2);background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.95rem;letter-spacing:0}
 .brand .tag{font-size:.75rem;border-radius:999px;padding:3px 10px;background:var(--bg);color:var(--ink-2);font-weight:500}
-.modes{display:flex;gap:6px}
-.modes button{border-radius:999px;padding:8px 16px;display:flex;gap:8px;align-items:center}
-.modes button.cur{background:var(--dark);color:var(--dark-ink);border-color:var(--dark)}
-.modes button.cur:hover{background:var(--dark)}
-.modes .rank{font-size:.7rem;border-radius:999px;padding:0 7px;background:var(--accent);color:var(--accent-ink);font-weight:700}
-.modes button.cur .rank{background:var(--accent)}
 .steps{display:flex;gap:4px;list-style:none;margin:0 0 16px;padding:0;flex-wrap:wrap}
 .steps li{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;color:var(--ink-2);font-size:.9rem}
 .steps li .n{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-size:.75rem;font-weight:700}
@@ -176,104 +170,32 @@ li[data-m]{cursor:pointer} li[data-m]:hover{text-decoration:underline}
 .hist .it button.lk{padding:4px 10px;font-size:.8rem;border-radius:999px}
 @media (max-width:520px){.tl .mk{width:18px;height:18px;top:18px;font-size:.6rem}.player{aspect-ratio:4/3}.player .slide{padding:38px 8% 72px}.player .slide .t{font-size:1.05rem}.player .cap{font-size:.74rem;padding:4px 8px;bottom:50px}}
 
-/* book */
-.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.pg{border:1px solid var(--line);border-radius:var(--r3);padding:8px 10px;background:var(--bg);font-size:.8rem;line-height:1.45}
-.pg b{display:block;margin-bottom:2px}
-.pg .vi{color:var(--ink-2);font-style:italic}
-.styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.sty{border:2px solid var(--line);border-radius:var(--r3);overflow:hidden;cursor:pointer;background:var(--bg);padding:0;text-align:left}
-.sty.cur{border-color:var(--accent)}
-.sty .sw{height:54px}
-.sty img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.sty .nm{padding:7px 10px;font-size:.85rem;font-weight:600}
-.chars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ch{border:2px solid var(--line);border-radius:var(--r3);overflow:hidden;cursor:pointer;background:var(--bg);padding:0}
-.ch.cur{border-color:var(--accent)}
-.ch svg,.ch img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.ch .nm{padding:7px 8px;font-size:.8rem;text-align:center;font-weight:600}
-.plist{display:flex;flex-direction:column;gap:6px}
-.plist button{display:flex;gap:10px;align-items:center;text-align:left;padding:8px 10px}
-.plist button.cur{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-deep)}
-.plist .dot{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none}
-.plist .ok .dot{background:var(--ok)}
-.illu{aspect-ratio:4/3;max-width:100%;border-radius:var(--r4);overflow:hidden;background:#000;position:relative}
-.illu svg{width:100%;height:100%;display:block}
-.illu .v{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.72rem;padding:2px 8px;border-radius:999px}
-.illu.busy::after{content:"그리는 중…";position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;font-weight:700;font-size:1.1rem}
-.spread{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fffdf7;color:#222;box-shadow:0 8px 24px -12px rgba(0,0,0,.4);max-width:100%}
-.spread .l{aspect-ratio:1/1;max-width:100%}
-.spread .l svg{width:100%;height:100%;display:block}
-.spread .r{padding:8%;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative;border-left:1px solid #e5dfcf}
-.spread .r .ko{font-family:var(--display);font-weight:600;font-size:clamp(.85rem,2vw,1.15rem);line-height:1.7}
-.spread .r .vi{font-size:clamp(.72rem,1.6vw,.9rem);color:#555;line-height:1.6}
-.spread .r .pn{position:absolute;bottom:6%;right:8%;font-size:.7rem;color:#888}
-.spread .l .pn{display:none}
-@media (max-width:520px){.spread{grid-template-columns:1fr}.spread .r{border-left:0;border-top:1px solid #e5dfcf}}
-.sheet{aspect-ratio:1/1;max-width:100%;border-radius:6px;overflow:hidden;background:#1c2a4a;color:#ffe9a8;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;font-family:var(--display);text-align:center;padding:10%}
-.sheet .t{font-size:clamp(1.1rem,3vw,1.7rem);font-weight:700}
-.sheet .s{font-size:.8rem;opacity:.85}
-.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center}
-.cmp .c{background:var(--bg);border:1px solid var(--line);border-radius:var(--r3);padding:12px}
-.cmp .c .v{font-family:var(--display);font-size:1.4rem;font-weight:800}
-.cmp .ar{color:var(--accent);font-size:1.4rem}
 
-/* api settings */
-.hdr-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.apibtn{display:flex;gap:6px;align-items:center;font-size:.85rem;padding:7px 12px;border-radius:999px}
-.apibtn .st{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.apibtn.on .st{background:var(--ok)}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:30;padding:16px}
-.modal .card{width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:var(--r5)}
-input[type=password]{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r3);padding:9px 12px;width:100%;min-width:0}
-.illu img,.spread .l img,.charref img{width:100%;height:100%;object-fit:cover;display:block}
-.charref{aspect-ratio:1/1;max-width:160px;border-radius:var(--r3);overflow:hidden;background:var(--bg);border:1px solid var(--line);position:relative}
-.charref.busy::after{content:"그리는 중…";position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;font-family:var(--display)}
-.charref .empty{position:absolute;inset:0;display:grid;place-items:center;font-size:.78rem;color:var(--ink-2);text-align:center;padding:10px}
-.ai{background:var(--dark);color:var(--dark-ink);border-color:var(--dark);font-weight:700}
-.ai:hover{background:var(--dark);opacity:.9}
-.ai:disabled{opacity:.45;cursor:not-allowed}
+/* book check + pronunciation practice */
+.tr.bk{max-height:none}
+.tr.bk .ln{grid-template-columns:52px 1fr auto}
+.tr.bk .ln .x small{display:block;color:var(--ink-2);font-size:.78rem;margin-top:2px}
+.words span.cur{outline:2px solid var(--accent);outline-offset:1px}
+.words span.done{background:var(--ok-soft);color:var(--ok)}
+.prac{border:1px solid var(--line);border-radius:var(--r4);padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
+.prac .pv{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center}
+.prac .pv .c{background:var(--paper);border:1px solid var(--line);border-radius:var(--r3);padding:10px}
+.prac .pv .c .v{font-size:1.25rem;font-weight:800;letter-spacing:-.3px}
+.prac .pv .c.bad .v{color:var(--warn)} .prac .pv .c.good .v{color:var(--ok)}
+.prac .pv .ar{color:var(--accent);font-size:1.3rem}
+.prac .say{background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;font-size:.92rem}
+.dots{display:flex;gap:6px;align-items:center;font-size:.8rem;color:var(--ink-2)}
+.dots i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line-2)}
+.dots i.on{background:var(--ok);border-color:var(--ok)}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 <header>
-  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.4</span></div>
-  <div class="hdr-r">
-    <div class="modes" id="modes">
-      <button class="cur" data-mode="L"><span class="rank">1순위</span>강의 연습 도우미</button>
-      <button data-mode="B"><span class="rank">2순위</span>그림책 제작 도우미</button>
-    </div>
-    <button class="apibtn" id="apiOpen" hidden><span class="st"></span><span id="apiLabel">API 설정</span></button>
-  </div>
+  <div class="brand"><span class="mark" aria-hidden="true">S</span><h1>스토리브릿지</h1><span class="tag">프로토타입 v0.5</span></div>
 </header>
-<div class="note">클릭형 프로토타입입니다. 강의 평가·전사는 흐름 확인용 예시 데이터입니다. 그림책 제작 도우미 탭의 <b>그림 생성</b>은 ‘API 설정’에 OpenAI 키를 넣으면 실제로 동작합니다(키는 이 브라우저에만 저장). 대표님 피드백(10/16)에 따라 강의 녹화 평가를 1순위, 글 완성 후 그림·편집 지원을 2순위로 구성했습니다.</div>
-
-<div class="modal" id="apiModal" hidden>
-  <div class="card stack">
-    <div class="row between"><h3>OpenAI 이미지 API 연결</h3><button class="sm ghost" id="apiClose">닫기</button></div>
-    <label class="field">API 키 <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off"></label>
-    <div class="grid2">
-      <label class="field">이미지 모델
-        <select id="apiModel">
-          <option value="gpt-image-1-mini">gpt-image-1-mini (저렴, 기본)</option>
-          <option value="gpt-image-1">gpt-image-1 (품질 높음)</option>
-          <option value="dall-e-3">dall-e-3 (참고 그림 사용 불가)</option>
-        </select>
-      </label>
-      <label class="field">품질 (gpt-image 계열)
-        <select id="apiQuality"><option value="low">low (빠름·저렴)</option><option value="medium">medium</option><option value="high">high</option></select>
-      </label>
-    </div>
-    <p class="small muted">키는 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 요청은 브라우저에서 api.openai.com으로 직접 갑니다. 공용 컴퓨터에서는 쓰고 나서 ‘키 지우기’를 눌러 주세요. 장면 한 장당 대략 gpt-image-1-mini low 기준 수 원~수십 원 수준입니다.</p>
-    <p class="small" id="apiStatus"></p>
-    <div class="row between">
-      <button class="ghost sm" id="apiClear">키 지우기</button>
-      <div class="row"><button id="apiTest">연결 테스트</button><button class="primary" id="apiSave">저장</button></div>
-    </div>
-  </div>
-</div>
+<div class="note">클릭형 프로토타입입니다. 강의 평가·전사는 흐름 확인용 예시 데이터입니다. 강의 녹화와 책 PDF를 올려 AI 피드백을 받고, 발음을 따라 말하며 연습하는 흐름에 집중했습니다. 발음 연습의 ‘따라 말하기’는 Chrome에서 마이크로 실제 동작합니다.</div>
 
 <!-- ═══════════ 모드 L: 강의 연습 도우미 ═══════════ -->
 <div id="modeL">
@@ -333,8 +255,15 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         <input type="file" id="L-file" accept="video/*,audio/*" hidden>
       </div>
       <div class="row"><button id="L-sample">샘플 녹화로 체험</button><span class="muted small">『달님은 하나예요』 유치원 모의 강의 20분 12초 (예시)</span></div>
-      <div class="grid2">
-        <label class="field">강의 주제 (책)<select id="L-book"><option>달님은 하나예요 (베트남 추석)</option><option>엄마 나라의 설날</option><option>자유 주제</option></select></label>
+      <div class="field">강의에 쓰는 책 (PDF)
+        <div class="tbox row between">
+          <span id="L-bookName" style="color:var(--ink)">샘플 책 『달님은 하나예요』 · 12쪽 (예시)</span>
+          <button class="sm" id="L-bookBtn">책 PDF 올리기</button>
+          <input type="file" id="L-bookFile" accept="application/pdf,.pdf" hidden>
+        </div>
+        <span>책을 올리면 강의에서 한 말을 책 문장과 맞춰 보고, 빠진 장면과 길어진 장면을 알려 드려요.</span>
+      </div>
+      <div class="grid3">
         <label class="field">수업 대상<select id="L-age"><option>유치원 (5~7세)</option><option>초등 저학년</option><option>초등 고학년</option><option>성인 (도서관 강연)</option></select></label>
         <label class="field">목표 시간<select id="L-len"><option>20분</option><option>30분</option><option>40분</option></select></label>
         <label class="field">평가 언어<select><option>한국어</option><option>한국어 + 베트남어 혼용</option></select></label>
@@ -367,7 +296,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
     <div id="L-jobs">
       <div class="job" data-d="2600"><div class="ico">1</div><div><strong>받아쓰기</strong> <span class="muted small">음성을 글로 옮기고 시간을 표시</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="4200"><div class="ico">2</div><div><strong>전달력·발음 분석</strong> <span class="muted small">말 빠르기, 목소리 크기, 군더더기 말, 발음 명료도</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
-      <div class="job" data-d="5200"><div class="ico">3</div><div><strong>내용·상호작용 분석</strong> <span class="muted small">도입-전개-정리 구조, 질문과 기다림, 책 활용 여부</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
+      <div class="job" data-d="5200"><div class="ico">3</div><div><strong>내용·상호작용 분석</strong> <span class="muted small">도입-전개-정리 구조, 질문과 기다림, 올린 책과 문장 대조</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
       <div class="job" data-d="6400"><div class="ico">4</div><div><strong>피드백 작성</strong> <span class="muted small">잘한 순간과 고칠 순간을 골라 다음 연습 목표 제안</span><div class="bar"><i></i></div></div><div class="st">대기</div></div>
     </div>
     <div class="live" id="L-live" hidden><p class="eyebrow">실시간 받아쓰기</p><div class="lines" id="L-liveL"></div><p class="small muted" id="L-liveS" style="margin-top:8px"></p></div>
@@ -426,17 +355,24 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
         </div>
       </div>
       <div class="card stack">
-        <p class="eyebrow">발음 주의 단어 · 누르면 또박또박 발음을 들려줘요</p>
-        <div class="words" id="L-words"></div>
-        <p class="muted small">베트남어 화자가 자주 흐리는 받침(ㄹ, ㅇ)과 ㅎ 약화 위주로 찾았어요. 틀린 게 아니라 아이들이 알아듣기 쉽게 하는 연습입니다.</p>
+        <div class="row between"><p class="eyebrow">책과 맞춰 보기 · 장면을 누르면 그 순간으로 이동</p><button class="sm ghost" id="L-bookOpen" hidden>올린 책 열기</button></div>
+        <p class="small" id="L-bookT"></p>
+        <div class="tr bk" id="L-bookL"></div>
         <p class="eyebrow" style="margin-top:6px">내용 체크</p>
         <ul class="small" style="margin:0;padding-left:18px">
           <li data-m="0"><span class="pill ok">좋아요</span> 도입에서 아이들 경험 질문 → 책으로 연결</li>
-          <li><span class="pill ok">좋아요</span> 책 삽화 4장면 실제로 보여 줌 (전통놀이로 흐르지 않음)</li>
+          <li><span class="pill ok">좋아요</span> 책 6장면 중 5장면을 다룸 (전통놀이로 흐르지 않음)</li>
           <li data-m="4"><span class="pill warn">고쳐요</span> 꾸오이 전설 설명 2분 40초 → 1분 + 질문 2개로</li>
           <li data-m="7"><span class="pill warn">고쳐요</span> 마무리 문장 없이 끝남 · 목표 시간 12초 초과</li>
         </ul>
       </div>
+    </div>
+
+    <div class="card stack" id="L-pron">
+      <div><p class="eyebrow">발음 연습 · 흐리게 들린 단어를 골라 따라 말해요</p><p class="muted small">베트남어 화자가 자주 흐리는 받침(ㄹ, ㅇ)과 ㅎ·ㅓ 소리 위주로 찾았어요. 틀린 게 아니라 아이들이 알아듣기 쉽게 하는 연습입니다.</p></div>
+      <div class="words" id="L-words"></div>
+      <div class="prac" id="L-prac"></div>
+      <p class="muted small">단어마다 3번 또렷하게 들리면 연습 완료예요. 음성 인식은 대략적인 확인이라, 억양이 있어도 알아들을 수 있으면 통과합니다.</p>
     </div>
 
     <div class="card">
@@ -447,7 +383,7 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
             <li data-m="4"><b>전설 부분 1분 안에.</b> “달에는 누가 살까요?”로 시작해서 아이 대답을 듣고 이어 가기.</li>
             <li><b>질문 뒤 3초 세기.</b> 속으로 ‘하나, 둘, 셋’ 하고 다음 말로.</li>
             <li data-m="7"><b>마무리 문장 정하기.</b> “베트남에서도 한국에서도 달님은 하나예요.” 를 마지막 말로 고정.</li>
-            <li data-m="2"><b>발음 3개 연습.</b> 친구들이랑 · 빙글빙글 · 환하게 를 매일 10번씩.</li>
+            <li data-m="2"><b>발음 3개 연습.</b> 친구들이랑 · 빙글빙글 · 환하게 를 위 발음 연습에서 3번씩.</li>
           </ol>
         </div>
         <div class="stack" style="gap:8px">
@@ -455,127 +391,6 @@ input[type=password]{font:inherit;color:var(--ink);background:var(--paper);borde
           <button id="L-pdf">리포트 PDF 저장</button>
           <button class="ghost" id="L-home">연습실로 돌아가기</button>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- ═══════════ 모드 B: 그림책 제작 도우미 ═══════════ -->
-<div id="modeB" hidden>
-<ol class="steps" id="stepsB">
-  <li class="active"><span class="n">1</span>완성된 글 넣기</li>
-  <li><span class="n">2</span>그림 스타일·주인공</li>
-  <li><span class="n">3</span>장면 그림 만들기</li>
-  <li><span class="n">4</span>편집·조판</li>
-</ol>
-
-<section id="B1">
-  <div class="grid2">
-    <div class="card stack">
-      <div><p class="eyebrow">Step 1</p><h2>기획과 글이 끝난 원고를 넣습니다</h2><p class="muted small">기획·글쓰기는 아시안허브 교육과정에서 함께 완성합니다. 이 도구는 그 다음, 가장 오래 걸리는 그림과 편집을 맡습니다.</p></div>
-      <div class="cmp">
-        <div class="c"><div class="v">6~12개월</div><div class="small muted">지금 · 작가가 직접 그림 → 담당자 편집</div></div>
-        <div class="ar">→</div>
-        <div class="c"><div class="v">2~3주</div><div class="small muted">목표 · AI 초안 + 작가 수정 + 자동 조판</div></div>
-      </div>
-      <label class="field">원고 (한국어 + 모국어 · 페이지 구분은 AI가 제안)
-        <textarea id="B-text" placeholder="완성된 글을 붙여 넣으세요. 두 언어를 섞어 넣어도 됩니다."></textarea>
-      </label>
-      <div class="row"><button id="B-sample">샘플 원고 불러오기</button><span class="muted small">『달님은 하나예요』 한국어·베트남어 (예시)</span></div>
-      <div class="grid2">
-        <label class="field">판형<select><option>정사각 210×210 (유아)</option><option>A4 가로</option><option>B5 세로</option></select></label>
-        <label class="field">페이지 수<select><option>24쪽 (12 펼침면)</option><option>32쪽 (16 펼침면)</option></select></label>
-      </div>
-    </div>
-    <div class="card" id="B-split" hidden>
-      <div class="row between"><p class="eyebrow">AI가 나눈 페이지</p><span class="pill">6 펼침면 (예시 축약)</span></div>
-      <p class="small muted" style="margin:4px 0 10px">문장 길이와 장면 전환을 기준으로 나눴어요. 끌어서 옮기거나 합칠 수 있습니다.</p>
-      <div class="pages" id="B-pages"></div>
-      <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="primary" id="B-go2">그림 스타일 정하기 →</button></div>
-    </div>
-  </div>
-</section>
-
-<section id="B2" hidden>
-  <div class="grid2">
-    <div class="card stack">
-      <div><p class="eyebrow">Step 2</p><h2>그림 스타일을 고릅니다</h2><p class="muted small">책 전체가 한 사람이 그린 것처럼 보이도록, 처음에 한 번만 정합니다.</p></div>
-      <div class="styles" id="B-styles"></div>
-      <label class="field">작가님이 직접 그린 그림이 있다면 (선택)
-        <div class="drop" style="padding:18px"><span class="small">스케치나 기존 그림을 올리면 그 느낌을 따라 그립니다</span></div>
-      </label>
-    </div>
-    <div class="card stack">
-      <div><p class="eyebrow">주인공 정하기</p><h3>린 (Linh) · 7살 여자아이</h3></div>
-      <label class="field">주인공 설명 (글로 쓰면 시안이 바뀝니다)
-        <input type="text" id="B-char" value="단발머리, 빨간 아오자이 입은 7살 여자아이, 별 등불을 들고 있음">
-      </label>
-      <div class="row"><button class="sm" id="B-charGen">시안 다시 만들기</button><span class="muted small">3개 중 하나를 고르면 모든 장면에 같은 얼굴로 나와요</span></div>
-      <div class="chars" id="B-chars"></div>
-      <div class="row" style="align-items:flex-start">
-        <div class="charref" id="B-charRef"><div class="empty">기준 그림 없음<br>(시안을 고르거나 아래 버튼으로 생성)</div></div>
-        <div class="stack" style="gap:6px;flex:1;min-width:160px">
-          <p class="small"><b>주인공 기준 그림</b><br><span class="muted">고른 시안이 기준 그림이 되어 모든 장면이 이 그림을 참고해 그려집니다. 설명을 바꿔 새로 만들 수도 있어요.</span></p>
-          <button class="ai sm" id="B-charAI">설명으로 새 기준 그림 만들기</button>
-          <span class="small muted" id="B-charAIhint"></span>
-        </div>
-      </div>
-      <div class="row between" style="margin-top:auto"><button class="ghost" id="B-back1">← 원고</button><button class="primary" id="B-go3">장면 그림 만들기 →</button></div>
-    </div>
-  </div>
-</section>
-
-<section id="B3" hidden>
-  <div class="row between" style="margin-bottom:12px">
-    <div><p class="eyebrow">Step 3</p><h2>장면마다 그림을 만들고 작가가 고칩니다</h2></div>
-    <p class="num"><strong id="B-okN">0</strong> / 6 장면 승인</p>
-  </div>
-  <div class="g12">
-    <div class="card plist" id="B-plist"></div>
-    <div class="card stack">
-      <div class="illu" id="B-illu"></div>
-      <div class="row between">
-        <div class="row"><button class="ai" id="B-gen">AI로 이 장면 그리기</button><button class="sm" id="B-genAll">남은 장면 모두 그리기</button></div>
-        <span class="small muted" id="B-genHint"></span>
-      </div>
-      <div class="tbox"><p class="eyebrow">이 장면의 글</p><p id="B-ptext"></p></div>
-      <label class="field">작가 수정 요청 (말로 하듯 쓰면 됩니다)
-        <div class="row"><input type="text" id="B-fix" placeholder="예: 등불을 더 크게, 달을 왼쪽 위로, 할머니 머리를 하얗게" style="flex:1;min-width:0"><button id="B-redraw">다시 그리기</button></div>
-      </label>
-      <div class="row small muted" id="B-hist"></div>
-      <div class="row between">
-        <div class="row"><button id="B-prev">← 이전</button><button id="B-next">다음 →</button></div>
-        <div class="row"><button id="B-approve">이 그림 승인</button><button class="primary" id="B-go4" disabled>편집·조판 →</button></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="B4" hidden>
-  <div class="g21">
-    <div class="card stack">
-      <div class="row between"><div><p class="eyebrow">Step 4</p><h2>자동 조판 · 펼침면 미리보기</h2></div><span class="muted small num" id="B-pgno"></span></div>
-      <div id="B-spread"></div>
-      <div class="row between">
-        <div class="row"><button id="B-sprev">← 앞장</button><button id="B-snext">뒷장 →</button></div>
-        <div class="row small"><label class="chk"><input type="checkbox" id="B-vi" checked> 모국어 함께</label><label class="chk"><input type="checkbox" id="B-big"> 글자 크게</label></div>
-      </div>
-    </div>
-    <div class="card stack">
-      <p class="eyebrow">편집 담당자 검토</p>
-      <ul class="small" style="margin:0;padding-left:18px">
-        <li><span class="pill ok">자동</span> 표지 · 속표지 · 판권 페이지 생성</li>
-        <li><span class="pill ok">자동</span> 이중언어 글 배치 · 글자 크기 · 여백</li>
-        <li><span class="pill ok">자동</span> 인쇄용 재단선 · CMYK 변환</li>
-        <li><span class="pill warn">사람</span> 베트남어 교정 1회 · 최종 승인</li>
-      </ul>
-      <div class="tbox"><p class="eyebrow">담당자 작업 시간 (예상)</p><p class="small">한 권 편집 <b>3주 → 2일</b>. 담당자는 교정과 최종 확인만 합니다.</p></div>
-      <div class="stack" style="gap:8px;margin-top:auto">
-        <button class="primary" id="B-send">편집 담당자에게 검토 요청</button>
-        <button id="B-pdf">인쇄용 PDF 내보내기</button>
-        <button id="B-epub">전자책(EPUB) 내보내기</button>
-        <button class="ghost" id="B-home">← 장면 그림으로</button>
       </div>
     </div>
   </div>
@@ -604,36 +419,6 @@ function runJobs(container, onDone, onJob){
     skip(){ if(stopped||done===jobs.length) return; stopped=true; jobs.forEach((j,idx)=>{ if(!j.classList.contains("done")){ finish(j); onJob&&onJob(idx); } }); onDone(); }
   };
 }
-/* ══════════ OpenAI 이미지 API ══════════ */
-const cfg={key:"",model:"gpt-image-1-mini",quality:"low"};
-try{ const s=JSON.parse(localStorage.getItem("sb-api")||"{}"); Object.assign(cfg,s); }catch(e){}
-function apiOn(){ return !!cfg.key; }
-function apiUI(){ $("apiOpen").classList.toggle("on",apiOn()); $("apiLabel").textContent=apiOn()?`API 연결됨 · ${cfg.model}`:"API 설정"; $("apiKey").value=cfg.key; $("apiModel").value=cfg.model; $("apiQuality").value=cfg.quality; }
-$("apiOpen").onclick=()=>{ $("apiModal").hidden=false; $("apiStatus").textContent=""; apiUI(); $("apiKey").focus(); };
-$("apiClose").onclick=()=>{ $("apiModal").hidden=true; };
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") $("apiModal").hidden=true; });
-$("apiModal").addEventListener("click",e=>{ if(e.target===$("apiModal")) $("apiModal").hidden=true; });
-$("apiSave").onclick=()=>{ cfg.key=$("apiKey").value.trim(); cfg.model=$("apiModel").value; cfg.quality=$("apiQuality").value; try{ localStorage.setItem("sb-api",JSON.stringify(cfg)); }catch(e){} apiUI(); $("apiModal").hidden=true; toast(apiOn()?"API 키를 저장했어요. 이제 그림을 실제로 만듭니다":"키가 비어 있어요. 예시 그림으로 동작합니다"); if(!$("B3").hidden) renderPage(); if(!$("B2").hidden) charHint(); };
-$("apiClear").onclick=()=>{ cfg.key=""; try{ localStorage.removeItem("sb-api"); }catch(e){} apiUI(); $("apiStatus").textContent="키를 지웠어요."; };
-$("apiTest").onclick=async()=>{ const k=$("apiKey").value.trim(); if(!k){ $("apiStatus").textContent="키를 먼저 넣어 주세요."; return; } $("apiStatus").textContent="확인 중…"; try{ const r=await fetch("https://api.openai.com/v1/models/"+$("apiModel").value,{headers:{Authorization:"Bearer "+k}}); const j=await r.json(); $("apiStatus").textContent=r.ok?`연결 성공 · ${j.id} 사용 가능`:`실패: ${j.error?.message||r.status}`; }catch(e){ $("apiStatus").textContent="요청 실패: "+e.message; } };
-function dataUrlToBlob(d){ const [h,b]=d.split(","); const mime=h.match(/data:(.*?);/)[1]; const bin=atob(b); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new Blob([u],{type:mime}); }
-async function genImage(prompt, refDataUrl){
-  if(!apiOn()) throw new Error("API 키가 없어요");
-  const gpt=cfg.model.startsWith("gpt-image"); let r;
-  if(gpt && refDataUrl){
-    const fd=new FormData(); fd.append("model",cfg.model); fd.append("prompt",prompt); fd.append("size","1024x1024"); fd.append("quality",cfg.quality); const rb=dataUrlToBlob(refDataUrl); fd.append("image[]",rb,rb.type.includes("jpeg")?"character.jpg":"character.png");
-    r=await fetch("https://api.openai.com/v1/images/edits",{method:"POST",headers:{Authorization:"Bearer "+cfg.key},body:fd});
-  } else {
-    const body={model:cfg.model,prompt,size:"1024x1024",n:1}; if(gpt) body.quality=cfg.quality; else body.response_format="b64_json";
-    r=await fetch("https://api.openai.com/v1/images/generations",{method:"POST",headers:{Authorization:"Bearer "+cfg.key,"Content-Type":"application/json"},body:JSON.stringify(body)});
-  }
-  const j=await r.json(); if(!r.ok) throw new Error(j.error?.message||("HTTP "+r.status));
-  return "data:image/png;base64,"+j.data[0].b64_json;
-}
-
-// 모드 전환
-document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ document.querySelectorAll("#modes button").forEach(x=>x.classList.toggle("cur",x===b)); $("modeL").hidden=b.dataset.mode!=="L"; $("modeB").hidden=b.dataset.mode!=="B"; $("apiOpen").hidden=b.dataset.mode!=="B"; $("apiModal").hidden=true; stopPlay(); try{ speechSynthesis.cancel(); }catch(e){} window.scrollTo({top:0}); });
-
 /* ══════════ L: 강의 연습 ══════════ */
 const CATS=["전달력","한국어 발음","내용 구성","아이와 상호작용","시간 배분"];
 const AI=[72,68,81,85,60], PREV=[63,64,78,73,63]; const SELF=[80,80,80,70,90];
@@ -647,7 +432,7 @@ const DUR=1212;
 const MOMENTS=[
   {t:12,type:"good",title:"아이들 경험으로 시작했어요",q:"“여러분, 추석에 뭐 했어요? 송편 먹었어요? 선생님 나라에도 추석이 있어요.”",fb:"아이들이 아는 것(한국 추석)에서 출발해 책으로 넘어가는 좋은 도입입니다. 질문 뒤 아이 셋이 대답했어요."},
   {t:100,type:"fix",title:"말이 빨라졌어요 · 분당 212어절",rate:1.45,q:"“그래서린이는등불을들고나갔는데친구들이많이있었고다같이…”",fb:"설명이 길어질 때 속도가 올라갑니다. 문장 하나 끝날 때마다 한 번 숨 쉬기.",say:"“린이는 등불을 들고 나갔어요. (쉬고) 밖에는 친구들이 많았어요. (쉬고) 다 같이 걸었어요.”"},
-  {t:185,type:"fix",title:"발음 · ‘친구들이랑’ 받침이 흐려요",q:"“친구드이랑 등부를 들고…”",fb:"ㄹ 받침이 약해져서 ‘친구드이랑’, ‘등부를’로 들립니다. 아이들은 모르는 단어로 들을 수 있어요.",say:"“친·구·들·이·랑 등·불·을” 받침마다 혀끝을 윗니 뒤에 붙이기."},
+  {t:185,type:"fix",title:"발음 · ‘친구들이랑’ 받침이 흐려요",q:"“친구드이랑 등부을 들고…”",fb:"ㄹ 받침이 약해져서 ‘친구드이랑’, ‘등부을’로 들립니다. 아이들은 모르는 단어로 들을 수 있어요.",say:"“친·구·들·이·랑 등·불·을” 받침마다 혀끝을 윗니 뒤에 붙이기."},
   {t:330,type:"good",title:"별 등불 실물을 보여 줬어요",q:"“이게 바로 덴옹사오예요. 만져 볼 사람?”",fb:"책 속 그림과 실물을 연결한 순간. 아이들 집중도가 가장 높았던 구간입니다(목소리 반응 11회)."},
   {t:490,type:"fix",title:"전설 설명이 2분 40초예요",q:"“옛날 옛날에 꾸오이라는 사람이 살았는데 그 사람이 나무를 키웠는데 그 나무가 신비한 나무라서…”",fb:"유치원생이 집중하는 설명 길이는 1분 안팎입니다. 중간에 질문 2개로 쪼개면 훨씬 잘 따라와요.",say:"“달에 누가 살까요? (대답 듣기) 베트남 사람들은 꾸오이 아저씨가 산다고 믿어요. 왜 달에 갔을까요?”"},
   {t:720,type:"fix",title:"“어…” 가 많아요 · 이 구간 14회",q:"“어… 그래서 어… 월병은 어… 둥근 과자인데…”",fb:"다음 말을 고르는 동안 나오는 소리예요. 대신 조용히 1초 쉬면 오히려 또렷하게 들립니다."},
@@ -660,7 +445,7 @@ const TR=[
   {t:48,x:"베트남 추석은 ‘뗏쭝투’라고 해요. 오늘은 이 책, 『달님은 하나예요』를 같이 읽을 거예요."},
   {t:100,x:"그래서 린이는 등불을 들고 나갔는데 친구들이 많이 있었고 다 같이…"},
   {t:150,x:"달님이 동글동글, 환하게 떠 있어요. 린이는 별 모양 등불을 손에 꼭 쥐었어요."},
-  {t:185,x:"친구드이랑 등부를 들고 동네를 빙글빙글 돌아요."},
+  {t:185,x:"친구드이랑 등부을 들고 동네를 빙글빙글 돌아요."},
   {t:260,x:"베트남 아이들은 추석에 등불을 들고 동네를 돌아요. 한국 친구들은 뭐 들고 다녀요?"},
   {t:330,x:"이게 바로 덴옹사오예요. 만져 볼 사람?"},
   {t:420,x:"할머니가 달나라 이야기를 들려주셨어요. 달에는 누가 살까요?"},
@@ -674,7 +459,21 @@ const TR=[
   {t:1198,x:"…네, 그럼 오늘은 여기까지. 네."},
 ];
 const SLIDES=[[0,"여러분, 추석에 뭐 했어요?","도입 · 아이들 경험 묻기"],[48,"달님은 하나예요","책 소개"],[150,"린이와 별 등불","1~2장면 읽기"],[330,"덴옹사오 · 별 등불","실물 보여 주기"],[420,"달에는 누가 살까요?","꾸오이 전설"],[720,"월병 나눠 먹기","5장면 읽기"],[920,"쭉 믕 쭝 투!","베트남어 인사"],[1100,"달님은 하나예요","마무리"]];
-const WORDS=[["친구들이랑",3],["빙글빙글",2],["환하게",2],["할머니",2],["등불을",4]];
+const WORDS=[
+  {w:"친구들이랑",say:"친구드리랑",n:3,heard:"친구드이랑",t:185,tip:"‘들’의 ㄹ이 빠졌어요. 혀끝을 윗니 뒤에 붙였다가 ‘리’로 넘어가세요.",sent:"친구들이랑 같이 놀아요."},
+  {w:"등불을",say:"등뿌를",n:4,heard:"등부을",t:185,tip:"‘불’의 ㄹ이 빠졌어요. ㄹ을 다음 글자로 넘겨 ‘등-뿌-를’처럼 이어서 말하세요.",sent:"등불을 손에 들었어요."},
+  {w:"빙글빙글",say:"빙글빙글",n:2,heard:"빙그빙그",t:185,tip:"‘글’ 끝에서 혀끝을 윗니 뒤에 붙인 채로 잠깐 멈추세요.",sent:"동네를 빙글빙글 돌아요."},
+  {w:"환하게",say:"환하게",n:2,heard:"와나게",t:150,tip:"첫 글자 ‘환’의 ㅎ을 숨소리로 살리세요. 손바닥에 바람이 느껴지면 됩니다.",sent:"달님이 환하게 떠 있어요."},
+  {w:"할머니",say:"할머니",n:2,heard:"할모니",t:420,tip:"‘머’는 입술을 모으지 말고 입을 세로로 벌려 ㅓ 소리를 내세요.",sent:"할머니가 이야기를 들려주셨어요."},
+];
+const BOOK=[
+  {p:"1–2",x:"오늘은 베트남의 추석, 뗏쭝투예요. 달님이 동글동글, 환하게 떠 있어요.",t:150,s:"ok",l:"읽음"},
+  {p:"3–4",x:"린이는 별 모양 등불을 손에 꼭 쥐었어요.",t:150,s:"ok",l:"읽음"},
+  {p:"5–6",x:"친구들이랑 등불을 들고 동네를 빙글빙글 돌아요.",t:185,s:"ok",l:"읽음",n:"발음 주의 단어 3개가 이 장면에 있어요"},
+  {p:"7–8",x:"할머니가 달나라 이야기를 들려주셨어요. 달에는 커다란 나무 아래 앉은 꾸오이 아저씨가 산대요.",t:490,s:"warn",l:"길어짐",n:"책은 두 문장인데 설명이 2분 40초였어요"},
+  {p:"9–10",x:"다 같이 월병을 나눠 먹어요. 달님처럼 동그란 과자예요.",t:800,s:"ok",l:"풀어 말함",n:"송편과 비교해서 설명했어요"},
+  {p:"11–12",x:"린이는 달님을 보며 방긋 웃었어요. 베트남에서도, 한국에서도, 달님은 하나예요.",t:1100,s:"warn",l:"빠짐",n:"마지막 문장을 끝까지 읽지 않았어요"},
+];
 function fmt(s){ return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
 let curM=0, curT=MOMENTS[0].t, cmpOn=false, lecMedia=null, playing=false, playTimer=null, playId=0;
 function slideAt(t){ let s=SLIDES[0]; for(const x of SLIDES) if(t>=x[0]) s=x; return s; }
@@ -745,11 +544,57 @@ function renderScores(){
     ? `<b>내 느낌과 AI 평가가 대체로 비슷해요.</b> 자기 인식이 정확한 편입니다. 점수가 낮은 항목부터 영상을 확인해 보세요.`
     : `<b>내 느낌과 가장 다른 항목: ${CATS[gi]}</b> · 나 ${SELF[gi]} vs AI ${AI[gi]} (${gap>0?"내가 더 높게":"내가 더 낮게"}봤어요). ${GAPS[gi]}`;
 }
+/* 발음 연습: 단어 고르기 → 내 발음·모범 발음 듣기 → 따라 말하기(브라우저 음성 인식) */
+let curW=0, rec=null, pracMsg=""; const wOk=WORDS.map(()=>0);
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function stopRec(){ if(rec){ try{ rec.abort(); }catch(e){} rec=null; } }
 function renderWords(){
-  $("L-words").innerHTML=WORDS.map(w=>`<span role="button" tabindex="0" data-w="${w[0]}">${w[0]} <small>${w[1]}회</small></span>`).join("");
-  $("L-words").querySelectorAll("span[data-w]").forEach(s=>{ const go=()=>{ stopPlay(); if(!speak(s.dataset.w,0.75)) toast("이 브라우저는 음성을 지원하지 않아요"); }; s.onclick=go; s.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+  $("L-words").innerHTML=WORDS.map((w,i)=>`<span role="button" tabindex="0" data-i="${i}" class="${i===curW?"cur":""} ${wOk[i]>=3?"done":""}">${w.w} <small>${wOk[i]>=3?"연습 완료":w.n+"회"}</small></span>`).join("");
+  $("L-words").querySelectorAll("span[data-i]").forEach(s=>{ const go=()=>{ stopRec(); curW=+s.dataset.i; pracMsg=""; renderWords(); }; s.onclick=go; s.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+  renderPractice();
 }
-function renderReport(){ renderScores(); renderTimeline(); renderMoment(); renderPlayer(); renderTranscript(); renderWords(); }
+function renderPractice(){
+  const w=WORDS[curW], n=wOk[curW], noTts=()=>toast("이 브라우저는 음성을 지원하지 않아요");
+  $("L-prac").innerHTML=`<div class="row between"><strong>${w.w}</strong><span class="small muted num">영상 ${fmt(w.t)} 부근 · ${w.n}회</span></div>
+    <div class="pv"><div class="c bad"><div class="small muted">이렇게 들렸어요</div><div class="v">${w.heard}</div></div><div class="ar">→</div><div class="c good"><div class="small muted">목표 발음</div><div class="v">${w.w}</div><div class="small muted">[${w.say}]</div></div></div>
+    <p class="small">${w.tip}</p>
+    <div class="row"><button class="sm" id="P-mine">▶ 내 발음</button><button class="sm" id="P-model">▶ 모범 발음 (천천히)</button><button class="sm" id="P-sent">▶ 문장으로</button></div>
+    <div class="say"><span class="eyebrow">문장으로 연습</span><br>“${w.sent}”</div>
+    <div class="row between"><button class="primary" id="P-rec">${rec?"■ 듣는 중… 말해 보세요":"● 따라 말하기"}</button><span class="dots">${[0,1,2].map(k=>`<i class="${k<n?"on":""}"></i>`).join("")}<span class="num">${n}/3</span></span></div>
+    <p class="small" id="P-res" role="status">${pracMsg}</p>`;
+  $("P-mine").onclick=()=>{ stopRec(); if(lecMedia){ playAt(w.t); $("L-review").scrollIntoView({behavior:"smooth",block:"start"}); } else { stopPlay(); if(!speak(w.heard,1)) noTts(); } };
+  $("P-model").onclick=()=>{ stopRec(); stopPlay(); if(!speak(w.w,0.6)) noTts(); };
+  $("P-sent").onclick=()=>{ stopRec(); stopPlay(); if(!speak(w.sent,0.85)) noTts(); };
+  $("P-rec").onclick=practice;
+}
+function practice(){
+  const i=curW, w=WORDS[i];
+  if(rec){ try{ rec.stop(); }catch(e){} return; }
+  stopPlay(); try{ speechSynthesis.cancel(); }catch(e){}
+  const pass=()=>{ wOk[i]=Math.min(3,wOk[i]+1); if(wOk[i]===3) toast(`‘${w.w}’ 연습 완료`); };
+  if(!SR){ pass(); pracMsg="이 브라우저는 음성 인식을 지원하지 않아 연습 횟수만 기록했어요. Chrome에서 열면 발음을 실제로 들어 봅니다."; renderWords(); return; }
+  const r=new SR(); r.lang="ko-KR"; r.interimResults=false; r.maxAlternatives=1; pracMsg="";
+  r.onresult=e=>{ const said=e.results[0][0].transcript.trim(); const norm=x=>x.replace(/[\s.,!?]/g,""); const safe=said.replace(/[<>&]/g,"");
+    if(norm(said).includes(norm(w.w))){ pass(); pracMsg=`<span class="pill ok">또렷해요</span> ‘${safe}’(으)로 들렸어요.${wOk[i]>=3?" 이 단어는 연습 완료예요.":" 한 번 더 해 볼까요?"}`; }
+    else pracMsg=`<span class="pill warn">다시 한 번</span> ‘${safe}’(으)로 들렸어요. 모범 발음을 듣고 천천히 다시 말해 보세요.`; };
+  r.onerror=e=>{ pracMsg= e.error==="not-allowed"||e.error==="service-not-allowed" ? "마이크 권한이 필요해요. 주소창의 마이크 아이콘에서 허용해 주세요." : e.error==="no-speech" ? "소리가 들리지 않았어요. 마이크 가까이에서 다시 말해 보세요." : e.error==="aborted" ? "" : "음성 인식에 실패했어요 ("+e.error+"). 잠시 뒤 다시 해 보세요."; };
+  r.onend=()=>{ if(rec===r) rec=null; if(!$("L4").hidden) renderWords(); };
+  rec=r; try{ r.start(); }catch(e){ rec=null; pracMsg="음성 인식을 시작하지 못했어요."; } renderWords();
+}
+/* 책과 맞춰 보기 */
+let bookFile=null;
+function goTime(t){ const mi=MOMENTS.findIndex(x=>x.t===t); if(mi>=0) selectMoment(mi,true); else { seekTo(t); $("L-review").scrollIntoView({behavior:"smooth",block:"start"}); } }
+function renderBook(){
+  const n=BOOK.filter(b=>b.l!=="빠짐").length;
+  $("L-bookT").textContent=(bookFile?`${bookFile.name} · `:"『달님은 하나예요』 · ")+`${BOOK.length}장면 중 ${n}장면을 다뤘어요`+(bookFile?" (대조 결과는 예시)":"");
+  $("L-bookOpen").hidden=!bookFile;
+  $("L-bookL").innerHTML=BOOK.map((b,i)=>`<button class="ln ${b.s==="ok"?"good":"fix"}" data-i="${i}"><span class="t num">${b.p}쪽</span><span class="x">${b.x}${b.n?`<small>${b.n}</small>`:""}</span><span class="pill ${b.s}">${b.l} · ${fmt(b.t)}</span></button>`).join("");
+  $("L-bookL").querySelectorAll(".ln").forEach(el=>el.onclick=()=>goTime(BOOK[+el.dataset.i].t));
+}
+$("L-bookOpen").onclick=()=>{ if(bookFile) window.open(bookFile.url,"_blank"); };
+$("L-bookBtn").onclick=()=>$("L-bookFile").click();
+$("L-bookFile").onchange=()=>{ const f=$("L-bookFile").files[0]; if(!f) return; if(bookFile){ try{ URL.revokeObjectURL(bookFile.url); }catch(e){} } bookFile={url:URL.createObjectURL(f),name:f.name}; $("L-bookName").textContent=`${f.name} · ${(f.size/1048576).toFixed(1)}MB`; toast("책 PDF를 올렸어요. 강의에서 한 말을 이 책과 맞춰 봅니다"); };
+function renderReport(){ renderScores(); renderTimeline(); renderMoment(); renderPlayer(); renderTranscript(); renderBook(); curW=0; pracMsg=""; renderWords(); }
 
 /* Step 1 */
 document.querySelectorAll("#L-self input").forEach(r=>r.oninput=()=>{ r.nextElementSibling.value=r.value; SELF[+r.dataset.k]=+r.value; });
@@ -785,7 +630,7 @@ $("L-go3").onclick=()=>{
   if(jobCtl) jobCtl.cancel(); clearInterval(liveTimer);
   setStep("L",3,4); $("L-go4").disabled=true; $("L-live").hidden=false; $("L-liveL").innerHTML=""; $("L-liveS").textContent="";
   let k=0; liveTimer=setInterval(()=>{ if(k<TR.length) liveLine(k++); else clearInterval(liveTimer); },2600/TR.length);
-  const S=[`받아쓰기 완료 · ${TR.length}줄 · ${fmt(DUR)}`,"전달력 분석 완료 · 평균 168어절/분 · 군더더기 14회 · 질문 뒤 기다림 2.1초","내용 분석 완료 · 잘한 순간 3 · 고칠 순간 5 · 발음 주의 단어 5","리포트 준비 완료 · 다음 연습 목표 4개 제안"];
+  const S=[`받아쓰기 완료 · ${TR.length}줄 · ${fmt(DUR)}`,"전달력 분석 완료 · 평균 168어절/분 · 군더더기 14회 · 질문 뒤 기다림 2.1초","내용 분석 완료 · 책 6장면 중 5장면 다룸 · 잘한 순간 3 · 고칠 순간 5 · 발음 주의 단어 5","리포트 준비 완료 · 다음 연습 목표 4개 제안"];
   jobCtl=runJobs($("L-jobs"),()=>{ $("L-go4").disabled=false; toast("분석이 끝났어요"); },idx=>{ if(idx===0){ clearInterval(liveTimer); for(let i=0;i<TR.length;i++) liveLine(i); } $("L-liveS").textContent=S[idx]; });
 };
 $("L-skip").onclick=()=>{ if(jobCtl) jobCtl.skip(); };
@@ -795,105 +640,12 @@ $("L-back2").onclick=()=>{ if(jobCtl) jobCtl.cancel(); clearInterval(liveTimer);
 $("L-go4").onclick=()=>{ setStep("L",4,4); cmpOn=false; $("L-cmp").textContent="2회차와 비교"; curM=0; curT=MOMENTS[0].t; renderReport(); };
 $("L-share").onclick=()=>toast("대표님(코치)에게 리포트 링크를 보냈어요 (예시)");
 $("L-cmp").onclick=()=>{ cmpOn=!cmpOn; $("L-cmp").textContent=cmpOn?"비교 끄기":"2회차와 비교"; renderScores(); toast(cmpOn?"2회차 점수를 회색 선으로, 변화를 숫자로 표시했어요":"비교를 닫았어요"); };
-$("L-again").onclick=()=>{ stopPlay(); toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; $("L-go3").disabled=true; lf.value=""; clearMedia(); };
+$("L-again").onclick=()=>{ stopRec(); stopPlay(); toast("4회차 목표 4개를 저장했어요"); setStep("L",2,4); $("L-ready").hidden=true; $("L-go3").disabled=true; lf.value=""; clearMedia(); };
 $("L-pdf").onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정");
-$("L-home").onclick=()=>{ stopPlay(); setStep("L",1,4); };
+$("L-home").onclick=()=>{ stopRec(); stopPlay(); setStep("L",1,4); };
 document.querySelectorAll("#L4 li[data-m]").forEach(li=>{ li.tabIndex=0; li.setAttribute("role","button"); li.title="영상에서 이 순간 보기"; const go=()=>selectMoment(+li.dataset.m,true); li.onclick=go; li.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); go(); } }; });
 
-/* ══════════ B: 그림책 제작 ══════════ */
-const SAMPLE=`오늘은 베트남의 추석, 뗏쭝투예요. 달님이 동글동글, 환하게 떠 있어요.
-Đêm Trung Thu, trăng tròn và sáng.
-린이는 별 모양 등불을 손에 꼭 쥐었어요.
-Bé Linh cầm chiếc đèn ông sao.
-친구들이랑 등불을 들고 동네를 빙글빙글 돌아요.
-Các bạn nhỏ cùng rước đèn quanh xóm.
-할머니가 달나라 이야기를 들려주셨어요. 달에는 커다란 나무 아래 앉은 꾸오이 아저씨가 산대요.
-Bà kể chuyện chú Cuội ngồi gốc cây đa.
-다 같이 월병을 나눠 먹어요. 달님처럼 동그란 과자예요.
-Mọi người chia nhau bánh trung thu.
-린이는 달님을 보며 방긋 웃었어요. 베트남에서도, 한국에서도, 달님은 하나예요.
-Linh nhìn trăng và mỉm cười.`;
-const PAGES=[
-  {ko:"오늘은 베트남의 추석, 뗏쭝투예요. 달님이 동글동글, 환하게 떠 있어요.",vi:"Đêm Trung Thu, trăng tròn và sáng.",intent:"밤하늘 · 배경",pal:["#0b1b3a","#1d3a6e"],motif:"moon"},
-  {ko:"린이는 별 모양 등불을 손에 꼭 쥐었어요.",vi:"Bé Linh cầm chiếc đèn ông sao.",intent:"주인공 등장",pal:["#14213d","#3b2f6b"],motif:"lantern"},
-  {ko:"친구들이랑 등불을 들고 동네를 빙글빙글 돌아요.",vi:"Các bạn nhỏ cùng rước đèn quanh xóm.",intent:"등불 행진",pal:["#1a1f4b","#5a3a7a"],motif:"parade"},
-  {ko:"할머니가 달나라 이야기를 들려주셨어요. 달에는 커다란 나무 아래 앉은 꾸오이 아저씨가 산대요.",vi:"Bà kể chuyện chú Cuội ngồi gốc cây đa.",intent:"할머니 · 전설",pal:["#2b1d12","#5c3a1e"],motif:"tree"},
-  {ko:"다 같이 월병을 나눠 먹어요. 달님처럼 동그란 과자예요.",vi:"Mọi người chia nhau bánh trung thu.",intent:"가족 · 월병",pal:["#3a1a1a","#7a3a2a"],motif:"cake"},
-  {ko:"린이는 달님을 보며 방긋 웃었어요. 베트남에서도, 한국에서도, 달님은 하나예요.",vi:"Linh nhìn trăng và mỉm cười.",intent:"마무리",pal:["#0b1b3a","#2a4a7a"],motif:"moon2"},
-];
-const STYLES=[
-  {n:"수채화",img:"img/style-watercolor.jpg",c:["#9fc5e8","#f9cb9c"],en:"soft watercolor children's picture book illustration, gentle washes, paper texture"},
-  {n:"색연필",img:"img/style-pencil.jpg",c:["#f4cccc","#b6d7a8"],en:"colored pencil children's picture book illustration, warm hand-drawn texture"},
-  {n:"종이 오리기",img:"img/style-papercut.jpg",c:["#ffd966","#e06666"],en:"paper cut-out collage children's picture book illustration, layered paper shapes, flat colors"},
-  {n:"민화풍",img:"img/style-minhwa.jpg",c:["#6fa8dc","#f1c232"],en:"Korean minhwa folk painting inspired children's picture book illustration, bold outlines, flat decorative colors"},
-];
-let style=0, charPick=0, pageI=0, version=PAGES.map(()=>1), bApproved=PAGES.map(()=>false), fixes=PAGES.map(()=>[]);
-const gen=PAGES.map(()=>null); let charRef=null, busyAll=false;
-function charDesc(){ return $("B-char").value.trim()||"a 7-year-old Vietnamese girl"; }
-function basePrompt(){ return `${STYLES[style].en}. Main character: ${charDesc()} (Vietnamese girl named Linh, keep the same face, hairstyle and clothes in every scene). Setting: Vietnamese Mid-Autumn Festival (Tết Trung Thu) at night. No text, no letters, no watermark.`; }
-function scenePrompt(i){ const p=PAGES[i]; const fx=fixes[i].length?` Revision requests from the author (apply all): ${fixes[i].join("; ")}.`:""; const ref=charRef?" Use the attached image as the exact design reference for the main character.":""; return `${basePrompt()} Scene for pages ${i*2+1}-${i*2+2}: "${p.ko}" (${p.vi}). Composition: ${p.intent}, leave calm space on one side for text.${fx}${ref}`; }
-function charHint(){ $("B-charAIhint").textContent=apiOn()?`${cfg.model} · ${cfg.quality} · 1장 생성`:"API 설정에 키를 넣으면 쓸 수 있어요"; $("B-charAI").disabled=!apiOn(); }
-$("B-charAI").onclick=async()=>{ if(!apiOn()) return; const box=$("B-charRef"); box.classList.add("busy"); $("B-charAI").disabled=true; try{ charRef=await genImage(`${basePrompt()} Character reference sheet: full body front view of the main character standing, holding a star-shaped lantern (đèn ông sao), plain light background.`,null); box.innerHTML=`<img src="${charRef}" alt="AI 주인공 기준 그림">`; toast("주인공 기준 그림을 만들었어요. 장면 그림이 이 그림을 참고합니다"); }catch(e){ toast("생성 실패: "+e.message); } box.classList.remove("busy"); $("B-charAI").disabled=false; };
-const STYLE_SHIFT=[0,1,2,3];
-function art(s,i,sq){
-  const [a,b]=s.pal; const W=160,H=sq?160:120; const v=version[i]; const sh=STYLE_SHIFT[style]*7+(v-1)*13;
-  const hair=["#2b1b10","#4a2a10","#1a1a1a"][charPick];
-  const stars=Array.from({length:14},(_,k)=>`<circle cx="${(k*37+i*11+sh)%W}" cy="${(k*23+7)%(H*0.6)}" r="${k%3?0.8:1.4}" fill="#fff" opacity=".8"/>`).join("");
-  const moon=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#ffe7a0"/><circle cx="${x-r*.3}" cy="${y-r*.2}" r="${r*.18}" fill="#f3d57c"/>`;
-  const kid=(x,y,c)=>`<circle cx="${x}" cy="${y-14}" r="6" fill="#f6d2b0"/><path d="M${x-6} ${y-17} q6 -6 12 0 v-2 q-6 -5 -12 0z" fill="${hair}"/><path d="M${x-8} ${y+8} q8 -22 16 0z" fill="${c}"/>`;
-  const lantern=(x,y,c,r=1)=>`<g transform="translate(${x} ${y}) scale(${r})"><polygon points="0,-10 3,-3 10,-3 4,1 6,9 0,4 -6,9 -4,1 -10,-3 -3,-3" fill="${c}"/><line x1="0" y1="9" x2="0" y2="20" stroke="#caa"/></g>`;
-  const ground=`<path d="M0 ${H-18} q40 -10 80 0 t80 0 V${H} H0z" fill="#1a2a2a"/>`;
-  const big=fixes[i].some(f=>/크게/.test(f))?1.6:1; const left=fixes[i].some(f=>/왼쪽/.test(f));
-  let m="";
-  if(s.motif==="moon") m=moon(left?W*.25:W*.7,H*.3,H*.16)+ground+`<rect x="20" y="${H-40}" width="26" height="24" fill="#2b2b3b"/><polygon points="18,${H-40} 33,${H-54} 48,${H-40}" fill="#3b2b2b"/><rect x="29" y="${H-32}" width="8" height="10" fill="#ffd27a"/>`;
-  if(s.motif==="lantern") m=moon(left?W*.2:W*.82,H*.22,H*.1)+ground+kid(W*.45,H-22,"#e74c3c")+lantern(W*.45+16,H-44,"#ffb020",big);
-  if(s.motif==="parade") m=moon(W*.85,H*.2,H*.09)+ground+[0,1,2,3].map(k=>kid(30+k*32,H-22,["#e74c3c","#3498db","#2ecc71","#f1c40f"][k])+lantern(30+k*32+14,H-46,["#ffb020","#ff6b6b","#7bed9f","#ffd27a"][k],big)).join("");
-  if(s.motif==="tree"){ const white=fixes[i].some(f=>/하얗|흰/.test(f)); m=moon(W*.5,H*.3,H*.22)+`<path d="M${W*.5-6} ${H*.3+18} v-16 m0 0 q-10 -10 -14 -4 m14 4 q10 -12 16 -6" stroke="#8a6a3a" stroke-width="2.5" fill="none"/><circle cx="${W*.5-14}" cy="${H*.3-2}" r="7" fill="#4a8a4a"/><circle cx="${W*.5+8}" cy="${H*.3-6}" r="8" fill="#4a8a4a"/>`+ground+kid(W*.18,H-22,"#9b59b6")+`<circle cx="${W*.3}" cy="${H-36}" r="7" fill="#f6d2b0"/><path d="M${W*.3-7} ${H-39} q7 -7 14 0 v-2 q-7 -5 -14 0z" fill="${white?"#eee":"#777"}"/><path d="M${W*.3-10} ${H-14} q10 -24 20 0z" fill="#888"/>`; }
-  if(s.motif==="cake") m=moon(W*.85,H*.18,H*.08)+`<rect x="0" y="${H*.55}" width="${W}" height="${H}" fill="#5a2a1a"/><rect x="20" y="${H*.6}" width="${W-40}" height="10" fill="#8a4a2a"/>`+[0,1,2].map(k=>`<circle cx="${50+k*30}" cy="${H*.6-4}" r="${9*big}" fill="#c98a3a"/><circle cx="${50+k*30}" cy="${H*.6-4}" r="${5*big}" fill="none" stroke="#e8b060"/>`).join("")+kid(W*.2,H*.58,"#e74c3c")+kid(W*.8,H*.58,"#3498db");
-  if(s.motif==="moon2") m=moon(W*.5,H*.32,H*.2)+ground+kid(W*.5,H-22,"#e74c3c")+`<path d="M${W*.5-8} ${H-33} q8 5 16 0" stroke="#a55" stroke-width="1.2" fill="none"/>`;
-  const tint=STYLES[style].c[0];
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g${i}${sq?1:0}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#g${i}${sq?1:0})"/><rect width="${W}" height="${H}" fill="${tint}" opacity=".12"/>${stars}${m}</svg>`;
-}
-$("B-sample").onclick=()=>{ $("B-text").value=SAMPLE; splitPages(); };
-$("B-text").addEventListener("change",()=>{ if($("B-text").value.trim()) splitPages(); });
-function splitPages(){ $("B-pages").innerHTML=PAGES.map((p,i)=>`<div class="pg"><b class="num">${i*2+1}–${i*2+2}쪽 · ${p.intent}</b>${p.ko}<br><span class="vi">${p.vi}</span></div>`).join(""); $("B-split").hidden=false; toast("원고를 6개 펼침면으로 나눴어요 (예시)"); }
-$("B-go2").onclick=()=>{ setStep("B",2,4); renderStyles(); renderChars(); charHint(); };
-function renderStyles(){ $("B-styles").innerHTML=STYLES.map((s,i)=>`<button class="sty ${i===style?"cur":""}" data-i="${i}"><img src="${s.img}" alt="${s.n} 샘플" loading="lazy"><div class="nm">${s.n}</div></button>`).join(""); $("B-styles").querySelectorAll(".sty").forEach(b=>b.onclick=()=>{ style=+b.dataset.i; renderStyles(); }); }
-const CHAR_IMGS=["img/char-1.jpg","img/char-2.jpg","img/char-3.jpg"];
-function renderChars(){ $("B-chars").innerHTML=CHAR_IMGS.map((src,i)=>`<button class="ch ${i===charPick?"cur":""}" data-i="${i}"><img src="${src}" alt="주인공 시안 ${i+1}" loading="lazy"><div class="nm">시안 ${i+1}</div></button>`).join(""); $("B-chars").querySelectorAll(".ch").forEach(b=>b.onclick=()=>{ charPick=+b.dataset.i; renderChars(); useCharAsRef(); }); if(!charRef) useCharAsRef(true); }
-async function useCharAsRef(silent){ const src=CHAR_IMGS[charPick]; $("B-charRef").innerHTML=`<img src="${src}" alt="주인공 기준 그림 (시안 ${charPick+1})">`; try{ const r=await fetch(src); const bl=await r.blob(); charRef=await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.readAsDataURL(bl); }); if(!silent) toast(`시안 ${charPick+1}을 기준 그림으로 정했어요. 장면 그림이 이 얼굴을 따라갑니다`); }catch(e){ charRef=null; } }
-$("B-charGen").onclick=()=>{ toast("설명을 반영해 시안 3개를 다시 만들었어요 (예시)"); renderChars(); };
-$("B-back1").onclick=()=>setStep("B",1,4);
-$("B-go3").onclick=()=>{ setStep("B",3,4); renderPage(); };
-function renderPlist(){ $("B-plist").innerHTML=PAGES.map((p,i)=>`<button class="${i===pageI?"cur":""} ${bApproved[i]?"ok":""}" data-i="${i}"><span class="dot"></span><span><b class="num">${i*2+1}–${i*2+2}쪽</b><br><span class="muted small">${p.intent}</span></span></button>`).join(""); $("B-plist").querySelectorAll("button").forEach(b=>b.onclick=()=>{ pageI=+b.dataset.i; renderPage(); }); const n=bApproved.filter(Boolean).length; $("B-okN").textContent=n; $("B-go4").disabled=n<6; }
-function renderPage(){ const p=PAGES[pageI]; $("B-illu").className="illu"; const pic=gen[pageI]?`<img src="${gen[pageI]}" alt="장면 ${pageI+1} AI 그림">`:art(p,pageI,false); $("B-illu").innerHTML=pic+`<span class="v num">v${version[pageI]} · ${gen[pageI]?cfg.model:STYLES[style].n+" (예시)"}</span>`; $("B-ptext").textContent=p.ko; $("B-fix").value=""; $("B-hist").innerHTML=fixes[pageI].length?"수정 이력: "+fixes[pageI].map(f=>`“${f}”`).join(" → "):"<span>아직 수정 요청이 없어요</span>"; $("B-approve").textContent=bApproved[pageI]?"승인 취소":"이 그림 승인"; $("B-gen").disabled=!apiOn()||busyAll; $("B-genAll").disabled=!apiOn()||busyAll; $("B-genHint").textContent=apiOn()?`${cfg.model} · ${cfg.quality}${charRef?" · 기준 그림 참고":""}`:"API 키가 없으면 예시 그림으로 동작"; renderPlist(); }
-async function drawPage(i){ $("B-illu").classList.add("busy"); try{ gen[i]=await genImage(scenePrompt(i),charRef); version[i]++; bApproved[i]=false; return true; }catch(e){ toast("생성 실패: "+e.message); return false; } finally{ $("B-illu").classList.remove("busy"); } }
-$("B-gen").onclick=async()=>{ if(!apiOn()) return; const i=pageI; $("B-gen").disabled=true; const ok=await drawPage(i); if(i===pageI) renderPage(); if(ok) toast(`장면 ${i+1} 그림을 만들었어요`); };
-$("B-genAll").onclick=async()=>{ if(!apiOn()||busyAll) return; const todo=PAGES.map((_,i)=>i).filter(i=>!gen[i]); if(!todo.length){ toast("모든 장면에 이미 그림이 있어요"); return; } busyAll=true; renderPage(); let n=0; for(const i of todo){ pageI=i; renderPage(); toast(`장면 ${i+1} 그리는 중… (${n+1}/${todo.length})`); if(await drawPage(i)) n++; } busyAll=false; renderPage(); toast(`${n}장 완성`); };
-$("B-redraw").onclick=async()=>{ const f=$("B-fix").value.trim(); if(!f){ toast("어떻게 바꿀지 한 줄 써 주세요"); return; } fixes[pageI].push(f); bApproved[pageI]=false;
-  if(apiOn()){ const i=pageI; $("B-hist").textContent="수정 요청 반영해서 다시 그리는 중…"; const ok=await drawPage(i); if(i===pageI) renderPage(); if(ok) toast("요청을 반영해 다시 그렸어요"); return; }
-  version[pageI]++; $("B-illu").classList.add("busy"); setTimeout(()=>{ renderPage(); toast("예시 그림으로 반영했어요 (‘크게’, ‘왼쪽’, ‘하얗게’만 반응). 실제 생성은 API 설정 후"); },1400); };
-$("B-fix").onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); $("B-redraw").click(); } };
-$("B-prev").onclick=()=>{ pageI=(pageI+5)%6; renderPage(); };
-$("B-next").onclick=()=>{ pageI=(pageI+1)%6; renderPage(); };
-$("B-approve").onclick=()=>{ bApproved[pageI]=!bApproved[pageI]; if(bApproved[pageI]&&pageI<5){ pageI++; } renderPage(); if(bApproved.every(Boolean)) toast("6장면 모두 승인했어요. 조판으로 넘어갈 수 있어요"); };
-$("B-go4").onclick=()=>{ setStep("B",4,4); spreadI=0; renderSpread(); };
-let spreadI=0;
-function renderSpread(){
-  const big=$("B-big").checked, vi=$("B-vi").checked;
-  if(spreadI===0){ $("B-spread").innerHTML=`<div class="spread"><div class="l"><div class="sheet"><div class="t">달님은 하나예요</div><div class="s">Trăng chỉ có một</div><div class="s" style="margin-top:14px">글·그림 응우옌 ○○ (예시)<br>아시안허브 엄마나라 동화</div></div></div><div class="r"><p class="ko" style="font-size:.95rem">이 책은 베트남에서 온 엄마가 한국의 아이들에게 들려주는 추석 이야기입니다.</p><p class="vi">Cuốn sách này là câu chuyện Trung Thu mà một người mẹ Việt Nam kể cho các em nhỏ ở Hàn Quốc.</p><span class="pn">1</span></div></div>`; $("B-pgno").textContent="표지 · 속표지"; return; }
-  const i=spreadI-1, p=PAGES[i];
-  $("B-spread").innerHTML=`<div class="spread"><div class="l">${gen[i]?`<img src="${gen[i]}" alt="장면 ${i+1}">`:art(p,i,true)}</div><div class="r"><p class="ko" ${big?'style="font-size:1.35rem"':''}>${p.ko}</p>${vi?`<p class="vi">${p.vi}</p>`:""}<span class="pn num">${i*2+2}</span></div></div>`;
-  $("B-pgno").textContent=`${i*2+1}–${i*2+2}쪽 / 14쪽`;
-}
-$("B-sprev").onclick=()=>{ spreadI=(spreadI+6)%7; renderSpread(); };
-$("B-snext").onclick=()=>{ spreadI=(spreadI+1)%7; renderSpread(); };
-$("B-vi").onchange=renderSpread; $("B-big").onchange=renderSpread;
-$("B-send").onclick=()=>toast("편집 담당자에게 검토 요청을 보냈어요 (예시)");
-["B-pdf","B-epub"].forEach(id=>$(id).onclick=()=>toast("프로토타입에서는 파일 저장이 동작하지 않습니다. MVP에서 구현 예정"));
-$("B-home").onclick=()=>{ setStep("B",3,4); renderPage(); };
 if(typeof speechSynthesis!=="undefined") speechSynthesis.onvoiceschanged=()=>{};
-apiUI();
 </script>
 </body>
 </html>
